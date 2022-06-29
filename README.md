@@ -1,34 +1,76 @@
+<p align="center">
+  <a href="https://github.com/droidconKE/droidconKE2022Web">
+    <img src="https://avatars.githubusercontent.com/u/37573296?s=200&v=4" alt="droidconKE2022">
+  </a>
+  </p>
+
+![badge](https://github.com/droidconKE/droidconKE2022Web/workflows/Lint%20CI/badge.svg)
+
+# droidconKe 2022 Web
+
+> [droidconKe](https://droidcon.co.ke) Official Website
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+### Features
+
+The has the following features:
+
+- Home
+- Sessions
+- Saved Sessions
+- Feed
+- About
+- Speakers
+- User Auth (Google)
+- Feedback
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
+yarn
+
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+We would love to have your help in making **droidconKE Website** better.
+The project is still very incomplete, but if there's an issue you'd like to see addressed sooner rather than later, let us know.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+For any concerns kindly:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Open an issue](https://github.com/droidconKE/droidconKE2022Web/issues),
 
-## Learn More
+[Contributing Guide](contributing.md)
 
-To learn more about Next.js, take a look at the following resources:
+    or JUST,
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Fork the project and send a pull request](https://github.com/droidconKE/droidconKE2022Web/pulls).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[Pull Request Guide](pull_request_template.md)
 
-## Deploy on Vercel
+## Contributors
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Auto-populated from:
+[contributors-img](https://contributors-img.firebaseapp.com/image?repo=droidconke/droidconKE2022Web)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<a href="https://github.com/droidconke/droidconKE2022Web/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=droidconke/droidconKE2022Web" />
+</a>
+
+## License
+
+### Assets
+
+**Credits:**
+
+- Logo is used from [droidconKE](https://droidcon.co.ke/)
+
+- Follow them twitter: [@droidconKE](https://twitter.com/droidconke?lang=en)
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](#)
+
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source-200x33.png?v=103)](#)
