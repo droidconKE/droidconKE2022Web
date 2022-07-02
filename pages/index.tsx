@@ -1,12 +1,25 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { Banner } from '../components/home/Banner'
+import { EventTypes } from '../components/home/EventTypes'
+import { Gallery } from '../components/home/Gallery'
+import Organizers from '../components/home/Organizers'
+import { Sponsor } from '../components/home/Sponsor'
+import { Organizer } from '../types/types'
+import axios from '../utils/axios'
 
-const Home: NextPage = () => {
+interface HomeProps {
+  organizers: Organizer[]
+}
+
+const Home: NextPage<HomeProps> = ({ organizers }) => {
   return (
-    <div>
+    <div
+      className="bg-[length:46%] md:bg-[length:47%] bg-[top_300px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
+      style={{ backgroundImage: 'url(/images/kenyatta.png)' }}
+    >
       <Banner />
-      <section className="l-container mt-8 md:mt-0">
+      <section className="l-container mt-8 md:mt-0 pb-6 md:pb-12">
         <div className="flex flex-wrap">
           <div className="w-full md:w-5/12">
             <h2 className="title">About</h2>
@@ -40,8 +53,23 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
+      <EventTypes />
+      <Organizers organizers={organizers} />
+      <Sponsor />
+      <Gallery />
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const organizers = await axios
+    .get(`/organizers/${process.env.ORG_SLUG}/team?type=company`)
+    .then((response) => {
+      return response.data.data
+    })
+
+  // Pass data to the page via props
+  return { props: { organizers } }
 }
 
 export default Home

@@ -10,7 +10,12 @@ To ensure you that your pull request is accepted:
 3. Make commits of logical units
 4. Write descriptive commit messages and not 2 worded commits.
 5. Run lint checks `yarn lint` and fix all warnings and errors
-6. For all colors and fonts, use provided color classes in `static/css/layout.css`. In case of addition, add the colors to `lights.css` and `darktheme.css` as provided in the design
+6. For all colors and fonts, use provided color classes in `styles/global.css`. In case of addition, define the colors in `tailwind.config.js` and define both light and dark version for it
+
+- For every color, bg-color, border etc, define it's dark version eg; `text-primary dark:text-primary border-accent dark:border-accent bg-white dark:bg-dark`
+- For `white` color, use `dark:bg-dark` for backgrounds and `dark:text-white-dark` for colors and borders
+- Use custom defined colors eg primary, secondary, accent, accent-2, secondary02 etc, don't use tailwindcss defined colors
+
 7. Page responsiveness in a priority, _Tailwind CSS_ is used in the design
 
-N/B All the designs will be provide
+N/B All the designs will be provided

@@ -24,12 +24,16 @@ export const NavBar = () => {
     <nav className="flex items-center justify-between flex-wrap bg-white dark:bg-dark nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:pl-24">
         <Link href="/">
-          {isDarkTheme ? (
-            <img className="w-32" src="/images/website.png" alt="logo" />
+          {!isDarkTheme ? (
+            <img
+              className="w-[200px] md:w-[250px]"
+              src="/images/logo.svg"
+              alt="logo"
+            />
           ) : (
             <img
-              className="w-32"
-              src="/images/website-dark.png"
+              className="w-[200px] md:w-[250px]"
+              src="/images/logo.svg"
               alt="logo dark"
             />
           )}
@@ -39,11 +43,11 @@ export const NavBar = () => {
         <button
           type="button"
           id="nav-toggle"
-          className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white"
+          className="flex items-center px-3 py-2 border rounded text-primary dark:text-primary-dark border-primary dark:border-primary-dark"
           onClick={() => toggleNav()}
         >
           <svg
-            className="fill-current h-3 w-3"
+            className="fill-primary dark:fill-primary-dark h-3 w-3"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
