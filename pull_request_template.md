@@ -1,3 +1,12 @@
+Make sure the checklist below is checked before PR merge, mark if not applicable
+
+## PR Checklist
+
+- [ ] UI created matched design
+- [ ] For evey color class added, dark: is defined, images have alt and \_blank links have rel
+- [ ] API is integrated as required
+- [ ] Page is responsive
+
 ## What is the Purpose?
 
 Briefly describe what the PR addresses
