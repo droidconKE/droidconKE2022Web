@@ -24,6 +24,17 @@ module.exports = withPWA({
         // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
       },
       {
+        urlPattern: /\.(?:mp4|webp)$/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-video-assets',
+          expiration: {
+            maxEntries: 64,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+          },
+        },
+      },
+      {
         urlPattern: '/^https://via.placeholder.com/*/i',
         handler: 'CacheFirst',
         options: {

@@ -70,6 +70,9 @@ body {
   -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
 }
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
 
 @tailwind base;
 @tailwind components;
