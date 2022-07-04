@@ -63,7 +63,7 @@ export const Banner = () => {
             preload="auto"
             controls
             disablePictureInPicture
-            controlsList="nodownload"
+            controlsList="nodownload nofullscreen noremoteplayback"
           >
             <source
               type="video/mp4"
