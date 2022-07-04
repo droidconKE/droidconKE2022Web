@@ -1,6 +1,80 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withPWA = require('next-pwa')
 
-module.exports = nextConfig
+module.exports = withPWA({
+  reactStrictMode: true,
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === 'development',
+    runtimeCaching: [
+      {
+        urlPattern: '/^https://fonts.googleapis.com/.*/i',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-font-assets',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          },
+        },
+        // method: 'GET',
+        // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+      },
+      {
+        urlPattern: '/^https://via.placeholder.com/*/i',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-image-assets',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          },
+        },
+        // method: 'GET',
+        // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+      },
+      {
+        urlPattern: '/^https://sessionize.com/image*/i',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-img-assets',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          },
+        },
+        // method: 'GET',
+        // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+      },
+      {
+        urlPattern: '/^https://lh3.googleusercontent.com/*/i',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-images-assets',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          },
+        },
+        // method: 'GET',
+        // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+      },
+      {
+        urlPattern: `/^${process.env.API_BASE_URL}/*/i`,
+        handler: 'StaleWhileRevalidate',
+        // method: 'GET',
+        options: {
+          // cacheableResponse: { statuses: [0, 200, 201] },
+          cacheName: 'api-data-sets',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+          },
+        },
+      },
+    ],
+  },
+})
