@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <div>
-      <section className="w-full bg-primary dark:bg-primary-dark">
+      <section className="w-full bg-primary dark:bg-black-dark">
         <div className="l-container md:mt-10 md:py-12">
           <div className="items-center flex flex-wrap my-10">
             <div className="w-full md:w-8/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
@@ -62,7 +62,7 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-sm">
-                      Parking is vavailable
+                      Parking is available
                     </p>
                   </ul>
                 </div>
@@ -98,7 +98,7 @@ export const Footer = () => {
               </a>
             </div>
             <div className="py-4">
-              <p className="text-light dark:text-light text-xs">
+              <p className="text-light dark:text-lighter text-xs">
                 Copyright © {new Date().getFullYear()}. All rights reserved
               </p>
             </div>

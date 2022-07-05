@@ -7,7 +7,7 @@ function Organizers({ organizers }: { organizers: Organizer[] }) {
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-6/12 ml-auto md:px-12">
             <div className="md:pr-12 text-left">
-              <h3 className="title pt-10 md:pt-0">
+              <h3 className="title dark:text-accent-dark pt-10 md:pt-0">
                 droidconKe IS ORGANIZED BY;
               </h3>
               <p className="mt-4">The ones that make it happen</p>

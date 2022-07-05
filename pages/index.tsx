@@ -15,7 +15,7 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ organizers }) => {
   return (
     <div
-      className="bg-[length:46%] md:bg-[length:47%] bg-[top_300px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
+      className="bg-[length:46%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
       style={{ backgroundImage: 'url(/images/kenyatta.png)' }}
     >
       <Banner />
@@ -24,10 +24,10 @@ const Home: NextPage<HomeProps> = ({ organizers }) => {
           <div className="w-full md:w-5/12">
             <h2 className="title">About</h2>
             <h3 className="title-l">droidconke</h3>
-            <p className="text-2xl text-primary dark:text-primary-dark py-3">
+            <p className="text-2xl text-primary dark:text-accent-dark py-3">
               The Largest Android Focused Developer conference in Africa.
             </p>
-            <p className="text-light dark:text-light-dark py-5 md:py-8">
+            <p className="text-light dark:text-lighter-dark py-5 md:py-8">
               This 3rd edition of droidconKE will include several tech
               communities from the East African Region and continental members.
               It will give participants an excellent chance to learn about the

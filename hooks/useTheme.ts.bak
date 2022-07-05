@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 import { isClient } from '../utils/helpers'
 
+const THEME_NAME = 'droidcon_theme'
+
 export const useTheme = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
 
   useEffect(() => {
     if (isClient) {
       if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) &&
+        localStorage.getItem(THEME_NAME) === 'dark' ||
+        (!(THEME_NAME in localStorage) &&
           window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
         document.documentElement.classList.add('dark')
@@ -21,13 +23,13 @@ export const useTheme = () => {
   }, [])
 
   const addDarkTheme = () => {
-    localStorage.setItem('droidcon-theme', 'dark')
+    localStorage.setItem(THEME_NAME, 'dark')
     document.documentElement.classList.add('dark')
     setIsDarkTheme(true)
   }
 
   const removeDarkTheme = () => {
-    localStorage.setItem('droicon-theme', 'light')
+    localStorage.setItem(THEME_NAME, 'light')
     document.documentElement.classList.remove('dark')
     setIsDarkTheme(false)
   }
