@@ -40,4 +40,5 @@ yarn-error.log*
 .env.production
 /public/sw.*
 .swc
-/public/workbox.*
+/public/workbox*
+/public/fallback*
