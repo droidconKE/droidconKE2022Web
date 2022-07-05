@@ -17,5 +17,8 @@ To ensure you that your pull request is accepted:
 - Use custom defined colors eg primary, secondary, accent, accent-2, secondary02 etc, don't use tailwindcss defined colors
 
 7. Page responsiveness in a priority, _Tailwind CSS_ is used in the design
+8. Always build with SSR in mind
 
-N/B All the designs will be provided
+N/B All the designs will be provided here: https://xd.adobe.com/view/09e7a508-167f-48ee-a2ef-6b907be8fd09-5cb4/
+
+Old Repo https://github.com/droidconKE/droidconKe2020_web

@@ -113,7 +113,7 @@ export const NavBar = () => {
           <button
             type="button"
             id="login-modal"
-            className="px-4 md:px-0 relative flex my-2 md:my-0"
+            className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
             onClick={() => null}
           >
             <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:accent-dark mr-2">

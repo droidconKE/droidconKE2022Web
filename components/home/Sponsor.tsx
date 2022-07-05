@@ -7,7 +7,7 @@ export const Sponsor = () => {
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-6/12 justify-start sm:pr-6">
             <div className="md:pr-12 text-left">
-              <h3 className="title-w text-white pt-10 md:pt-0">
+              <h3 className="title-w text-white dark:text-white-dark pt-10 md:pt-0">
                 SPONSOR DROIDCONKE
               </h3>
               <h6 className="mt-4 text-lighter dark:text-lighter-dark pr-0 md:pr-20">
