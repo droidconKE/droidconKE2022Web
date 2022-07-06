@@ -22,7 +22,14 @@ export const Banner = () => {
               NOVEMBER
             </div>
           </div>
-          <div className="mt-16 md:mt-20">
+          <div>
+            <img
+              className="w-[440px] mb-14 mt-8 md:my-10"
+              src="/images/lines.png"
+              alt="line"
+            />
+          </div>
+          <div>
             <div className="flex flex-wrap md:space-x-4">
               <a
                 href="https://bit.ly/droidconKE20"
@@ -46,23 +53,38 @@ export const Banner = () => {
                 submit a talk
               </a>
             </div>
-            <div className="mt-14 md:mt-16 text-xl md:text-2xl font-light">
-              <h3>
+            <div className="mt-16 md:mt-16 text-xl md:text-2xl font-light">
+              <h3 className="dark:text-white-dark">
                 LARGEST ANDROID FOCUSED <br />
                 DEVELOPER CONFERENCE IN AFRICA.
               </h3>
             </div>
           </div>
         </div>
-        <div className="mt-28 md:mt-0">
-          <iframe
+        <div className="mt-16 md:mt-0">
+          <video
+            className="rounded-xl aspect-video  w-full  md:w-[670px] "
+            loop
+            autoPlay
+            muted
+            preload="auto"
+            controls
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+          >
+            <source
+              type="video/mp4"
+              src="/video/DroidconKe_2019_Highlight_Reel_HD.mp4"
+            />
+          </video>
+          {/* <iframe
             className="rounded-xl aspect-video h-[250px] w-full md:h-[400px] md:w-[630px] -mt-20"
             src="https://www.youtube.com/embed/AO-j2kLvKJw?start=5&controls=0&showinfo=0&modestbranding=1&rel=0"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen={false}
-          />
+          /> */}
         </div>
       </div>
     </div>

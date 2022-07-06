@@ -1,11 +1,12 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { useTheme } from '../../../hooks/useTheme'
+import { useContext, useEffect, useState } from 'react'
+import { ThemeContext } from '../../../context/ThemeContext'
+import { ToggleTheme } from './ToggleTheme'
 
 export const NavBar = () => {
-  const { isDarkTheme } = useTheme()
+  const { isDarkTheme } = useContext(ThemeContext)
 
   const [navVisible, setNavVisible] = useState(false)
   const router = useRouter()
@@ -21,7 +22,7 @@ export const NavBar = () => {
   }, [])
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-white dark:bg-dark nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
+    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:pl-24">
         <Link href="/">
           {!isDarkTheme ? (
@@ -33,7 +34,7 @@ export const NavBar = () => {
           ) : (
             <img
               className="w-[200px] md:w-[250px]"
-              src="/images/logo.svg"
+              src="/images/logo-dark.svg"
               alt="logo dark"
             />
           )}
@@ -43,11 +44,11 @@ export const NavBar = () => {
         <button
           type="button"
           id="nav-toggle"
-          className="flex items-center px-3 py-2 border rounded text-primary dark:text-primary-dark border-primary dark:border-primary-dark"
+          className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
           onClick={() => toggleNav()}
         >
           <svg
-            className="fill-primary dark:fill-primary-dark h-3 w-3"
+            className="fill-primary dark:fill-secondary-dark h-3 w-3"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -56,7 +57,7 @@ export const NavBar = () => {
           </svg>
         </button>
       </div>
-      {/* // <toggle-theme /> */}
+      <ToggleTheme />
       <div
         id="nav-content"
         className={`w-full flex-grow lg:flex lg:items-center lg:w-auto lg:block pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
@@ -109,17 +110,16 @@ export const NavBar = () => {
         </div>
 
         <div className="w-4/12 flex-grow  lg:flex justify-end">
-          {/* <!--        theme--> */}
           <button
             type="button"
             id="login-modal"
-            className="px-4 md:px-0 relative flex my-2 md:my-0"
+            className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
             onClick={() => null}
           >
-            <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:accent-dark mr-2">
+            <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
               <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
             </span>
-            Login
+            <span className="black">Login</span>
           </button>
         </div>
       </div>
