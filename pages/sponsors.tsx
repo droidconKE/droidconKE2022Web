@@ -4,7 +4,7 @@ export default function SponsorsPage() {
   return (
     <div className="w-full mt-15 md:mt-14 mb-0">
       <section className="w-full bg-primary dark:bg-primary-dark">
-        <div className="l-container md:mt-10 md:py-12">
+        <div className="l-container mt-8 md:mt-0 py-12 md:py-12">
           <div className="items-start flex flex-wrap mb-0">
             <div className="w-full md:w-7/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
               <div className="text-center md:text-left">
@@ -20,7 +20,7 @@ export default function SponsorsPage() {
             <div className="w-full flex  md:w-5/12 mt-10 md:mt-0 justify-center md:justify-end px-2 md:px-8">
               <div className="mt-0 mb-14 flex flex-wrap md:mb-0">
                 <Link href="/sponsors">
-                  <a className="btn-accent mt-3 md:mt-0 font-semibold">
+                  <a className="btn-accent mt-3 md:mt-0 font-semibold rounded-lg">
                     Sponsor droidconke
                   </a>
                 </Link>
@@ -110,21 +110,23 @@ export default function SponsorsPage() {
         </div>
       </section>
       <section className="py-12 md:py-10 bg-lighter">
-        <div className="flex flex-wrap md:pt-16">
-          <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
-            <h3 className="title-w text-primary dark:text-primary-dark pt-8 md:pt-0">
-              VARIOUS SPONSORSHIP LEVELS
-            </h3>
-            <p className="mt-4 text-black dark:text-black-dark text-2xl">
-              Your sponsorship package can be tailored to meet your business
-              objectives:
-            </p>
+        <div className="l-container md:-mt-10 md:py-12">
+          <div className="flex flex-wrap md:pt-16">
+            <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
+              <h3 className="title-w text-primary dark:text-primary-dark pt-8 md:pt-0">
+                VARIOUS SPONSORSHIP LEVELS
+              </h3>
+              <p className="mt-4 text-black dark:text-black-dark text-2xl">
+                Your sponsorship package can be tailored to meet your business
+                objectives:
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="mx-auto container px-4 md:py-10">
-          <div className="items-center flex flex-wrap mb-0">
-            <div className="w-full px-2 md:px-8 mt-4 mb-14 lg:mb-0 md:mt-0">
-              <img src="/images/svg/projection.png" alt="projection" />
+          <div className="mx-auto px-4 md:py-10">
+            <div className="items-center flex flex-wrap mb-0">
+              <div className="w-full px-2 md:px-8 mt-4 mb-14 lg:mb-0 md:mt-0">
+                <img src="/images/svg/projection.png" alt="projection" />
+              </div>
             </div>
           </div>
         </div>
