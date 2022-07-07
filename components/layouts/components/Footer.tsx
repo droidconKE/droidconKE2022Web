@@ -3,7 +3,7 @@ export const Footer = () => {
     <div>
       <section className="w-full bg-primary dark:bg-black-dark">
         <div className="l-container md:py-12">
-          <div className="items-center flex flex-wrap">
+          <div className="items-center flex flex-wrap my-10">
             <div className="w-full md:w-8/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
               <div className="text-left">
                 <h3 className="title-w">EVENT INFO</h3>
