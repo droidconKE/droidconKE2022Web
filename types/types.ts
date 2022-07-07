@@ -12,5 +12,5 @@ export interface Organizer {
 
 export interface ErrorInterface {
   message: string
-  status: number
+  status: number | string
 }
