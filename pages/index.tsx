@@ -67,7 +67,6 @@ export async function getServerSideProps() {
     .then((response) => {
       return response.data.data
     })
-
   // Pass data to the page via props
   return { props: { organizers } }
 }
