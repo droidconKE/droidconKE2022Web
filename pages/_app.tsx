@@ -32,9 +32,13 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     </>
   )
 
-  return Component.getLayout
-    ? Component.getLayout(<PageNode />)
-    : <Layout><PageNode /></Layout>
+  return Component.getLayout ? (
+    Component.getLayout(<PageNode />)
+  ) : (
+    <Layout>
+      <PageNode />
+    </Layout>
+  )
 }
 
 export default MyApp
