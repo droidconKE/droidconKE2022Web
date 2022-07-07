@@ -1,12 +1,22 @@
 import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.min.css'
+import type { ReactElement, ReactNode, Fragment } from 'react'
+import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { ToastContainer } from 'react-toastify'
 import Layout from '../components/layouts/default'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const PageNode = () => (
+    <>
       <Component {...pageProps} />
       <ToastContainer
         position="top-right"
@@ -19,8 +29,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         draggable
         pauseOnHover
       />
-    </Layout>
+    </>
   )
+
+  return Component.getLayout
+    ? Component.getLayout(<PageNode />)
+    : <Layout><PageNode /></Layout>
 }
 
 export default MyApp
