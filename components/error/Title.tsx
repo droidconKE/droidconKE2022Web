@@ -1,5 +1,5 @@
 interface Props {
-  status: number
+  status: number | string
 }
 
 const TitleComponent = ({ status }: Props) => (
