@@ -13,12 +13,10 @@ export default function Layout({ children }: { children: ReactNode }) {
       </Head>
       <ThemeProvider>
         <div className="w-full bg-white dark:bg-dark">
-          <UpdatesAvailablePrompt />
           <NavBar />
           <div>
             <main>{children}</main>
           </div>
-          <NotificationsPrompt />
         </div>
       </ThemeProvider>
     </>
