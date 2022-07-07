@@ -9,3 +9,8 @@ export interface Organizer {
   photo: string
   created_at: string
 }
+
+export interface ErrorInterface {
+  message: string
+  status: number
+}
