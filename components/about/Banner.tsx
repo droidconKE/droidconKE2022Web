@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export const Banner = () => {
   return (
     <div className="s-container">
@@ -7,9 +5,7 @@ export const Banner = () => {
         <div className="mt-32 md:mt-0">
           <h1 className="font-black text-4xl md:text-5xl">
             About <br />
-            <span className="font-black text-4xl md:text-5xl">
-              DROIDCONKE
-            </span>
+            <span className="font-black text-4xl md:text-5xl">DROIDCONKE</span>
           </h1>
           <div className="flex flex-wrap mt-8 md:mt-4 items-center" />
           <div>
