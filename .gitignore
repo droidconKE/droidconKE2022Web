@@ -42,3 +42,6 @@ yarn-error.log*
 .swc
 /public/workbox*
 /public/fallback*
+
+*.swp
+*.swo
