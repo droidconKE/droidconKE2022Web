@@ -15,7 +15,7 @@ const MessageComponent = ({ message }: Props) => {
         className="bg-no-repeat bg-cover mx-auto xl:w-[48rem] lg:w-[40rem] md:w-[32rem] sm:w-[24rem] w-full lg:h-[21rem] xl:h-96 md:h-64 h-60 bg-center"
       >
         <div className="error-text text-center mx-auto">
-          <p className="lg:w-[400px] md:w-[350px] sm-[300px] w-[200px] mx-auto text-center text-darker-dark font-medium lg:pt-1 leading-tight xl:text-xl lg:text-base md:text-sm text-xs">
+          <p className="lg:w-[400px] md:w-[350px] sm-[300px] w-[200px] mx-auto text-center text-darker-dark font-medium lg:pt-1 leading-tight xl:text-xl lg:text-base md:text-sm text-xs uppercase">
             {message}
           </p>
         </div>
