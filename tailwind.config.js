@@ -18,8 +18,10 @@ module.exports = {
         lighter: '#F5F5F5',
         light: '#707070',
         black: '#20201E',
+        'black-2': '#191D1D',
         'accent-2': '#7DE1C3',
         'secondary-2': '#FB7B3C',
+        'accent-3': '#68DEA44D',
         // dark
         // TODO: to replace when ready
         'primary-dark': '#000CEB',
@@ -30,8 +32,10 @@ module.exports = {
         dark: '#20201E',
         'lighter-dark': '#F5F5F5',
         'light-dark': '#707070',
-        'black-dark': '#000000',
+        'black-dark': '#20201E',
+        'black-2-dark': '#191D1D',
         'accent-2-dark': '#7DE1C3',
+        'accent-3-dark': '#68DEA44D',
         'secondary-2-dark': '#FB7B3C',
       },
     },
