@@ -3,7 +3,7 @@ import ErrorComponent from '../components/error'
 
 const Error: NextPage = () => (
   <ErrorComponent
-    message="YOU CAN STAY HERE AND LOOK AT THE COOKIES OR HEAD BACK HOME"
+    message="You can stay here and look at the cookies or head back home"
     status={404}
   />
 )
