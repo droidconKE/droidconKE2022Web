@@ -28,6 +28,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn
     - run: yarn lint
+    - run: yarn build
 
     - name: Comment on success
       if: success() && github.event_name == 'repository_dispatch'

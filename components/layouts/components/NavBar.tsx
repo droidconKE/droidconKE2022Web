@@ -25,19 +25,21 @@ export const NavBar = () => {
     <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:pl-24">
         <Link href="/">
-          {!isDarkTheme ? (
-            <img
-              className="w-[200px] md:w-[250px]"
-              src="/images/logo.svg"
-              alt="logo"
-            />
-          ) : (
-            <img
-              className="w-[200px] md:w-[250px]"
-              src="/images/logo-dark.svg"
-              alt="logo dark"
-            />
-          )}
+          <a>
+            {!isDarkTheme ? (
+              <img
+                className="w-[200px] md:w-[250px]"
+                src="/images/logo.svg"
+                alt="logo"
+              />
+            ) : (
+              <img
+                className="w-[200px] md:w-[250px]"
+                src="/images/logo-dark.svg"
+                alt="logo dark"
+              />
+            )}
+          </a>
         </Link>
       </div>
       <div className="block lg:hidden">
