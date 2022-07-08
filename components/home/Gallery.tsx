@@ -1,3 +1,6 @@
+import Image from 'next/image'
+import { gallery } from '../../constant/gallery'
+
 export const Gallery = () => {
   return (
     <section className="w-full h-auto">
@@ -9,76 +12,19 @@ export const Gallery = () => {
         </div>
         <div className="w-full items-center flex flex-wrap">
           <div id="images-wrapper" className="lgx-photo-gallery ">
-            <div className="lgx-gallery-single">
-              <img
-                title="Memories One"
-                src="/images/gallery/20191.jpg"
-                alt="Memories one"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20192.jpg"
-                alt="Memories Two"
-                title="Memories Two"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20193.jpg"
-                alt="Memories Three"
-                title="Memories Three"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20194.jpg"
-                alt="Memories Four"
-                title="Memories Four"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20195.jpg"
-                alt="Memories Four"
-                title="Memories Four"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20196.jpg"
-                alt="Memories Five"
-                title="Memories Five"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20197.jpg"
-                alt="Memories Six"
-                title="Memories Six"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20198.jpg"
-                alt="Memories Five"
-                title="Memories Five"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/20199.jpg"
-                alt="Memories Six"
-                title="Memories Six"
-              />
-            </div>
-            <div className="lgx-gallery-single">
-              <img
-                src="/images/gallery/201910.jpg"
-                alt="Memories Two"
-                title="Memories Two"
-              />
-            </div>
+            {gallery.map((image) => {
+              return (
+                <div className="lgx-gallery-single" key={image.imageName}>
+                  <Image
+                    title={image.imageTitle}
+                    src={`/images/gallery/${image.imageName}.jpg`}
+                    alt={image.imageTitle}
+                    width={image.imageWidth}
+                    height={image.imageHeight}
+                  />
+                </div>
+              )
+            })}
           </div>
           <div className="w-full flex flex-wrap mt-4 mb-20 md:mb-0 justify-center items-center">
             <a
