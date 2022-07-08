@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://droidcon.co.ke/sitemap.xml
