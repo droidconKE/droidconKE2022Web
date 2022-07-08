@@ -8,7 +8,7 @@ export default function SponsorsPage() {
           <div className="items-start flex flex-wrap mb-0">
             <div className="w-full md:w-7/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
               <div className="text-center md:text-left">
-                <h3 className="title-w text-accent dark:text-accent-dark uppercase mt-6 md:mt-0">
+                <h3 className="title text-accent dark:text-accent-dark uppercase mt-6 md:mt-0">
                   sponsor Droidconke
                 </h3>
                 <p className="text-white dark:text-white-dark text-px-21 mt-4">
@@ -19,7 +19,7 @@ export default function SponsorsPage() {
             </div>
             <div className="w-full flex  md:w-5/12 mt-10 md:mt-0 justify-center md:justify-end px-2 md:px-8">
               <div className="mt-0 mb-14 flex flex-wrap md:mb-0">
-                <Link href="/sponsors">
+                <Link href="mailto:frank@droidcon.co.ke?Subject=Sponsor droidconKe">
                   <a className="btn-accent mt-3 md:mt-0 font-semibold rounded-lg">
                     Sponsor droidconke
                   </a>
@@ -33,7 +33,7 @@ export default function SponsorsPage() {
         <div className="l-container md:mt-10 md:py-12">
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
-              <h3 className="title-w black pt-10 md:pt-0">
+              <h3 className="title black pt-10 md:pt-0">
                 Why Sponsor droidconke
               </h3>
             </div>
@@ -41,11 +41,11 @@ export default function SponsorsPage() {
           <div className="mx-auto px-4 md:py-16">
             <div className="items-center flex flex-wrap mb-4 md:mb-10">
               <div className="w-full md:w-4/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
-                <div className="text-center md:text-left">
+                <div className="text-center md:text-left text-xl md:text-2xl">
                   <h3 className="title-px-26 black font-bold w-full mt-4 md:mt-0 underline underline-offset-8 decoration-8 decoration-accent-3">
                     ATTENDEE PROFILE
                   </h3>
-                  <p className="text-black p mt-4">
+                  <p className="text-black  py-5 md:py-8">
                     The event targets students, professional software developers
                     who work in mid to large sized organizations and who develop
                     systems of all sizes for enterprise companies. The event
@@ -56,7 +56,7 @@ export default function SponsorsPage() {
               </div>
               <div className="w-full flex flex-wrap md:w-8/12 mt-10 mb-4 md:mb-0 justify-center md:mt-0 px-2 md:px-8">
                 <div className="w-full px-0 lg:px-10">
-                  <img src="/images/NUMBERS/NUMBERS.png" alt="dread" />
+                  <img src="/images/svg/numbers.svg" alt="dread" />
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default function SponsorsPage() {
             <div className="items-center flex flex-wrap mt-4 md:mt-10 mb-0">
               <div className="w-full md:w-4/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
                 <div className="text-center md:text-left">
-                  <h3 className="text-2xl text-primary font-bold w-full mt-6 md:mt-0">
+                  <h3 className="text-2xl text-primary dark:text-accent font-bold w-full mt-6 md:mt-0">
                     VALUE BUILT BUILT IN EVERY PACKAGE
                   </h3>
                 </div>
@@ -109,14 +109,14 @@ export default function SponsorsPage() {
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-10 bg-lighter">
+      <section className="py-12 md:py-10 bg-lighter dark:bg-black-dark">
         <div className="l-container md:-mt-10 md:py-12">
           <div className="flex flex-wrap md:pt-16">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
-              <h3 className="title-w text-primary dark:text-primary-dark pt-8 md:pt-0">
+              <h3 className="title text-primary dark:text-accent pt-8 md:pt-0">
                 VARIOUS SPONSORSHIP LEVELS
               </h3>
-              <p className="mt-4 text-black dark:text-black-dark text-2xl">
+              <p className="mt-4 text-black dark:text-white text-2xl">
                 Your sponsorship package can be tailored to meet your business
                 objectives:
               </p>
@@ -125,13 +125,13 @@ export default function SponsorsPage() {
           <div className="mx-auto px-4 md:py-10">
             <div className="items-center flex flex-wrap mb-0">
               <div className="w-full px-2 md:px-8 mt-4 mb-14 lg:mb-0 md:mt-0">
-                <img src="/images/svg/projection.png" alt="projection" />
+                <img src="/images/svg/sponsor-graph.svg" alt="projection" />
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="w-full bg-black-2 dark:bg-black-2-dark -mb-10 md:px-32 sm:px-10">
+      <section className="w-full bg-black dark:bg-black-dark -mb-10 md:px-32 sm:px-10">
         <div className="l-container md:-mt-10 md:py-12">
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
@@ -148,7 +148,7 @@ export default function SponsorsPage() {
               <div className="grow h-2 bg-secondary" />
             </div>
             <div className="w-8/12 flex md:w-4/12 mb-10 md:mb-0 justify-center px-2">
-              <Link href="/sponsors">
+              <Link href="mailto:frank@droidcon.co.ke?Subject=Sponsor droidconKe">
                 <a className="btn-accent mt-3 md:mt-0 font-semibold">
                   Sponsor droidconke
                 </a>
