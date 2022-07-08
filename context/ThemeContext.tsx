@@ -1,7 +1,11 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react'
 import { isClient } from '../utils/helpers'
 
-type ThemeContextType = { isDarkTheme: boolean; toggleTheme: () => void }
+type ThemeContextType = {
+  isDarkTheme: boolean
+  toggleTheme: () => void
+  isEventReady: boolean
+}
 export const ThemeContext = createContext<ThemeContextType>(
   {} as ThemeContextType
 )
@@ -10,6 +14,8 @@ const THEME_NAME = 'droidcon_theme'
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
+
+  const isEventReady = Boolean(process.env.NEXT_PUBLIC_EVENT_READY) || false
 
   useEffect(() => {
     if (isClient) {
@@ -44,7 +50,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <ThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ isDarkTheme, toggleTheme, isEventReady }}>
       {children}
     </ThemeContext.Provider>
   )

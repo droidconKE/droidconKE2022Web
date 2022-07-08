@@ -6,7 +6,7 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import { ToggleTheme } from './ToggleTheme'
 
 export const NavBar = () => {
-  const { isDarkTheme } = useContext(ThemeContext)
+  const { isDarkTheme, isEventReady } = useContext(ThemeContext)
 
   const [navVisible, setNavVisible] = useState(false)
   const router = useRouter()
@@ -75,17 +75,19 @@ export const NavBar = () => {
                 </a>
               </Link>
             </li>
-            <li className="mr-3">
-              <Link href="/sessions">
-                <a
-                  className={
-                    router.pathname === '/sessions' ? 'active-link' : 'link'
-                  }
-                >
-                  Sessions
-                </a>
-              </Link>
-            </li>
+            {isEventReady && (
+              <li className="mr-3">
+                <Link href="/sessions">
+                  <a
+                    className={
+                      router.pathname === '/sessions' ? 'active-link' : 'link'
+                    }
+                  >
+                    Sessions
+                  </a>
+                </Link>
+              </li>
+            )}
             <li className="mr-3">
               <Link href="/about">
                 <a
@@ -112,17 +114,19 @@ export const NavBar = () => {
         </div>
 
         <div className="w-4/12 flex-grow  lg:flex justify-end">
-          <button
-            type="button"
-            id="login-modal"
-            className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
-            onClick={() => null}
-          >
-            <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
-              <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
-            </span>
-            <span className="black">Login</span>
-          </button>
+          {isEventReady && (
+            <button
+              type="button"
+              id="login-modal"
+              className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
+              onClick={() => null}
+            >
+              <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
+                <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
+              </span>
+              <span className="black">Login</span>
+            </button>
+          )}
         </div>
       </div>
     </nav>

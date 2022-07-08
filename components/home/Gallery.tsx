@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { gallery } from '../../constant/gallery'
 
+const showMoreLink = false
+
 export const Gallery = () => {
   return (
     <section className="w-full h-auto">
@@ -14,7 +16,7 @@ export const Gallery = () => {
           <div id="images-wrapper" className="lgx-photo-gallery">
             {gallery.map((image) => {
               return (
-                <div className="lgx-gallery-single p-1" key={image.imageName}>
+                <div className="lgx-gallery-single p-0.5" key={image.imageName}>
                   <Image
                     title={image.imageTitle}
                     src={`/images/gallery/${image.imageName}.jpg`}
@@ -27,18 +29,20 @@ export const Gallery = () => {
             })}
           </div>
           <div className="w-full flex flex-wrap mt-4 mb-20 md:mb-0 justify-center items-center">
-            <a
-              className="uppercase text-sm font-bold"
-              target="_blank"
-              href="https://droidconke.pixieset.com/droidconke2019/"
-              rel="noreferrer"
-            >
-              View More{' '}
-              <i
-                className="fa fa-arrow-right ml-3"
-                style={{ transform: 'scale(2.0,0.8)' }}
-              />
-            </a>
+            {showMoreLink && (
+              <a
+                className="uppercase text-sm font-bold"
+                target="_blank"
+                href="https://droidconke.pixieset.com/droidconke2019/"
+                rel="noreferrer"
+              >
+                View More{' '}
+                <i
+                  className="fa fa-arrow-right ml-3"
+                  style={{ transform: 'scale(2.0,0.8)' }}
+                />
+              </a>
+            )}
           </div>
         </div>
         <style jsx>
