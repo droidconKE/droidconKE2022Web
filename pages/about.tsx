@@ -63,8 +63,8 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               </h4>
             </div>
             <div className="w-full md:w-6/12 ml-auto px-2 md:px-8">
-              <h3 className="title-px-36 black underline-green mt-4 md:mt-0">
-                droidcon
+              <h3 className="title black underline-green mt-4 md:mt-0">
+                DROIDCON
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 p gray">
                 Droidcon is the largest global network of developer conferences
@@ -84,8 +84,8 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
             </div>
 
             <div className="w-full md:w-6/12 ml-auto px-2 md:px-8">
-              <h3 className="title-px-36 black underline-green mt-4 md:mt-0">
-                droidcon
+              <h3 className="title black underline-green mt-4 md:mt-0">
+                PAST DROIDCONKE
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 p gray">
                 Droidcon is the largest global network of developer conferences
