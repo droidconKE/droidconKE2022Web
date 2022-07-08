@@ -6,7 +6,7 @@ const showMoreLink = false
 export const Gallery = () => {
   return (
     <section className="w-full h-auto">
-      <div className="flex flex-wrap md:py-12">
+      <div className="flex flex-wrap md:mb-10 md:py-12">
         <div className="w-full text-center p-6 md:py-10 items-center justify-center">
           <h3 className="title dark:text-accent-dark">
             Photos From DroidconKe 2019

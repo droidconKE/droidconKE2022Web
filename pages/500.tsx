@@ -5,8 +5,8 @@ import ErrorLayout from '../components/layouts/error'
 
 const Error: NextPageWithLayout = () => (
   <ErrorComponent
-    message="Seems you are offline or our servers might be asleep !"
-    status="OFFLINE"
+    message="It's not you, seems we have an issue, you make come back later"
+    status={500}
   />
 )
 

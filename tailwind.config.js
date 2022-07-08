@@ -32,6 +32,7 @@ module.exports = {
         dark: '#20201E',
         'lighter-dark': '#F5F5F5',
         'light-dark': '#707070',
+        'darker-dark': '#191D1D',
         'black-dark': '#000000',
         'accent-2-dark': '#7DE1C3',
         'accent-3-dark': '#68DEA44D',
