@@ -1,16 +1,122 @@
+:root {
+  --font-family: 'Montserrat', sans-serif;
+  --font-slab: 'Montserrat', sans-serif;
+}
+html, body {
+    width: 100%;
+    margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family);
+  margin: 0;
+}
+
+h5,
+h6 {
+  font-family: var(--font-slab);
+  margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+p,
+.p,
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-family);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.rubik-font {
+  font-family: var(--font-slab);
 }
 
-* {
-  box-sizing: border-box;
+#nav-content {
+  animation: 1s appear;
+  margin: auto;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.nav-bg {
+  -webkit-backdrop-filter: blur(42px);
+  backdrop-filter: blur(42px);
+}
+
+.modal-bg {
+  background-color: rgba(25, 29, 29, .8);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*  reusable */
+
+@layer components {
+  .black,
+  p, a {
+    @apply text-black dark:text-lighter-dark;
+  }
+  .link {
+    @apply py-2 px-4 black
+  }
+  .active-link {
+    @apply text-primary dark:text-accent-dark px-4;
+  }
+  .l-container {
+    @apply container mx-auto px-4 md:px-12 lg:px-40;
+  }
+  .s-container {
+    @apply container mx-auto md:px-24 px-4 sm:px-10 sm:p-5;
+  }
+  .btn-primary {
+    @apply bg-primary dark:bg-primary-dark uppercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+  }
+  .btn-secondary {
+    @apply bg-secondary dark:bg-secondary-dark uppercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+  }
+  .btn-accent {
+    @apply bg-accent dark:bg-accent-dark uppercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+  }
+  .title {
+    @apply uppercase font-black text-2xl md:text-4xl black
+  }
+  
+  .title-w {
+    @apply uppercase font-black text-2xl md:text-4xl text-white
+  }
+  .title-lower {
+    @apply font-black text-2xl md:text-4xl black
+  }
+  .title-l {
+    @apply uppercase font-light text-2xl md:text-4xl black
+  }
 }

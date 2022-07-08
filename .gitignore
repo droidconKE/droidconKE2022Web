@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+# .yarnrc.yml
+.yarn
+
 
 # testing
 /coverage
@@ -35,3 +38,13 @@ yarn-error.log*
 *.tsbuildinfo
 .vscode
 .idea
+.env
+.env.development
+.env.production
+/public/sw.*
+.swc
+/public/workbox*
+/public/fallback*
+
+*.swp
+*.swo

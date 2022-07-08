@@ -82,5 +82,7 @@ module.exports = {
         singleQuote: true,
       },
     ],
+    '@next/next/no-img-element': 'off',
+    'react/prop-types': 'off',
   },
 }
