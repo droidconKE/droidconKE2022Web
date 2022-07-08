@@ -32,12 +32,12 @@ export const Banner = () => {
           <div>
             <div className="flex flex-wrap md:space-x-4">
               <a
-                href="https://bit.ly/droidconKE20"
+                href="#k"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary mr-4 md:mr-0"
               >
-                Get your ticket
+                Tickets Coming Soon
               </a>
               <Link href="/sponsors">
                 <a className="btn-primary mt-3 md:mt-0">Sponsor droidconke</a>
@@ -45,7 +45,7 @@ export const Banner = () => {
             </div>
             <div className="mt-4 md:mt-8">
               <a
-                href="https://bit.ly/droidconKE20"
+                href="https://bit.ly/speakatdroidconke22"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent"

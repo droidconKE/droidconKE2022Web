@@ -23,7 +23,7 @@ export default function SponsorsPage() {
             </div>
             <div className="w-full flex  md:w-5/12 mt-10 md:mt-0 justify-center md:justify-end">
               <div className="mt-0 mb-6 flex flex-wrap md:mb-0">
-                <Link href="mailto:frank@droidcon.co.ke?Subject=Sponsor droidconKe">
+                <Link href="mailto:hello@droidcon.co.ke?Subject=Sponsor droidconKe">
                   <a className="btn-accent mt-3 md:mt-0 font-semibold rounded-lg">
                     Sponsor droidconke
                   </a>
@@ -76,7 +76,7 @@ export default function SponsorsPage() {
                 </div>
               </div>
               <div className="w-full flex flex-wrap md:w-8/12 mt-10 mb-14 md:mb-0 justify-center md:mt-0 px-2 md:px-10">
-                <div className="w-full flex justify-center grid grid-cols-3 ">
+                <div className="w-full justify-center grid grid-cols-3 ">
                   <div className="justify-center flex items-center px-3 py-5 text-center bg-primary">
                     <p className="text-xs md:text-sm text-white dark:text-white-dark  uppercase font-semibold">
                       Brand awareness
@@ -159,7 +159,7 @@ export default function SponsorsPage() {
               <div className="grow h-2 bg-secondary" />
             </div>
             <div className="w-8/12 flex md:w-4/12 mb-10 md:mb-0 justify-center px-2">
-              <Link href="mailto:frank@droidcon.co.ke?Subject=Sponsor droidconKe">
+              <Link href="mailto:hello@droidcon.co.ke?Subject=Sponsor droidconKe">
                 <a className=" text-xs md:text-base btn-accent mt-3 md:mt-0">
                   Sponsor droidconke
                 </a>
