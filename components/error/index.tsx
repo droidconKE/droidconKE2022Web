@@ -13,7 +13,7 @@ const ErrorComponent = ({ message, status }: ErrorInterface) => {
         />
       </div>
 
-      <div className="absolute top-96 right-[5%] sm:right-[7%] md:top-96 md:right-[7%] lg:right-[7%] xl:right-[10%] 2xl:right-[15%]">
+      <div className="absolute top-[28rem] right-[5%] sm:right-[7%] md:top-96 md:right-[7%] lg:right-[7%] xl:right-[10%] 2xl:right-[15%]">
         <img
           src="/images/element_left.png"
           className="w-14 sm:w-24 sm:h-20 md:w-28 md:h-24 lg:w-36 lg:h-32"
