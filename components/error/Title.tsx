@@ -3,8 +3,8 @@ interface Props {
 }
 
 const TitleComponent = ({ status }: Props) => (
-  <section className="error-code-section">
-    <div className="w-screen mx-auto text-center md:pt-48 md:pb-32 pt-48 pb-20">
+  <section className="error-code-section flex flex-grow items-center">
+    <div className="w-screen mx-auto text-center mt-32">
       <h6 className="md:text-15 lg:text-17 font-bold mb-0 dark:text-white">
         ERROR
       </h6>
