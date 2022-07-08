@@ -11,10 +11,10 @@ export const Gallery = () => {
           </h3>
         </div>
         <div className="w-full items-center flex flex-wrap">
-          <div id="images-wrapper" className="lgx-photo-gallery ">
+          <div id="images-wrapper" className="lgx-photo-gallery">
             {gallery.map((image) => {
               return (
-                <div className="lgx-gallery-single" key={image.imageName}>
+                <div className="lgx-gallery-single p-1" key={image.imageName}>
                   <Image
                     title={image.imageTitle}
                     src={`/images/gallery/${image.imageName}.jpg`}
