@@ -19,7 +19,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
       style={{ backgroundImage: 'url(/images/svg/about-bg.svg)' }}
     >
       <section className="s-container mt-8 md:mt-8 pb-24">
-        <div className="w-full flex flex-wrap px-4 min-h-screen pt-16 md:px-0 py-8 lg:py-20">
+        <div className="w-full flex flex-wrap min-h-screen pt-16 md:px-0 py-8 lg:py-20">
           <div className="w-full lg:w-5/12 flex items-center">
             <div className="w-full bg-no-repeat bg-center">
               <div className="w-full flex flex-wrap text-left">
@@ -51,7 +51,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-7/12 lg:h-auto mt-2 flex items-center justify-end bg-no-repeat bg-cover">
+          <div className="w-full lg:w-7/12 lg:h-auto flex items-center justify-end bg-no-repeat bg-cover mt-6 md:mt-0">
             <img
               alt="sponsors img"
               className="w-full sponsor-img"
