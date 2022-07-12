@@ -123,7 +123,7 @@ class MyDocument extends Document {
           {/* <!-- maximum 140 char --> */}
           <meta
             name="twitter:image"
-            content="/images/droidcon-22-kenya-announcement.jpg"
+            content="https://droidcon.co.ke/images/droidcon-22-kenya-announcement.jpg"
           />
           <meta name="twitter:image:alt" content="droidcon logo" />
           {/* <!-- when you post this page url in twitter , this image will be shown -->
@@ -138,7 +138,7 @@ class MyDocument extends Document {
           <meta property="og:type" content="website" />
           <meta
             property="og:image"
-            content="/images/droidcon-22-kenya-announcement.jpg"
+            content="https://droidcon.co.ke/images/droidcon-22-kenya-announcement.jpg"
           />
           <meta
             property="og:description"

@@ -21,7 +21,7 @@ export const Sponsor = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-6/12 md:p-24 md:mr-24 mb-14 md:mb-0 justify-end md:absolute md:right-0">
+          <div className="hidden md:block w-full md:w-6/12 md:p-24 md:mr-24 mb-14 md:mb-0 justify-end md:absolute md:right-0">
             <img
               alt="sponsors img"
               className="w-full sponsor-img"

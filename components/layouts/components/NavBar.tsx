@@ -62,11 +62,15 @@ export const NavBar = () => {
       <ToggleTheme />
       <div
         id="nav-content"
-        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto lg:block pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
+        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
           navVisible ? '' : 'hidden'
         }`}
       >
-        <div className="w-8/12 flex-grow lg:flex">
+        <div
+          className={`w-full md:w-8/12 flex-grow lg:flex ${
+            navVisible ? 'bg-white dark:bg-dark' : ''
+          }`}
+        >
           <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
             <li className="mr-3 black">
               <Link href="/">

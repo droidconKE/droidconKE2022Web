@@ -1,4 +1,6 @@
 export const Footer = () => {
+  const showExtraInfo = true
+
   return (
     <div>
       <section className="w-full bg-primary dark:bg-black-dark">
@@ -26,17 +28,17 @@ export const Footer = () => {
           <div className="flex flex-wrap">
             <div className="w-full px-4">
               <div className="flex flex-wrap items-top mb-14 md:mb-6 text-left">
-                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4 ml-auto">
+                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
                   <span className="text-accent dark:text-accent-dark uppercase">
                     Venue
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-sm">
-                      Nairobi, TBD
+                      Nairobi
                     </p>
 
                     <a
-                      href="https://goo.gl/maps/n6dsyEkx4CRCujaB6"
+                      href="https://goo.gl/maps/PVK2BkpdpYgdH5VdA"
                       target="_blank"
                       className="text-white dark:text-white-dark text-sm"
                       rel="noreferrer"
@@ -45,27 +47,31 @@ export const Footer = () => {
                     </a>
                   </ul>
                 </div>
-                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4 ml-auto">
-                  <span className="text-accent dark:text-accent-dark uppercase">
-                    Transport
-                  </span>
-                  <ul className="list-unstyled mt-3">
-                    <p className="text-white dark:text-white-dark text-sm">
-                      Public transit do not go directly to iHub. You can share
-                      ride on famous using famous taxi services
-                    </p>
-                  </ul>
-                </div>
-                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4 ml-auto">
-                  <span className="text-accent dark:text-accent-dark uppercase">
-                    Parking
-                  </span>
-                  <ul className="list-unstyled mt-3">
-                    <p className="text-white dark:text-white-dark text-sm">
-                      Parking is available
-                    </p>
-                  </ul>
-                </div>
+                {showExtraInfo && (
+                  <>
+                    <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
+                      <span className="text-accent dark:text-accent-dark uppercase">
+                        Transport
+                      </span>
+                      <ul className="list-unstyled mt-3">
+                        <p className="text-white dark:text-white-dark text-sm">
+                          Public transport is always available to and from the
+                          venue
+                        </p>
+                      </ul>
+                    </div>
+                    <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
+                      <span className="text-accent dark:text-accent-dark uppercase">
+                        Parking
+                      </span>
+                      <ul className="list-unstyled mt-3">
+                        <p className="text-white dark:text-white-dark text-sm">
+                          Parking is available
+                        </p>
+                      </ul>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
