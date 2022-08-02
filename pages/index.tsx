@@ -16,7 +16,7 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ organizers }) => {
   return (
     <div
-      className="bg-[length:46%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
+      className="bg-[length:0%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
       style={{ backgroundImage: 'url(/images/kenyatta.png)' }}
     >
       <Banner />

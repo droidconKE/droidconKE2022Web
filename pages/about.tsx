@@ -15,24 +15,24 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
   const company = organizers.filter((o) => o.type === 'company')
   return (
     <div
-      className="min-h-screen bg-[length:46%] md:bg-[length:87%] bg-[top_340px_left_115%] md:bg-[top_100px_left_148%] bg-no-repeat"
+      className="min-h-screen bg-[length:0%] md:bg-[length:88%] bg-[top_360px_left_115%] md:bg-[top_140px_left_148%] bg-no-repeat"
       style={{ backgroundImage: 'url(/images/svg/about-bg.svg)' }}
     >
-      <section className="s-container mt-8 md:mt-8 pb-24">
-        <div className="w-full flex flex-wrap min-h-screen pt-16 md:px-0 py-8 lg:py-20">
-          <div className="w-full lg:w-5/12 flex items-center">
+      <section className="s-container pb-32">
+        <div className="w-full flex flex-wrap min-h-screen pt-16 md:px-0 py-8 lg:py-12">
+          <div className="w-full lg:w-6/12 flex items-center">
             <div className="w-full bg-no-repeat bg-center">
               <div className="w-full flex flex-wrap text-left">
-                <h2 className="text-3xl md:text-5xl font-black dark:text-white">
-                  ABOUT <br />
-                  DROIDCONKE
+                <h2 className="title lowercase">
+                  <span>about</span>{' '}
+                  <span className="font-medium">droidconke</span>
                 </h2>
                 <img
-                  className="w-[360px] mt-8 md:mt-10"
+                  className="w-[450px] my-4 md:my-4"
                   src="/images/lines.png"
                   alt="line"
                 />
-                <p className="text-light dark:text-lighter-dark pt-2 text-sm pr-0 md:pr-10">
+                <p className="text-light dark:text-lighter-dark pt-2 text-base md:text-xl pr-0 md:pr-10">
                   Droidcon is a global conference focused on the engineering of
                   Android applications. Droidcon provides a forum for developers
                   to network with other developers, share techniques, announce
@@ -51,7 +51,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-7/12 lg:h-auto flex items-center justify-end bg-no-repeat bg-cover mt-6 md:mt-0">
+          <div className="w-full lg:w-6/12 lg:h-auto flex items-center justify-end bg-no-repeat bg-cover mt-6 md:mt-0">
             <img
               alt="sponsors img"
               className="w-full sponsor-img"
@@ -61,20 +61,20 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
         </div>
       </section>
       <section className="w-full bg-lighter dark:bg-black-dark">
-        <div className="l-container md:py-12">
+        <div className="s-container md:py-12">
           <div className="flex flex-wrap mb-10">
             <div className="w-full -mt-28 md:-mt-36 py-2 pb-12">
-              <h4 className="title text-3xl text-primary md:text-6xl dark:text-accent pt-6 md:pt-0">
+              <h4 className="title text-3xl text-primary md:text-6xl dark:text-accent pt-6 md:pt-0 lowercase">
                 Largest Android Focused <br />
                 Developer Conference <br />
                 in Africa.
               </h4>
             </div>
             <div className="w-full md:w-6/12 ml-auto pr-0 md:pr-20">
-              <h3 className="title font-bold border-b-8 border-b-accent">
+              <h3 className="title font-medium border-b-8 border-b-accent lowercase">
                 DROIDCON
               </h3>
-              <p className="mt-2 md:mt-4 mb-4 md:mb-0">
+              <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
                 Droidcon is the largest global network of developer conferences
                 which brings together the industry's foremost experts dedicated
                 to advancing the Android platform. Droidcon engages a global
@@ -92,10 +92,10 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
             </div>
 
             <div className="w-full md:w-6/12 ml-auto pr-0 md:pr-20">
-              <h3 className="title font-bold border-b-8 border-b-accent-2 mt-4 md:mt-0">
+              <h3 className="title font-medium border-b-8 border-b-accent-2 mt-4 md:mt-0 lowercase">
                 PAST DROIDCONKE
               </h3>
-              <p className="mt-2 md:mt-4 mb-4 md:mb-0">
+              <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
                 Droidcon is the largest global network of developer conferences
                 which brings together the industry's foremost experts dedicated
                 to advancing the Android platform. Droidcon engages a global
@@ -118,15 +118,6 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 alt=""
               />
             </div>
-          </div>
-        </div>
-      </section>
-      <section className="l-container mt-4 md:mt-10">
-        <div className="flex flex-wrap md:py-16">
-          <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
-            <h3 className="title text-primary dark:text-accent pt-6 md:pt-0">
-              Organizing team
-            </h3>
           </div>
         </div>
       </section>

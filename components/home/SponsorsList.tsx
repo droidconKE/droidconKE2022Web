@@ -7,7 +7,7 @@ function SponsorsList({ sponsors }: { sponsors: Organizer[] }) {
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-6/12 ml-auto">
             <div className="md:pr-12 text-left">
-              <h2 className="title lowercase dark:text-accent-dark">
+              <h2 className="title lowercase dark:text-accent-dark mt-4 md:mt-0">
                 <span>sponsored</span> <span className="font-medium"> by;</span>
               </h2>
               <p className="mt-4 text-xl md:text-2xl">
