@@ -8,9 +8,10 @@ export const Gallery = () => {
     <section className="w-full h-auto">
       <div className="flex flex-wrap md:mb-10 md:py-12">
         <div className="w-full text-center p-6 md:py-10 items-center justify-center">
-          <h3 className="title dark:text-accent-dark">
-            Photos From DroidconKe 2019
-          </h3>
+          <h2 className="title lowercase dark:text-accent-dark">
+            <span>Photos From</span>{' '}
+            <span className="font-medium"> DroidconKe 2019</span>
+          </h2>
         </div>
         <div className="w-full items-center flex flex-wrap">
           <div id="images-wrapper" className="lgx-photo-gallery">

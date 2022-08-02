@@ -6,7 +6,7 @@ export const EventTypes = () => {
     <section className="py-12 md:py-10 bg-lighter dark:bg-black-dark">
       <div className="s-container">
         <div className="flex justify-center py-2">
-          <h2 className="title lowercase">
+          <h2 className="title lowercase dark:text-accent-dark">
             <span>event</span> <span className="font-medium">types</span>
           </h2>
         </div>

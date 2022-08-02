@@ -5,6 +5,7 @@ import { EventTypes } from '../components/home/EventTypes'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import { Sponsor } from '../components/home/Sponsor'
+import SponsorsList from '../components/home/SponsorsList'
 import { Organizer } from '../types/types'
 import axios from '../utils/axios'
 
@@ -22,7 +23,7 @@ const Home: NextPage<HomeProps> = ({ organizers }) => {
       <section className="s-container mt-8 md:mt-0 pb-6 md:pb-12">
         <div className="flex flex-wrap">
           <div className="w-full md:w-7/12">
-            <h2 className="title lowercase">
+            <h2 className="title lowercase dark:text-accent-dark">
               <span>about</span> <span className="font-medium">droidconke</span>
             </h2>
             <p className="text-light dark:text-lighter-dark py-5 md:py-8 text-xl md:text-2xl">
@@ -48,9 +49,10 @@ const Home: NextPage<HomeProps> = ({ organizers }) => {
         </div>
       </section>
       <EventTypes />
-      <Organizers organizers={organizers} />
+      <SponsorsList sponsors={organizers} />
       <Sponsor />
       <Gallery />
+      <Organizers organizers={organizers} />
     </div>
   )
 }

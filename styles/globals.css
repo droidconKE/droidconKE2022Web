@@ -111,7 +111,7 @@ video::-webkit-media-controls-fullscreen-button {
   }
   
   .title-w {
-    @apply uppercase font-black text-2xl md:text-4xl text-white
+    @apply uppercase font-black text-3xl md:text-5xl text-white
   }
   .title-lower {
     @apply font-black text-2xl md:text-4xl black
