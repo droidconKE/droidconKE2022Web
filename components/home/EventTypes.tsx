@@ -6,7 +6,9 @@ export const EventTypes = () => {
     <section className="py-12 md:py-10 bg-lighter dark:bg-black-dark">
       <div className="s-container">
         <div className="flex justify-center py-2">
-          <h2 className="title-lower dark:text-accent-dark">Event Types</h2>
+          <h2 className="title lowercase">
+            <span>event</span> <span className="font-medium">types</span>
+          </h2>
         </div>
         <div className="w-full flex flex-wrap mt-4 md:mt-12 dark:text-white-dark">
           {eventTypes.map((eventType) => {
@@ -22,7 +24,9 @@ export const EventTypes = () => {
                     height={300}
                   />
                 </div>
-                <h4 className="mt-2 font-bold">{eventType.eventName}</h4>
+                <h4 className="mt-2 font-bold lowercase text-xl">
+                  {eventType.eventName}
+                </h4>
               </div>
             )
           })}

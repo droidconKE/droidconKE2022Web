@@ -67,7 +67,7 @@ export const NavBar = () => {
         }`}
       >
         <div
-          className={`w-full md:w-8/12 flex-grow lg:flex ${
+          className={`w-full md:w-7/12 flex-grow lg:flex ${
             navVisible ? 'bg-white dark:bg-dark' : ''
           }`}
         >
@@ -116,9 +116,19 @@ export const NavBar = () => {
             </li>
           </ul>
         </div>
+        <div className="w-full md:w-3/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0">
+          <a
+            href="#k"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+          >
+            Tickets Coming Soon
+          </a>
+        </div>
 
-        <div className="w-4/12 flex-grow  lg:flex justify-end">
-          {isEventReady && (
+        <div className="w-2/12 flex-grow  lg:flex justify-end">
+          {!isEventReady && (
             <button
               type="button"
               id="login-modal"
