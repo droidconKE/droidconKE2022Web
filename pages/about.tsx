@@ -65,10 +65,12 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
           <div className="flex flex-wrap mb-10">
             <div className="w-full -mt-28 md:-mt-36 py-2 pb-12">
               <h4 className="title text-3xl text-primary md:text-6xl dark:text-accent pt-6 md:pt-0 lowercase">
-                Largest Android {' '}
-                <small className='font-medium'>Focused <br />
-                Developer Conference <br />
-                in Africa.</small>
+                Largest Android{' '}
+                <small className="font-medium">
+                  Focused <br />
+                  Developer Conference <br />
+                  in Africa.
+                </small>
               </h4>
             </div>
             <div className="w-full md:w-6/12 ml-auto pr-0 md:pr-20">
