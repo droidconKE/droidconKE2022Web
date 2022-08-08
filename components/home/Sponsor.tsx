@@ -13,8 +13,9 @@ export const Sponsor = () => {
               </h2>
               <div className="w-full">
                 <h6 className="mt-4 text-lighter dark:text-lighter-dark text-xl md:text-2xl">
-                  By sponsoring droidconke22 you support and bring together the
-                  Android developer community.
+                  By sponsoring droidconke22 you support and bring together{' '}
+                  <br className="hidden md:block" />
+                  the Android developer community.
                 </h6>
               </div>
               <div className="mt-5 md:mt-12 mb-10 md:mb-0">

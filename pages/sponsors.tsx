@@ -72,8 +72,8 @@ export default function SponsorsPage() {
             <div className="items-center flex flex-wrap mt-4 md:mt-10 mb-0">
               <div className="w-full md:w-4/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
                 <div className="text-center md:text-left">
-                  <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-bold w-full mt-6 md:mt-0 lowercase">
-                    VALUE BUILT BUILT IN EVERY PACKAGE
+                  <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 md:mt-0 lowercase">
+                    <span className='font-black'>VALUE BUILT</span> BUILT IN EVERY PACKAGE
                   </h3>
                 </div>
               </div>
@@ -149,8 +149,8 @@ export default function SponsorsPage() {
         <div className="s-container md:-mt-10 md:py-12">
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
-              <h3 className="text-2xl md:text-3xl text-white dark:text-white-dark pt-6 md:pt-0">
-                To Sponsor Droidcoke 2022 Contacts us at
+              <h3 className="text-2xl md:text-3xl text-white dark:text-white-dark pt-6 md:pt-0 lowercase">
+                <span className='font-black'>To Sponsor</span> Droidcoke 2022 Contacts us at
               </h3>
               <p className="text-base text-white dark:text-white-dark mt-3">
                 Click here to proceed

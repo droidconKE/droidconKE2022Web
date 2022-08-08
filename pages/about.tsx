@@ -23,7 +23,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
           <div className="w-full lg:w-6/12 flex items-center">
             <div className="w-full bg-no-repeat bg-center">
               <div className="w-full flex flex-wrap text-left">
-                <h2 className="title lowercase">
+                <h2 className="title lowercase dark:text-white-dark">
                   <span>about</span>{' '}
                   <span className="font-medium">droidconke</span>
                 </h2>
@@ -32,7 +32,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   src="/images/lines.png"
                   alt="line"
                 />
-                <p className="text-light dark:text-lighter-dark pt-2 text-base md:text-xl pr-0 md:pr-10">
+                <p className="text-light dark:text-lighter-dark pt-2 text-base md:text-base pr-0 md:pr-10">
                   Droidcon is a global conference focused on the engineering of
                   Android applications. Droidcon provides a forum for developers
                   to network with other developers, share techniques, announce
@@ -65,9 +65,10 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
           <div className="flex flex-wrap mb-10">
             <div className="w-full -mt-28 md:-mt-36 py-2 pb-12">
               <h4 className="title text-3xl text-primary md:text-6xl dark:text-accent pt-6 md:pt-0 lowercase">
-                Largest Android Focused <br />
+                Largest Android {' '}
+                <small className='font-medium'>Focused <br />
                 Developer Conference <br />
-                in Africa.
+                in Africa.</small>
               </h4>
             </div>
             <div className="w-full md:w-6/12 ml-auto pr-0 md:pr-20">
