@@ -1,11 +1,13 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
+import { useContext } from 'react'
 import { Banner } from '../components/home/Banner'
 import { EventTypes } from '../components/home/EventTypes'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import { Sponsor } from '../components/home/Sponsor'
 import SponsorsList from '../components/home/SponsorsList'
+import { ThemeContext } from '../context/ThemeContext'
 import { Organizer } from '../types/types'
 import axios from '../utils/axios'
 
@@ -14,6 +16,8 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ organizers }) => {
+  const { isEventReady } = useContext(ThemeContext)
+
   return (
     <div
       className="bg-[length:0%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
@@ -49,7 +53,7 @@ const Home: NextPage<HomeProps> = ({ organizers }) => {
         </div>
       </section>
       <EventTypes />
-      <SponsorsList sponsors={organizers} />
+      {isEventReady && <SponsorsList sponsors={organizers} />}
       <Sponsor />
       <Gallery />
       <Organizers organizers={organizers} />
