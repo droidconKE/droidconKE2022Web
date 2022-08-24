@@ -98,20 +98,20 @@ video::-webkit-media-controls-fullscreen-button {
     @apply container mx-auto md:px-24 px-4 sm:px-10 sm:p-5;
   }
   .btn-primary {
-    @apply bg-primary dark:bg-primary-dark uppercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+    @apply bg-primary dark:bg-primary-dark lowercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .btn-secondary {
-    @apply bg-secondary dark:bg-secondary-dark uppercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+    @apply bg-secondary dark:bg-secondary-dark lowercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .btn-accent {
-    @apply bg-accent dark:bg-accent-dark uppercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+    @apply bg-accent dark:bg-accent-dark lowercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .title {
-    @apply uppercase font-black text-2xl md:text-4xl black
+    @apply uppercase font-black text-3xl md:text-5xl text-primary dark:text-primary-dark
   }
   
   .title-w {
-    @apply uppercase font-black text-2xl md:text-4xl text-white
+    @apply uppercase font-black text-3xl md:text-5xl text-white
   }
   .title-lower {
     @apply font-black text-2xl md:text-4xl black

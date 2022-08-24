@@ -5,59 +5,49 @@ export const Banner = () => {
     <div className="s-container">
       <div className="w-full flex flex-col md:flex-row items-center min-h-screen justify-between">
         <div className="mt-32 md:mt-0">
-          <h1 className="font-light text-2xl black px-0">
-            WELCOME TO <br />
+          <h1 className="font-light text-3xl md:text-4xl black px-0">
+            <span className="lowercase">WELCOME TO</span> <br />
             <span className="font-black text-4xl md:text-5xl">
               DROIDCONKE22
             </span>
           </h1>
-          <div className="flex flex-wrap mt-8 md:mt-4 items-center">
-            <img
-              className="h-[50px] md:h-[63px] mr-3"
-              src="/images/hashtag.png"
-              alt="droid alt"
-            />
-            <div className="text-accent dark:text-accent-dark font-black text-base md:text-xl -mt-1">
-              <span>16TH - 18TH</span> <br />
-              NOVEMBER
-            </div>
+          <div className="mt-12 md:mt-8 text-3xl md:text-4xl lowercase font-light">
+            <h3 className="dark:text-white-dark">
+              LARGEST ANDROID FOCUSED <br />
+              DEVELOPER CONFERENCE IN AFRICA.
+            </h3>
           </div>
           <div>
             <img
-              className="w-[440px] mb-14 mt-8 md:my-10"
+              className="w-full md:w-[440px] my-8 md:my-10"
               src="/images/lines.png"
               alt="line"
             />
           </div>
           <div>
-            <div className="flex flex-wrap md:space-x-4">
-              <a
-                href="#k"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary mr-4 md:mr-0"
-              >
-                Tickets Coming Soon
-              </a>
+            <div className="flex flex-wrap space-x-2 md:space-x-4">
               <Link href="/sponsors">
                 <a className="btn-primary mt-3 md:mt-0">Sponsor droidconke</a>
               </Link>
-            </div>
-            <div className="mt-4 md:mt-8">
               <a
                 href="https://bit.ly/speakatdroidconke22"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-accent"
+                className="btn-accent mt-3 md:mt-0"
               >
                 submit a talk
               </a>
             </div>
-            <div className="mt-16 md:mt-16 text-xl md:text-2xl font-light">
-              <h3 className="dark:text-white-dark">
-                LARGEST ANDROID FOCUSED <br />
-                DEVELOPER CONFERENCE IN AFRICA.
-              </h3>
+            <div className="flex flex-wrap mt-8 md:mt-10 items-center">
+              <img
+                className="h-[50px] md:h-[63px] mr-3"
+                src="/images/hashtag.png"
+                alt="droid alt"
+              />
+              <div className="text-accent dark:text-accent-dark font-black text-base md:text-xl -mt-1">
+                <span>16TH - 18TH</span> <br />
+                NOVEMBER
+              </div>
             </div>
           </div>
         </div>

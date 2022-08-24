@@ -8,7 +8,9 @@ export const Footer = () => {
           <div className="items-center flex flex-wrap my-10">
             <div className="w-full md:w-8/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
               <div className="text-left">
-                <h3 className="title-w">EVENT INFO</h3>
+                <h2 className="title-w lowercase text-white dark:text-accent-dark">
+                  <span>event</span> <span className="font-medium"> info</span>
+                </h2>
               </div>
             </div>
             <div className="w-full flex md:w-4/12 items-start mt-10 md:mt-0 justify-start px-2 md:px-3">
@@ -29,18 +31,18 @@ export const Footer = () => {
             <div className="w-full px-4">
               <div className="flex flex-wrap items-top mb-14 md:mb-6 text-left">
                 <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
-                  <span className="text-accent dark:text-accent-dark uppercase">
+                  <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                     Venue
                   </span>
                   <ul className="list-unstyled mt-3">
-                    <p className="text-white dark:text-white-dark text-sm">
+                    <p className="text-white dark:text-white-dark text-base">
                       Nairobi
                     </p>
 
                     <a
                       href="https://goo.gl/maps/PVK2BkpdpYgdH5VdA"
                       target="_blank"
-                      className="text-white dark:text-white-dark text-sm"
+                      className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
                     >
                       <i className="fa fa-map-marker" /> View Map location
@@ -50,22 +52,22 @@ export const Footer = () => {
                 {showExtraInfo && (
                   <>
                     <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
-                      <span className="text-accent dark:text-accent-dark uppercase">
+                      <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                         Transport
                       </span>
                       <ul className="list-unstyled mt-3">
-                        <p className="text-white dark:text-white-dark text-sm">
+                        <p className="text-white dark:text-white-dark text-base">
                           Public transport is always available to and from the
                           venue
                         </p>
                       </ul>
                     </div>
                     <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
-                      <span className="text-accent dark:text-accent-dark uppercase">
+                      <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                         Parking
                       </span>
                       <ul className="list-unstyled mt-3">
-                        <p className="text-white dark:text-white-dark text-sm">
+                        <p className="text-white dark:text-white-dark text-base">
                           Parking is available
                         </p>
                       </ul>
