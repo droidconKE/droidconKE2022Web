@@ -128,7 +128,7 @@ export const NavBar = () => {
         </div>
 
         <div className="w-2/12 flex-grow  lg:flex justify-end">
-          {!isEventReady && (
+          {isEventReady && (
             <button
               type="button"
               id="login-modal"
