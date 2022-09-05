@@ -18,7 +18,7 @@ export const Footer = () => {
                 <a
                   className="btn-secondary"
                   style={{ transition: 'all .15s ease' }}
-                  href="http://bit.ly/droidconKE20"
+                  href="https://chpter.co/droidconKE/"
                   target="_blank"
                   rel="noreferrer"
                 >
