@@ -118,12 +118,12 @@ export const NavBar = () => {
         </div>
         <div className="w-full md:w-3/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0">
           <a
-            href="#k"
+            href="https://chpter.co/droidconKE/"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
           >
-            Tickets Coming Soon
+            Get your Ticket
           </a>
         </div>
 
