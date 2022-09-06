@@ -79,19 +79,17 @@ export const NavBar = () => {
                 </a>
               </Link>
             </li>
-            {isEventReady && (
-              <li className="mr-3">
-                <Link href="/sessions">
-                  <a
-                    className={
-                      router.pathname === '/sessions' ? 'active-link' : 'link'
-                    }
-                  >
-                    Sessions
-                  </a>
-                </Link>
-              </li>
-            )}
+            <li className="mr-3">
+              <Link href="/sessions">
+                <a
+                  className={
+                    router.pathname === '/sessions' ? 'active-link' : 'link'
+                  }
+                >
+                  Sessions
+                </a>
+              </Link>
+            </li>
             <li className="mr-3">
               <Link href="/about">
                 <a
