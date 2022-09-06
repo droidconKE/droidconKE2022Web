@@ -6,7 +6,7 @@ export default function SponsorsPage() {
   const { isDarkTheme } = useContext(ThemeContext)
 
   return (
-    <div className="w-full mt-15 md:mt-14 mb-0">
+    <div className="w-full mt-16 mb-0">
       <section className="w-full bg-primary dark:bg-black-dark">
         <div className="s-container mt-8 md:mt-0 py-6 md:py-12">
           <div className="items-start flex flex-wrap mb-0">
