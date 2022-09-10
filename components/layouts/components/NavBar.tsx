@@ -79,17 +79,19 @@ export const NavBar = () => {
                 </a>
               </Link>
             </li>
-            <li className="mr-3">
-              <Link href="/sessions">
-                <a
-                  className={
-                    router.pathname === '/sessions' ? 'active-link' : 'link'
-                  }
-                >
-                  Sessions
-                </a>
-              </Link>
-            </li>
+            {isEventReady && (
+              <li className="mr-3">
+                <Link href="/sessions">
+                  <a
+                    className={
+                      router.pathname === '/sessions' ? 'active-link' : 'link'
+                    }
+                  >
+                    Sessions
+                  </a>
+                </Link>
+              </li>
+            )}
             <li className="mr-3">
               <Link href="/about">
                 <a
@@ -115,14 +117,9 @@ export const NavBar = () => {
           </ul>
         </div>
         <div className="w-full md:w-3/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0">
-          <a
-            href="https://chpter.co/droidconKE/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-          >
-            Get your Ticket
-          </a>
+          <Link href="/sponsors">
+            <a className="btn-secondary">sponsor droidconke</a>
+          </Link>
         </div>
 
         <div className="w-2/12 flex-grow  lg:flex justify-end">
