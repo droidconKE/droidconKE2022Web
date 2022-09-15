@@ -40,7 +40,28 @@ const Sessions: NextPage = () => {
           </div>
           <div className="w-full lg:w-11/12">
             <div className="px-0 md:px-6">
-              <p>Cards here</p>
+              <div className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-lighter-dark">
+                <img
+                  className="w-full h-52 object-cover"
+                  src="images/testara.png"
+                  alt=""
+                />
+                <div className="m-4">
+                  <h3 className="text-light text-sm mt-4">
+                    @ 10:30 AM | Room 1{' '}
+                  </h3>
+                  <p className="p black mt-2 font-bold">
+                    Transforming Famers Lives Using Android in Kenya
+                  </p>
+                  <div className="flex justify-between m-3">
+                    <div className="flex items-start space-x-4">
+                      <div className="rounded-full p-3 w-12 h-12  bg-slate-800" />
+                      <div className="rounded-full p-3 w-12 h-12  bg-slate-800" />
+                    </div>
+                    <div className="rounded-full p-3 w-12 h-12  bg-slate-800" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
