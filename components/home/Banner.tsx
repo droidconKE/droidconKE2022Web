@@ -26,7 +26,7 @@ export const Banner = () => {
             <div className="flex flex-wrap space-x-2 md:space-x-4">
               <a
                 className="btn-primary mt-3 md:mt-0"
-                href="https://chpter.co/droidconKE/"
+                href="https://bit.ly/getYourDcKE22Tickets"
                 target="_blank"
                 rel="noopener noreferrer"
               >
