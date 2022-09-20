@@ -3,7 +3,10 @@ import { NextPage } from 'next'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 // import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 
-const Sessions: NextPage = () => {
+interface SessionProps {
+  setShowFilterSession: () => boolean
+}
+const Sessions: NextPage<SessionProps> = ({ setShowFilterSession }) => {
   return (
     <div className="w-full mt-16 mb-0">
       <section className="w-full bg-dark dark:bg-black-dark">
@@ -12,7 +15,7 @@ const Sessions: NextPage = () => {
             <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
               Sessions
             </h3>
-            <SessionToggles />
+            <SessionToggles setShowFilterSession={setShowFilterSession} />
           </div>
         </div>
       </section>
