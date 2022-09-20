@@ -20,10 +20,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [showFilterSession, setShowFilterSession] = useState(false)
   const PageNode = () => (
     <>
-      <Component
-        {...pageProps}
-        setShowFilterSession={setShowFilterSession}
-      />
+      <Component {...pageProps} setShowFilterSession={setShowFilterSession} />
       <ToastContainer
         position="top-right"
         autoClose={5000}
