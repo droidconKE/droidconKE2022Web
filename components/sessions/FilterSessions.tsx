@@ -44,18 +44,20 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
             <div className="text-secondary text-base">
               <i className="fa fa-filter text-xl" /> &nbsp; Filter
             </div>
-            <div
+            <button
+              type="button"
               className="text-base hover:cursor-pointer text-light uppercase"
               onClick={() => setShowFilterSession(false)}
             >
               Cancel
-            </div>
+            </button>
           </div>
           <div className="mt-10">
             {groupBy3(sessions3).map((sessions) => (
               <div className="flex pb-1">
                 <button
                   name="session3"
+                  type="button"
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
@@ -66,6 +68,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 </button>
                 <button
                   name="session3"
+                  type="button"
                   value={sessions[1]}
                   onClick={onClickFilter}
                   className={`${
@@ -76,6 +79,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 </button>
                 <button
                   name="session3"
+                  type="button"
                   value={sessions[2]}
                   onClick={onClickFilter}
                   className={`${
@@ -93,6 +97,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <div className="flex pb-1">
                 <button
                   name="session6"
+                  type="button"
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
@@ -104,6 +109,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 {sessions[1] && (
                   <button
                     name="session6"
+                    type="button"
                     value={sessions[1]}
                     onClick={onClickFilter}
                     className={`${
@@ -116,6 +122,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 {sessions[2] && (
                   <button
                     name="session6"
+                    type="button"
                     value={sessions[2]}
                     onClick={onClickFilter}
                     className={`${
@@ -141,6 +148,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               >
                 <button
                   name="session4"
+                  type="button"
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
@@ -152,6 +160,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 {sessions[1] && (
                   <button
                     name="session4"
+                    type="button"
                     value={sessions[1]}
                     onClick={onClickFilter}
                     className={`${
