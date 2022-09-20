@@ -48,12 +48,6 @@
     "node": "16.x",
     "npm": "8.x"
   },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "next lint --fix",
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
