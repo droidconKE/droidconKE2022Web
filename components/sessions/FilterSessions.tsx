@@ -23,7 +23,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSess
   }
 
   return (
-    <div className="fixed right-0 top-0 w-25 bg-black z-20 text-white w-[30%] h-screen transition-all ease-in-out duration-1000 transform translate-x-0">
+    <div className="fixed right-0 top-0 w-25 bg-black z-20 text-white lg:w-1/3 md:w-2/3 h-screen transition-all ease-in-out duration-1000 transform translate-x-0">
       <div className="bg-black relative">
         <div className="py-16 px-10">
           <div className="flex justify-between">
