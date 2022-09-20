@@ -55,7 +55,9 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           <div className="mt-10">
             {groupBy3(sessions3).map((sessions) => (
               <div className="flex pb-1">
-                <button name="session3" type="button" value={sessions[0]} onClick={onClickFilter} className={`${ filter.session3 === sessions[0] && 'bg-accent text-black' } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
+                <button name="session3" type="button" value={sessions[0]} onClick={onClickFilter} className={`${
+                    filter.session3 === sessions[0] && 'bg-accent text-black'
+                  } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
                 </button>
