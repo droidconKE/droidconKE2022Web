@@ -9,7 +9,7 @@ interface FilterSessionProps {
 export const FilterSessions: NextPage<FilterSessionProps> = ({
   setShowFilterSession,
 }) => {
-  const [filter, setFilter] = useState({})
+  const [filter, setFilter] = useState<{}>({})
   const [sessions3] = useState(['Beginner', 'Intermediate', 'Expert'])
   const [sessions6] = useState([
     'UI/UX Design',
@@ -30,7 +30,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
 
   const selectedClass = 'bg-accent text-black'
 
-  const onClickFilter = (event) => {
+  const onClickFilter = (event: any) => {
     const { name, value } = event.target
     setFilter((prev) => ({
       ...prev,
@@ -55,13 +55,13 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
             </button>
           </div>
           <div className="mt-10">
-            {groupBy3(sessions3).map((sessions) => (
+            {groupBy3(sessions3).map((sessions: string[]) => (
               <div className="flex pb-1">
                 <button
                   name="session3"
                   type="button"
                   value={sessions[0]}
-                  onClick={onClickFilter}
+                  onClick={(e) => onClickFilter(e)}
                   className={`${
                     filter.session3 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -72,7 +72,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   name="session3"
                   type="button"
                   value={sessions[1]}
-                  onClick={onClickFilter}
+                  onClick={(e) => onClickFilter(e)}
                   className={`${
                     filter.session3 === sessions[1] && selectedClass
                   } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -83,7 +83,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   name="session3"
                   type="button"
                   value={sessions[2]}
-                  onClick={onClickFilter}
+                  onClick={(e) => onClickFilter(e)}
                   className={`${
                     filter.session3 === sessions[2] && selectedClass
                   } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -95,13 +95,13 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           </div>
 
           <div className="mt-10">
-            {groupBy3(sessions6).map((sessions) => (
+            {groupBy3(sessions6).map((sessions: string[]) => (
               <div className="flex pb-1">
                 <button
                   name="session6"
                   type="button"
                   value={sessions[0]}
-                  onClick={onClickFilter}
+                  onClick={(e) => onClickFilter(e)}
                   className={`${
                     filter.session6 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -113,7 +113,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     name="session6"
                     type="button"
                     value={sessions[1]}
-                    onClick={onClickFilter}
+                    onClick={(e) => onClickFilter(e)}
                     className={`${
                       filter.session6 === sessions[1] && selectedClass
                     } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -126,7 +126,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     name="session6"
                     type="button"
                     value={sessions[2]}
-                    onClick={onClickFilter}
+                    onClick={(e) => onClickFilter(e)}
                     className={`${
                       filter.session6 === sessions[2] && selectedClass
                     } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -139,7 +139,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           </div>
 
           <div className="mt-10">
-            {groupBy3(sessions4).map((sessions) => (
+            {groupBy3(sessions4).map((sessions: string[]) => (
               <div
                 className={`flex pb-1 ${
                   (sessions.length < 3 &&
@@ -152,7 +152,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   name="session4"
                   type="button"
                   value={sessions[0]}
-                  onClick={onClickFilter}
+                  onClick={(e) => onClickFilter(e)}
                   className={`${
                     filter.session4 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -164,7 +164,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     name="session4"
                     type="button"
                     value={sessions[1]}
-                    onClick={onClickFilter}
+                    onClick={(e) => onClickFilter(e)}
                     className={`${
                       filter.session4 === sessions[1] && selectedClass
                     } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -177,7 +177,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     type="button"
                     name="session4"
                     value={sessions[2]}
-                    onClick={onClickFilter}
+                    onClick={(e) => onClickFilter(e)}
                     className={`${
                       filter.session4 === sessions[2] && selectedClass
                     } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -190,7 +190,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           </div>
 
           <div className="mt-10">
-            {groupBy3(sessions5).map((sessions) => (
+            {groupBy3(sessions5).map((sessions: string[]) => (
               <div
                 className={`flex pb-1 ${
                   (sessions.length < 3 &&
@@ -203,7 +203,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   name="session5"
                   type="button"
                   value={sessions[0]}
-                  onClick={onClickFilter}
+                  onClick={(e) => onClickFilter(e)}
                   className={`${
                     filter.session5 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -215,7 +215,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     name="session5"
                     type="button"
                     value={sessions[1]}
-                    onClick={onClickFilter}
+                    onClick={(e) => onClickFilter(e)}
                     className={`${
                       filter.session5 === sessions[1] && selectedClass
                     } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
@@ -228,7 +228,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     type="button"
                     name="session5"
                     value={sessions[2]}
-                    onClick={onClickFilter}
+                    onClick={(e) => onClickFilter(e)}
                     className={`${
                       filter.session5 === sessions[2] && selectedClass
                     } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
