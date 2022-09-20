@@ -9,7 +9,7 @@ interface FilterSessionProps {
 export const FilterSessions: NextPage<FilterSessionProps> = ({
   setShowFilterSession,
 }) => {
-  const [filter, setFilter] = useState<{}>({})
+  const [filter, setFilter] = useState<{} | any>({})
   const [sessions3] = useState(['Beginner', 'Intermediate', 'Expert'])
   const [sessions6] = useState([
     'UI/UX Design',
@@ -32,7 +32,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
 
   const onClickFilter = (event: any) => {
     const { name, value } = event.target
-    setFilter((prev) => ({
+    setFilter((prev: any) => ({
       ...prev,
       [name]: value,
     }))
