@@ -240,7 +240,10 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
 
           <div className="mt-10">
             <div className="flex pb-1">
-              <button className="w-full rounded-md py-2 bg-primary font-bold" type="button">
+              <button
+                className="w-full rounded-md py-2 bg-primary font-bold"
+                type="button"
+              >
                 FILTER
               </button>
             </div>
