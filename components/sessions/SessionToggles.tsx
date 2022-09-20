@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 interface SessionPageProps {
-  setShowFilterSession: (showFilterSession: boolean) => boolean
+  setShowFilterSession: (showFilterSession: boolean) => void
 }
 
 export const SessionToggles: NextPage<SessionPageProps> = ({
