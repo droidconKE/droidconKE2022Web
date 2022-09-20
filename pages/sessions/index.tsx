@@ -43,7 +43,7 @@ const Sessions: NextPage<SessionProps> = ({ setShowFilterSession }) => {
           </div>
           <div className="w-full lg:w-11/12">
             <div className="px-0 md:px-6">
-              <p>Cards here</p>
+              <p>cards here</p>
             </div>
           </div>
         </div>
