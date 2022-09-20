@@ -6,19 +6,33 @@ interface FilterSessionProps {
   setShowFilterSession: (showFilterSession: boolean) => void
 }
 
-export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSession }) => {
+export const FilterSessions: NextPage<FilterSessionProps> = ({
+  setShowFilterSession,
+}) => {
   const [filter, setFilter] = useState({})
   const [sessions3] = useState(['Beginner', 'Intermediate', 'Expert'])
-  const [sessions6] = useState(['UI/UX Design', 'Backend', 'APIS', 'UI/UX Design 1', 'Backend 2', 'APIS 3'])
+  const [sessions6] = useState([
+    'UI/UX Design',
+    'Backend',
+    'APIS',
+    'UI/UX Design 1',
+    'Backend 2',
+    'APIS 3',
+  ])
   const [sessions4] = useState(['Room 1', 'Room 2', 'Room 3', 'Room 4'])
-  const [sessions5] = useState(['Beginner', 'Intermediate', 'Expert', 'Beginner 1', 'Intermediate 2'])
+  const [sessions5] = useState([
+    'Beginner',
+    'Intermediate',
+    'Expert',
+    'Beginner 1',
+    'Intermediate 2',
+  ])
 
   const onClickFilter = (event) => {
-    const name = event.target.name
-    const value = event.target.value
-    setFilter(filter => ({
-      ...filter,
-      [name]: value
+    const { name, value } = event.target
+    setFilter((prev) => ({
+      ...prev,
+      [name]: value,
     }))
   }
 
@@ -30,32 +44,43 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSess
             <div className="text-secondary text-base">
               <i className="fa fa-filter text-xl" /> &nbsp; Filter
             </div>
-            <div className="text-base hover:cursor-pointer text-light uppercase" onClick={() => setShowFilterSession(false)}>Cancel</div>
+            <div
+              className="text-base hover:cursor-pointer text-light uppercase"
+              onClick={() => setShowFilterSession(false)}
+            >
+              Cancel
+            </div>
           </div>
           <div className="mt-10">
-            {groupBy3(sessions3).map(sessions => (
+            {groupBy3(sessions3).map((sessions) => (
               <div className="flex pb-1">
                 <button
-                  name={'session3'}
+                  name="session3"
                   value={sessions[0]}
                   onClick={onClickFilter}
-                  className={(filter['session3'] === sessions[0] && "bg-accent text-black") + " border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                  className={`${
+                    filter.session3 === sessions[0] && 'bg-accent text-black'
+                  } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
                 </button>
                 <button
-                  name={'session3'}
+                  name="session3"
                   value={sessions[1]}
                   onClick={onClickFilter}
-                  className={(filter['session3'] === sessions[1] && "bg-accent text-black") + " border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                  className={`${
+                    filter.session3 === sessions[1] && 'bg-accent text-black'
+                  } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[1]}
                 </button>
                 <button
-                  name={'session3'}
+                  name="session3"
                   value={sessions[2]}
                   onClick={onClickFilter}
-                  className={(filter['session3'] === sessions[2] && "bg-accent text-black") + " border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                  className={`${
+                    filter.session3 === sessions[2] && 'bg-accent text-black'
+                  } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[2]}
                 </button>
@@ -64,32 +89,38 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSess
           </div>
 
           <div className="mt-10">
-            {groupBy3(sessions6).map(sessions => (
+            {groupBy3(sessions6).map((sessions) => (
               <div className="flex pb-1">
                 <button
-                  name={'session6'}
+                  name="session6"
                   value={sessions[0]}
                   onClick={onClickFilter}
-                  className={(filter['session6'] === sessions[0] && "bg-accent text-black") + " border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                  className={`${
+                    filter.session6 === sessions[0] && 'bg-accent text-black'
+                  } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
                 </button>
                 {sessions[1] && (
                   <button
-                    name={'session6'}
+                    name="session6"
                     value={sessions[1]}
                     onClick={onClickFilter}
-                    className={(filter['session6'] === sessions[1] && "bg-accent text-black") + " border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                    className={`${
+                      filter.session6 === sessions[1] && 'bg-accent text-black'
+                    } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[1]}
                   </button>
                 )}
                 {sessions[2] && (
                   <button
-                    name={'session6'}
+                    name="session6"
                     value={sessions[2]}
                     onClick={onClickFilter}
-                    className={(filter['session6'] === sessions[2] && "bg-accent text-black") + " border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                    className={`${
+                      filter.session6 === sessions[2] && 'bg-accent text-black'
+                    } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[2]}
                   </button>
@@ -99,32 +130,45 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSess
           </div>
 
           <div className="mt-10">
-            {groupBy3(sessions4).map(sessions => (
-              <div className={"flex pb-1 " + (sessions.length < 3 && (sessions.length % 3 === 1 && 'w-1/3') || (sessions.length % 3 === 2 && 'w-2/3'))}>
+            {groupBy3(sessions4).map((sessions) => (
+              <div
+                className={`flex pb-1 ${
+                  (sessions.length < 3 &&
+                    sessions.length % 3 === 1 &&
+                    'w-1/3') ||
+                  (sessions.length % 3 === 2 && 'w-2/3')
+                }`}
+              >
                 <button
-                  name={'session4'}
+                  name="session4"
                   value={sessions[0]}
                   onClick={onClickFilter}
-                  className={(filter['session4'] === sessions[0] && "bg-accent text-black") + " border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                  className={`${
+                    filter.session4 === sessions[0] && 'bg-accent text-black'
+                  } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
                 </button>
                 {sessions[1] && (
                   <button
-                    name={'session4'}
+                    name="session4"
                     value={sessions[1]}
                     onClick={onClickFilter}
-                    className={(filter['session4'] === sessions[1] && "bg-accent text-black") + " border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                    className={`${
+                      filter.session4 === sessions[1] && 'bg-accent text-black'
+                    } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[1]}
                   </button>
                 )}
                 {sessions[2] && (
                   <button
-                    name={'session4'}
+                    name="session4"
                     value={sessions[2]}
                     onClick={onClickFilter}
-                    className={(filter['session4'] === sessions[2] && "bg-accent text-black") + " border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                    className={`${
+                      filter.session4 === sessions[2] && 'bg-accent text-black'
+                    } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[2]}
                   </button>
@@ -134,32 +178,45 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSess
           </div>
 
           <div className="mt-10">
-            {groupBy3(sessions5).map(sessions => (
-              <div className={"flex pb-1 " + (sessions.length < 3 && (sessions.length % 3 === 1 && 'w-1/3') || (sessions.length % 3 === 2 && 'w-2/3'))}>
+            {groupBy3(sessions5).map((sessions) => (
+              <div
+                className={`flex pb-1 ${
+                  (sessions.length < 3 &&
+                    sessions.length % 3 === 1 &&
+                    'w-1/3') ||
+                  (sessions.length % 3 === 2 && 'w-2/3')
+                }`}
+              >
                 <button
-                  name={'session5'}
+                  name="session5"
                   value={sessions[0]}
                   onClick={onClickFilter}
-                  className={(filter['session5'] === sessions[0] && "bg-accent text-black") + " border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                  className={`${
+                    filter.session5 === sessions[0] && 'bg-accent text-black'
+                  } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
                 </button>
                 {sessions[1] && (
                   <button
-                    name={'session5'}
+                    name="session5"
                     value={sessions[1]}
                     onClick={onClickFilter}
-                    className={(filter['session5'] === sessions[1] && "bg-accent text-black") + " border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                    className={`${
+                      filter.session5 === sessions[1] && 'bg-accent text-black'
+                    } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[1]}
                   </button>
                 )}
                 {sessions[2] && (
                   <button
-                    name={'session5'}
+                    name="session5"
                     value={sessions[2]}
                     onClick={onClickFilter}
-                    className={(filter['session5'] === sessions[2] && "bg-accent text-black") + " border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black"}
+                    className={`${
+                      filter.session5 === sessions[2] && 'bg-accent text-black'
+                    } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[2]}
                   </button>
@@ -167,11 +224,12 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({ setShowFilterSess
               </div>
             ))}
           </div>
-
 
           <div className="mt-10">
             <div className="flex pb-1">
-              <button className="w-full rounded-md py-2 bg-primary font-bold">FILTER</button>
+              <button className="w-full rounded-md py-2 bg-primary font-bold">
+                FILTER
+              </button>
             </div>
           </div>
         </div>
