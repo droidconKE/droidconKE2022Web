@@ -4,7 +4,9 @@ interface SessionPageProps {
   setShowFilterSession: (showFilterSession: boolean) => boolean
 }
 
-export const SessionToggles: NextPage<SessionPageProps> = ({ setShowFilterSession }) => {
+export const SessionToggles: NextPage<SessionPageProps> = ({
+  setShowFilterSession,
+}) => {
   return (
     <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center mt-3 md:mt-0">
       <button type="button">
