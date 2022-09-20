@@ -28,6 +28,8 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
     'Intermediate 2',
   ])
 
+  const selectedClass = 'bg-accent text-black'
+
   const onClickFilter = (event) => {
     const { name, value } = event.target
     setFilter((prev) => ({
@@ -61,7 +63,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
-                    filter.session3 === sessions[0] && 'bg-accent text-black'
+                    filter.session3 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
@@ -72,7 +74,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   value={sessions[1]}
                   onClick={onClickFilter}
                   className={`${
-                    filter.session3 === sessions[1] && 'bg-accent text-black'
+                    filter.session3 === sessions[1] && selectedClass
                   } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[1]}
@@ -83,7 +85,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   value={sessions[2]}
                   onClick={onClickFilter}
                   className={`${
-                    filter.session3 === sessions[2] && 'bg-accent text-black'
+                    filter.session3 === sessions[2] && selectedClass
                   } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[2]}
@@ -101,7 +103,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
-                    filter.session6 === sessions[0] && 'bg-accent text-black'
+                    filter.session6 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
@@ -113,7 +115,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     value={sessions[1]}
                     onClick={onClickFilter}
                     className={`${
-                      filter.session6 === sessions[1] && 'bg-accent text-black'
+                      filter.session6 === sessions[1] && selectedClass
                     } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[1]}
@@ -126,7 +128,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     value={sessions[2]}
                     onClick={onClickFilter}
                     className={`${
-                      filter.session6 === sessions[2] && 'bg-accent text-black'
+                      filter.session6 === sessions[2] && selectedClass
                     } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[2]}
@@ -152,7 +154,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
-                    filter.session4 === sessions[0] && 'bg-accent text-black'
+                    filter.session4 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
@@ -164,7 +166,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     value={sessions[1]}
                     onClick={onClickFilter}
                     className={`${
-                      filter.session4 === sessions[1] && 'bg-accent text-black'
+                      filter.session4 === sessions[1] && selectedClass
                     } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[1]}
@@ -177,7 +179,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     value={sessions[2]}
                     onClick={onClickFilter}
                     className={`${
-                      filter.session4 === sessions[2] && 'bg-accent text-black'
+                      filter.session4 === sessions[2] && selectedClass
                     } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[2]}
@@ -203,7 +205,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
-                    filter.session5 === sessions[0] && 'bg-accent text-black'
+                    filter.session5 === sessions[0] && selectedClass
                   } border rounded-l-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                 >
                   {sessions[0]}
@@ -215,7 +217,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     value={sessions[1]}
                     onClick={onClickFilter}
                     className={`${
-                      filter.session5 === sessions[1] && 'bg-accent text-black'
+                      filter.session5 === sessions[1] && selectedClass
                     } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[1]}
@@ -228,7 +230,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                     value={sessions[2]}
                     onClick={onClickFilter}
                     className={`${
-                      filter.session5 === sessions[2] && 'bg-accent text-black'
+                      filter.session5 === sessions[2] && selectedClass
                     } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
                   >
                     {sessions[2]}
