@@ -40,7 +40,7 @@ const Sessions: NextPage = () => {
             </div>
           </div>
           <div className="w-full lg:w-11/12">
-            <div className="px-0 md:px-6">
+            <div className="px-0 md:pl-6">
               <SessionListCard />
             </div>
           </div>
