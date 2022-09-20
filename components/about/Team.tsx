@@ -3,7 +3,10 @@ import { Organizer } from '../../types/types'
 function Team({ organizers }: { organizers: Organizer[] }) {
   return (
     <>
-      <section className="l-container mt-4 md:mt-10"> <div className="flex flex-wrap md:py-16"> <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center"> <h2 className="title lowercase dark:text-accent-dark pt-6 md:pt-0">
+      <section className="l-container mt-4 md:mt-10">
+        <div className="flex flex-wrap md:py-16">
+          <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
+            <h2 className="title lowercase dark:text-accent-dark pt-6 md:pt-0">
               <span>organizing</span> <span className="font-medium">team</span>
             </h2>
           </div>
