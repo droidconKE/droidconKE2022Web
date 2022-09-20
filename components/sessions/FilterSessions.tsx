@@ -199,6 +199,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               >
                 <button
                   name="session5"
+                  type="button"
                   value={sessions[0]}
                   onClick={onClickFilter}
                   className={`${
@@ -210,6 +211,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 {sessions[1] && (
                   <button
                     name="session5"
+                    type="button"
                     value={sessions[1]}
                     onClick={onClickFilter}
                     className={`${
@@ -221,6 +223,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 )}
                 {sessions[2] && (
                   <button
+                    type="button"
                     name="session5"
                     value={sessions[2]}
                     onClick={onClickFilter}
