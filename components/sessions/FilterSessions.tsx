@@ -172,6 +172,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                 )}
                 {sessions[2] && (
                   <button
+                    type="button"
                     name="session4"
                     value={sessions[2]}
                     onClick={onClickFilter}
