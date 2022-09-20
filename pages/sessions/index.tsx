@@ -53,10 +53,7 @@ const Sessions: NextPage = () => {
         </section>
       </div>
       {showFilterSession && (
-        <FilterSessions
-          showFilterSession={showFilterSession}
-          setShowFilterSession={setShowFilterSession}
-        />
+        <FilterSessions setShowFilterSession={setShowFilterSession} />
       )}
     </>
   )
