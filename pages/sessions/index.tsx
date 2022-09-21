@@ -46,16 +46,8 @@ const Sessions: NextPage = () => {
             </div>
             <div className="w-full lg:w-11/12">
               <div className="px-0 md:px-6">
-                <p>cards here</p>
+                <SessionListCard />
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="w-full lg:w-11/12">
-            <div className="px-0 md:pl-6">
-              <SessionListCard />
             </div>
           </div>
           {/* <SessionsSkeleton /> */}
