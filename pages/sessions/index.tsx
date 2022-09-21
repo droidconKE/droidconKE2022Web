@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NextPage } from 'next'
+import SessionListCard from '../../components/sessions/SessionListCard'
 // import { NoSessions } from '../../components/sessions/NoSessions'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
@@ -20,6 +21,7 @@ const Sessions: NextPage = () => {
             </div>
           </div>
         </section>
+
         <section className="w-full py-6 md:py-12 mb-0">
           <div className="l-container flex flex-wrap">
             <div
@@ -46,6 +48,14 @@ const Sessions: NextPage = () => {
               <div className="px-0 md:px-6">
                 <p>cards here</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div className="w-full lg:w-11/12">
+            <div className="px-0 md:pl-6">
+              <SessionListCard />
             </div>
           </div>
           {/* <SessionsSkeleton /> */}
