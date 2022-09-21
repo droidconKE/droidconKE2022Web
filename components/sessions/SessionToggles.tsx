@@ -1,4 +1,12 @@
-export const SessionToggles = () => {
+import type { NextPage } from 'next'
+
+interface SessionPageProps {
+  setShowFilterSession: (showFilterSession: boolean) => void
+}
+
+export const SessionToggles: NextPage<SessionPageProps> = ({
+  setShowFilterSession,
+}) => {
   return (
     <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center mt-3 md:mt-0">
       <button type="button">
@@ -44,6 +52,7 @@ export const SessionToggles = () => {
       <button
         type="button"
         className="ml-3 text-white dark:text-white-dark font-sm"
+        onClick={() => setShowFilterSession(true)}
       >
         Filter &nbsp; <i className="fa fa-filter text-xl" />
       </button>
