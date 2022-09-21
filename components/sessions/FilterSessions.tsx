@@ -1,16 +1,10 @@
 import { useState, MouseEvent } from 'react'
 import type { NextPage } from 'next'
 import { groupBy3 } from '../../utils/helpers'
+import { FilterInterface } from '../../types/types'
 
 interface FilterSessionProps {
   setShowFilterSession: (showFilterSession: boolean) => void
-}
-
-interface FilterInterface {
-  session3?: string
-  session4?: string
-  session5?: string
-  session6?: string
 }
 
 export const FilterSessions: NextPage<FilterSessionProps> = ({
@@ -63,7 +57,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           </div>
           <div className="mt-10">
             {groupBy3(sessions3).map((sessions: string[]) => (
-              <div className="flex pb-1">
+              <div className="flex pb-1" key={sessions[0]}>
                 <button
                   name="session3"
                   type="button"
@@ -103,7 +97,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
 
           <div className="mt-10">
             {groupBy3(sessions6).map((sessions: string[]) => (
-              <div className="flex pb-1">
+              <div className="flex pb-1" key={sessions[0]}>
                 <button
                   name="session6"
                   type="button"
@@ -148,6 +142,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           <div className="mt-10">
             {groupBy3(sessions4).map((sessions: string[]) => (
               <div
+                key={sessions[0]}
                 className={`flex pb-1 ${
                   (sessions.length < 3 &&
                     sessions.length % 3 === 1 &&
@@ -199,6 +194,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
           <div className="mt-10">
             {groupBy3(sessions5).map((sessions: string[]) => (
               <div
+                key={sessions[0]}
                 className={`flex pb-1 ${
                   (sessions.length < 3 &&
                     sessions.length % 3 === 1 &&
@@ -249,11 +245,8 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
 
           <div className="mt-10">
             <div className="flex pb-1">
-              <button
-                className="w-full rounded-md py-2 bg-primary font-bold"
-                type="button"
-              >
-                FILTER
+              <button className="btn-primary w-full uppercase" type="button">
+                filter
               </button>
             </div>
           </div>
