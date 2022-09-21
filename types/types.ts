@@ -14,3 +14,7 @@ export interface ErrorInterface {
   message: string
   status: number | string
 }
+
+export interface FilterInterface {
+  [key: string]: string
+}
