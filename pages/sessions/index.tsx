@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import SessionListCard from '../../components/sessions/SessionListCard'
 // import { NoSessions } from '../../components/sessions/NoSessions'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 // import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
@@ -39,8 +40,8 @@ const Sessions: NextPage = () => {
             </div>
           </div>
           <div className="w-full lg:w-11/12">
-            <div className="px-0 md:px-6">
-              <p>cards here</p>
+            <div className="px-0 md:pl-6">
+              <SessionListCard />
             </div>
           </div>
         </div>
