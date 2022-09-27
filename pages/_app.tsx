@@ -36,7 +36,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     Component.getLayout(<PageNode />)
   ) : (
     <Layout>
-      <PageNode />
+      <div id="layout">
+        <PageNode />
+      </div>
     </Layout>
   )
 }

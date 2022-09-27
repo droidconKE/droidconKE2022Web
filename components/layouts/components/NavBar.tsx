@@ -3,17 +3,21 @@ import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { Login } from '../../auth/Login'
 import { ToggleTheme } from './ToggleTheme'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
 
   const [navVisible, setNavVisible] = useState(false)
+  const [isLoginOpen, setIsLoginOpen] = useState(false)
   const router = useRouter()
 
   const toggleNav = () => {
     setNavVisible((prev) => !prev)
   }
+
+  const showLogin = !isEventReady
 
   useEffect(() => {
     Router.events.on('beforeHistoryChange', () => {
@@ -121,12 +125,12 @@ export const NavBar = () => {
         </div>
 
         <div className="w-2/12 flex-grow  lg:flex justify-end">
-          {isEventReady && (
+          {showLogin && (
             <button
               type="button"
               id="login-modal"
               className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
-              onClick={() => null}
+              onClick={() => setIsLoginOpen(true)}
             >
               <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
                 <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
@@ -136,6 +140,7 @@ export const NavBar = () => {
           )}
         </div>
       </div>
+      {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />}
     </nav>
   )
 }
