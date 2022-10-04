@@ -63,7 +63,7 @@ const Home: NextPage<HomeProps> = ({ organizers }) => {
 
 export async function getServerSideProps() {
   const organizers = await axios
-    .get(`/organizers/${process.env.ORG_SLUG}/team?type=company`)
+    .get(`/organizers/${process.env.NEXT_PUBLIC_ORG_SLUG}/team?type=company`)
     .then((response) => {
       return response.data.data
     })
