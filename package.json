@@ -10,12 +10,14 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.2.8",
     "axios": "^0.27.2",
     "firebase": "^9.8.4",
     "next": "12.2.0",
     "next-pwa": "^5.5.4",
     "prettier": "2.5.1",
     "react": "18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-rating": "^2.0.5",
     "react-toastify": "^9.0.5",

@@ -18,3 +18,11 @@ export interface ErrorInterface {
 export interface FilterInterface {
   [key: string]: string
 }
+
+export interface User {
+  avatar: string
+  created_at: string
+  email: string
+  gender: string | null
+  name: string
+}
