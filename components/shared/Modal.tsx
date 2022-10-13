@@ -1,14 +1,16 @@
+/* eslint-disable react/require-default-props */
 import { ReactElement, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 // import { isServer } from '../../utils/helpers'
 
 export const Modal = ({
   sideImage = '/images/svg/login.svg',
+  widthClass = 'md:max-w-xl',
   closeDialog,
   children,
 }: {
-  // eslint-disable-next-line react/require-default-props
   sideImage?: string
+  widthClass?: string
   closeDialog: () => void
   children: ReactElement
 }) => {
@@ -30,9 +32,15 @@ export const Modal = ({
               id="modal-login"
               className="modal-active fixed w-full h-full overflow-hidden bottom-0 top-0 left-0 flex items-center justify-center z-40"
             >
-              <div className="modal-overlay absolute w-full h-full modal-bg z-30 overflow-hidden" />
+              <button
+                type="button"
+                className="modal-overlay absolute w-full h-full modal-bg z-30 overflow-hidden"
+                onClick={() => closeDialog()}
+              />
 
-              <div className="modal-container bg-white dark:bg-black-dark w-11/12 md:max-w-xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+              <div
+                className={`modal-container bg-white dark:bg-black-dark w-11/12 ${widthClass} mx-auto rounded-lg shadow-lg z-50 overflow-y-auto`}
+              >
                 <div className="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-sm z-50" />
                 <div className="modal-content w-full">
                   <div className="flex flex-wrap lg:flex-no-wrap bg-ash-c justify-center">
