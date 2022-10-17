@@ -1,23 +1,20 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useContext } from 'react'
 import { Banner } from '../components/home/Banner'
 import { EventTypes } from '../components/home/EventTypes'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import { Sponsor } from '../components/home/Sponsor'
 import SponsorsList from '../components/home/SponsorsList'
-import { ThemeContext } from '../context/ThemeContext'
-import { Organizer } from '../types/types'
+import { Organizer, Sponsor as SponsorType } from '../types/types'
 import axios from '../utils/axios'
 
 interface HomeProps {
   organizers: Organizer[]
+  sponsors: SponsorType[]
 }
 
-const Home: NextPage<HomeProps> = ({ organizers }) => {
-  const { isEventReady } = useContext(ThemeContext)
-
+const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
   return (
     <div
       className="bg-[length:0%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
@@ -53,7 +50,7 @@ const Home: NextPage<HomeProps> = ({ organizers }) => {
         </div>
       </section>
       <EventTypes />
-      {isEventReady && <SponsorsList sponsors={organizers} />}
+      <SponsorsList sponsors={sponsors} />
       <Sponsor />
       <Gallery />
       <Organizers organizers={organizers} />
@@ -68,8 +65,14 @@ export async function getServerSideProps() {
       return response.data.data
     })
 
+  const sponsors = await axios
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
+    .then((response) => {
+      return response.data.data
+    })
+
   // Pass data to the page via props
-  return { props: { organizers } }
+  return { props: { organizers, sponsors } }
 }
 
 export default Home

@@ -9,6 +9,13 @@ export interface Organizer {
   photo: string
   created_at: string
 }
+export interface Sponsor {
+  name: string
+  tagline: string
+  link: string | undefined
+  logo: string
+  created_at: string
+}
 
 export interface ErrorInterface {
   message: string
