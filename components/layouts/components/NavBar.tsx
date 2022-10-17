@@ -20,7 +20,8 @@ export const NavBar = () => {
     setNavVisible((prev) => !prev)
   }
 
-  const showLogin = !isEventReady
+  const showLogin = isEventReady
+  const showSessions = isEventReady
 
   useEffect(() => {
     Router.events.on('beforeHistoryChange', () => {
@@ -86,17 +87,19 @@ export const NavBar = () => {
                 </a>
               </Link>
             </li>
-            <li className="mr-3">
-              <Link href="/sessions">
-                <a
-                  className={
-                    router.pathname === '/sessions' ? 'active-link' : 'link'
-                  }
-                >
-                  Sessions
-                </a>
-              </Link>
-            </li>
+            {showSessions && (
+              <li className="mr-3">
+                <Link href="/sessions">
+                  <a
+                    className={
+                      router.pathname === '/sessions' ? 'active-link' : 'link'
+                    }
+                  >
+                    Sessions
+                  </a>
+                </Link>
+              </li>
+            )}
             <li className="mr-3">
               <Link href="/about">
                 <a
