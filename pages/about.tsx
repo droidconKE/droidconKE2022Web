@@ -39,7 +39,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   apps and products, and to learn and teach.
                   <br /> <br />
                   This three-day developer focused gathering will be held in
-                  Nairobi Kenya on August 16th to 18th 2022 and will be the
+                  Nairobi Kenya on November 16th to 18th 2022 and will be the
                   largest of its kind in Africa.
                   <br /> <br />
                   It will have workshops and codelabs focused on the building of
