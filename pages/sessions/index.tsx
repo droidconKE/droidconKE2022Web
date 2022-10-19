@@ -4,9 +4,15 @@ import SessionListCard from '../../components/sessions/SessionListCard'
 // import { NoSessions } from '../../components/sessions/NoSessions'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
+import axios from '../../utils/axios'
+import { ScheduleInterface } from '../../types/types'
+// import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 // import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
+interface SessionProps {
+  schedules: ScheduleInterface[]
+}
 
-const Sessions: NextPage = () => {
+const Sessions: NextPage<SessionProps> = ({ schedules }) => {
   const [showFilterSession, setShowFilterSession] = useState(false)
   return (
     <>
@@ -46,7 +52,8 @@ const Sessions: NextPage = () => {
             </div>
             <div className="w-full lg:w-11/12">
               <div className="px-0 md:px-6">
-                <SessionListCard />
+                {/* <SessionGridCard schedules={schedules} /> */}
+                <SessionListCard schedules={schedules} />
               </div>
             </div>
           </div>
@@ -62,3 +69,20 @@ const Sessions: NextPage = () => {
 }
 
 export default Sessions
+
+export async function getServerSideProps() {
+  const schedules = async () => {
+    try {
+      const response = await axios.get(
+        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`
+      )
+
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const T = await schedules()
+
+  return { props: { schedules: T.data } }
+}
