@@ -6,7 +6,7 @@ import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { ScheduleInterface } from '../../types/types'
-// import { SessionGridCard } from '../../components/sessions/SessionGridCard'
+import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 // import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 interface SessionProps {
   schedules: ScheduleInterface[]
@@ -52,8 +52,8 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
             </div>
             <div className="w-full lg:w-11/12">
               <div className="px-0 md:px-6">
-                {/* <SessionGridCard schedules={schedules} /> */}
-                <SessionListCard schedules={schedules} />
+                <SessionGridCard schedules={schedules} />
+                {/* <SessionListCard schedules={schedules} /> */}
               </div>
             </div>
           </div>
