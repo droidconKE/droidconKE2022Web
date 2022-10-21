@@ -10,11 +10,11 @@ function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
               <h2 className="title lowercase dark:text-accent-dark mt-4 md:mt-0">
                 <span>sponsored</span> <span className="font-medium"> by;</span>
               </h2>
-              <p className="mt-4 text-xl md:text-2xl">
+              {/* <p className="mt-4 text-xl md:text-2xl">
                 Please make sure to stop by and visit our sponsors at the show
                 and give them a high-five and a huge thank you for helping to
                 bring the community together at droidconke.
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="w-full md:w-6/12 mr-auto pt-4 sm:mt-10 md:pt-0 justify-end">
