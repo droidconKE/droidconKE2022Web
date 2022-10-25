@@ -33,3 +33,42 @@ export interface User {
   gender: string | null
   name: string
 }
+
+export interface Speaker {
+  name: string
+  tagline: string
+  biography: string
+  avatar: string
+  twitter?: string
+  facebook?: string
+  linkedin?: string
+  instagram?: string
+  blog?: string
+  company_website?: string
+}
+
+export interface Room {
+  title: string
+  id: number
+}
+
+export interface Session {
+  id: number
+  title: string
+  description: string
+  slug?: string
+  session_format: string
+  session_level: string
+  session_image: string
+  backgroundColor: string
+  borderColor: string
+  is_serviceSession: boolean
+  is_keynote: boolean
+  is_bookmarked: boolean
+  start_date_time: string
+  start_time: string
+  end_date_time: string
+  end_time: string
+  speakers: Speaker[]
+  rooms: Room[]
+}

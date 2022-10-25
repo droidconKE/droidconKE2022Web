@@ -74,6 +74,10 @@ video::-webkit-media-controls-fullscreen-button {
   display: none;
 }
 
+.carousel .slide {
+  text-align: left !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -3,8 +3,14 @@ import Link from 'next/link'
 import { SessionDetails } from '../../components/sessions/SessionDetails'
 import { ShareSessionAndFeedback } from '../../components/sessions/ShareSessionAndFeedback'
 import { SpeakersDetails } from '../../components/sessions/SpeakersDetails'
+import { Session as SessionProp } from '../../types/types'
+import axios from '../../utils/axios'
 
-const Session: NextPage = () => {
+interface SessionPageProp {
+  session: SessionProp
+}
+
+const Session: NextPage<SessionPageProp> = ({ session }) => {
   return (
     <div className="w-full mt-16 mb-0">
       <section className="w-full bg-dark dark:bg-black-dark">
@@ -27,13 +33,32 @@ const Session: NextPage = () => {
       </section>
       <section className="s-container py-2 md:py-4">
         <div className="w-full flex flex-wrap items-start py-0 md:py-3">
-          <SpeakersDetails />
-          <SessionDetails />
-          <ShareSessionAndFeedback />
+          <SpeakersDetails session={session} />
+          <SessionDetails session={session} />
+          <ShareSessionAndFeedback session={session} />
         </div>
       </section>
     </div>
   )
 }
+export async function getServerSideProps(context: { query: { slug: string } }) {
+  const { slug } = context.query
+  const session = await axios
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule/${slug}`)
+    .then((response) => {
+      return response.data.data
+    })
+    .catch(() => {
+      return null
+    })
 
+  // Pass data to the page via props
+
+  if (!session) {
+    return {
+      notFound: true,
+    }
+  }
+  return { props: { session } }
+}
 export default Session
