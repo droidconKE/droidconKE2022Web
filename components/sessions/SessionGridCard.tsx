@@ -6,7 +6,10 @@ export const SessionGridCard = ({ schedules }: { schedules: any }) => {
           <div key={key}>
             {/* component */}
             {schedules[key]?.map((schedule) => (
-              <div className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-black-dark mb-6">
+              <div
+                key={schedule.id}
+                className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-black-dark mb-6"
+              >
                 <img
                   className="object-cover md:object-cover"
                   src="images/testara.png"
@@ -16,7 +19,9 @@ export const SessionGridCard = ({ schedules }: { schedules: any }) => {
                   <h3 className="text-light text-sm mt-4">
                     @ {schedule.start_time} AM |{' '}
                     {schedule.rooms?.map((venue) => (
-                      <span className="rooms">{venue.title}</span>
+                      <span key={venue.id} className="rooms">
+                        {venue.title}
+                      </span>
                     ))}
                   </h3>
                   <p className="text-sm mt-2 h-10 font-bold dark:text-white-dark">
@@ -26,7 +31,7 @@ export const SessionGridCard = ({ schedules }: { schedules: any }) => {
                     <div className="flex items-start space-x-4">
                       {!schedule.is_serviceSession}
                       {schedule.speakers?.map((speaker) => (
-                        <div className="w-9 h-9">
+                        <div key={speaker.avatar} className="w-9 h-9">
                           <img
                             className="rounded-full border border-accent shadow-sm"
                             src={speaker.avatar}

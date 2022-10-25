@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
 
 interface SessionPageProps {
   setShowFilterSession: (showFilterSession: boolean) => void
@@ -7,14 +6,14 @@ interface SessionPageProps {
 
 export const SessionToggles: NextPage<SessionPageProps> = ({
   setShowFilterSession,
+  onChangeViewType
 }) => {
-  const [toggleViewMode, setToggleViewMode] = useState(false)
   return (
     <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center mt-3 md:mt-0">
-      <button type="button" onClick={() => setToggleViewMode(!toggleViewMode)}>
+      <button type="button" onClick={() => onChangeViewType('List')}>
         <i className="fa fa-th-list text-2xl text-white dark:text-white-dark" />
       </button>
-      <button type="button">
+      <button type="button" onClick={() => onChangeViewType('Grid')}>
         <i className="fa fa-th text-2xl text-white dark:text-white-dark" />
       </button>
       <div className="px-5">

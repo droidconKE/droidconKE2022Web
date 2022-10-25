@@ -12,8 +12,9 @@ interface SessionProps {
   schedules: ScheduleInterface[]
 }
 
-const Sessions: NextPage<SessionProps> = ({ schedules }) => {
+const Sessions: NextPage<SessionProps> = ({ schedules, viewType }) => {
   const [showFilterSession, setShowFilterSession] = useState(false)
+  const [isGridView, setIsGridView] = useState(true)
   return (
     <>
       <div className="w-full mt-16 mb-0">
@@ -52,8 +53,11 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
             </div>
             <div className="w-full lg:w-11/12">
               <div className="px-0 md:px-6">
-                <SessionGridCard schedules={schedules} />
-                {/* <SessionListCard schedules={schedules} /> */}
+                {isGridView ? (
+                  <SessionGridCard schedules={schedules} />
+                ) : (
+                  <SessionListCard schedules={schedules} />
+                )}
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { StarIcon } from '../shared/StarIcon'
 
-const truncateString = (str, num) => {
+const truncateString = (str: string, num: number) => {
   if (str.length <= num) {
     return str
   }
