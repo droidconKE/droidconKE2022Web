@@ -21,6 +21,8 @@
     "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-rating": "^2.0.5",
+    "react-responsive-carousel": "^3.2.23",
+    "react-share": "^4.4.1",
     "react-toastify": "^9.0.5",
     "sharp": "^0.30.7"
   },

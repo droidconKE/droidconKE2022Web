@@ -17,6 +17,17 @@ export const humanReadable = (value: string) =>
   moment(value).format('MMM Do YY')
 
 export const timeAm = (value: string) => moment(value).format('a')
+
 export const timeDay = (value: string) => moment(value).format('DD')
+
 export const time = (value: string) => moment(value).format('h:mm')
+
 export const hour = (value: string) => moment(value).format('h:mm a')
+
+export const truncateString = (str: string, num = 100) => {
+  if (!str) return ''
+  if (str.length <= num) {
+    return str
+  }
+  return `${str.slice(0, num)}...`
+}
