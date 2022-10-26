@@ -14,7 +14,7 @@ interface SessionProps {
 
 const Sessions: NextPage<SessionProps> = ({ schedules, viewType }) => {
   const [showFilterSession, setShowFilterSession] = useState(false)
-  const [isGridView, setIsGridView] = useState(true)
+  const [isGridView, setIsGridView] = useState(false)
   return (
     <>
       <div className="w-full mt-16 mb-0">

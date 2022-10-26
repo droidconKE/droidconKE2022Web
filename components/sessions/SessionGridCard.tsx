@@ -1,3 +1,5 @@
+import { hour } from '../../utils/helpers'
+
 export const SessionGridCard = ({ schedules }: { schedules: any }) => {
   return (
     <>
@@ -17,7 +19,7 @@ export const SessionGridCard = ({ schedules }: { schedules: any }) => {
                 />
                 <div className="m-4">
                   <h3 className="text-light text-sm mt-4">
-                    @ {schedule.start_time} AM |{' '}
+                    @ {hour(schedule.start_date_time)} |{' '}
                     {schedule.rooms?.map((venue) => (
                       <span key={venue.id} className="rooms">
                         {venue.title}

@@ -24,6 +24,8 @@ export interface ScheduleInterface {
   start_date_time: string
   end_date_time: string
   end_time: string
+  is_serviceSession: boolean
+  is_keynote: boolean
   speakers: [
     {
       name: string

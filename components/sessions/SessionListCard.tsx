@@ -1,3 +1,4 @@
+import { hour, time, timeAm } from '../../utils/helpers'
 import { StarIcon } from '../shared/StarIcon'
 
 const truncateString = (str: string, num: number) => {
@@ -21,10 +22,10 @@ const SessionListCard = ({ schedules }: { schedules: any }) => {
                 <div className="flex flex-row items-start">
                   <div className="flex flex-col w-2/12 justify-start items-center">
                     <h4 className="font-bold md:text-xl text-primary dark:text-accent-dark">
-                      {schedule.start_time}
+                      {time(schedule.start_date_time)}
                     </h4>
                     <h4 className="font-bold md:text-xl text-primary dark:text-accent-dark">
-                      AM
+                      {timeAm(schedule.start_date_time)}
                     </h4>
                   </div>
                   <div className="w-9/12 content-center justify-center">
@@ -36,13 +37,25 @@ const SessionListCard = ({ schedules }: { schedules: any }) => {
                     </p>
                     <p className="text-xs md:text-sm font-light">
                       <span>
-                        {schedule.start_time}-{schedule.end_time}
+                        {hour(schedule.start_date_time)} -{' '}
+                        {hour(schedule.end_date_time)}
                       </span>{' '}
                       |{' '}
                       {schedule.rooms?.map((venue) => (
                         <span className="rooms">{venue.title}</span>
                       ))}
                     </p>
+                    {!schedule.is_serviceSession}
+                    {schedule.speakers?.map((speaker) => (
+                      <a
+                        href="#1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs md:text-sm pt-1 text-primary dark:text-accent-dark"
+                      >
+                        <i className="fa fa-android" /> {speaker.name}
+                      </a>
+                    ))}
                   </div>
                   <div className="flex w-1/12 justify-center items-start md:pr-4">
                     <StarIcon />
