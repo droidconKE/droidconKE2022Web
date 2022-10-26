@@ -17,31 +17,6 @@ export interface Sponsor {
   created_at: string
 }
 
-export interface ScheduleInterface {
-  title: string
-  description: string
-  start_time: string
-  start_date_time: string
-  end_date_time: string
-  end_time: string
-  is_serviceSession: boolean
-  is_keynote: boolean
-  speakers: [
-    {
-      name: string
-      tagline: string
-      biography: string
-      avatar: string
-    }
-  ]
-  rooms: [
-    {
-      title: string
-      id: number
-    }
-  ]
-}
-
 export interface ErrorInterface {
   message: string
   status: number | string
@@ -96,4 +71,8 @@ export interface Session {
   end_time: string
   speakers: Speaker[]
   rooms: Room[]
+}
+
+export interface Schedule {
+  [key: string]: Session[]
 }

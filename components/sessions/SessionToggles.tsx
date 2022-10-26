@@ -2,18 +2,19 @@ import type { NextPage } from 'next'
 
 interface SessionPageProps {
   setShowFilterSession: (showFilterSession: boolean) => void
+  onChangeViewType: (viewType: boolean) => void
 }
 
 export const SessionToggles: NextPage<SessionPageProps> = ({
   setShowFilterSession,
-  onChangeViewType
+  onChangeViewType,
 }) => {
   return (
     <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center mt-3 md:mt-0">
-      <button type="button" onClick={() => onChangeViewType('List')}>
+      <button type="button" onClick={() => onChangeViewType(false)}>
         <i className="fa fa-th-list text-2xl text-white dark:text-white-dark" />
       </button>
-      <button type="button" onClick={() => onChangeViewType('Grid')}>
+      <button type="button" onClick={() => onChangeViewType(true)}>
         <i className="fa fa-th text-2xl text-white dark:text-white-dark" />
       </button>
       <div className="px-5">

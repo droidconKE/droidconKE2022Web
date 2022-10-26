@@ -16,7 +16,7 @@ export const groupBy3 = (arr: string[]) =>
 export const humanReadable = (value: string) =>
   moment(value).format('MMM Do YY')
 
-export const timeAm = (value: string) => moment(value).format('A')
+export const timeAm = (value: string) => moment(value).format('a')
 
 export const timeDay = (value: string) => moment(value).format('DD')
 
