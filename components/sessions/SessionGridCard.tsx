@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection */
 import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour } from '../../utils/helpers'
