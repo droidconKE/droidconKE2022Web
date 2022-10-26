@@ -42,12 +42,15 @@ const SessionListCard = ({ schedules }: { schedules: any }) => {
                       </span>{' '}
                       |{' '}
                       {schedule.rooms?.map((venue) => (
-                        <span className="rooms">{venue.title}</span>
+                        <span key={venue.id} className="rooms">
+                          {venue.title}
+                        </span>
                       ))}
                     </p>
                     {!schedule.is_serviceSession}
                     {schedule.speakers?.map((speaker) => (
                       <a
+                        key={speaker.avatar}
                         href="#1"
                         target="_blank"
                         rel="noopener noreferrer"
