@@ -1,15 +1,42 @@
 import axios from 'axios'
 import { Cookies } from 'react-cookie'
-// import type { AxiosRequestConfig } from 'axios'
+import type { AxiosRequestConfig } from 'axios'
+// import { toast } from 'react-toastify'
+// import { isClient } from './helpers'
 
-// axios.interceptors.request.use(
-//   (config: AxiosRequestConfig) => {
-//     // eslint-disable-next-line no-param-reassign
-//     config.headers['Api-Authorization-Key'] = process.env.NEXT_PUBLIC_API_KEY ?? ''
-//     return config
+axios.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    // eslint-disable-next-line no-param-reassign
+    // config.headers['Api-Authorization-Key'] = process.env.NEXT_PUBLIC_API_KEY ?? ''
+    const cookies = new Cookies()
+    const token = cookies.get('token')
+    // console.log({ token })
+    if (token) {
+      // axios.defaults.headers.common.Authorization = `Bearer ${token}`
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, no-param-reassign
+      config.headers!.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  (error) => {
+    // Do something with request error
+    return Promise.reject(error)
+  }
+)
+
+// axios.interceptors.response.use(
+//   (response) => {
+//     // Any status code that lie within the range of 2xx cause this function to trigger
+//     // Do something with response data
+//     return response
 //   },
 //   (error) => {
-//     // Do something with request error
+//     // Any status codes that falls outside the range of 2xx cause this function to trigger
+//     console.log({ error })
+//     // if (error.response && error.response.status === 401 && isClient) {
+//     //   toast.success(error.response.data.message)
+//     // }
+//     // Do something with response error
 //     return Promise.reject(error)
 //   }
 // )
@@ -17,11 +44,5 @@ import { Cookies } from 'react-cookie'
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL
 axios.defaults.headers.common['Api-Authorization-Key'] =
   process.env.NEXT_PUBLIC_API_KEY ?? ''
-
-const cookies = new Cookies()
-const token = cookies.get('token')
-if (token) {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`
-}
 
 export default axios

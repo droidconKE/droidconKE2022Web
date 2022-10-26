@@ -76,3 +76,8 @@ export interface Session {
 export interface Schedule {
   [key: string]: Session[]
 }
+
+export interface FeedbackError {
+  feedback: string[]
+  rating: string[]
+}
