@@ -31,7 +31,7 @@ export const SaveSession = ({
           <div className="toggle__dot absolute w-5 h-5 bg-primary dark:bg-primary-dark rounded-full shadow inset-y-0 left-0" />
         </div>
         <div className="ml-3 text-dark dark:text-white-dark font-sm">
-          Save Session
+          {isSaved ? 'Remove Session' : 'Save Session'}
         </div>
       </button>
       <style jsx>
