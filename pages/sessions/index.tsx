@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { NextPage } from 'next'
 import { getCookie } from 'cookies-next'
 import SessionListCard from '../../components/sessions/SessionListCard'
@@ -7,79 +7,27 @@ import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Schedule } from '../../types/types'
-import { isClient, timeDay } from '../../utils/helpers'
+import { timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
+import { useSession } from '../../hooks/useSession'
 
 interface SessionProps {
   schedules: Schedule[]
 }
 
-const ACTIVE_VIEW = 'droidcon_view'
-const MY_SESSIONS = 'droidcon_my_sessions'
-
 const Sessions: NextPage<SessionProps> = ({ schedules: allSchedules }) => {
-  const [showFilterSession, setShowFilterSession] = useState(false)
-  const [isGridView, setIsGridView] = useState(false)
-  const [activeTab, setActiveTab] = useState(0)
-  const [showMySessions, setShowMysessions] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [schedules, setSchedules] = useState<Schedule[]>(allSchedules)
-  const [mySchedules, setMySchedules] = useState<Schedule[] | []>([])
-
-  const originalSchedules = allSchedules
-
-  const changeViewType = (val: boolean) => {
-    if (!val) {
-      localStorage.setItem(ACTIVE_VIEW, 'list')
-      setIsGridView(false)
-    } else {
-      setIsGridView(true)
-      localStorage.setItem(ACTIVE_VIEW, 'grid')
-    }
-  }
-
-  useEffect(() => {
-    if (!isClient) {
-      return
-    }
-    if (localStorage.getItem(ACTIVE_VIEW) === 'list') {
-      setIsGridView(false)
-    }
-    if (localStorage.getItem(ACTIVE_VIEW) === 'grid') {
-      setIsGridView(true)
-    }
-    if (localStorage.getItem(MY_SESSIONS) === 'mine') {
-      setShowMysessions(true)
-    }
-    if (localStorage.getItem(MY_SESSIONS) === 'all') {
-      setShowMysessions(false)
-    }
-  }, [])
-
-  const getMySchedules = useCallback(async () => {
-    setLoading(true)
-    await axios
-      .get(
-        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/bookmarked_schedule?grouped=true`
-      )
-      .then((response) => {
-        setLoading(false)
-        setSchedules(response.data.data)
-        setMySchedules(response.data.data)
-      })
-  }, [])
-
-  useEffect(() => {
-    if (showMySessions) {
-      // eslint-disable-next-line no-unused-expressions
-      mySchedules.length ? setSchedules(mySchedules) : getMySchedules()
-      localStorage.setItem(MY_SESSIONS, 'mine')
-    } else {
-      setSchedules(originalSchedules)
-      localStorage.setItem(MY_SESSIONS, 'all')
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showMySessions])
+  const {
+    schedules,
+    isGridView,
+    setShowFilterSession,
+    setActiveTab,
+    changeViewType,
+    setShowMysessions,
+    showMySessions,
+    loading,
+    activeTab,
+    showFilterSession,
+  } = useSession({ allSchedules })
 
   return (
     <>
@@ -111,6 +59,7 @@ const Sessions: NextPage<SessionProps> = ({ schedules: allSchedules }) => {
                 {Object.keys(schedules)?.map((key, i) => {
                   return (
                     <div
+                      key={key}
                       className={`w-4/12 px-4 py-2 lg:w-full cursor-pointer rounded-tl-lg rounded-bl-lg rounded-r-lg lg:rounded-r-none ${
                         activeTab === i
                           ? 'bg-secondary dark:bg-secondary-dark'

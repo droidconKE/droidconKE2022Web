@@ -6,7 +6,7 @@ export const NoSessions = () => {
         <div className="h-auto w-full lg:h-24 shadow rounded-lg px-4 py-3 flex flex-col justify-center">
           <div className="flex flex-wrap items-center">
             <div className="w-10/12">
-              <div className="mb-2">
+              <div className="mb-2 dark:text-white">
                 Seems there are no seesions here from the filter or saved
                 session !
               </div>
