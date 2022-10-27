@@ -72,3 +72,7 @@ export interface Session {
   speakers: Speaker[]
   rooms: Room[]
 }
+
+export interface Schedule {
+  [key: string]: Session[]
+}
