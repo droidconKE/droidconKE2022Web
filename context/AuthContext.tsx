@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
+import { getCookie, deleteCookie, setCookie } from 'cookies-next'
 import { User } from '../types/types'
 import axios from '../utils/axios'
 
@@ -15,10 +15,9 @@ export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
   useEffect(() => {
-    if (cookies.token) {
+    if (getCookie('token')) {
       const getUser = async () => {
         await axios.get('/details').then((response) => {
           setIsAuthenticated(true)
@@ -28,21 +27,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       getUser()
     }
-  }, [cookies.token])
+  }, [])
 
   const loginUser = ({ token, user }: { token: string; user: User }) => {
     setCookie('token', token, { maxAge: 60 * 60 * 24 * 100, path: '/' })
     setIsAuthenticated(true)
     setCurrentUser(user)
+    window.location.reload()
   }
 
   const logoutUser = () => {
-    removeCookie('token', { path: '/' })
+    deleteCookie('token', { path: '/' })
     setIsAuthenticated(false)
     setCurrentUser(null)
+    window.location.reload()
   }
 
-  const { token } = cookies
+  const token = String(getCookie('token'))
 
   return (
     <AuthContext.Provider

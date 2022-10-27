@@ -75,7 +75,8 @@ module.exports = withPWA({
       },
       {
         urlPattern: `/^${process.env.NEXT_PUBLIC_API_BASE_URL}/*/i`,
-        handler: 'StaleWhileRevalidate',
+        handler: 'NetworkFirst',
+        // handler: 'StaleWhileRevalidate',
         // method: 'GET',
         options: {
           // cacheableResponse: { statuses: [0, 200, 201] },
