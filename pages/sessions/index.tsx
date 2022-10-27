@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { NextPage } from 'next'
 import SessionListCard from '../../components/sessions/SessionListCard'
 // import { NoSessions } from '../../components/sessions/NoSessions'
@@ -27,7 +27,10 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
               <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
                 Sessions
               </h3>
-              <SessionToggles setShowFilterSession={setShowFilterSession} onChangeViewType={setIsGridView} />
+              <SessionToggles
+                setShowFilterSession={setShowFilterSession}
+                onChangeViewType={setIsGridView}
+              />
             </div>
           </div>
         </section>
@@ -39,19 +42,42 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
               style={{ top: '80px' }}
             >
               {Object.keys(schedules)?.map((key, i) => {
-                return <div className={`w-4/12 px-4 py-2 lg:w-full cursor-pointer rounded-tl-lg rounded-bl-lg rounded-r-lg lg:rounded-r-none ${activeTab === i ? 'bg-secondary dark:bg-secondary-dark' : 'bg-green-100 dark:bg-black-dark'}`} onClick={() => setActiveTab(i)} aria-hidden="true">
-                <h4 className={`font-bold ${activeTab === i ? 'text-white' : ''} dark:text-white-dark`}>
-                  {timeDay(key)} <small className="text-px-13 font-normal">Day {i+1}</small>
-                </h4>
-              </div>
+                return (
+                  <div
+                    className={`w-4/12 px-4 py-2 lg:w-full cursor-pointer rounded-tl-lg rounded-bl-lg rounded-r-lg lg:rounded-r-none ${
+                      activeTab === i
+                        ? 'bg-secondary dark:bg-secondary-dark'
+                        : 'bg-green-100 dark:bg-black-dark'
+                    }`}
+                    onClick={() => setActiveTab(i)}
+                    aria-hidden="true"
+                  >
+                    <h4
+                      className={`font-bold ${
+                        activeTab === i ? 'text-white' : ''
+                      } dark:text-white-dark`}
+                    >
+                      {timeDay(key)}{' '}
+                      <small className="text-px-13 font-normal">
+                        Day {i + 1}
+                      </small>
+                    </h4>
+                  </div>
+                )
               })}
             </div>
             <div className="w-full lg:w-11/12">
               <div className="px-0 md:px-6">
                 {isGridView ? (
-                  <SessionGridCard schedules={schedules} activeTab={activeTab} />
+                  <SessionGridCard
+                    schedules={schedules}
+                    activeTab={activeTab}
+                  />
                 ) : (
-                  <SessionListCard schedules={schedules} activeTab={activeTab} />
+                  <SessionListCard
+                    schedules={schedules}
+                    activeTab={activeTab}
+                  />
                 )}
               </div>
             </div>
@@ -70,18 +96,20 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
 export default Sessions
 
 export async function getServerSideProps() {
-  const schedules = async () => {
-    try {
-      const response = await axios.get(
-        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`
-      )
+  const schedules = await axios
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`)
+    .then((response) => {
+      return response.data.data
+    })
+    .catch(() => {
+      return null
+    })
 
-      return response.data
-    } catch (error) {
-      console.log(error)
+  if (!schedules) {
+    return {
+      notFound: true,
     }
   }
-  const T = await schedules()
 
-  return { props: { schedules: T.data } }
+  return { props: { schedules } }
 }

@@ -9,6 +9,7 @@ import { NavBar } from './components/NavBar'
 import { NotificationsPrompt } from './components/NotificationsPrompt'
 import { UpdatesAvailablePrompt } from './components/UpdatesAvailablePrompt'
 import { AuthProvider } from '../../context/AuthContext'
+import { EventFeedback } from './components/EventFeedback'
 
 export default function Layout({ children }: { children: ReactNode }) {
   const gTagCode = process.env.NEXT_PUBLIC_GOOGLE_TAG
@@ -21,6 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <CookiesProvider>
           <AuthProvider>
             <GoogleOAuthProvider
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
             >
               <div className="w-full bg-white dark:bg-dark">
@@ -30,6 +32,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                   <main>{children}</main>
                 </div>
                 <Footer />
+                <EventFeedback />
                 <NotificationsPrompt />
               </div>
             </GoogleOAuthProvider>

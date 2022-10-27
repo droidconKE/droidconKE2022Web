@@ -9,6 +9,7 @@ export interface Organizer {
   photo: string
   created_at: string
 }
+
 export interface Sponsor {
   name: string
   tagline: string
@@ -75,4 +76,9 @@ export interface Session {
 
 export interface Schedule {
   [key: string]: Session[]
+}
+
+export interface FeedbackError {
+  feedback: string[]
+  rating: string[]
 }

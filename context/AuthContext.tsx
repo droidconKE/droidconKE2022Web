@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const logoutUser = () => {
-    removeCookie('token')
+    removeCookie('token', { path: '/' })
     setIsAuthenticated(false)
     setCurrentUser(null)
   }

@@ -61,7 +61,10 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
         <i className="fa fa-send" style={{ transform: 'rotate(55deg)' }} />
       </button>
       {showFeedbackModal && (
-        <SessionFeedback closeDialog={() => setShowFeedbackModal(false)} />
+        <SessionFeedback
+          closeDialog={() => setShowFeedbackModal(false)}
+          sessionSlug={session.slug}
+        />
       )}
     </div>
   )
