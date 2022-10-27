@@ -1,22 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import SessionListCard from '../../components/sessions/SessionListCard'
-// import { NoSessions } from '../../components/sessions/NoSessions'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Schedule } from '../../types/types'
-import { timeDay } from '../../utils/helpers'
+import { isClient, timeDay } from '../../utils/helpers'
 // import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 interface SessionProps {
   schedules: Schedule[]
 }
 
+const ACTIVE_VIEW = 'droidcon_view'
+
 const Sessions: NextPage<SessionProps> = ({ schedules }) => {
   const [showFilterSession, setShowFilterSession] = useState(false)
   const [isGridView, setIsGridView] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
+
+  const changeViewType = (val: boolean) => {
+    if (!val) {
+      localStorage.setItem(ACTIVE_VIEW, 'list')
+      setIsGridView(false)
+    } else {
+      setIsGridView(true)
+      localStorage.setItem(ACTIVE_VIEW, 'grid')
+    }
+  }
+
+  useEffect(() => {
+    if (!isClient) {
+      return
+    }
+    if (localStorage.getItem(ACTIVE_VIEW) === 'list') {
+      setIsGridView(false)
+    }
+    if (localStorage.getItem(ACTIVE_VIEW) === 'grid') {
+      setIsGridView(true)
+    }
+  }, [])
 
   return (
     <>
@@ -29,7 +52,8 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
               </h3>
               <SessionToggles
                 setShowFilterSession={setShowFilterSession}
-                onChangeViewType={setIsGridView}
+                onChangeViewType={changeViewType}
+                isGridView={isGridView}
               />
             </div>
           </div>
@@ -67,7 +91,7 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
               })}
             </div>
             <div className="w-full lg:w-11/12">
-              <div className="px-0 md:px-6">
+              <div className="px-0 md:px-6 mt-3">
                 {isGridView ? (
                   <SessionGridCard
                     schedules={schedules}
@@ -83,7 +107,6 @@ const Sessions: NextPage<SessionProps> = ({ schedules }) => {
             </div>
           </div>
           {/* <SessionsSkeleton /> */}
-          {/* <NoSessions /> */}
         </section>
       </div>
       {showFilterSession && (

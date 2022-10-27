@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour } from '../../utils/helpers'
 import { StarIcon } from '../shared/StarIcon'
+import { NoSessions } from './NoSessions'
 
 export const SessionGridCard = ({
   schedules,
@@ -16,16 +17,13 @@ export const SessionGridCard = ({
       <div>
         {Object.keys(schedules)?.map(
           (key, i) =>
-            activeTab === i && (
+            activeTab === i &&
+            (schedules[key].length ? (
               <div className="lg:grid gap-4 grid-cols-3" key={key}>
                 {/* component */}
                 {schedules[key]?.map((schedule: Session) => (
-                  <Link
-                    href={`/sessions/${schedule.slug}`}
-                    key={schedule.id}
-                    className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-black-dark mb-6"
-                  >
-                    <a>
+                  <Link href={`/sessions/${schedule.slug}`} key={schedule.id}>
+                    <a className='className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-black-dark mb-6"'>
                       <img
                         className="object-cover md:object-cover"
                         src="images/testara.png"
@@ -67,7 +65,9 @@ export const SessionGridCard = ({
                   </Link>
                 ))}
               </div>
-            )
+            ) : (
+              <NoSessions />
+            ))
         )}
       </div>
       <style jsx>

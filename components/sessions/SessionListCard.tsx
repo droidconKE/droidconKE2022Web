@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour, time, timeAm, truncateString } from '../../utils/helpers'
 import { StarIcon } from '../shared/StarIcon'
+import { NoSessions } from './NoSessions'
 
 const SessionListCard = ({
   schedules,
@@ -16,7 +17,8 @@ const SessionListCard = ({
       <div className="space-y-10 md:pl-4">
         {Object.keys(schedules)?.map(
           (key, i) =>
-            activeTab === i && (
+            activeTab === i &&
+            (schedules[key].length ? (
               <div key={key}>
                 {schedules[key]?.map((schedule: Session) => (
                   <Link href={`/sessions/${schedule.slug}`} key={schedule.id}>
@@ -70,7 +72,9 @@ const SessionListCard = ({
                   </Link>
                 ))}
               </div>
-            )
+            ) : (
+              <NoSessions />
+            ))
         )}
       </div>
       <style jsx>
