@@ -31,3 +31,13 @@ export const truncateString = (str: string, num = 100) => {
   }
   return `${str.slice(0, num)}...`
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const objIsEmpty = (obj: any) => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key in obj) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj.hasOwnProperty(key)) return false
+  }
+  return true
+}
