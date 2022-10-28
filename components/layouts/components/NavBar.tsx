@@ -20,8 +20,8 @@ export const NavBar = () => {
     setNavVisible((prev) => !prev)
   }
 
-  const showLogin = !isEventReady
-  const showSessions = !isEventReady
+  const showLogin = isEventReady
+  const showSessions = isEventReady
 
   useEffect(() => {
     Router.events.on('beforeHistoryChange', () => {

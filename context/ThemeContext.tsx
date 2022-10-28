@@ -15,7 +15,7 @@ const THEME_NAME = 'droidcon_theme'
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
 
-  const isEventReady = false // Boolean(process.env.NEXT_PUBLIC_EVENT_READY) || false
+  const isEventReady = Boolean(process.env.NEXT_PUBLIC_EVENT_READY) || false
 
   useEffect(() => {
     if (isClient) {
