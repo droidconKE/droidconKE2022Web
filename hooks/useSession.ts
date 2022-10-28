@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Schedule } from '../types/types'
+import { Session, FilterInterface, Room, Schedule } from '../types/types'
+import { objIsEmpty, isClient } from '../utils/helpers'
 import axios from '../utils/axios'
-import { isClient } from '../utils/helpers'
 
 const ACTIVE_VIEW = 'droidcon_view'
 const MY_SESSIONS = 'droidcon_my_sessions'
@@ -56,7 +56,7 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
     }
   }, [getMySchedules])
 
-  useEffect(() => {
+  const handleSessionsToggle = useCallback(() => {
     if (showMySessions) {
       // eslint-disable-next-line no-unused-expressions
       mySchedules.length ? setSchedules(mySchedules) : getMySchedules()
@@ -67,6 +67,37 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showMySessions])
+
+  const filterSession = (filter: FilterInterface) => {
+    if (objIsEmpty(filter)) {
+      handleSessionsToggle()
+      return
+    }
+    const newSchedule = {
+      ...(showMySessions ? mySchedules : originalSchedules),
+    }
+    Object.keys(newSchedule).forEach((key) => {
+      // eslint-disable-next-line security/detect-object-injection
+      newSchedule[key] = newSchedule[key].filter((e: Session) => {
+        return (
+          (filter?.level
+            ? e.session_level.includes(filter?.level)
+            : e.session_level) &&
+          (filter?.format
+            ? e.session_format.includes(filter?.format)
+            : e.session_format) &&
+          (filter?.room
+            ? e.rooms.some((x: Room) => x.title.includes(filter?.room))
+            : e.rooms)
+        )
+      })
+    })
+    setSchedules(newSchedule)
+  }
+
+  useEffect(() => {
+    handleSessionsToggle()
+  }, [handleSessionsToggle])
 
   return {
     showFilterSession,
@@ -79,5 +110,6 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
     schedules,
     showMySessions,
     setShowMysessions,
+    filterSession,
   }
 }

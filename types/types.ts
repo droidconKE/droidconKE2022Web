@@ -87,3 +87,75 @@ export interface StarIconProps {
   isStar?: boolean
   session: Session
 }
+
+export interface EventOrganizer {
+  id: number
+  name: string
+  email: string
+  description: string
+  facebook: string
+  twitter: string
+  instagram: string
+  logo: string
+  slug: string
+  status: string
+  created_at: string
+  upcoming_events_count: number
+  total_events_count: number
+}
+
+export interface EventType {
+  id: number
+  name: string
+  description: string
+  slug: string
+  status: boolean
+}
+
+export interface Settings {
+  id: number
+  message_before?: string
+  message_after?: string
+  event_id: number
+  created_at: string
+  updated_at: string
+}
+
+export interface CfsSettings {
+  session_levels: string[]
+  session_formats: string[]
+}
+
+export interface Cfs {
+  open_date: string
+  close_date: string
+  support_email: string
+  cfs_url: string
+  cfs_settings: CfsSettings
+}
+
+export interface Event {
+  id: number
+  title: string
+  description: string
+  start_date: string
+  end_date: string
+  event_image: string
+  venue_name: string
+  venue_address: string
+  venue_url: string
+  venue_lat: string
+  venue_lng: string
+  status: string
+  slug: string
+  organizer: EventOrganizer
+  event_type: EventType
+  created_at: string
+  settings: Settings
+  all_tickets_count: number
+  single_day_event: boolean
+  min_ticket_price: number
+  remaining_tickets: number
+  cfs: Cfs
+  rooms: Room[]
+}

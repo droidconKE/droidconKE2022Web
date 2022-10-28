@@ -6,16 +6,20 @@ import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
-import { Schedule } from '../../types/types'
+import { Event, Schedule } from '../../types/types'
 import { timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 
 interface SessionProps {
   schedules: Schedule[]
+  event: Event
 }
 
-const Sessions: NextPage<SessionProps> = ({ schedules: allSchedules }) => {
+const Sessions: NextPage<SessionProps> = ({
+  schedules: allSchedules,
+  event,
+}) => {
   const {
     schedules,
     isGridView,
@@ -27,6 +31,7 @@ const Sessions: NextPage<SessionProps> = ({ schedules: allSchedules }) => {
     loading,
     activeTab,
     showFilterSession,
+    filterSession,
   } = useSession({ allSchedules })
 
   return (
@@ -104,7 +109,11 @@ const Sessions: NextPage<SessionProps> = ({ schedules: allSchedules }) => {
         </section>
       </div>
       {showFilterSession && (
-        <FilterSessions setShowFilterSession={setShowFilterSession} />
+        <FilterSessions
+          setShowFilterSession={setShowFilterSession}
+          filterSession={filterSession}
+          event={event}
+        />
       )}
     </>
   )
@@ -127,11 +136,20 @@ export async function getServerSideProps({ req, res }: { req: any; res: any }) {
       return null
     })
 
+  const event = await axios
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+    .then((response) => {
+      return response.data.data
+    })
+    .catch(() => {
+      return null
+    })
+
   if (!schedules) {
     return {
       notFound: true,
     }
   }
 
-  return { props: { schedules } }
+  return { props: { schedules, event } }
 }
