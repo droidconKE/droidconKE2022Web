@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Cookies } from 'react-cookie'
+import { getCookie } from 'cookies-next'
 import type { AxiosRequestConfig } from 'axios'
 // import { toast } from 'react-toastify'
 // import { isClient } from './helpers'
@@ -8,9 +8,7 @@ axios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // eslint-disable-next-line no-param-reassign
     // config.headers['Api-Authorization-Key'] = process.env.NEXT_PUBLIC_API_KEY ?? ''
-    const cookies = new Cookies()
-    const token = cookies.get('token')
-    // console.log({ token })
+    const token = getCookie('token', { path: '/' })
     if (token) {
       // axios.defaults.headers.common.Authorization = `Bearer ${token}`
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, no-param-reassign

@@ -1,6 +1,6 @@
 import { Session } from '../../types/types'
 import { hour } from '../../utils/helpers'
-import { SaveSession } from './SaveSession'
+import { StarIcon } from '../shared/StarIcon'
 // import { SessionDetailSkeleton } from './skeletons/SessionDetailSkeleton'
 
 export const SessionDetails = ({ session }: { session: Session }) => {
@@ -46,7 +46,7 @@ export const SessionDetails = ({ session }: { session: Session }) => {
         <p className="p gray mt-2">{session.description}</p>
 
         <div className="w-full justify-center md:justify-start flex flex-col mt-4 md:mt-10 mb-4 lg:mb-16">
-          <SaveSession />
+          <StarIcon isStar={false} session={session} />
         </div>
       </div>
       {/* <SessionDetailSkeleton /> */}

@@ -82,3 +82,8 @@ export interface FeedbackError {
   feedback: string[]
   rating: string[]
 }
+
+export interface StarIconProps {
+  isStar?: boolean
+  session: Session
+}

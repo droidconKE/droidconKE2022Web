@@ -1,17 +1,22 @@
-/* eslint-disable react/require-default-props */
-interface StarIconProps {
-  color?: string
-  fill?: string
-  stroke?: string
-}
+import { useStarSession } from '../../hooks/useStarSession'
+import { StarIconProps } from '../../types/types'
+import { SaveSession } from '../sessions/SaveSession'
 
-export const StarIcon = ({
-  color = 'none',
-  stroke = '#000ceb',
-  fill = '#000ceb',
-}: StarIconProps) => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="27.895" height="27">
+export const StarIcon = ({ isStar = true, session }: StarIconProps) => {
+  const { bookmark, isStared } = useStarSession({ session })
+
+  const color = isStared ? '#FF6E4D' : 'none'
+  const stroke = isStared ? '#FF6E4D' : '#000ceb'
+  const fill = isStared ? '#FF6E4D' : '#000ceb'
+
+  return isStar ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="27.895"
+      height="27"
+      className="cursor-pointer"
+      onClick={() => bookmark()}
+    >
       <g data-name="Layer 2">
         <g data-name="Layer 1">
           <path data-name="Rectangle 593" fill="none" d="M.474 0h27v27h-27z" />
@@ -29,5 +34,7 @@ export const StarIcon = ({
         </g>
       </g>
     </svg>
+  ) : (
+    <SaveSession bookmark={bookmark} isStared={isStared} />
   )
 }
