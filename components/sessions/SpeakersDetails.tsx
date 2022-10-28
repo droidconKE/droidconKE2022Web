@@ -22,12 +22,12 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
         </h4>
       </div>
       <Carousel
-        autoPlay
+        autoPlay={session.speakers.length > 1}
         interval={10000}
         stopOnHover
         showArrows={false}
         showStatus={false}
-        showIndicators
+        showIndicators={session.speakers.length > 1}
       >
         {session.speakers.map((speaker, index) => {
           return (
