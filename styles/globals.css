@@ -74,6 +74,16 @@ video::-webkit-media-controls-fullscreen-button {
   display: none;
 }
 
+.carousel .slide {
+  text-align: left !important;
+}
+
+.carousel .control-dots .dot {
+  background: #000CEB!important;
+  height: 10px!important;
+  width: 10px!important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

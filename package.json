@@ -10,13 +10,20 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.2.8",
     "axios": "^0.27.2",
+    "cookies-next": "^2.1.1",
+    "dayjs": "^1.11.6",
     "firebase": "^9.8.4",
+    "moment": "^2.29.4",
     "next": "12.2.0",
     "next-pwa": "^5.5.4",
     "prettier": "2.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-rating": "^2.0.5",
+    "react-responsive-carousel": "^3.2.23",
+    "react-share": "^4.4.1",
     "react-toastify": "^9.0.5",
     "sharp": "^0.30.7"
   },

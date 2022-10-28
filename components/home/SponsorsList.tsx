@@ -1,6 +1,6 @@
-import { Organizer } from '../../types/types'
+import { Sponsor } from '../../types/types'
 
-function SponsorsList({ sponsors }: { sponsors: Organizer[] }) {
+function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
   return (
     <section className="s-container pb-6 md:pb-12">
       <div>
@@ -10,27 +10,29 @@ function SponsorsList({ sponsors }: { sponsors: Organizer[] }) {
               <h2 className="title lowercase dark:text-accent-dark mt-4 md:mt-0">
                 <span>sponsored</span> <span className="font-medium"> by;</span>
               </h2>
-              <p className="mt-4 text-xl md:text-2xl">
+              {/* <p className="mt-4 text-xl md:text-2xl">
                 Please make sure to stop by and visit our sponsors at the show
                 and give them a high-five and a huge thank you for helping to
                 bring the community together at droidconke.
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="w-full md:w-6/12 mr-auto pt-4 sm:mt-10 md:pt-0 justify-end">
-            <div className="w-full md:p-10 sm:p-0  grid md:grid-cols-4 grid-cols-3 gap-4 lg:gap-8">
-              {sponsors.map((org) => (
+            <div className="w-full md:p-10 sm:p-0  grid md:grid-cols-4 grid-cols-2 gap-4 lg:gap-8">
+              {sponsors.map((sponsor) => (
                 <a
-                  key={org.created_at}
+                  key={sponsor.created_at}
                   target="_blank"
-                  href={org.link}
-                  className="w-24 h-24 p-3 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center"
+                  href={sponsor.link}
+                  className="w-36 md:w-40 h-36 md:h-40 p-0 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center"
                   rel="noreferrer"
                 >
                   <img
                     className="p-0 w-full object-scale-down"
-                    src={org.photo === null ? '/images/icon.png' : org.photo}
-                    alt={org.name}
+                    src={
+                      sponsor.logo === null ? '/images/icon.png' : sponsor.logo
+                    }
+                    alt={sponsor.name}
                   />
                 </a>
               ))}

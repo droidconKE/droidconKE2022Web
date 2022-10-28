@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export const Banner = () => {
   return (
     <div className="s-container">
@@ -26,9 +24,15 @@ export const Banner = () => {
           </div>
           <div>
             <div className="flex flex-wrap space-x-2 md:space-x-4">
-              <Link href="/sponsors">
-                <a className="btn-primary mt-3 md:mt-0">Sponsor droidconke</a>
-              </Link>
+              <a
+                className="btn-primary mt-3 md:mt-0"
+                href="https://bit.ly/getYourDcKE22Tickets"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                get your ticket
+              </a>
+
               <a
                 href="https://bit.ly/speakatdroidconke22"
                 target="_blank"

@@ -6,7 +6,7 @@ export const Footer = () => {
       <section className="w-full bg-primary dark:bg-black-dark">
         <div className="l-container md:py-12">
           <div className="items-center flex flex-wrap my-10">
-            <div className="w-full md:w-8/12 ml-auto px-2 md:px-8 mt-4 md:mt-0">
+            <div className="w-full md:w-8/12 ml-auto mt-4 md:mt-0">
               <div className="text-left">
                 <h2 className="title-w lowercase text-white dark:text-accent-dark">
                   <span>event</span> <span className="font-medium"> info</span>
@@ -18,7 +18,7 @@ export const Footer = () => {
                 <a
                   className="btn-secondary"
                   style={{ transition: 'all .15s ease' }}
-                  href="http://bit.ly/droidconKE20"
+                  href="https://bit.ly/getYourDcKE22Tickets"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -28,9 +28,9 @@ export const Footer = () => {
             </div>
           </div>
           <div className="flex flex-wrap">
-            <div className="w-full px-4">
+            <div className="w-full">
               <div className="flex flex-wrap items-top mb-14 md:mb-6 text-left">
-                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
+                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0">
                   <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                     Venue
                   </span>

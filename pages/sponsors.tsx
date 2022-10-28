@@ -1,12 +1,15 @@
+import axios from 'axios'
 import Link from 'next/link'
 import { useContext } from 'react'
+import SponsorsList from '../components/home/SponsorsList'
 import { ThemeContext } from '../context/ThemeContext'
+import { Sponsor } from '../types/types'
 
-export default function SponsorsPage() {
+export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
   const { isDarkTheme } = useContext(ThemeContext)
 
   return (
-    <div className="w-full mt-15 md:mt-14 mb-0">
+    <div className="w-full mt-16 mb-0">
       <section className="w-full bg-primary dark:bg-black-dark">
         <div className="s-container mt-8 md:mt-0 py-6 md:py-12">
           <div className="items-start flex flex-wrap mb-0">
@@ -146,6 +149,7 @@ export default function SponsorsPage() {
           </div>
         </div>
       </section>
+      <SponsorsList sponsors={sponsors} />
       <section className="w-full bg-black dark:bg-dark -mb-10 md:px-32 sm:px-10">
         <div className="s-container md:-mt-10 md:py-12">
           <div className="flex flex-wrap">
@@ -178,4 +182,15 @@ export default function SponsorsPage() {
       </section>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const sponsors = await axios
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
+    .then((response) => {
+      return response.data.data
+    })
+
+  // Pass data to the page via props
+  return { props: { sponsors } }
 }
