@@ -48,6 +48,19 @@ module.exports = withPWA({
         // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
       },
       {
+        urlPattern: '/^https://res.cloudinary.com/droidconke/*/i',
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-image-assets-1',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          },
+        },
+        // method: 'GET',
+        // strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+      },
+      {
         urlPattern: '/^https://sessionize.com/image*/i',
         handler: 'CacheFirst',
         options: {
