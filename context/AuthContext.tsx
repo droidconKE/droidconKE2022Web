@@ -18,14 +18,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (getCookie('token')) {
-      const getUser = async () => {
-        await axios.get('/details').then((response) => {
-          setIsAuthenticated(true)
-          setCurrentUser(response.data.user)
-        })
+      try {
+        const getUser = async () => {
+          await axios.get('/details').then((response) => {
+            setIsAuthenticated(true)
+            setCurrentUser(response.data.user)
+          })
+        }
+        getUser()
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log({ error })
       }
-
-      getUser()
     }
   }, [])
 
