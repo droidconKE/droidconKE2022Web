@@ -39,7 +39,7 @@ export interface Speaker {
   name: string
   tagline: string
   biography: string
-  avatar: string
+  avatar: string | null
   twitter?: string
   facebook?: string
   linkedin?: string

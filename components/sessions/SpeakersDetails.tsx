@@ -29,15 +29,15 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
         showStatus={false}
         showIndicators={session.speakers.length > 1}
       >
-        {session.speakers.map((speaker, index) => {
+        {session.speakers.map((speaker) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index}>
+            <div key={speaker.name}>
               <div className="w-full flex items-start text-center">
                 <div className="w-1/3 md:pr-4 flex-none bg-green-c-2 rounded">
                   <img
                     className="w-full p-0 rounded-lg border-2 border-green-500"
-                    src={speaker.avatar}
+                    src={speaker.avatar ?? '/images/icons/apple-icon.png'}
                     alt={speaker.name}
                   />
                 </div>
