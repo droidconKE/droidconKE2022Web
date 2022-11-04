@@ -27,7 +27,7 @@ export const SessionGridCard = ({
                       {schedule.is_serviceSession ? (
                         <img
                           className="object-cover md:object-cover"
-                          src={schedule.session_image ?? `images/testara.png`}
+                          src={schedule.session_image ?? 'images/all.png'}
                           alt={schedule.title}
                         />
                       ) : (
@@ -35,7 +35,7 @@ export const SessionGridCard = ({
                           <a>
                             <img
                               className="object-cover md:object-cover"
-                              src="images/testara.png"
+                              src={schedule.session_image ?? 'images/all.png'}
                               alt={schedule.title}
                             />
                           </a>
@@ -65,16 +65,19 @@ export const SessionGridCard = ({
                         )}
                         <div className="flex justify-between mt-4 h-8">
                           <div className="flex items-start space-x-4">
-                            {!schedule.is_serviceSession}
-                            {schedule.speakers?.map((speaker) => (
-                              <div key={speaker.avatar} className="w-9 h-9">
-                                <img
-                                  className="rounded-full border border-accent shadow-sm"
-                                  src={speaker.avatar}
-                                  alt=""
-                                />
-                              </div>
-                            ))}
+                            {!schedule.is_serviceSession &&
+                              schedule.speakers?.map((speaker) => (
+                                <div key={speaker.name} className="w-9 h-9">
+                                  <img
+                                    className="rounded-full border border-accent shadow-sm"
+                                    src={
+                                      speaker.avatar ??
+                                      '/images/icons/apple-icon.png'
+                                    }
+                                    alt=""
+                                  />
+                                </div>
+                              ))}
                           </div>
                           <div className="w-full flex items-center justify-end">
                             <span>
