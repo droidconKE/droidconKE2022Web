@@ -6,12 +6,12 @@ import { StarIcon } from '../shared/StarIcon'
 export const SessionDetails = ({ session }: { session: Session }) => {
   return (
     <div className="w-full flex-wrap content-start items-start lg:w-5/12 px-0 lg:px-6 flex border-r-0 lg:border-r border-l-0 lg:border-l border-green-200">
-      <div className="w-full flex py-4 items-center">
+      <div className="w-full flex flex-wrap py-4 items-center">
         <h4 className="lowercase font-black text-2xl md:text-3xl text-primary dark:text-white-dark mr-0 md:mr-10">
           Session
         </h4>
         <p className="text-px-14 gray w-full">
-          <span className="mr-2 ml-4 lg:ml-0">Level:</span>{' '}
+          <span className="mr-2 md:ml-4 lg:ml-0">Level:</span>{' '}
           <span className="uppercase text-xs text-white dark:text-dark text-px-10 bg-black dark:bg-white-dark py-0.5 px-2 rounded-full">
             #{session.session_level}
           </span>
@@ -32,7 +32,8 @@ export const SessionDetails = ({ session }: { session: Session }) => {
         </h4>
         <h4 className="text-light text-sm dark:text-lighter-dark mt-2">
           {' '}
-          {hour(session.start_date_time)} - {hour(session.end_date_time)} |
+          {hour(session.start_date_time)} - {hour(session.end_date_time)}{' '}
+          |&nbsp;
           {session.rooms.map((room, i) => (
             <span key={room.id}>
               {room.title} {i + 1 < session.rooms.length ? ',' : ''}

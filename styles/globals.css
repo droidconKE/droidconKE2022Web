@@ -83,6 +83,9 @@ video::-webkit-media-controls-fullscreen-button {
   height: 10px!important;
   width: 10px!important;
 }
+.carousel .control-dots {
+  margin: 0px!important;
+}
 
 @tailwind base;
 @tailwind components;
