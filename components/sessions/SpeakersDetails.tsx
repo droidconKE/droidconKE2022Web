@@ -50,17 +50,21 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
                   </p>
                   <p className="pt-1">
                     <a
-                      href="https://twitter.com/franktamzi"
+                      href="https://twitter.com/droidconke"
                       target="_blank"
                       rel="noreferrer"
-                      className="text-primary dark:text-white-dark text-sm lowercase"
+                      className="text-primary dark:text-accent text-sm lowercase font-medium"
                     >
                       <a
                         href={speaker.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="text-primary dark:text-accent text-sm lowercase font-medium"
                       >
-                        @{speaker.name}
+                        @
+                        {speaker.twitter
+                          ? speaker.twitter.split('twitter.com/')[1]
+                          : speaker.name}
                       </a>
                     </a>
                   </p>

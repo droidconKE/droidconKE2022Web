@@ -17,6 +17,14 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
   const [showShare, setShowShare] = useState(false)
 
+  const title = `${session.title} by ${session.speakers.map(
+    (s) => ` ${s.name}`
+  )} \r`
+  const twTitle = `${session.title} by ${session.speakers.map(
+    // eslint-disable-next-line sonarjs/no-nested-template-literals
+    (s) => ` ${s.twitter ? `@${s.twitter.split('twitter.com/')[1]}` : s.name}`
+  )} \r`
+
   return (
     <div className="w-full px-0 md:px-6 flex-col items-start justify-start lg:w-3/12 flex py-4 mb-16 lg:mb-0 space-y-5">
       <button
@@ -30,24 +38,25 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
         <div className="space-x-4">
           <LinkedinShareButton
             url={window.location.href}
-            title={session.title}
+            source={window.location.href}
+            title={title}
             summary={truncateString(session.description)}
           >
             <LinkedinIcon size={32} round />
           </LinkedinShareButton>
 
-          <TelegramShareButton url={window.location.href} title={session.title}>
+          <TelegramShareButton url={window.location.href} title={title}>
             <TelegramIcon size={32} round />
           </TelegramShareButton>
           <TwitterShareButton
             url={window.location.href}
-            title={session.title}
+            title={twTitle}
             hashtags={['droidcon', 'droidconKe22', 'dcke22']}
             related={['droidconke']}
           >
             <TwitterIcon size={32} round />
           </TwitterShareButton>
-          <WhatsappShareButton url={window.location.href} title={session.title}>
+          <WhatsappShareButton url={window.location.href} title={title}>
             <WhatsappIcon size={32} round />
           </WhatsappShareButton>
         </div>
