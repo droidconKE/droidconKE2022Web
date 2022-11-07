@@ -22,8 +22,8 @@ export const SessionGridCard = ({
               <div className="lg:grid gap-4 grid-cols-3" key={key}>
                 {/* component */}
                 {schedules[key]?.map((schedule: Session) => (
-                  <div key={schedule.id}>
-                    <div className='className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-black-dark mb-6"'>
+                  <div className="flex" key={schedule.id}>
+                    <div className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-lighter dark:bg-black-dark mb-6 flex flex-col">
                       {schedule.is_serviceSession ? (
                         <img
                           className="object-cover md:object-cover"
@@ -41,8 +41,8 @@ export const SessionGridCard = ({
                           </a>
                         </Link>
                       )}
-                      <div className="m-4">
-                        <h3 className="text-light text-sm mt-4">
+                      <div className="m-4 flex flex-1 flex-wrap">
+                        <h3 className="text-light text-sm mt-4 w-full">
                           @ {hour(schedule.start_date_time)} |{' '}
                           {schedule.rooms?.map((venue) => (
                             <span key={venue.id} className="rooms">
@@ -51,19 +51,19 @@ export const SessionGridCard = ({
                           ))}
                         </h3>
                         {schedule.is_serviceSession ? (
-                          <p className="text-sm mt-2 h-10 font-bold dark:text-white-dark">
+                          <p className="text-sm mt-2 font-bold dark:text-white-dark">
                             {schedule.title}
                           </p>
                         ) : (
                           <Link href={`/sessions/${schedule.slug}`}>
                             <a>
-                              <p className="text-sm mt-2 h-10 font-bold dark:text-white-dark">
+                              <p className="text-sm mt-2 font-bold dark:text-white-dark">
                                 {schedule.title}
                               </p>
                             </a>
                           </Link>
                         )}
-                        <div className="flex justify-between mt-4 h-8">
+                        <div className="flex justify-between mt-4 w-full self-end">
                           <div className="flex items-start space-x-4">
                             {!schedule.is_serviceSession &&
                               schedule.speakers?.map((speaker) => (
