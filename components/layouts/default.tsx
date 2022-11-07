@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
           >
-            <div className="w-full bg-white dark:bg-dark">
+            <div className="w-full min-h-screen bg-white dark:bg-dark">
               <UpdatesAvailablePrompt />
               <NavBar />
               <div>

@@ -20,7 +20,7 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
   const { isAuthenticated } = useContext(AuthContext)
 
   return (
-    <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center mt-3 md:mt-0">
+    <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center">
       <button type="button" onClick={() => onChangeViewType(false)}>
         <i
           className={`fa fa-th-list text-2xl ${

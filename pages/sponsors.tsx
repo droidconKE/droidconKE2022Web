@@ -9,11 +9,11 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
   const { isDarkTheme } = useContext(ThemeContext)
 
   return (
-    <div className="w-full mt-16 mb-0">
+    <div className="w-full mt-10 mb-0">
       <section className="w-full bg-primary dark:bg-black-dark">
-        <div className="s-container mt-8 md:mt-0 py-6 md:py-12">
+        <div className="s-container mt-12 md:mt-0 py-6 md:py-12">
           <div className="items-start flex flex-wrap mb-0">
-            <div className="w-full md:w-7/12 mt-4 md:mt-0">
+            <div className="w-full md:w-7/12 mt-4 md:mt-6">
               <div className="text-center md:text-left">
                 <h2 className="title lowercase  text-accent dark:text-accent-dark mt-6 md:mt-0">
                   <span>sponsor</span>{' '}

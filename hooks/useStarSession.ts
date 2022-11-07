@@ -83,7 +83,7 @@ export const useStarSession = ({ session }: { session: Session }) => {
       })
       .catch((error) => {
         if (error.response.status === 401) {
-          toast.error('Login to give feedback')
+          toast.error('Login to give save session')
         }
       })
   }

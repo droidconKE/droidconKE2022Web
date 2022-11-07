@@ -36,10 +36,10 @@ const Sessions: NextPage<SessionProps> = ({
 
   return (
     <>
-      <div className="w-full mt-16 mb-0">
+      <div className="w-full mt-10 mb-0">
         <section className="w-full bg-dark dark:bg-black-dark">
           <div className="l-container mt-8 md:mt-0 py-2 md:py-4">
-            <div className="w-full flex justify-between flex-col md:flex-row">
+            <div className="w-full flex justify-between md:flex-row items-center mt-5 md:mt-6">
               <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
                 Sessions
               </h3>
