@@ -1,7 +1,6 @@
 import { Sponsor } from '../../types/types'
 
 function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
-  console.log({ sponsors })
   return (
     <section className="s-container pb-6 md:pb-12">
       <div>

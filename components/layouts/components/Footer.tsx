@@ -36,11 +36,12 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-base">
-                      Nairobi
+                      United States International University - Africa, Nairobi,
+                      Kenya
                     </p>
 
                     <a
-                      href="https://goo.gl/maps/PVK2BkpdpYgdH5VdA"
+                      href="https://goo.gl/maps/ZKyyQbFUM4miuiuL9"
                       target="_blank"
                       className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
