@@ -15,6 +15,7 @@ export interface Sponsor {
   tagline: string
   link: string | undefined
   logo: string
+  sponsor_type: string
   created_at: string
 }
 
