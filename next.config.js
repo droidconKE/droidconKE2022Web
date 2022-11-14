@@ -93,7 +93,7 @@ module.exports = withPWA({
         // method: 'GET',
         options: {
           // cacheableResponse: { statuses: [0, 200, 201] },
-          cacheName: 'api-data-sets',
+          cacheName: 'api-data-sets-1',
           expiration: {
             maxEntries: 10,
             maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
