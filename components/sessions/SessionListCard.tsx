@@ -35,20 +35,24 @@ const SessionListCard = ({
                         <div className="w-9/12 content-center justify-center">
                           {schedule.is_serviceSession ? (
                             <h4 className="font-bold md:text-xl dark:text-white">
+                              {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
                               {schedule.title}
                             </h4>
                           ) : (
                             <Link href={`/sessions/${schedule.slug}`}>
                               <a>
                                 <h4 className="font-bold md:text-xl dark:text-white">
+                                  {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
                                   {schedule.title}
                                 </h4>
                               </a>
                             </Link>
                           )}
-                          <p className="font-normal text-sm md:text-base py-2">
-                            {truncateString(schedule.description, 150)}
-                          </p>
+                          {!schedule.is_serviceSession && (
+                            <p className="font-normal text-sm md:text-base py-2">
+                              {truncateString(schedule.description, 150)}
+                            </p>
+                          )}
                           <p className="text-xs md:text-sm font-light">
                             <span>
                               {hour(schedule.start_date_time)} -{' '}

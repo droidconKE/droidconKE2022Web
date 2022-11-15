@@ -65,7 +65,7 @@ export interface Session {
   backgroundColor: string
   borderColor: string
   is_serviceSession: boolean
-  is_keynote: boolean
+  is_keynote: boolean | number
   is_bookmarked: boolean
   start_date_time: string
   start_time: string

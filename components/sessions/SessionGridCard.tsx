@@ -16,6 +16,7 @@ export const SessionGridCard = ({
     <>
       <div>
         {Object.keys(schedules)?.map(
+          // eslint-disable-next-line sonarjs/cognitive-complexity
           (key, i) =>
             activeTab === i &&
             (schedules[key].length ? (
@@ -52,12 +53,14 @@ export const SessionGridCard = ({
                         </h3>
                         {schedule.is_serviceSession ? (
                           <p className="text-sm mt-2 font-bold dark:text-white-dark">
+                            {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
                             {schedule.title}
                           </p>
                         ) : (
                           <Link href={`/sessions/${schedule.slug}`}>
                             <a>
                               <p className="text-sm mt-2 font-bold dark:text-white-dark">
+                                {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
                                 {schedule.title}
                               </p>
                             </a>

@@ -13,7 +13,7 @@ export const SessionDetails = ({ session }: { session: Session }) => {
         <p className="text-px-14 gray w-full">
           <span className="mr-2 md:ml-4 lg:ml-0">Level:</span>{' '}
           <span className="uppercase text-xs text-white dark:text-dark text-px-10 bg-black dark:bg-white-dark py-0.5 px-2 rounded-full">
-            #{session.session_level}
+            #{session.is_keynote ? 'Keynote' : session.session_level}
           </span>
         </p>
       </div>
