@@ -181,7 +181,7 @@ export const NavBar = () => {
                           </div>
                           <div className="w-5/12 flex-wrap flex justify-center">
                             <button
-                              className="dark:text-light-dark text-sm"
+                              className="dark:text-white text-sm"
                               type="button"
                               onClick={() => logoutUser()}
                             >

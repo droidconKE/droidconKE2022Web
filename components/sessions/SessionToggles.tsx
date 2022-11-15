@@ -20,7 +20,7 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
   const { isAuthenticated } = useContext(AuthContext)
 
   return (
-    <div className="space-x-5 md:space-x-8 w-full md:w-1/3 flex justify-end items-center">
+    <div className="space-x-4 md:space-x-8 w-full md:w-1/3 flex justify-end items-center">
       <button type="button" onClick={() => onChangeViewType(false)}>
         <i
           className={`fa fa-th-list text-2xl ${
@@ -36,10 +36,10 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
         />
       </button>
       {isAuthenticated && (
-        <div className="px-5">
+        <div className="sm:px-5">
           <button
             type="button"
-            className="flex items-center cursor-pointer"
+            className="flex flex-col sm:flex-row items-center cursor-pointer text-xs sm:text-base mt-1 sm:mt-0"
             onClick={() => onMySessions(!isMySessions)}
           >
             <div className="relative">
@@ -50,10 +50,10 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
                 className="hidden"
                 onChange={() => null}
               />
-              <div className="toggle__line w-8 h-4 bg-white rounded-full shadow-inner" />
-              <div className="toggle__dot absolute w-5 h-5 bg-secondary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
+              <div className="toggle__line h-3 w-8 sm:h-4 bg-white rounded-full shadow-inner" />
+              <div className="toggle__dot absolute h-4 w-4 sm:w-5 sm:h-5 bg-secondary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
             </div>
-            <div className="ml-3 text-white dark:text-white-dark font-sm">
+            <div className="ml-3 text-white dark:text-white-dark font-sm mt-2 sm:mt-0">
               My Sessions
             </div>
           </button>
@@ -77,10 +77,10 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
       )}
       <button
         type="button"
-        className="ml-3 text-white dark:text-white-dark font-sm"
+        className="ml-3 text-white dark:text-white-dark font-sm flex flex-col items-center justify-center sm:flex-row text-xs sm:text-base -mt-1 sm:mt-0"
         onClick={() => setShowFilterSession(true)}
       >
-        Filter &nbsp; <i className="fa fa-filter text-xl" />
+        <i className="fa fa-filter text-xl" /> <span>Filter</span>
       </button>
     </div>
   )
