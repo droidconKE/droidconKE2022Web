@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import moment from 'moment'
 import { Session, FilterInterface, Room, Schedule } from '../types/types'
 import { objIsEmpty, isClient } from '../utils/helpers'
 import axios from '../utils/axios'
@@ -98,6 +99,15 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
   useEffect(() => {
     handleSessionsToggle()
   }, [handleSessionsToggle])
+
+  const selectTabByday = useCallback(() => {
+    if (moment().format('DD') === '17') setActiveTab(1)
+    if (moment().format('DD') === '18') setActiveTab(2)
+  }, [])
+
+  useEffect(() => {
+    selectTabByday()
+  }, [selectTabByday])
 
   return {
     showFilterSession,

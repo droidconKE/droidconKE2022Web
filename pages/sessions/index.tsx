@@ -54,7 +54,7 @@ const Sessions: NextPage<SessionProps> = ({
           </div>
         </section>
 
-        <section className="w-full py-6 md:py-12 mb-0">
+        <section className="w-full py-2 md:py-12 mb-0">
           {!loading ? (
             <div className="l-container flex flex-wrap">
               <div className="flex flex-row lg:flex-col w-full lg:w-1/12 h-auto lg:h-64 bor border-r-0 lg:border-r border-green-200 space-y-0 lg:space-y-6 space-x-6 lg:space-x-0 items-center lg:items-start justify-center lg:justify-start py-2 lg:py-0 sticky nav-bg nav-side z-0 top-[60px] md:top-[80px]">
