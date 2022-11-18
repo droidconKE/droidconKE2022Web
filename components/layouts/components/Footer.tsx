@@ -22,7 +22,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Get Your Ticket
+                  Get your early bird Ticket
                 </a>
               </div>
             </div>

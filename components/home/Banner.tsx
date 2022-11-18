@@ -4,9 +4,9 @@ export const Banner = () => {
       <div className="w-full flex flex-col md:flex-row items-center min-h-screen justify-between">
         <div className="mt-32 md:mt-0">
           <h1 className="font-light text-3xl md:text-4xl black px-0">
-            <span className="lowercase">WELCOME TO</span> <br />
+            <span className="lowercase">see you at</span> <br />
             <span className="font-black text-4xl md:text-5xl">
-              DROIDCONKE22
+              DROIDCONKE23
             </span>
           </h1>
           <div className="mt-12 md:mt-8 text-3xl md:text-4xl lowercase font-light">
@@ -30,17 +30,17 @@ export const Banner = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                get your ticket
+                get your early bird ticket
               </a>
 
-              <a
+              {/* <a
                 href="https://bit.ly/speakatdroidconke22"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent mt-3 md:mt-0"
               >
                 submit a talk
-              </a>
+              </a> */}
             </div>
             <div className="flex flex-wrap mt-8 md:mt-10 items-center">
               <img
