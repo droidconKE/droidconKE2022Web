@@ -6,6 +6,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { Login } from '../../auth/Login'
 import { ToggleTheme } from './ToggleTheme'
+import { PastEventsDropdown } from './PastEventsDropdown'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
@@ -121,6 +122,9 @@ export const NavBar = () => {
                   Sponsors
                 </a>
               </Link>
+            </li>
+            <li className="mr-3">
+              <PastEventsDropdown />
             </li>
           </ul>
         </div>

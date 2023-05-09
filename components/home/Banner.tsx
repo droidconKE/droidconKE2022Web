@@ -49,7 +49,7 @@ export const Banner = () => {
                 alt="droid alt"
               />
               <div className="text-accent dark:text-accent-dark font-black text-base md:text-xl -mt-1">
-                <span>16TH - 18TH</span> <br />
+                <span>08TH - 10TH</span> <br />
                 NOVEMBER
               </div>
             </div>
