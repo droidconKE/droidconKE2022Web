@@ -22,7 +22,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Get Your Ticket
+                  Get your early bird Ticket
                 </a>
               </div>
             </div>
@@ -36,18 +36,17 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-base">
-                      United States International University - Africa, Nairobi,
-                      Kenya
+                      To Be Announced
                     </p>
 
-                    <a
+                    {/* <a
                       href="https://goo.gl/maps/ZKyyQbFUM4miuiuL9"
                       target="_blank"
                       className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
                     >
                       <i className="fa fa-map-marker" /> View Map location
-                    </a>
+                    </a> */}
                   </ul>
                 </div>
                 {showExtraInfo && (

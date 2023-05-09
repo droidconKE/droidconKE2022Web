@@ -84,5 +84,6 @@ module.exports = {
     ],
     '@next/next/no-img-element': 'off',
     'react/prop-types': 'off',
+    'sonarjs/cognitive-complexity': 'off',
   },
 }

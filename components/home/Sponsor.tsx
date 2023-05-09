@@ -9,11 +9,11 @@ export const Sponsor = () => {
             <div className="text-left md:text-center">
               <h2 className="title-w lowercase">
                 <span>sponsor</span>{' '}
-                <span className="font-medium"> droidconke22</span>
+                <span className="font-medium"> droidconke23</span>
               </h2>
               <div className="w-full">
                 <h6 className="mt-4 text-lighter dark:text-lighter-dark text-xl md:text-2xl">
-                  By sponsoring droidconke22 you support and bring together{' '}
+                  By sponsoring droidconke23 you support and bring together{' '}
                   <br className="hidden md:block" />
                   the Android developer community.
                 </h6>

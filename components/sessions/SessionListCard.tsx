@@ -8,9 +8,12 @@ import { NoSessions } from './NoSessions'
 const SessionListCard = ({
   schedules,
   activeTab,
+  from,
 }: {
   schedules: Schedule[]
   activeTab: number
+  // eslint-disable-next-line react/require-default-props
+  from?: string
 }) => {
   return (
     <>
@@ -39,7 +42,11 @@ const SessionListCard = ({
                               {schedule.title}
                             </h4>
                           ) : (
-                            <Link href={`/sessions/${schedule.slug}`}>
+                            <Link
+                              href={`/sessions/${schedule.slug}${
+                                from ? `?from=${from}` : ''
+                              }`}
+                            >
                               <a>
                                 <h4 className="font-bold md:text-xl dark:text-white">
                                   {schedule.is_keynote ? 'Keynote: ' : ''}{' '}

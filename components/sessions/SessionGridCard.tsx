@@ -8,9 +8,12 @@ import { NoSessions } from './NoSessions'
 export const SessionGridCard = ({
   schedules,
   activeTab,
+  from,
 }: {
   schedules: Schedule[]
   activeTab: number
+  // eslint-disable-next-line react/require-default-props
+  from?: string
 }) => {
   return (
     <>
@@ -32,7 +35,11 @@ export const SessionGridCard = ({
                           alt={schedule.title}
                         />
                       ) : (
-                        <Link href={`/sessions/${schedule.slug}`}>
+                        <Link
+                          href={`/sessions/${schedule.slug}${
+                            from ? `?from=${from}` : ''
+                          }`}
+                        >
                           <a>
                             <img
                               className="object-cover md:object-cover"
@@ -57,7 +64,11 @@ export const SessionGridCard = ({
                             {schedule.title}
                           </p>
                         ) : (
-                          <Link href={`/sessions/${schedule.slug}`}>
+                          <Link
+                            href={`/sessions/${schedule.slug}${
+                              from ? `?from=${from}` : ''
+                            }`}
+                          >
                             <a>
                               <p className="text-sm mt-2 font-bold dark:text-white-dark">
                                 {schedule.is_keynote ? 'Keynote: ' : ''}{' '}

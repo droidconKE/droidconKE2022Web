@@ -28,7 +28,7 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
               <span>about</span> <span className="font-medium">droidconke</span>
             </h2>
             <p className="text-light dark:text-lighter-dark py-5 md:py-8 text-xl md:text-2xl">
-              This 3rd edition of droidconKE will include several tech
+              This 4th edition of droidconKE will include several tech
               communities from the East African Region and continental members.
               It will give participants an excellent chance to learn about the
               local Android development ecosystem, opportunities and services as
