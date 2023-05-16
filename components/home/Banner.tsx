@@ -44,11 +44,11 @@ export const Banner = () => {
             </div>
             <div className="flex flex-wrap mt-8 md:mt-10 items-center">
               <img
-                className="h-[50px] md:h-[63px] mr-3"
-                src="/images/hashtag.png"
+                className="h-[48px] md:h-[66px] mr-3"
+                src="/images/hashtag-23.png"
                 alt="droid alt"
               />
-              <div className="text-accent dark:text-accent-dark font-black text-base md:text-xl -mt-1">
+              <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
                 <span>08TH - 10TH</span> <br />
                 NOVEMBER
               </div>
@@ -56,7 +56,7 @@ export const Banner = () => {
           </div>
         </div>
         <div className="mt-16 md:mt-0">
-          <video
+          {/* <video
             className="rounded-xl aspect-video  w-full  md:w-[670px] "
             loop
             autoPlay
@@ -70,7 +70,7 @@ export const Banner = () => {
               type="video/mp4"
               src="/video/DroidconKe_2019_Highlight_Reel_HD.mp4"
             />
-          </video>
+          </video> */}
           {/* <iframe
             className="rounded-xl aspect-video h-[250px] w-full md:h-[400px] md:w-[630px] -mt-20"
             src="https://www.youtube.com/embed/AO-j2kLvKJw?start=5&controls=0&showinfo=0&modestbranding=1&rel=0"

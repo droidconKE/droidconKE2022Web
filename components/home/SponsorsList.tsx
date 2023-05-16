@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import { Sponsor } from '../../types/types'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
   return (
     <section className="s-container pb-6 md:pb-12">
@@ -19,7 +21,13 @@ function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
           <div className="w-full md:w-6/12 mr-auto pt-4 sm:mt-10 md:pt-0 justify-end">
             <div className="w-full md:p-6 sm:p-0  grid md:grid-cols-1 grid-cols-1 gap-4 lg:gap-8 mb-10 md:mb-6">
-              {sponsors.map(
+              <p>
+                help make droidconKe happen and have your logo appear here ...
+              </p>
+              <Link href="/sponsors">
+                <a className="btn-secondary w-56">sponsor droidconke</a>
+              </Link>
+              {/* {sponsors.map(
                 (sponsor) =>
                   sponsor.sponsor_type === 'gold' && (
                     <a
@@ -40,11 +48,11 @@ function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
                       />
                     </a>
                   )
-              )}
+              )} */}
             </div>
 
             <div className="w-full md:p-6 sm:p-0  grid md:grid-cols-4 grid-cols-2 gap-4 lg:gap-8">
-              {sponsors.map(
+              {/* {sponsors.map(
                 (sponsor) =>
                   sponsor.sponsor_type !== 'gold' && (
                     <a
@@ -65,7 +73,7 @@ function SponsorsList({ sponsors }: { sponsors: Sponsor[] }) {
                       />
                     </a>
                   )
-              )}
+              )} */}
             </div>
           </div>
         </div>
