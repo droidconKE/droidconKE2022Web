@@ -155,7 +155,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
               <h3 className="text-2xl md:text-3xl text-white dark:text-white-dark pt-6 md:pt-0 lowercase">
-                <span className="font-black">To Sponsor</span> Droidcoke 2022
+                <span className="font-black">To Sponsor</span> Droidcoke 2023
                 Contacts us at
               </h3>
               <p className="text-base text-white dark:text-white-dark mt-3">

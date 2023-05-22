@@ -33,7 +33,7 @@ export const eventTypes = [
   },
   {
     id: 5,
-    eventName: 'Networking Bash',
+    eventName: 'Networking Party',
     imageName: 'party',
     lightBG: 'bg-accent-2',
     darkBG: 'dark:bg-accent-2-dark',

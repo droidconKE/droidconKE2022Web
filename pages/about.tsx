@@ -78,19 +78,21 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 DROIDCON
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
-                Droidcon is the largest global network of developer conferences
-                which brings together the industry's foremost experts dedicated
-                to advancing the Android platform. Droidcon engages a global
-                network of over 25,000+ developers attending our events in 22
-                cities.
-                <br /> <br />
-                Our first Droidcon conference was held in 2009 in Berlin and
-                since then it has spread its influence across the globe and has
-                established itself as the world's foremost community-driven
-                conference format. Droidcon is the place to meet the
-                international Android community, learn from expert speakers,
-                dive into the latest Android advances and explore cutting edge
-                technologies.
+                Droidcon is a global developer conference focused on bringing
+                Android engineers together. It provides a platform for
+                developers to network, share techniques and announce new apps
+                and products in the ecosystem.
+                <br />
+                <br />
+                The three-day gathering will be held in Nairobi, Kenya, from 8th
+                to 10th November 2023 and will be the largest in Africa.
+                <br />
+                <br />
+                The conference will include workshops, codelabs and talks geared
+                towards Android development to help developers stay ahead of the
+                curve. It will be an excellent chance for participants to
+                network and connect with their fellow Android enthusiasts from
+                the African and continental communities.
               </p>
             </div>
 
@@ -99,18 +101,17 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 PAST DROIDCONKE
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
-                We held the first ever DroidconKE in October 2018. We had over
-                500 people from various parts of the world in attendance.
-                Quality speakers from Kenya, Germany, South Africa, Tanzania,
-                and Nigeria graced the event.
+                We hosted the first-ever DroidconKE event in October 2018. More
+                than 500 people from various parts of the world were in
+                attendance. Quality speakers from Kenya, Germany, South Africa,
+                Tanzania and Nigeria graced the event.
                 <br />
                 <br />
-                In this 4th edition of droidconKE, will include several tech
+                This year, we will host the 4th in-person event. Tech
                 communities from the East African Region and continental members
-                and will give participants an excellent chance to learn about
-                the local Android development ecosystem, opportunities and
-                services as well as meet the engineers and companies who work on
-                them.
+                will be present. Participants will have an excellent chance to
+                learn about Android development, opportunities and services in
+                the ecosystem.
               </p>
             </div>
             <div className="w-full mt-2 -mb-32 md:-mb-32 pb-20 md:pb-0 flex justify-center pr-0 md:pr-20">
