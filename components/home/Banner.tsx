@@ -33,14 +33,14 @@ export const Banner = () => {
                 get your early bird ticket
               </a>
 
-              {/* <a
-                href="https://bit.ly/speakatdroidconke22"
+              <a
+                href="https://bit.ly/dcke23CFP"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent mt-3 md:mt-0"
               >
                 submit a talk
-              </a> */}
+              </a>
             </div>
             <div className="flex flex-wrap mt-8 md:mt-10 items-center">
               <img
