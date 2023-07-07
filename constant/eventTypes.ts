@@ -18,7 +18,7 @@ export const eventTypes = [
   {
     id: 3,
     eventName: 'Talks',
-    imageName: 'interview',
+    imageName: 'talks',
     lightBG: 'bg-accent',
     darkBG: 'dark:bg-accent-dark',
     edgeRadius: 'md:rounded-none rounded-l-xl',
@@ -41,8 +41,8 @@ export const eventTypes = [
   },
   {
     id: 6,
-    eventName: 'HackBounty',
-    imageName: 'hackbounty',
+    eventName: 'Office Hours',
+    imageName: 'officehours',
     lightBG: 'bg-secondary',
     darkBG: 'dark:bg-secondary-dark',
     edgeRadius: 'rounded-r-xl',

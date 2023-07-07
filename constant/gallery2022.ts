@@ -12,8 +12,8 @@ export const gallery2022 = [
     imageHeight: 3600,
   },
   {
-    imageTitle: 'Memories 119',
-    imageName: '119',
+    imageTitle: 'Memories 59',
+    imageName: '59',
     imageWidth: 2400,
     imageHeight: 3600,
   },
@@ -43,7 +43,13 @@ export const gallery2022 = [
   },
   {
     imageTitle: 'Memories 366',
-    imageName: '366',
+    imageName: '255',
+    imageWidth: 2400,
+    imageHeight: 3600,
+  },
+  {
+    imageTitle: 'Memories 181',
+    imageName: '181',
     imageWidth: 2400,
     imageHeight: 3600,
   },
@@ -56,6 +62,12 @@ export const gallery2022 = [
   {
     imageTitle: 'Memories 695',
     imageName: '695',
+    imageWidth: 2400,
+    imageHeight: 3600,
+  },
+  {
+    imageTitle: 'Memories 467',
+    imageName: '467',
     imageWidth: 2400,
     imageHeight: 3600,
   },
