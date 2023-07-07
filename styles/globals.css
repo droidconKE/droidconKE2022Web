@@ -114,10 +114,10 @@ video::-webkit-media-controls-fullscreen-button {
     @apply bg-primary dark:bg-primary-dark lowercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .btn-secondary {
-    @apply bg-secondary dark:bg-secondary-dark lowercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+    @apply bg-secondary dark:bg-secondary-dark lowercase text-black text-sm md:text-base dark:text-black px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .btn-accent {
-    @apply bg-accent dark:bg-accent-dark lowercase text-white text-sm md:text-base dark:text-white-dark px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+    @apply bg-accent dark:bg-accent-dark lowercase text-black text-sm md:text-base dark:text-black px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .title {
     @apply uppercase font-black text-3xl md:text-5xl text-primary dark:text-primary-dark

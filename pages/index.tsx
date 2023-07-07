@@ -27,7 +27,7 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
             <h2 className="title lowercase dark:text-accent-dark">
               <span>about</span> <span className="font-medium">droidconke</span>
             </h2>
-            <p className="text-light dark:text-lighter-dark py-5 md:py-8 text-xl md:text-2xl">
+            <p className="dark:text-lighter-dark py-5 md:py-8 text-xl md:text-2xl">
               This 4th in-person event will include several tech communities
               from the East African Region and continental members. Participants
               will have an excellent chance to learn about Android development
@@ -50,7 +50,7 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
         </div>
       </section>
       <EventTypes />
-      <SponsorsList sponsors={sponsors} />
+      <SponsorsList sponsors={sponsors} showSponsors={false} />
       <Sponsor />
       <Gallery />
       <Organizers organizers={organizers} />

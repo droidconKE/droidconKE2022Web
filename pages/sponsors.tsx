@@ -1,10 +1,11 @@
 import axios from 'axios'
 import Link from 'next/link'
 import { useContext } from 'react'
-import SponsorsList from '../components/home/SponsorsList'
+// import SponsorsList from '../components/home/SponsorsList'
 import { ThemeContext } from '../context/ThemeContext'
 import { Sponsor } from '../types/types'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
   const { isDarkTheme } = useContext(ThemeContext)
 
@@ -127,10 +128,10 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                 <span>VARIOUS</span>{' '}
                 <span className="font-medium"> SPONSORSHIP LEVELS</span>
               </h2>
-              <p className="mt-4 text-black dark:text-white text-xl md:text-2xl">
+              {/* <p className="mt-4 text-black dark:text-white text-xl md:text-2xl">
                 Your sponsorship package can be tailored to meet your business
                 objectives:
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="mx-auto md:py-10">
@@ -149,14 +150,15 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
         </div>
       </section>
-      <SponsorsList sponsors={sponsors} />
+      {/* ?  TODO: to return later */}
+      {/* <SponsorsList sponsors={sponsors} /> */}
       <section className="w-full bg-black dark:bg-dark -mb-10 md:px-32 sm:px-10">
         <div className="s-container md:-mt-10 md:py-12">
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
               <h3 className="text-2xl md:text-3xl text-white dark:text-white-dark pt-6 md:pt-0 lowercase">
                 <span className="font-black">To Sponsor</span> Droidcoke 2023
-                Contacts us at
+                Contacts us at?
               </h3>
               <p className="text-base text-white dark:text-white-dark mt-3">
                 Click here to proceed

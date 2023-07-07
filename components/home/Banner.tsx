@@ -4,7 +4,7 @@ export const Banner = () => {
       <div className="w-full flex flex-col md:flex-row items-center min-h-screen justify-between">
         <div className="mt-32 md:mt-0">
           <h1 className="font-light text-3xl md:text-4xl black px-0">
-            <span className="lowercase">see you at</span> <br />
+            <span className="lowercase">welcome to</span> <br />
             <span className="font-black text-4xl md:text-5xl">
               DROIDCONKE23
             </span>

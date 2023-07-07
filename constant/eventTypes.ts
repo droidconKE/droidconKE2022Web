@@ -17,7 +17,7 @@ export const eventTypes = [
   },
   {
     id: 3,
-    eventName: 'Interviews',
+    eventName: 'Talks',
     imageName: 'interview',
     lightBG: 'bg-accent',
     darkBG: 'dark:bg-accent-dark',

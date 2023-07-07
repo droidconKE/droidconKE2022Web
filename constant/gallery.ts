@@ -11,12 +11,12 @@ export const gallery = [
     imageWidth: 2400,
     imageHeight: 3600,
   },
-  {
-    imageTitle: 'Memories Three',
-    imageName: '20193',
-    imageWidth: 3600,
-    imageHeight: 2400,
-  },
+  // {
+  //   imageTitle: 'Memories Three',
+  //   imageName: '20193',
+  //   imageWidth: 3600,
+  //   imageHeight: 2400,
+  // },
   {
     imageTitle: 'Memories Four',
     imageName: '20194',
@@ -47,12 +47,12 @@ export const gallery = [
     imageWidth: 3600,
     imageHeight: 2400,
   },
-  {
-    imageTitle: 'Memories Six',
-    imageName: '20199',
-    imageWidth: 3600,
-    imageHeight: 2400,
-  },
+  // {
+  //   imageTitle: 'Memories Six',
+  //   imageName: '20199',
+  //   imageWidth: 3600,
+  //   imageHeight: 2400,
+  // },
   {
     imageTitle: 'Memories Two',
     imageName: '201910',
