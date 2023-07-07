@@ -7,7 +7,9 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     register: true,
+    // swSrc: 'service-worker.js',
     skipWaiting: true,
+    cacheOnFrontEndNav: true,
     disable: process.env.NODE_ENV === 'development',
     runtimeCaching: [
       {
