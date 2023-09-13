@@ -2,7 +2,7 @@ import { Organizer } from '../../types/types'
 
 function Organizers({ organizers }: { organizers: Organizer[] }) {
   return (
-    <section className="bg-lighter dark:bg-black-dark">
+    <section className="bg-lighter dark:bg-black">
       <div className="s-container pb-6 md:pb-12">
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-6/12 ml-auto">

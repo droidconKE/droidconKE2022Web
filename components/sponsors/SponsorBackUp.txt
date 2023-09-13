@@ -1,0 +1,31 @@
+<div
+  className="h-[760px] mt-10 md:-mt-5 bg-contain md:bg-cover bg-no-repeat"
+  style={{ backgroundImage: 'url(/images/sponsor-bg.png)' }}
+>
+  <div>
+    <div className="flex items-center space-x-3 justify-center w-2/3 pt-5">
+      <h4 className="text-accent font-black text-[75px]">4</h4>
+      <h5 className="text-accent font-bold -mt-3">Tracks</h5>
+    </div>
+  </div>
+  <div className="flex w-full mt-40 px-20">
+    <div className="w-1/2 flex justify-center">
+      <div>
+        <h4 className="text-primary font-black text-[75px]">11000+</h4>
+        <h5 className="text-primary font-bold -mt-3">Newsletter Reach</h5>
+      </div>
+    </div>
+    <div className="w-1/2 flex justify-center">
+      <div className="flex items-center space-x-3 justify-center">
+        <h4 className="text-primary font-black text-[75px]">3</h4>
+        <h5 className="text-primary font-bold -mt-3">Day Event</h5>
+      </div>
+    </div>
+  </div>
+  <div className="flex w-full justify-end mt-20">
+    <div>
+      <h4 className="text-secondary font-black text-[75px]">3200+</h4>
+      <h5 className="text-secondary font-bold -mt-3">Twitter Followers</h5>
+    </div>
+  </div>
+</div>

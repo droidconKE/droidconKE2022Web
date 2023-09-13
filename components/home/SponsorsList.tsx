@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import Link from 'next/link'
 import { Sponsor } from '../../types/types'
 
@@ -5,31 +6,40 @@ import { Sponsor } from '../../types/types'
 function SponsorsList({
   sponsors,
   showSponsors = true,
+  year = 22,
 }: {
   sponsors: Sponsor[]
-  showSponsors: boolean
+  showSponsors?: boolean
+  year?: number
 }) {
+  const getTypeName = (sponsor: Sponsor) => {
+    if (sponsor.name === 'Google') return 'Platinun Sponsor'
+    if (sponsor.name === 'JetBrains') return 'Swag Sponsor'
+    if (sponsor.name.includes('Ryggs')) return 'Startup Sponsor'
+    if (sponsor.name.includes('United States')) return 'Venue Sponsor'
+    return sponsor.tagline
+  }
   return (
-    <section className="s-container pb-6 md:pb-12">
-      <div>
-        <div className="items-center flex flex-wrap">
-          <div className="w-full md:w-6/12 ml-auto">
+    <section className="w-full bg-black">
+      <div className="s-container  pb-6 md:pb-12">
+        <div className="items-center flex flex-wrap py-10 md:py-20">
+          <div className="w-full md:w-4/12 ml-auto">
             <div className="md:pr-12 text-left">
-              <h2 className="title lowercase dark:text-accent-dark mt-4 md:mt-0">
-                <span>sponsored</span> <span className="font-medium"> by;</span>
-              </h2>
-              {/* <p className="mt-4 text-xl md:text-2xl">
-                Please make sure to stop by and visit our sponsors at the show
-                and give them a high-five and a huge thank you for helping to
-                bring the community together at droidconke.
-              </p> */}
+              <h4 className="text-lighter dark:text-lighter-dark text-2xl md:text-4xl mt-4 md:mt-0">
+                {showSponsors ? 'Thank you to our' : ''} <br /> #dcKe{year}{' '}
+                Sponsors
+              </h4>
             </div>
           </div>
-          <div className="w-full md:w-6/12 mr-auto pt-4 sm:mt-10 md:pt-0 justify-end">
-            <div className="w-full md:p-6 sm:p-0  grid md:grid-cols-1 grid-cols-1 gap-4 lg:gap-8 mb-10 md:mb-6">
+          <div
+            className={`w-full flex items-center flex-col ${
+              sponsors.length > 5 ? 'md:space-y-4' : 'md:flex-row'
+            } md:w-8/12 mr-auto pt-4 sm:mt-0 md:pt-0 space-x-3 md:space-x-4`}
+          >
+            <div className="md:p-0 sm:p-0 lg:gap-8 mb-10 md:mb-0">
               {!showSponsors ? (
                 <div>
-                  <p className="text-xl mb-10">
+                  <p className="text-xl text-accent dark:text-accent-dark mb-10">
                     help make droidconKe happen and have your logo appear here
                     ...
                   </p>
@@ -41,50 +51,58 @@ function SponsorsList({
                 sponsors.map(
                   (sponsor) =>
                     sponsor.sponsor_type === 'gold' && (
-                      <a
-                        key={sponsor.created_at}
-                        target="_blank"
-                        href={sponsor.link}
-                        className="p-5 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center"
-                        rel="noreferrer"
-                      >
-                        <img
-                          className="p-0 w-full object-scale-down"
-                          src={
-                            sponsor.logo === null
-                              ? '/images/icon.png'
-                              : sponsor.logo
-                          }
-                          alt={sponsor.name}
-                        />
-                      </a>
+                      <div key={sponsor.name}>
+                        <span className="text-lighter dark:text-lighter-dark text-xs">
+                          {getTypeName(sponsor)}
+                        </span>
+                        <a
+                          target="_blank"
+                          href={sponsor.link}
+                          className="p-5 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center mt-3"
+                          rel="noreferrer"
+                        >
+                          <img
+                            className="p-0 md:h-[70px]"
+                            src={
+                              sponsor.logo === null
+                                ? '/images/icon.png'
+                                : sponsor.logo
+                            }
+                            alt={sponsor.name}
+                          />
+                        </a>
+                      </div>
                     )
                 )
               )}
             </div>
 
             {showSponsors && (
-              <div className="w-full md:p-6 sm:p-0  grid md:grid-cols-4 grid-cols-2 gap-4 lg:gap-8">
+              <div className="md:p-0 sm:p-0 space-x-3 lg:space-x-4 flex w-full md:w-auto justify-between">
                 {sponsors.map(
                   (sponsor) =>
                     sponsor.sponsor_type !== 'gold' && (
-                      <a
-                        key={sponsor.created_at}
-                        target="_blank"
-                        href={sponsor.link}
-                        className="w-32 md:w-36 h-32 md:h-36 p-0 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center"
-                        rel="noreferrer"
-                      >
-                        <img
-                          className="p-0 w-full object-scale-down"
-                          src={
-                            sponsor.logo === null
-                              ? '/images/icon.png'
-                              : sponsor.logo
-                          }
-                          alt={sponsor.name}
-                        />
-                      </a>
+                      <div key={sponsor.name}>
+                        <span className="text-lighter dark:text-lighter-dark text-xs">
+                          {getTypeName(sponsor)}
+                        </span>
+                        <a
+                          target="_blank"
+                          href={sponsor.link}
+                          className="w-24 md:w-28 h-24 md:h-28 p-0 mt-3 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center"
+                          rel="noreferrer"
+                        >
+                          <img
+                            className="p-0 w-full object-scale-down"
+                            src={
+                              sponsor.logo === null
+                                ? '/images/icon.png'
+                                : sponsor.logo
+                            }
+                            alt={sponsor.name}
+                          />
+                        </a>
+                      </div>
                     )
                 )}
               </div>
