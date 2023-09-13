@@ -4,7 +4,6 @@ import SponsorsList from '../components/home/SponsorsList'
 import { Sponsor } from '../types/types'
 import { Value } from '../components/sponsors/Value'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
   return (
     <div className="w-full mt-10 mb-0">
