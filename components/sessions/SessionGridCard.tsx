@@ -31,7 +31,7 @@ export const SessionGridCard = ({
                       {schedule.is_serviceSession ? (
                         <img
                           className="object-cover md:object-cover"
-                          src={schedule.session_image ?? 'images/all.png'}
+                          src={schedule.session_image ?? '/images/all.png'}
                           alt={schedule.title}
                         />
                       ) : (

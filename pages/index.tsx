@@ -5,7 +5,7 @@ import { EventTypes } from '../components/home/EventTypes'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import { Sponsor } from '../components/home/Sponsor'
-// import SponsorsList from '../components/home/SponsorsList'
+import SponsorsList from '../components/home/SponsorsList'
 import { Organizer, Sponsor as SponsorType } from '../types/types'
 import axios from '../utils/axios'
 
@@ -14,7 +14,6 @@ interface HomeProps {
   sponsors: SponsorType[]
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
   return (
     <div
@@ -51,8 +50,8 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
         </div>
       </section>
       <EventTypes />
-      {/* <SponsorsList sponsors={sponsors} showSponsors={false} /> */}
       <Sponsor />
+      <SponsorsList sponsors={sponsors} year={22} />
       <Gallery />
       <Organizers organizers={organizers} />
     </div>

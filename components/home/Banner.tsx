@@ -30,16 +30,19 @@ export const Banner = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                get your early bird ticket
+                get your ticket
               </a>
 
-              <a
+              {/* <a
                 href="https://bit.ly/dcke23CFP"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent mt-3 md:mt-0"
               >
                 submit a talk
+              </a> */}
+              <a href="/droidconke" className="btn-accent mt-3 md:mt-0">
+                sponsor droidconke
               </a>
             </div>
             <div className="flex flex-wrap mt-8 md:mt-10 items-center">
