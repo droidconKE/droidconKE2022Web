@@ -23,6 +23,7 @@ export const NavBar = () => {
 
   const showLogin = isEventReady
   const showSessions = isEventReady
+  const showSpeakers = isEventReady
 
   useEffect(() => {
     Router.events.on('beforeHistoryChange', () => {
@@ -76,7 +77,7 @@ export const NavBar = () => {
         }`}
       >
         <div
-          className={`w-full md:w-7/12 flex-grow lg:flex ${
+          className={`w-full md:w-8/12 flex-grow lg:flex ${
             navVisible ? 'bg-white dark:bg-dark' : ''
           }`}
         >
@@ -97,6 +98,19 @@ export const NavBar = () => {
                     }
                   >
                     Sessions
+                  </a>
+                </Link>
+              </li>
+            )}
+            {showSpeakers && (
+              <li className="mr-3">
+                <Link href="/speakers">
+                  <a
+                    className={
+                      router.pathname === '/speakers' ? 'active-link' : 'link'
+                    }
+                  >
+                    Speakers
                   </a>
                 </Link>
               </li>
@@ -128,7 +142,7 @@ export const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="w-full md:w-3/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0">
+        <div className="w-full md:w-2/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0">
           {/* <Link href="/sponsors"> */}
           <a
             className="btn-secondary"
