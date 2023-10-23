@@ -13,7 +13,7 @@ function SponsorsList({
   year?: number
 }) {
   const getTypeName = (sponsor: Sponsor) => {
-    if (sponsor.name === 'Google') return 'Platinun Sponsor'
+    if (sponsor.name === 'Google') return 'Platinum Sponsor'
     if (sponsor.name === 'JetBrains') return 'Swag Sponsor'
     if (sponsor.name.includes('Ryggs')) return 'Startup Sponsor'
     if (sponsor.name.includes('United States')) return 'Venue Sponsor'

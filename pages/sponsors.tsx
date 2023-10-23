@@ -1,5 +1,5 @@
-import axios from 'axios'
 import Link from 'next/link'
+import axios from '../utils/axios'
 import SponsorsList from '../components/home/SponsorsList'
 import { Sponsor } from '../types/types'
 import { Value } from '../components/sponsors/Value'
