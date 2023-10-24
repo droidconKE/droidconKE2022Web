@@ -65,8 +65,9 @@ export async function getServerSideProps() {
       return response.data.data
     })
 
+  // TODO: switch to 2023
   const sponsors = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG_2022}/sponsors`)
     .then((response) => {
       return response.data.data
     })

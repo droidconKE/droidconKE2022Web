@@ -183,8 +183,9 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
 }
 
 export async function getServerSideProps() {
+  // TODO: switch to 2023
   const sponsors = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG_2022}/sponsors`)
     .then((response) => {
       return response.data.data
     })
