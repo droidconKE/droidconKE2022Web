@@ -1,6 +1,6 @@
 import axios from '../utils/axios'
 import { Speaker, Session } from '../types/types'
-import { KeynoteSpeakers } from '../components/speakers/KeynoteSpeakers'
+// import { KeynoteSpeakers } from '../components/speakers/KeynoteSpeakers'
 import { SpeakerCard } from '../components/speakers/SpeakerCard'
 
 export default function SpeakersPage({
@@ -23,14 +23,14 @@ export default function SpeakersPage({
       </section>
       <section className="bg-[url('/images/element_left.png'),url('/images/svg/login-dark.svg')] bg-no-repeat bg-[position:bottom_100.17%_right_110%,bottom_100.2%_left_100%] md:bg-[position:bottom_102.2%_right_109%,bottom_103%_left_103%] bg-[length:100px,_110px] md:bg-[length:350px,_450px]">
         <div className="l-container py-8 md:py-16">
-          <div>
+          {/* <div>
             <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 md:mt-0 lowercase">
               <span className="font-black">keynote</span> speakers
             </h3>
             <div className="py-10">
               <KeynoteSpeakers />
             </div>
-          </div>
+          </div> */}
           <div>
             <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 lowercase md:mt-12">
               <span className="font-black">All</span> speakers
