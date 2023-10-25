@@ -29,7 +29,7 @@ const Session: NextPage<SessionPageProp> = ({ session }) => {
           }
         />
       </Head>
-      <div className="w-full mt-10 mb-0">
+      <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
         <section className="w-full bg-dark dark:bg-black-dark">
           <div className="s-container mt-8 md:mt-0 py-2 md:py-4">
             <div className="w-full flex items-center space-x-5 mt-5">

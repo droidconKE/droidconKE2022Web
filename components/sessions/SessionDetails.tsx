@@ -28,8 +28,13 @@ export const SessionDetails = ({ session }: { session: Session }) => {
           )}
         </div>
         <h4 className="text-accent text-sm dark:text-accent-dark mt-4">
-          {session.session_format}
+          <span className="black">Category:</span> {session.session_category}{' '}
+          <span className="black">|</span>{' '}
+          <span className="black">Format:</span> {session.session_format}
         </h4>
+        {/* <h4 className="text-accent text-sm dark:text-accent-dark mt-2">
+          <span className="black">Format:</span> {session.session_format}
+        </h4> */}
         <h4 className="text-light text-sm dark:text-lighter-dark mt-2">
           {' '}
           {hour(session.start_date_time)} - {hour(session.end_date_time)}{' '}

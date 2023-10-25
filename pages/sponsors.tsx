@@ -6,7 +6,7 @@ import { Value } from '../components/sponsors/Value'
 
 export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
   return (
-    <div className="w-full mt-10 mb-0">
+    <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
       <section className="w-full bg-primary dark:bg-black-dark">
         <div className="s-container mt-12 md:mt-0 py-6 md:py-12">
           <div className="items-center flex flex-wrap mb-0">

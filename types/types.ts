@@ -61,6 +61,7 @@ export interface Session {
   slug?: string
   session_format: string
   session_level: string
+  session_category: string
   session_image: string
   backgroundColor: string
   borderColor: string

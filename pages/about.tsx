@@ -19,7 +19,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
       style={{ backgroundImage: 'url(/images/svg/about-bg.svg)' }}
     >
       <section className="s-container pb-32">
-        <div className="w-full flex flex-wrap min-h-screen pt-16 md:px-0 py-8 lg:py-12">
+        <div className="w-full flex flex-wrap min-h-screen pt-16 lg:pt-28 xl:pt-16 md:px-0 py-8 lg:py-12">
           <div className="w-full lg:w-9/12 flex items-center">
             <div className="w-full bg-no-repeat bg-center">
               <div className="w-full flex flex-wrap text-left">
