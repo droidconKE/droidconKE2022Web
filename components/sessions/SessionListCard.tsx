@@ -56,7 +56,7 @@ const SessionListCard = ({
                             </Link>
                           )}
                           {!schedule.is_serviceSession && (
-                            <p className="font-normal text-sm md:text-base py-2">
+                            <p className="font-normal text-sm md:text-base py-2 break-words">
                               {truncateString(schedule.description, 150)}
                             </p>
                           )}
