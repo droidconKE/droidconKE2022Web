@@ -36,17 +36,17 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-base">
-                      To Be Announced
+                      Daystar University - Nairobi Campus
                     </p>
 
-                    {/* <a
-                      href="https://goo.gl/maps/ZKyyQbFUM4miuiuL9"
+                    <a
+                      href="https://maps.app.goo.gl/e8tapzru1QwwMSHs5"
                       target="_blank"
                       className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
                     >
                       <i className="fa fa-map-marker" /> View Map location
-                    </a> */}
+                    </a>
                   </ul>
                 </div>
                 {showExtraInfo && (
