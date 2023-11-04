@@ -51,7 +51,7 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
       </section>
       <EventTypes />
       <Sponsor />
-      <SponsorsList sponsors={sponsors} year={22} showSponsors={false} />
+      <SponsorsList sponsors={sponsors} year={23} showSponsors />
       <Gallery />
       <Organizers organizers={organizers} />
     </div>
@@ -65,9 +65,8 @@ export async function getServerSideProps() {
       return response.data.data
     })
 
-  // TODO: switch to 2023
   const sponsors = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG_2022}/sponsors`)
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
     .then((response) => {
       return response.data.data
     })

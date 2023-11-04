@@ -13,11 +13,9 @@ function SponsorsList({
   year?: number
 }) {
   const getTypeName = (sponsor: Sponsor) => {
-    if (sponsor.name === 'Google') return 'Platinum Sponsor'
-    if (sponsor.name === 'JetBrains') return 'Swag Sponsor'
-    if (sponsor.name.includes('Ryggs')) return 'Startup Sponsor'
-    if (sponsor.name.includes('United States')) return 'Venue Sponsor'
-    return sponsor.tagline
+    if (sponsor.name.includes('Yellow Card')) return 'Start-up Alley'
+    if (sponsor.name.includes('Composables')) return 'Product Sponsor'
+    return `${sponsor.sponsor_type} Sponsor`
   }
   return (
     <section className="w-full bg-black">
@@ -34,7 +32,7 @@ function SponsorsList({
           <div
             className={`w-full flex items-center flex-col ${
               sponsors.length > 5 ? 'md:space-y-4' : 'md:flex-row'
-            } md:w-8/12 mr-auto pt-4 sm:mt-0 md:pt-0 space-x-3 md:space-x-4`}
+            } md:w-8/12 mr-auto pt-4 sm:mt-0 md:pt-0 gap-3 md:gap-4`}
           >
             <div className="md:p-0 sm:p-0 lg:gap-8 mb-10 md:mb-0">
               {!showSponsors ? (
@@ -50,19 +48,19 @@ function SponsorsList({
               ) : (
                 sponsors.map(
                   (sponsor) =>
-                    sponsor.sponsor_type === 'gold' && (
+                    sponsor.sponsor_type === 'platinum' && (
                       <div key={sponsor.name}>
-                        <span className="text-lighter dark:text-lighter-dark text-xs">
+                        <span className="text-lighter dark:text-lighter-dark text-xs capitalize">
                           {getTypeName(sponsor)}
                         </span>
                         <a
                           target="_blank"
                           href={sponsor.link}
-                          className="p-5 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center mt-3"
+                          className="md:h-28 p-5 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center mt-3"
                           rel="noreferrer"
                         >
                           <img
-                            className="p-0 md:h-[70px]"
+                            className="p-0"
                             src={
                               sponsor.logo === null
                                 ? '/images/icon.png'
@@ -78,12 +76,16 @@ function SponsorsList({
             </div>
 
             {showSponsors && (
-              <div className="md:p-0 sm:p-0 space-x-3 lg:space-x-4 flex w-full md:w-auto justify-between">
+              <div
+                className={`md:p-0 sm:p-0 gap-3 lg:gap-4 flex flex-wrap w-full md:w-auto justify-between ${
+                  sponsors.length > 5 ? '' : 'md:flex-nowrap'
+                }`}
+              >
                 {sponsors.map(
                   (sponsor) =>
-                    sponsor.sponsor_type !== 'gold' && (
+                    sponsor.sponsor_type !== 'platinum' && (
                       <div key={sponsor.name}>
-                        <span className="text-lighter dark:text-lighter-dark text-xs">
+                        <span className="text-lighter dark:text-lighter-dark text-xs capitalize">
                           {getTypeName(sponsor)}
                         </span>
                         <a

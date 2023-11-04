@@ -177,15 +177,14 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
         </div>
       </section>
-      <SponsorsList sponsors={sponsors} showSponsors={false} year={22} />
+      <SponsorsList sponsors={sponsors} showSponsors year={23} />
     </div>
   )
 }
 
 export async function getServerSideProps() {
-  // TODO: switch to 2023
   const sponsors = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG_2022}/sponsors`)
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
     .then((response) => {
       return response.data.data
     })
