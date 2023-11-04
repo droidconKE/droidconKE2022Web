@@ -31,10 +31,11 @@ function SponsorsList({
           </div>
           <div
             className={`w-full flex items-center flex-col ${
-              sponsors.length > 5 ? 'md:space-y-4' : 'md:flex-row'
-            } md:w-8/12 mr-auto pt-4 sm:mt-0 md:pt-0 gap-3 md:gap-4`}
+              // md:flex-row
+              sponsors.length > 5 ? 'md:space-y-4 ' : 'md:space-y-4'
+            } md:w-8/12 mr-auto pt-4 sm:mt-0 md:pt-0 gap-3 md:gap-4 `}
           >
-            <div className="md:p-0 sm:p-0 lg:gap-8 mb-10 md:mb-0">
+            <div className="md:p-0 sm:p-0 lg:gap-8 mb-10 md:mb-0 self-start">
               {!showSponsors ? (
                 <div>
                   <p className="text-xl text-accent dark:text-accent-dark mb-10">
@@ -76,11 +77,7 @@ function SponsorsList({
             </div>
 
             {showSponsors && (
-              <div
-                className={`md:p-0 sm:p-0 gap-3 lg:gap-4 flex flex-wrap w-full md:w-auto justify-between ${
-                  sponsors.length > 5 ? '' : 'md:flex-nowrap'
-                }`}
-              >
+              <div className="md:p-0 sm:p-0 gap-3 lg:gap-4 flex flex-wrap w-full md:w-auto justify-around self-start">
                 {sponsors.map(
                   (sponsor) =>
                     sponsor.sponsor_type !== 'platinum' && (

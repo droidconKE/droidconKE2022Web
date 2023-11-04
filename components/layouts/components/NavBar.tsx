@@ -142,18 +142,18 @@ export const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="w-full md:w-2/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0">
-          {/* <Link href="/sponsors"> */}
-          <a
+        {/* <div className="w-full md:w-2/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0"> */}
+        {/* <Link href="/sponsors"> */}
+        {/* <a
             className="btn-secondary"
             href="https://bit.ly/getYourDcKE22Tickets"
             target="_blank"
             rel="noreferrer"
           >
             get your ticket
-          </a>
-          {/* </Link> */}
-        </div>
+          </a> */}
+        {/* </Link> */}
+        {/* </div> */}
 
         <div className="w-2/12 flex-grow  lg:flex justify-end">
           {showLogin &&
