@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Sponsor = () => {
   return (
-    <section className="w-full dark:bg-black-dark">
+    <section className="w-full bg-black-dark">
       <div className="s-container pb-6 md:pb-16 md:py-20 py-4">
         <div className="items-center flex flex-wrap">
           <div className="w-full flex justify-center">
@@ -12,7 +12,7 @@ export const Sponsor = () => {
                 <span className="font-medium"> droidconke23</span>
               </h2>
               <div className="w-full">
-                <h6 className="mt-4 dark:text-lighter-dark text-xl md:text-2xl">
+                <h6 className="mt-4 text-white text-xl md:text-2xl">
                   To earn a spot here/Meet our partners By sponsoring
                   {/* droidconke23 you support and bring together{' '}
                   <br className="hidden md:block" />
