@@ -20,6 +20,7 @@ function SponsorsList({
     if (sponsor.name.includes('Yellow Card')) return 'Start-up Alley'
     if (sponsor.name.includes('Composables')) return 'Product Sponsor'
     if (sponsor.name.includes('JumaAndMiles')) return 'Ticket Sponsor'
+    if (sponsor.name.includes('DnD Gifts')) return 'Speaker Gift Sponsor'
     return `${sponsor.sponsor_type} Sponsor`
   }, [])
 
@@ -28,7 +29,7 @@ function SponsorsList({
       if (sponsor.name.includes('JetBrains')) return 'max-h-20'
       if (sponsor.name.includes('Composables')) return 'max-h-[48px]'
       if (sponsor.name.includes('JumaAndMiles')) return 'max-h-16'
-      if (sponsor.name.includes('Daystar University')) return 'max-h-[54px]'
+      if (sponsor.name.includes('Daystar University')) return 'max-h-[43px]'
       if (year === 22) return 'max-h-20'
       return 'max-h-10'
     },
@@ -110,7 +111,7 @@ function SponsorsList({
             </div>
 
             {showSponsors && (
-              <div className="grid grid-cols-2 border-t">
+              <div className="grid grid-cols-2 md:grid-cols-3 border-t">
                 {sponsors
                   .filter((s) => s.sponsor_type !== 'platinum')
                   .map((sponsor) => (
