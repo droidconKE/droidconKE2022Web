@@ -6,7 +6,7 @@ export const Banner = () => {
           <h1 className="font-light text-3xl md:text-4xl black px-0">
             <span className="lowercase">welcome to</span> <br />
             <span className="font-black text-4xl md:text-5xl">
-              DROIDCONKE23
+              DROIDCONKE24
             </span>
           </h1>
           <div className="mt-12 md:mt-8 text-3xl md:text-4xl lowercase font-light">
@@ -46,13 +46,13 @@ export const Banner = () => {
               </a>
             </div>
             <div className="flex flex-wrap mt-8 md:mt-10 items-center">
-              <img
+              {/* <img
                 className="h-[48px] md:h-[66px] mr-3"
                 src="/images/hashtag-23.png"
                 alt="droid alt"
-              />
+              /> */}
               <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
-                <span>08TH - 10TH</span> <br />
+                <span>06TH - 8TH</span> <br />
                 NOVEMBER
               </div>
             </div>

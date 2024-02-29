@@ -37,7 +37,7 @@ export const PastEventsDropdown = () => {
           <svg
             className={`-ml-5 mt-2 h-5 w-5  ${
               router.pathname.includes('past-events')
-                ? 'text-primary dark:text-accent'
+                ? 'text-primary dark:text-accent -mt-0'
                 : 'text-black dark:text-white'
             }`}
             viewBox="0 0 20 20"
@@ -82,6 +82,19 @@ export const PastEventsDropdown = () => {
                 }
               >
                 droidconKe 2022
+              </a>
+            </Link>
+          </div>
+          <div className="py-1 text-sm" role="none">
+            <Link href="/past-events/2023">
+              <a
+                className={
+                  router.pathname === '/past-events/2023'
+                    ? 'active-link'
+                    : 'link'
+                }
+              >
+                droidconKe 2023
               </a>
             </Link>
           </div>

@@ -58,14 +58,22 @@ function SponsorsList({
         <div className="items-center text-center py-10 md:py-20">
           <div className="w-full py-10">
             <h2 className="title lowercase dark:text-accent-dark">
-              <span>sponsored</span> <span className="font-medium"> by;</span>
+              <span>{year === 24 ? '' : `dcKe${year}`} sponsored</span>{' '}
+              <span className="font-medium"> by;</span>
             </h2>
             <div className="flex justify-center">
-              <p className="mt-8 md:w-7/12">
-                Please make sure to stop by and visit our sponsors at the show
-                and give them a high-five and a huge thank you for helping to
-                bring the community together at droidconke.
-              </p>
+              {year === 24 ? (
+                <p className="mt-8 md:w-7/12">
+                  Please make sure to stop by and visit our sponsors at the show
+                  and give them a high-five and a huge thank you for helping to
+                  bring the community together at droidconke.
+                </p>
+              ) : (
+                <p className="mt-8 md:w-7/12">
+                  Thanks for being our sponsors and for making droidconKe 20
+                  {year} a success.
+                </p>
+              )}
             </div>
           </div>
           <div className="w-full">
