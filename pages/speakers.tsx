@@ -1,7 +1,7 @@
 import axios from '../utils/axios'
 import { Speaker, Session } from '../types/types'
 // import { KeynoteSpeakers } from '../components/speakers/KeynoteSpeakers'
-import { SpeakerCard } from '../components/speakers/SpeakerCard'
+import { SpeakersList } from '../components/speakers/SpeakersList'
 
 export default function SpeakersPage({
   speakers,
@@ -31,28 +31,7 @@ export default function SpeakersPage({
               <KeynoteSpeakers />
             </div>
           </div> */}
-          <div>
-            <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 lowercase md:mt-12">
-              <span className="font-black">All</span> speakers
-            </h3>
-            <div className="py-10">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 gap-y-16">
-                {speakers.map((speaker) => {
-                  const speakerSession = sessions.find((s) =>
-                    s.speakers.find((sp) => sp.name === speaker.name)
-                  )
-
-                  return (
-                    <SpeakerCard
-                      speaker={speaker}
-                      slug={speakerSession?.slug}
-                      key={speaker.name}
-                    />
-                  )
-                })}
-              </div>
-            </div>
-          </div>
+          <SpeakersList sessions={sessions} speakers={speakers} />
         </div>
       </section>
     </div>

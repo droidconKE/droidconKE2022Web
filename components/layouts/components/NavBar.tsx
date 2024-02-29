@@ -79,7 +79,7 @@ export const NavBar = () => {
         <div
           className={`w-full md:w-8/12 flex-grow lg:flex ${
             navVisible ? 'bg-white dark:bg-dark' : ''
-          }`}
+          } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
           <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
             <li className="mr-3 black">
@@ -142,20 +142,24 @@ export const NavBar = () => {
             </li>
           </ul>
         </div>
-        {/* <div className="w-full md:w-2/12 flex md:justify-end mt-4 md:mt-0 px-4 md:px-0"> */}
-        {/* <Link href="/sponsors"> */}
-        {/* <a
-            className="btn-secondary"
-            href="https://bit.ly/getYourDcKE22Tickets"
-            target="_blank"
-            rel="noreferrer"
-          >
-            get your ticket
-          </a> */}
-        {/* </Link> */}
-        {/* </div> */}
+        <div
+          className={`w-full ${
+            isEventReady ? 'md:w-2/12' : 'md:w-3/12'
+          } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
+        >
+          <Link href="/sponsors">
+            <a
+              className="btn-secondary"
+              href="https://bit.ly/getYourDcKE22Tickets"
+              target="_blank"
+              rel="noreferrer"
+            >
+              get your ticket
+            </a>
+          </Link>
+        </div>
 
-        <div className="w-2/12 flex-grow  lg:flex justify-end">
+        <div className="w-2/12 flex-grow lg:flex justify-end">
           {showLogin &&
             (!isAuthenticated ? (
               <button

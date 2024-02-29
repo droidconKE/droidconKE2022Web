@@ -39,7 +39,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   apps and products, and to learn and teach.
                   <br /> <br />
                   This three-day developer focused gathering will be held in
-                  Nairobi Kenya on November 8th to 10th 2023 and will be the
+                  Nairobi Kenya on November 6th to 8th 2024 and will be the
                   largest of its kind in Africa.
                   <br /> <br />
                   It will have workshops and codelabs focused on the building of
@@ -83,8 +83,8 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 and products in the ecosystem.
                 <br />
                 <br />
-                The three-day gathering will be held in Nairobi, Kenya, from 8th
-                to 10th November 2023 and will be the largest in Africa.
+                The three-day gathering will be held in Nairobi, Kenya, from 6th
+                to 8th November 2024 and will be the largest in Africa.
                 <br />
                 <br />
                 The conference will include workshops, codelabs and talks geared
@@ -106,7 +106,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 Tanzania and Nigeria graced the event.
                 <br />
                 <br />
-                This year, we will host the 4th in-person event. Tech
+                This year, we will host the 5th in-person event. Tech
                 communities from the East African Region and continental members
                 will be present. Participants will have an excellent chance to
                 learn about Android development, opportunities and services in
