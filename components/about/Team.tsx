@@ -1,6 +1,25 @@
 import { Organizer } from '../../types/types'
 
-function Team({ organizers }: { organizers: Organizer[] }) {
+function Team({ organizers: unOrderedOrgs }: { organizers: Organizer[] }) {
+  const givenOrder: string[] = [
+    'Annunziata',
+    'Lincoln',
+    'Josh',
+    'Emmanuel',
+    'Evans',
+    'Tamre',
+    'Mwendwa',
+    'Jacqui',
+    'Harun',
+    'Marvin',
+  ]
+
+  const organizers = unOrderedOrgs.sort((a, b) => {
+    return (
+      givenOrder.indexOf(givenOrder.find((g) => b.name.includes(g)) || '') -
+      givenOrder.indexOf(givenOrder.find((g) => a.name.includes(g)) || '')
+    )
+  })
   return (
     <>
       <section className="l-container mt-4 md:mt-10">
@@ -25,14 +44,16 @@ function Team({ organizers }: { organizers: Organizer[] }) {
                     className="text-center"
                     rel="noreferrer"
                   >
-                    <div className="w-24 h-24 md:w-44 md:h-44 p-2 md:p-4 bg-green-c-2 rounded">
-                      <img
-                        className="w-full p-0 flex rounded-lg border border-accent-2"
-                        src={
-                          org.photo === null ? '/images/icon.png' : org.photo
-                        }
-                        alt={org.name}
-                      />
+                    <div className="flex justify-center">
+                      <div className="w-24 h-24 md:w-44 md:h-44 p-2 md:p-4 bg-green-c-2 rounded">
+                        <img
+                          className="w-full p-0 flex rounded-lg border border-accent-2"
+                          src={
+                            org.photo === null ? '/images/icon.png' : org.photo
+                          }
+                          alt={org.name}
+                        />
+                      </div>
                     </div>
                     <div className="self-start">
                       <p className="mt-2 w-full text-base md:text-xl">

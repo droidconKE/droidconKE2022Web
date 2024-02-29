@@ -5,7 +5,7 @@ import ErrorLayout from '../components/layouts/error'
 
 const Error: NextPageWithLayout = () => (
   <ErrorComponent
-    message="It's not you, seems we have an issue, you make come back later"
+    message="It's not you, seems we have an issue, you may come back later"
     status={500}
   />
 )

@@ -4,8 +4,8 @@ export const Footer = () => {
   return (
     <div>
       <section className="w-full bg-primary dark:bg-black-dark">
-        <div className="l-container md:py-12">
-          <div className="items-center flex flex-wrap my-10">
+        <div className="l-container py-6 md:py-12">
+          <div className="items-center flex flex-wrap md:my-10">
             <div className="w-full md:w-8/12 ml-auto mt-4 md:mt-0">
               <div className="text-left">
                 <h2 className="title-w lowercase text-white dark:text-accent-dark">
@@ -13,7 +13,7 @@ export const Footer = () => {
                 </h2>
               </div>
             </div>
-            <div className="w-full flex md:w-4/12 items-start mt-10 md:mt-0 justify-start px-2 md:px-3">
+            <div className="w-full flex md:w-4/12 items-start mt-10 md:mt-0 justify-start px-0 md:px-3">
               <div className="mt-0">
                 <a
                   className="btn-secondary"
@@ -22,7 +22,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Get your early bird Ticket
+                  Get your Ticket
                 </a>
               </div>
             </div>
@@ -36,17 +36,17 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-base">
-                      To Be Announced
+                      Daystar University - Nairobi Campus
                     </p>
 
-                    {/* <a
-                      href="https://goo.gl/maps/ZKyyQbFUM4miuiuL9"
+                    <a
+                      href="https://maps.app.goo.gl/e8tapzru1QwwMSHs5"
                       target="_blank"
                       className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
                     >
                       <i className="fa fa-map-marker" /> View Map location
-                    </a> */}
+                    </a>
                   </ul>
                 </div>
                 {showExtraInfo && (

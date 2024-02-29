@@ -109,7 +109,7 @@ const Home2022: NextPage<SessionProps> = ({
             <SessionsSkeleton />
           )}
         </section>
-        <SponsorsList sponsors={sponsors} />
+        <SponsorsList sponsors={sponsors} showSponsors year={22} />
       </div>
       {showFilterSession && (
         <FilterSessions

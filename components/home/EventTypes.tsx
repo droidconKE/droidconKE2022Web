@@ -20,8 +20,8 @@ export const EventTypes = () => {
                   <Image
                     src={`/images/events/${eventType.imageName}.png`}
                     alt={eventType.imageName}
-                    width={300}
-                    height={300}
+                    width={512}
+                    height={512}
                   />
                 </div>
                 <h4 className="mt-2 font-bold lowercase text-xl">

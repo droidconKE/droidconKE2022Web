@@ -2,9 +2,9 @@ export const Banner = () => {
   return (
     <div className="s-container">
       <div className="w-full flex flex-col md:flex-row items-center min-h-screen justify-between">
-        <div className="mt-32 md:mt-0">
+        <div className="mt-32 xl:mt-0">
           <h1 className="font-light text-3xl md:text-4xl black px-0">
-            <span className="lowercase">see you at</span> <br />
+            <span className="lowercase">welcome to</span> <br />
             <span className="font-black text-4xl md:text-5xl">
               DROIDCONKE23
             </span>
@@ -30,17 +30,20 @@ export const Banner = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                get your early bird ticket
+                get your ticket
               </a>
 
               {/* <a
-                href="https://bit.ly/speakatdroidconke22"
+                href="https://bit.ly/dcke23CFP"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent mt-3 md:mt-0"
               >
                 submit a talk
               </a> */}
+              <a href="/droidconke" className="btn-accent mt-3 md:mt-0">
+                sponsor droidconke
+              </a>
             </div>
             <div className="flex flex-wrap mt-8 md:mt-10 items-center">
               <img

@@ -56,7 +56,7 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
                       className="text-primary dark:text-accent text-sm lowercase font-medium"
                     >
                       <a
-                        href={speaker.twitter}
+                        href={speaker.twitter ?? String(speaker.linkedin)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary dark:text-accent text-sm lowercase font-medium"

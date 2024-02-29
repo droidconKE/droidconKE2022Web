@@ -1,5 +1,8 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import { gallery } from '../../constant/gallery'
+import { gallery2022 } from '../../constant/gallery2022'
+
+const allImages = [...gallery, ...gallery2022]
 
 const showMoreLink = false
 
@@ -10,15 +13,15 @@ export const Gallery = () => {
         <div className="w-full text-center p-6 md:py-10 items-center justify-center">
           <h2 className="title lowercase dark:text-accent-dark">
             <span>Photos From</span>{' '}
-            <span className="font-medium"> DroidconKe 2019</span>
+            <span className="font-medium">past DroidconKe</span>
           </h2>
         </div>
         <div className="w-full items-center flex flex-wrap">
           <div id="images-wrapper" className="lgx-photo-gallery">
-            {gallery.map((image) => {
+            {allImages.map((image) => {
               return (
                 <div className="lgx-gallery-single p-0.5" key={image.imageName}>
-                  <Image
+                  <img
                     title={image.imageTitle}
                     src={`/images/gallery/${image.imageName}.jpg`}
                     alt={image.imageTitle}

@@ -40,13 +40,13 @@ export interface Speaker {
   name: string
   tagline: string
   biography: string
-  avatar: string | null
-  twitter?: string
-  facebook?: string
-  linkedin?: string
-  instagram?: string
-  blog?: string
-  company_website?: string
+  avatar?: string | null
+  twitter?: null | string
+  facebook?: null | string
+  linkedin?: null | string
+  instagram?: null | string
+  blog?: null | string
+  company_website?: null | string
 }
 
 export interface Room {
@@ -61,6 +61,7 @@ export interface Session {
   slug?: string
   session_format: string
   session_level: string
+  session_category: string
   session_image: string
   backgroundColor: string
   borderColor: string

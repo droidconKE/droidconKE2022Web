@@ -17,8 +17,8 @@ export const eventTypes = [
   },
   {
     id: 3,
-    eventName: 'Interviews',
-    imageName: 'interview',
+    eventName: 'Talks',
+    imageName: 'talks',
     lightBG: 'bg-accent',
     darkBG: 'dark:bg-accent-dark',
     edgeRadius: 'md:rounded-none rounded-l-xl',
@@ -33,7 +33,7 @@ export const eventTypes = [
   },
   {
     id: 5,
-    eventName: 'Networking Bash',
+    eventName: 'Networking Party',
     imageName: 'party',
     lightBG: 'bg-accent-2',
     darkBG: 'dark:bg-accent-2-dark',
@@ -41,8 +41,8 @@ export const eventTypes = [
   },
   {
     id: 6,
-    eventName: 'HackBounty',
-    imageName: 'hackbounty',
+    eventName: 'Office Hours',
+    imageName: 'officehours',
     lightBG: 'bg-secondary',
     darkBG: 'dark:bg-secondary-dark',
     edgeRadius: 'rounded-r-xl',
