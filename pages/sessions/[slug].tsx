@@ -25,7 +25,7 @@ const Session: NextPage<SessionPageProp> = ({ session }) => {
           name="twitter:image"
           content={
             session.session_image ??
-            'https://droidcon.co.ke/images/droidcon-23-kenya-announcement.png'
+            'https://droidcon.co.ke/images/droidcon-24-kenya-announcement.png'
           }
         />
       </Head>

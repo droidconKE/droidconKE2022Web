@@ -45,12 +45,12 @@ export const Banner = () => {
                 sponsor droidconke
               </a>
             </div>
-            <div className="flex flex-wrap mt-8 md:mt-10 items-center">
-              {/* <img
-                className="h-[48px] md:h-[66px] mr-3"
-                src="/images/hashtag-23.png"
+            <div className="flex flex-wrap mt-6 md:mt-8 items-center">
+              <img
+                className="h-[58px] md:h-[80px] mr-3 mt-4"
+                src="/images/hashtag-24.png"
                 alt="droid alt"
-              /> */}
+              />
               <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
                 <span>06TH - 8TH</span> <br />
                 NOVEMBER
