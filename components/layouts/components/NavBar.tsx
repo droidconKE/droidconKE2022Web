@@ -7,6 +7,7 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import { Login } from '../../auth/Login'
 import { ToggleTheme } from './ToggleTheme'
 import { PastEventsDropdown } from './PastEventsDropdown'
+import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
@@ -150,7 +151,7 @@ export const NavBar = () => {
           <Link href="/sponsors">
             <a
               className="btn-secondary"
-              href="https://bit.ly/getYourDcKE22Tickets"
+              href={TICKETS_LINK}
               target="_blank"
               rel="noreferrer"
             >

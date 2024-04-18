@@ -1,3 +1,5 @@
+import { CFS_LINK, TICKETS_LINK } from '../../constant/constants'
+
 export const Banner = () => {
   return (
     <div className="s-container">
@@ -26,21 +28,21 @@ export const Banner = () => {
             <div className="flex flex-wrap space-x-2 md:space-x-4">
               <a
                 className="btn-primary mt-3 md:mt-0"
-                href="https://bit.ly/getYourDcKE22Tickets"
+                href={TICKETS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 get your ticket
               </a>
 
-              {/* <a
-                href="https://bit.ly/dcke23CFP"
+              <a
+                href={CFS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-accent mt-3 md:mt-0"
+                className="btn-secondary mt-3 md:mt-0"
               >
                 submit a talk
-              </a> */}
+              </a>
               <a href="/droidconke" className="btn-accent mt-3 md:mt-0">
                 sponsor droidconke
               </a>

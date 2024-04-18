@@ -1,3 +1,5 @@
+import { TICKETS_LINK } from '../../../constant/constants'
+
 export const Footer = () => {
   const showExtraInfo = true
 
@@ -18,7 +20,7 @@ export const Footer = () => {
                 <a
                   className="btn-secondary"
                   style={{ transition: 'all .15s ease' }}
-                  href="https://bit.ly/getYourDcKE22Tickets"
+                  href={TICKETS_LINK}
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -23,7 +23,6 @@ module.exports = {
         'secondary-2': '#FB7B3C',
         'accent-3': '#68DEA44D',
         // dark
-        // TODO: to replace when ready
         'primary-dark': '#000CEB',
         'secondary-dark': '#FF6E4D',
         'accent-dark': '#00E2C3',
