@@ -11,6 +11,7 @@ import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
 
   const [navVisible, setNavVisible] = useState(false)
@@ -78,7 +79,7 @@ export const NavBar = () => {
         }`}
       >
         <div
-          className={`w-full md:w-8/12 flex-grow lg:flex ${
+          className={`w-full flex-grow lg:flex ${
             navVisible ? 'bg-white dark:bg-dark' : ''
           } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
@@ -145,87 +146,88 @@ export const NavBar = () => {
         </div>
         <div
           className={`w-full ${
-            isEventReady ? 'md:w-2/12' : 'md:w-3/12'
+            isEventReady ? 'md:w-2/12' : showLogin ? 'md:w-3/12' : 'md:w-5/12'
           } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
         >
-          <Link href="/sponsors">
-            <a
-              className="btn-secondary"
-              href={TICKETS_LINK}
-              target="_blank"
-              rel="noreferrer"
-            >
-              get your ticket
-            </a>
-          </Link>
+          {/* <Link href="/sponsors"> */}
+          <a
+            className="btn-secondary"
+            href={TICKETS_LINK}
+            target="_blank"
+            rel="noreferrer"
+          >
+            get your ticket
+          </a>
+          {/* </Link> */}
         </div>
 
-        <div className="w-2/12 flex-grow lg:flex justify-end">
-          {showLogin &&
+        {showLogin && (
+          <div className="w-2/12 flex-grow lg:flex justify-end">
             (!isAuthenticated ? (
+            <button
+              type="button"
+              id="login-modal"
+              className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
+              onClick={() => setIsLoginOpen(true)}
+            >
+              <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
+                <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
+              </span>
+              <span className="black">Login</span>
+            </button>
+            ) : (
+            <div className="px-4 md:px-0 relative inine-block mt-3 md:mt-0">
               <button
                 type="button"
-                id="login-modal"
-                className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
-                onClick={() => setIsLoginOpen(true)}
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
-                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
-                  <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
-                </span>
-                <span className="black">Login</span>
-              </button>
-            ) : (
-              <div className="px-4 md:px-0 relative inine-block mt-3 md:mt-0">
-                <button
-                  type="button"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-accent dark:bg-accent-dark">
-                    <img
-                      className="rounded-full"
-                      src="/images/svg/maasai_male.svg"
-                      alt="avatar icon"
-                    />
-                    <span className="text-xs text-accent ml-2 block md:hidden">
-                      {currentUser?.name}
-                    </span>
+                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-accent dark:bg-accent-dark">
+                  <img
+                    className="rounded-full"
+                    src="/images/svg/maasai_male.svg"
+                    alt="avatar icon"
+                  />
+                  <span className="text-xs text-accent ml-2 block md:hidden">
+                    {currentUser?.name}
                   </span>
-                </button>
-                {isDropdownOpen && (
-                  <div
-                    id="userMenu"
-                    className=" rounded shadow-md absolute mt-12 top-0 lg:right-0 min-w-full z-30"
-                    onMouseLeave={() => setIsDropdownOpen(false)}
-                  >
-                    <div className="absolute top-0 lg:right-0 lg:mr-0 w-10 h-2 mt-1 origin-center transform rotate-45 translate-x-5 -translate-y-2 pinn pointer-events-none" />
-                    <ul className="w-[230px] bg-white dark:bg-dark rounded">
-                      <li>
-                        <div className="flex-wrap flex p-2 w-full items-center">
-                          <div className="w-7/12 flex-wrap flex border-r border-bg-black">
-                            <p>
-                              <small className="text-xs">Logged in as</small>
-                            </p>
-                            <span className="text-xs text-accent">
-                              {currentUser?.name}
-                            </span>
-                          </div>
-                          <div className="w-5/12 flex-wrap flex justify-center">
-                            <button
-                              className="dark:text-white text-sm"
-                              type="button"
-                              onClick={() => logoutUser()}
-                            >
-                              <i className="fa fa-sign-out" /> Logout
-                            </button>
-                          </div>
+                </span>
+              </button>
+              {isDropdownOpen && (
+                <div
+                  id="userMenu"
+                  className=" rounded shadow-md absolute mt-12 top-0 lg:right-0 min-w-full z-30"
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
+                  <div className="absolute top-0 lg:right-0 lg:mr-0 w-10 h-2 mt-1 origin-center transform rotate-45 translate-x-5 -translate-y-2 pinn pointer-events-none" />
+                  <ul className="w-[230px] bg-white dark:bg-dark rounded">
+                    <li>
+                      <div className="flex-wrap flex p-2 w-full items-center">
+                        <div className="w-7/12 flex-wrap flex border-r border-bg-black">
+                          <p>
+                            <small className="text-xs">Logged in as</small>
+                          </p>
+                          <span className="text-xs text-accent">
+                            {currentUser?.name}
+                          </span>
                         </div>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-        </div>
+                        <div className="w-5/12 flex-wrap flex justify-center">
+                          <button
+                            className="dark:text-white text-sm"
+                            type="button"
+                            onClick={() => logoutUser()}
+                          >
+                            <i className="fa fa-sign-out" /> Logout
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+            ))
+          </div>
+        )}
       </div>
       {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />}
     </nav>

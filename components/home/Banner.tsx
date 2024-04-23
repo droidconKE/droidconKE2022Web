@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import Link from 'next/link'
 import { CFS_LINK, TICKETS_LINK } from '../../constant/constants'
 
 export const Banner = () => {
@@ -25,6 +26,13 @@ export const Banner = () => {
               alt="line"
             />
           </div>
+          <div className="py-3 mb-5">
+            <p>
+              One ticket, 2 conferences. When you buy a ticket to droidconKe,{' '}
+              <br />
+              you are automatically registered to attend FlutterconKe{' '}
+            </p>
+          </div>
           <div>
             <div className="flex flex-wrap space-x-2 md:space-x-4">
               <a
@@ -44,9 +52,9 @@ export const Banner = () => {
               >
                 submit a talk
               </a>
-              <a href="/droidconke" className="btn-accent mt-3 md:mt-0">
-                sponsor droidconke
-              </a>
+              <Link href="/sponsors">
+                <a className="btn-accent mt-3 md:mt-0">sponsor droidconke</a>
+              </Link>
             </div>
             <div className="flex flex-wrap mt-6 md:mt-8 items-center">
               <img

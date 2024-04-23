@@ -100,6 +100,13 @@ export const Footer = () => {
                 <i className="fa fa-instagram black font-lg p-3 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-block text-center" />
               </a>
               <a
+                href="https://www.linkedin.com/company/droidconke/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="fa fa-linkedin black font-lg p-3 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-block text-center" />
+              </a>
+              <a
                 href="https://www.youtube.com/channel/UCNumwOLkQjVgNmYdG8-qHVg"
                 target="_blank"
                 rel="noreferrer"

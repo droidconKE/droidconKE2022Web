@@ -61,20 +61,22 @@ function SponsorsList({
               <span>{year === 24 ? '' : `dcKe${year}`} sponsored</span>{' '}
               <span className="font-medium"> by;</span>
             </h2>
-            <div className="flex justify-center">
-              {year === 24 ? (
-                <p className="mt-8 md:w-7/12">
-                  Please make sure to stop by and visit our sponsors at the show
-                  and give them a high-five and a huge thank you for helping to
-                  bring the community together at droidconke.
-                </p>
-              ) : (
-                <p className="mt-8 md:w-7/12">
-                  Thanks for being our sponsors and for making droidconKe 20
-                  {year} a success.
-                </p>
-              )}
-            </div>
+            {showSponsors && (
+              <div className="flex justify-center">
+                {year === 24 ? (
+                  <p className="mt-8 md:w-7/12">
+                    Please make sure to stop by and visit our sponsors at the
+                    show and give them a high-five and a huge thank you for
+                    helping to bring the community together at droidconke.
+                  </p>
+                ) : (
+                  <p className="mt-8 md:w-7/12">
+                    Thanks for being our sponsors and for making droidconKe 20
+                    {year} a success.
+                  </p>
+                )}
+              </div>
+            )}
           </div>
           <div className="w-full">
             <div className="md:p-0 sm:p-0 lg:gap-8">
