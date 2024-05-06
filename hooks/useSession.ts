@@ -78,6 +78,8 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
       ...(showMySessions ? mySchedules : originalSchedules),
     }
     Object.keys(newSchedule).forEach((key) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       // eslint-disable-next-line security/detect-object-injection
       newSchedule[key] = newSchedule[key].filter((e: Session) => {
         return (
