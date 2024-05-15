@@ -32,21 +32,29 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   src="/images/lines.png"
                   alt="line"
                 />
-                <p className="dark:text-lighter-dark pt-2 text-base md:text-2xl pr-0 md:pr-10 md:pb-16">
+                <p className="dark:text-lighter-dark pt-2 text-base md:text-xl pr-0 md:pr-10 md:pb-16">
                   Droidcon is a global conference focused on the engineering of
                   Android applications. Droidcon provides a forum for developers
                   to network with other developers, share techniques, announce
-                  apps and products, and to learn and teach.
-                  <br /> <br />
-                  This three-day developer focused gathering will be held in
-                  Nairobi Kenya on November 6th to 8th 2024 and will be the
-                  largest of its kind in Africa.
-                  <br /> <br />
-                  It will have workshops and codelabs focused on the building of
-                  Android applications and will give participants an excellent
-                  chance to learn about the local Android development ecosystem,
-                  opportunities and services as well as meet the engineers and
-                  companies who work on them.
+                  apps &products, learn, and teach. <br />
+                  <br />
+                  Droidcon Kenya stands as the largest Droidcon chapter in
+                  Sub-Saharan Africa, hosting an annual conference replete with
+                  workshops, talks, and sessions dedicated to Android and Kotlin
+                  technologies. Attendees are provided a prime opportunity to
+                  delve into the Android and Kotlin development ecosystems,
+                  explore various opportunities and services, and network with
+                  industry professionals and companies. <br />
+                  <br />
+                  Since its inception in 2018, Droidcon Kenya has steadily
+                  expanded its reach, attracting speakers and participants
+                  worldwide. With a seasoned team that has successfully
+                  organized four previous Droidcons, boasting over 3000
+                  attendees and 200 sessions, we are thrilled to present the 5th
+                  in-person event on November 6th - 8th 2024. The conference
+                  will unite global Android & Kotlin developers, exhibitioners,
+                  tech companies, and recruiters in Nairobi, Kenya, marking yet
+                  another conference of its kind in Sub-Saharan Africa.
                 </p>
               </div>
             </div>
