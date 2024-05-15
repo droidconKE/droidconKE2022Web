@@ -100,7 +100,7 @@ class MyDocument extends Document {
           {/* SEO Headers */}
           <meta
             name="description"
-            content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps and products, and to learn and teach."
+            content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
           />
           <meta
             name="keywords"
@@ -118,7 +118,7 @@ class MyDocument extends Document {
           {/* <!-- maximum 140 char --> */}
           <meta
             name="twitter:description"
-            content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps and products, and to learn and teach."
+            content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
           />
           {/* <!-- maximum 140 char --> */}
           <meta
@@ -142,7 +142,7 @@ class MyDocument extends Document {
           />
           <meta
             property="og:description"
-            content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps and products, and to learn and teach."
+            content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
           />
           {/* <!-- when you post this page url in facebook , this image will be shown -->
 	<!-- facebook open graph ends from here --></meta> */}
