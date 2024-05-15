@@ -32,7 +32,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                 {/* <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"> */}
                 <a
                   className="btn-secondary flex flex-wrap space-x-1 w-[220px] md:w-[250px] justify-center"
-                  href="/docs/DroidConKe_Prospectus(2023).pdf"
+                  href="/docs/dcke24-prospectus.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -129,7 +129,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                   {/* <Link href="/sponsors"> */}
                   <a
                     className="btn-secondary flex flex-wrap space-x-1 w-[220px] md:w-[250px] justify-center"
-                    href="/docs/DroidConKe_Prospectus(2023).pdf"
+                    href="/docs/dcke24-prospectus.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
