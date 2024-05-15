@@ -110,8 +110,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
                 We hosted the first-ever DroidconKE event in October 2018. More
                 than 500 people from various parts of the world were in
-                attendance. Quality speakers from Kenya, Germany, South Africa,
-                Tanzania and Nigeria graced the event.
+                attendance.
                 <br />
                 <br />
                 This year, we will host the 5th in-person event. Tech
