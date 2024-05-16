@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Script from 'next/script'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useContext } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import { ThemeProvider } from '../../context/ThemeContext'
+import { ThemeContext, ThemeProvider } from '../../context/ThemeContext'
 import { Footer } from './components/Footer'
 import { NavBar } from './components/NavBar'
 import { NotificationsPrompt } from './components/NotificationsPrompt'
@@ -12,6 +12,7 @@ import { EventFeedback } from './components/EventFeedback'
 
 export default function Layout({ children }: { children: ReactNode }) {
   const gTagCode = process.env.NEXT_PUBLIC_GOOGLE_TAG
+  const { isEventReady } = useContext(ThemeContext)
   return (
     <>
       <Head>
@@ -30,7 +31,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <main>{children}</main>
               </div>
               <Footer />
-              <EventFeedback />
+              {isEventReady && <EventFeedback />}
               <NotificationsPrompt />
             </div>
           </GoogleOAuthProvider>
