@@ -24,13 +24,13 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
             </div>
             <div className="w-full flex  md:w-5/12 mt-10 md:mt-0 justify-center md:justify-end">
               <div className="mt-0 mb-6 flex flex-col md:flex-row flex-wrap md:mb-0 md:space-x-4">
-                {/* <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe">
-                  <a className="btn-accent mt-3 md:mt-0 font-semibold rounded-lg">
+                <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe">
+                  <a className="btn-secondary mt-3 md:mt-0 font-semibold rounded-lg">
                     Sponsor droidconke
                   </a>
-                </Link> */}
+                </Link>
                 {/* <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"> */}
-                <a
+                {/* <a
                   className="btn-secondary flex flex-wrap space-x-1 w-[220px] md:w-[250px] justify-center"
                   href="/docs/dcke24-prospectus.pdf"
                   target="_blank"
@@ -42,7 +42,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                     src="/images/svg/arrow-btn.svg"
                     alt="icon"
                   />
-                </a>
+                </a> */}
                 {/* </Link> */}
               </div>
             </div>
@@ -127,7 +127,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                 </div>
                 <div className="mt-10 md:mt-12 mb-10 md:mb-0 flex justify-center">
                   {/* <Link href="/sponsors"> */}
-                  <a
+                  {/* <a
                     className="btn-secondary flex flex-wrap space-x-1 w-[220px] md:w-[250px] justify-center"
                     href="/docs/dcke24-prospectus.pdf"
                     target="_blank"
@@ -139,7 +139,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                       src="/images/svg/arrow-btn.svg"
                       alt="icon"
                     />
-                  </a>
+                  </a> */}
                   {/* </Link> */}
                 </div>
               </div>

@@ -36,7 +36,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   Droidcon is a global conference focused on the engineering of
                   Android applications. Droidcon provides a forum for developers
                   to network with other developers, share techniques, announce
-                  apps &products, learn, and teach. <br />
+                  apps & products, learn, and teach. <br />
                   <br />
                   Droidcon Kenya stands as the largest Droidcon chapter in
                   Sub-Saharan Africa, hosting an annual conference replete with
@@ -91,7 +91,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 and products in the ecosystem.
                 <br />
                 <br />
-                The three-day gathering will be held in Nairobi, Kenya, from 6th
+                {/* The three-day gathering will be held in Nairobi, Kenya, from 6th
                 to 8th November 2024 and will be the largest in Africa.
                 <br />
                 <br />
@@ -99,7 +99,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 towards Android development to help developers stay ahead of the
                 curve. It will be an excellent chance for participants to
                 network and connect with their fellow Android enthusiasts from
-                the African and continental communities.
+                the African and continental communities. */}
               </p>
             </div>
 

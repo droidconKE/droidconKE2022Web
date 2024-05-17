@@ -163,69 +163,69 @@ export const NavBar = () => {
 
         {showLogin && (
           <div className="w-2/12 flex-grow lg:flex justify-end">
-            (!isAuthenticated ? (
-            <button
-              type="button"
-              id="login-modal"
-              className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
-              onClick={() => setIsLoginOpen(true)}
-            >
-              <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
-                <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
-              </span>
-              <span className="black">Login</span>
-            </button>
-            ) : (
-            <div className="px-4 md:px-0 relative inine-block mt-3 md:mt-0">
+            {!isAuthenticated ? (
               <button
                 type="button"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                id="login-modal"
+                className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
+                onClick={() => setIsLoginOpen(true)}
               >
-                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-accent dark:bg-accent-dark">
-                  <img
-                    className="rounded-full"
-                    src="/images/svg/maasai_male.svg"
-                    alt="avatar icon"
-                  />
-                  <span className="text-xs text-accent ml-2 block md:hidden">
-                    {currentUser?.name}
-                  </span>
+                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
+                  <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
                 </span>
+                <span className="black">Login</span>
               </button>
-              {isDropdownOpen && (
-                <div
-                  id="userMenu"
-                  className=" rounded shadow-md absolute mt-12 top-0 lg:right-0 min-w-full z-30"
-                  onMouseLeave={() => setIsDropdownOpen(false)}
+            ) : (
+              <div className="px-4 md:px-0 relative inine-block mt-3 md:mt-0">
+                <button
+                  type="button"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
-                  <div className="absolute top-0 lg:right-0 lg:mr-0 w-10 h-2 mt-1 origin-center transform rotate-45 translate-x-5 -translate-y-2 pinn pointer-events-none" />
-                  <ul className="w-[230px] bg-white dark:bg-dark rounded">
-                    <li>
-                      <div className="flex-wrap flex p-2 w-full items-center">
-                        <div className="w-7/12 flex-wrap flex border-r border-bg-black">
-                          <p>
-                            <small className="text-xs">Logged in as</small>
-                          </p>
-                          <span className="text-xs text-accent">
-                            {currentUser?.name}
-                          </span>
+                  <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-accent dark:bg-accent-dark">
+                    <img
+                      className="rounded-full"
+                      src="/images/svg/maasai_male.svg"
+                      alt="avatar icon"
+                    />
+                    <span className="text-xs text-accent ml-2 block md:hidden">
+                      {currentUser?.name}
+                    </span>
+                  </span>
+                </button>
+                {isDropdownOpen && (
+                  <div
+                    id="userMenu"
+                    className=" rounded shadow-md absolute mt-12 top-0 lg:right-0 min-w-full z-30"
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                  >
+                    <div className="absolute top-0 lg:right-0 lg:mr-0 w-10 h-2 mt-1 origin-center transform rotate-45 translate-x-5 -translate-y-2 pinn pointer-events-none" />
+                    <ul className="w-[230px] bg-white dark:bg-dark rounded">
+                      <li>
+                        <div className="flex-wrap flex p-2 w-full items-center">
+                          <div className="w-7/12 flex-wrap flex border-r border-bg-black">
+                            <p>
+                              <small className="text-xs">Logged in as</small>
+                            </p>
+                            <span className="text-xs text-accent">
+                              {currentUser?.name}
+                            </span>
+                          </div>
+                          <div className="w-5/12 flex-wrap flex justify-center">
+                            <button
+                              className="dark:text-white text-sm"
+                              type="button"
+                              onClick={() => logoutUser()}
+                            >
+                              <i className="fa fa-sign-out" /> Logout
+                            </button>
+                          </div>
                         </div>
-                        <div className="w-5/12 flex-wrap flex justify-center">
-                          <button
-                            className="dark:text-white text-sm"
-                            type="button"
-                            onClick={() => logoutUser()}
-                          >
-                            <i className="fa fa-sign-out" /> Logout
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-            ))
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

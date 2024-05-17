@@ -51,7 +51,7 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
           <TwitterShareButton
             url={window.location.href}
             title={twTitle}
-            hashtags={['droidcon', 'droidconKe22', 'dcke22']}
+            hashtags={['droidcon', 'droidconKe24', 'dcke24']}
             related={['droidconke']}
           >
             <TwitterIcon size={32} round />

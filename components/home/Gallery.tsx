@@ -4,7 +4,7 @@ import { gallery2022 } from '../../constant/gallery2022'
 
 const allImages = [...gallery, ...gallery2022]
 
-const showMoreLink = false
+const showMoreLink = true
 
 export const Gallery = () => {
   return (
@@ -34,18 +34,44 @@ export const Gallery = () => {
           </div>
           <div className="w-full flex flex-wrap mt-4 mb-20 md:mb-0 justify-center items-center">
             {showMoreLink && (
-              <a
-                className="uppercase text-sm font-bold"
-                target="_blank"
-                href="https://droidconke.pixieset.com/droidconke2019/"
-                rel="noreferrer"
-              >
-                View More{' '}
-                <i
+              <div className="space-x-3 flex px-2">
+                <a
+                  className="lowercase font-bold btn-secondary"
+                  target="_blank"
+                  href="https://bit.ly/DCKE23Day1"
+                  rel="noreferrer"
+                >
+                  View Day 1 Photos{' '}
+                  {/* <i
                   className="fa fa-arrow-right ml-3"
                   style={{ transform: 'scale(2.0,0.8)' }}
-                />
-              </a>
+                /> */}
+                </a>
+                <a
+                  className="lowercase font-bold btn-secondary"
+                  target="_blank"
+                  href="https://bit.ly/DCKE23Day2"
+                  rel="noreferrer"
+                >
+                  View Day 2 Photos{' '}
+                  {/* <i
+                  className="fa fa-arrow-right ml-3"
+                  style={{ transform: 'scale(2.0,0.8)' }}
+                /> */}
+                </a>
+                <a
+                  className="lowercase font-bold btn-secondary"
+                  target="_blank"
+                  href="https://bit.ly/DCKE23Day3"
+                  rel="noreferrer"
+                >
+                  View Day 3 Photos{' '}
+                  {/* <i
+                  className="fa fa-arrow-right ml-3"
+                  style={{ transform: 'scale(2.0,0.8)' }}
+                /> */}
+                </a>
+              </div>
             )}
           </div>
         </div>
