@@ -8,8 +8,8 @@ function Organizers({ organizers }: { organizers: Organizer[] }) {
           <div className="w-full md:w-6/12 ml-auto">
             <div className="md:pr-12 text-left mt-3 md:mt-0">
               <h2 className="title lowercase dark:text-accent-dark">
-                <span>community partners</span>{' '}
-                <span className="font-medium"> by;</span>
+                <span>community</span>{' '}
+                <span className="font-medium"> partners;</span>
               </h2>
             </div>
           </div>
