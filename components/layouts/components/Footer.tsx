@@ -116,7 +116,8 @@ export const Footer = () => {
             </div>
             <div className="py-4">
               <p className="text-light dark:text-lighter text-xs">
-                Copyright © {new Date().getFullYear()}. All rights reserved
+                Copyright © {new Date().getFullYear()}. Powered By Codescape
+                Limited
               </p>
             </div>
           </div>
