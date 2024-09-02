@@ -104,7 +104,7 @@ class MyDocument extends Document {
           />
           <meta
             name="keywords"
-            content="Android, Event,  Conference, Meetup, droidCon, Kenya, KE, droidConKE, droidconke, Android254, Kotlin, Flutter, iOS, droidcon, droidcon africa, africa, android, 254 tech "
+            content="Android, Event,  Conference, Meetup, droidCon, Kenya, KE, droidConKE, droidconke, Android254, Kotlin, Flutter, iOS, droidcon, droidcon africa, africa, android, 254 tech"
           />
           <meta name="author" content="droidconKe" />
 
