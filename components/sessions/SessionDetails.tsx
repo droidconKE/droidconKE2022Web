@@ -21,7 +21,7 @@ export const SessionDetails = ({ session }: { session: Session }) => {
         <div className="pt-4 md:pt-6">
           {session.session_image && (
             <img
-              className="rounded-lg h-auto md:h-56"
+              className="rounded-lg h-auto"
               src={session.session_image}
               alt="session"
             />
@@ -45,11 +45,11 @@ export const SessionDetails = ({ session }: { session: Session }) => {
             </span>
           ))}
         </h4>
-        <p className=" text-xl md:text-2xl mt-1 font-bold">{session.title}</p>
+        <p className="text-xl md:text-2xl mt-1 font-bold">{session.title}</p>
         <h6 className="text-primary dark:text-white-dark font-bold mt-4 md:mt-10 w-full">
           Session Description:
         </h6>
-        <p className="p gray mt-2">{session.description}</p>
+        <p className="p gray mt-2 break-words">{session.description}</p>
 
         <div className="w-full justify-center md:justify-start flex flex-col mt-4 md:mt-10 mb-4 lg:mb-16">
           <StarIcon isStar={false} session={session} />

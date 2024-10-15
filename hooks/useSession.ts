@@ -9,7 +9,7 @@ const MY_SESSIONS = 'droidcon_my_sessions'
 
 export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
   const [showFilterSession, setShowFilterSession] = useState(false)
-  const [isGridView, setIsGridView] = useState(false)
+  const [isGridView, setIsGridView] = useState(true)
   const [activeTab, setActiveTab] = useState(0)
   const [showMySessions, setShowMysessions] = useState(false)
   const [loading, setLoading] = useState(false)

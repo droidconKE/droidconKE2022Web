@@ -102,7 +102,7 @@ const SessionListCard = ({
                 }
               </div>
             ) : (
-              <NoSessions />
+              <NoSessions key={key} />
             ))
         )}
       </div>

@@ -21,17 +21,17 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
 
   return (
     <div className="space-x-4 md:space-x-8 w-full md:w-1/3 flex justify-end items-center">
-      <button type="button" onClick={() => onChangeViewType(false)}>
-        <i
-          className={`fa fa-th-list text-2xl ${
-            isGridView ? 'text-white dark:text-white-dark' : 'text-secondary'
-          }`}
-        />
-      </button>
       <button type="button" onClick={() => onChangeViewType(true)}>
         <i
           className={`fa fa-th text-2xl ${
             !isGridView ? 'text-white dark:text-white-dark' : 'text-secondary'
+          }`}
+        />
+      </button>
+      <button type="button" onClick={() => onChangeViewType(false)}>
+        <i
+          className={`fa fa-th-list text-2xl ${
+            isGridView ? 'text-white dark:text-white-dark' : 'text-secondary'
           }`}
         />
       </button>
