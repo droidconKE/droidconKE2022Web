@@ -2,6 +2,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   render() {
+    const title = `The Largest Android Developers' Conference in Africa`
     return (
       <Html>
         <Head>
@@ -114,7 +115,7 @@ class MyDocument extends Document {
           <meta name="twitter:site" content="@droidconke" />
           <meta name="twitter:creator" content="@droidconke" />
           <meta name="twitter:url" content="https://droidcon.co.ke" />
-          <meta name="twitter:title" content="droidconKe" />
+          <meta name="twitter:title" content={title} />
           {/* <!-- maximum 140 char --> */}
           <meta
             name="twitter:description"
@@ -130,7 +131,7 @@ class MyDocument extends Document {
 	<!-- twitter card ends from here --> */}
 
           {/* <!-- facebook open graph starts from here, if you don't need then delete open graph related  --> */}
-          <meta property="og:title" content="droidconKe" />
+          <meta property="og:title" content={title} />
           <meta property="og:url" content="https://droidcon.co.ke/" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:site_name" content="droidconKe" />
