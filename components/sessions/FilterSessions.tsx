@@ -81,28 +81,32 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
                   >
                     {sessions[0]}
                   </button>
-                  <button
-                    name="level"
-                    type="button"
-                    value={sessions[1]}
-                    onClick={onClickFilter}
-                    className={`${
-                      filter?.level === sessions[1] && selectedClass
-                    } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
-                  >
-                    {sessions[1]}
-                  </button>
-                  <button
-                    name="level"
-                    type="button"
-                    value={sessions[2]}
-                    onClick={(e) => onClickFilter(e)}
-                    className={`${
-                      filter?.level === sessions[2] && selectedClass
-                    } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
-                  >
-                    {sessions[2]}
-                  </button>
+                  {sessions[1] && (
+                    <button
+                      name="level"
+                      type="button"
+                      value={sessions[1]}
+                      onClick={onClickFilter}
+                      className={`${
+                        filter?.level === sessions[1] && selectedClass
+                      } border border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
+                    >
+                      {sessions[1]}
+                    </button>
+                  )}
+                  {sessions[2] && (
+                    <button
+                      name="level"
+                      type="button"
+                      value={sessions[2]}
+                      onClick={(e) => onClickFilter(e)}
+                      className={`${
+                        filter?.level === sessions[2] && selectedClass
+                      } border rounded-r-md border-1 border-accent px-3 py-1 text-xs flex-1 text-center hover:cursor-pointer hover:bg-accent hover:text-black`}
+                    >
+                      {sessions[2]}
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

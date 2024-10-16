@@ -65,6 +65,20 @@ const SessionListCard = ({
                                 {truncateString(schedule.description, 150)}
                               </p>
                             )}
+                            {!schedule.is_serviceSession && (
+                              <p className="text-xs mt-2 mb-3">
+                                <span className="uppercase text-xs text-white dark:text-dark text-px-10 bg-black dark:bg-white-dark py-0.5 px-2 rounded-full">
+                                  #
+                                  {schedule.is_keynote
+                                    ? 'Keynote'
+                                    : schedule.session_level}
+                                </span>
+                                <span className="black"> | </span>{' '}
+                                <span className="text-primary dark:text-accent-dark">
+                                  {schedule.session_format}
+                                </span>{' '}
+                              </p>
+                            )}
                             <p className="text-xs md:text-sm font-light">
                               <span>
                                 {hour(schedule.start_date_time)} -{' '}
@@ -77,7 +91,6 @@ const SessionListCard = ({
                                 </span>
                               ))}
                             </p>
-                            {!schedule.is_serviceSession}
                             {schedule.speakers?.map((speaker) => (
                               <a
                                 key={speaker.avatar}

@@ -68,6 +68,20 @@ export const SessionGridCard = ({
                                 </span>
                               ))}
                             </h3>
+                            {!schedule.is_serviceSession && (
+                              <p className="text-xs mt-2">
+                                <span className="uppercase text-xs text-white dark:text-dark text-px-10 bg-black dark:bg-white-dark py-0.5 px-2 rounded-full">
+                                  #
+                                  {schedule.is_keynote
+                                    ? 'Keynote'
+                                    : schedule.session_level}
+                                </span>
+                                <span className="black"> | </span>{' '}
+                                <span className="text-primary dark:text-accent-dark">
+                                  {schedule.session_format}
+                                </span>{' '}
+                              </p>
+                            )}
                             {schedule.is_serviceSession ? (
                               <p className="text-sm mt-2 font-bold dark:text-white-dark mb-2">
                                 {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
