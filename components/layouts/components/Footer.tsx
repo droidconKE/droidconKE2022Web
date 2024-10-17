@@ -38,17 +38,17 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-base">
-                      TBA
+                      USIU-Africa
                     </p>
 
-                    {/* <a
-                      href="https://maps.app.goo.gl/e8tapzru1QwwMSHs5"
+                    <a
+                      href="https://maps.app.goo.gl/tjGDW8Tqf4ccZc3f6"
                       target="_blank"
                       className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
                     >
                       <i className="fa fa-map-marker" /> View Map location
-                    </a> */}
+                    </a>
                   </ul>
                 </div>
                 {showExtraInfo && (
