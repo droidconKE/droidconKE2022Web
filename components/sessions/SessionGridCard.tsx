@@ -61,7 +61,8 @@ export const SessionGridCard = ({
                         <div className="m-4 flex flex-1 flex-wrap">
                           <div>
                             <h3 className="text-light text-sm mt-4 w-full">
-                              @ {hour(schedule.start_date_time)} |{' '}
+                              @ {hour(schedule.start_date_time)} -{' '}
+                              {hour(schedule.end_date_time)} |{' '}
                               {schedule.rooms?.map((venue) => (
                                 <span key={venue.id} className="rooms">
                                   {venue.title}
