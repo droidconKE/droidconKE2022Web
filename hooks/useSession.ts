@@ -103,8 +103,9 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
   }, [handleSessionsToggle])
 
   const selectTabByday = useCallback(() => {
-    if (moment().format('DD') === '17') setActiveTab(1)
-    if (moment().format('DD') === '18') setActiveTab(2)
+    if (moment().format('DD') === '06') setActiveTab(1)
+    if (moment().format('DD') === '07') setActiveTab(2)
+    if (moment().format('DD') === '08') setActiveTab(2)
   }, [])
 
   useEffect(() => {
