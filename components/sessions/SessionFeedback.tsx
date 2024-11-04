@@ -32,6 +32,7 @@ export const SessionFeedback = ({
       .then((response) => {
         toast.success(response.data.message)
         setLoading(false)
+        closeDialog()
       })
       .catch((error) => {
         if (error.response.status === 422) {
@@ -68,7 +69,7 @@ export const SessionFeedback = ({
             onChange={(e) => setMessage(e.target.value)}
           />
           {errors?.feedback && (
-            <p className="text-red-500 text-xs italic">
+            <p className="text-red-500 dark:text-red-500 text-xs italic mt-1">
               {errors?.feedback[0]}.
             </p>
           )}
