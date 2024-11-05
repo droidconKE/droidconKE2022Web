@@ -41,7 +41,12 @@ export const SessionGridCard = ({
                             className="object-cover md:object-cover"
                             src={
                               schedule.session_image ??
-                              (year === 24
+                              // TODO: remove after 2024
+                              (schedule.title.includes(
+                                'Building And Scaling Tech'
+                              )
+                                ? '/images/panel.png'
+                                : year === 24
                                 ? '/images/all-new.png'
                                 : '/images/all.png')
                             }
