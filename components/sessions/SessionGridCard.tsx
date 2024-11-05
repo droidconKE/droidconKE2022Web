@@ -9,11 +9,14 @@ export const SessionGridCard = ({
   schedules,
   activeTab,
   from,
+  year = 24,
 }: {
   schedules: Schedule[]
   activeTab: number
   // eslint-disable-next-line react/require-default-props
   from?: string
+  // eslint-disable-next-line react/require-default-props
+  year?: number
 }) => {
   return (
     <>
@@ -37,7 +40,10 @@ export const SessionGridCard = ({
                           <img
                             className="object-cover md:object-cover"
                             src={
-                              schedule.session_image ?? '/images/all-new.png'
+                              schedule.session_image ??
+                              (year === 24
+                                ? '/images/all-new.png'
+                                : '/images/all.png')
                             }
                             alt={schedule.title}
                           />
@@ -51,7 +57,10 @@ export const SessionGridCard = ({
                               <img
                                 className="object-cover md:object-cover"
                                 src={
-                                  schedule.session_image ?? 'images/all-new.png'
+                                  schedule.session_image ??
+                                  (year === 24
+                                    ? '/images/all-new.png'
+                                    : '/images/all.png')
                                 }
                                 alt={schedule.title}
                               />
