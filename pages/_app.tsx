@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import 'react-toastify/dist/ReactToastify.min.css'
+import 'react-toastify/ReactToastify.css'
 import type { ReactElement, ReactNode, Fragment } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
