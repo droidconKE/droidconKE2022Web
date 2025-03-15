@@ -14,6 +14,12 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
+const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
+  AudioWorkletGlobalScope: globals.browser['AudioWorkletGlobalScope '],
+})
+
+delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope ']
+
 export default defineConfig([
   globalIgnores(['dist', '**/.next']),
   {
@@ -34,7 +40,7 @@ export default defineConfig([
 
     languageOptions: {
       globals: {
-        ...globals.browser,
+        ...GLOBALS_BROWSER_FIX,
         ...globals.node,
       },
 
