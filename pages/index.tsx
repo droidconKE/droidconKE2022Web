@@ -34,10 +34,8 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
               and opportunities and to network with Android experts in the
               ecosystem.
             </p>
-            <Link href="/about">
-              <a className="lowercase text-xl font-bold">
-                more about droidconke
-              </a>
+            <Link href="/about" className="lowercase text-xl font-bold">
+              more about droidconke
             </Link>
           </div>
           <div className="flex justify-center items-center w-full md:w-5/12 py-6">

@@ -103,8 +103,8 @@ function SponsorsList({
                     help make droidconKe happen and have your logo appear here
                     ...
                   </p>
-                  <Link href="/sponsors">
-                    <a className="btn-secondary w-56">sponsor droidconke</a>
+                  <Link href="/sponsors" className="btn-secondary w-56">
+                    sponsor droidconke
                   </Link>
                 </div>
               ) : (

@@ -20,8 +20,8 @@ export const Sponsor = () => {
                 </h6>
               </div>
               <div className="mt-5 md:mt-12 mb-10 md:mb-0">
-                <Link href="/sponsors">
-                  <a className="btn-secondary">sponsor droidconke</a>
+                <Link href="/sponsors" className="btn-secondary">
+                  sponsor droidconke
                 </Link>
               </div>
             </div>
