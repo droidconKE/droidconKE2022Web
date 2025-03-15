@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "heroku-postbuild": "npm run build",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
