@@ -105,12 +105,10 @@ export const SessionGridCard = ({
                                 from ? `?from=${from}` : ''
                               }`}
                             >
-                              <a>
-                                <p className="text-sm mt-2 font-bold dark:text-white-dark mb-2">
-                                  {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
-                                  {schedule.title}
-                                </p>
-                              </a>
+                              <p className="text-sm mt-2 font-bold dark:text-white-dark mb-2">
+                                {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
+                                {schedule.title}
+                              </p>
                             </Link>
                           )}
                           {schedule.description && (
