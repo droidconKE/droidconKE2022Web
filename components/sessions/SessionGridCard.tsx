@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour, truncateString } from '../../utils/helpers'
@@ -22,7 +21,6 @@ export const SessionGridCard = ({
     <>
       <div>
         {Object.keys(schedules)?.map(
-          // eslint-disable-next-line sonarjs/cognitive-complexity
           (key, i) =>
             activeTab === i &&
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -156,7 +154,7 @@ export const SessionGridCard = ({
             ))
         )}
       </div>
-      <style jsx>
+      <style>
         {`
           .rooms ~ .rooms::before {
             content: ', ';

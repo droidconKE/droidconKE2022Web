@@ -38,7 +38,6 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
       >
         {session.speakers.map((speaker) => {
           return (
-            // eslint-disable-next-line react/no-array-index-key
             <div key={speaker.name}>
               <div className="w-full flex items-start text-center">
                 <div className="w-1/3 md:pr-4 flex-none bg-green-c-2 rounded">

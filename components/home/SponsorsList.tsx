@@ -4,7 +4,6 @@ import { useCallback, useContext } from 'react'
 import { Sponsor } from '../../types/types'
 import { ThemeContext } from '../../context/ThemeContext'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 function SponsorsList({
   sponsors,
   showSponsors = true,

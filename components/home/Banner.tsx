@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import Link from 'next/link'
 import { TICKETS_LINK } from '../../constant/constants'
 

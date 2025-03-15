@@ -21,7 +21,6 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
     (s) => ` ${s.name}`
   )} \r`
   const twTitle = `${session.title} by ${session.speakers.map(
-    // eslint-disable-next-line sonarjs/no-nested-template-literals
     (s) => ` ${s.twitter ? `@${s.twitter.split('twitter.com/')[1]}` : s.name}`
   )} \r`
 

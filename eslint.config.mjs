@@ -67,9 +67,20 @@ export default defineConfig([
     },
 
     rules: {
-      '@typescript-eslint/no-unused-vars': 'error',
+      // Disable base ESLint no-unused-vars
+      'no-unused-vars': 'off',
+      // Configure TypeScript version
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/no-explicit-any': 'error',
       'react/react-in-jsx-scope': 'off',
+      'react/function-component-definition': 'off',
 
       'react/jsx-filename-extension': [
         1,

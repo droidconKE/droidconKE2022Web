@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useComponentVisible from '../../../hooks/useComponentVisible'
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
 export const PastEventsDropdown = () => {
   const [showMenu, setShowMenu] = useState(false)
   const { ref, isComponentVisible, setIsComponentVisible } =
@@ -26,7 +25,6 @@ export const PastEventsDropdown = () => {
         >
           <span
             className={
-              // eslint-disable-next-line sonarjs/no-duplicate-string
               router.pathname.includes('past-events')
                 ? 'active-link -ml-3'
                 : 'link -ml-3'

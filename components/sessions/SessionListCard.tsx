@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour, time, timeAm, truncateString } from '../../utils/helpers'
@@ -115,7 +114,7 @@ const SessionListCard = ({
             ))
         )}
       </div>
-      <style jsx>
+      <style>
         {`
           .rooms ~ .rooms::before {
             content: ', ';

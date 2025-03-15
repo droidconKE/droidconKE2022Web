@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -11,7 +10,6 @@ import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
 
   const [navVisible, setNavVisible] = useState(false)

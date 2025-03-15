@@ -24,7 +24,7 @@ export const ToggleTheme = () => {
         </div>
         <div className="ml-3 text-gray-700 font-sm" />
       </button>
-      <style jsx>
+      <style>
         {`
           .toggle__dot {
             top: -0.25rem;
