@@ -5,6 +5,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { ToastContainer } from 'react-toastify'
 import Layout from '../components/layouts/default'
+import { Workbox } from 'workbox-window'
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -15,6 +16,10 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+    const wb = new Workbox('/sw.js')
+    wb.register()
+  }
   const PageNode = () => (
     <>
       <Component {...pageProps} />
