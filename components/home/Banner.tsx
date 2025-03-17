@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CFS_LINK, TICKETS_LINK } from '../../constant/constants'
+import { CFS_LINK } from '../../constant/constants'
 
 export const Banner = () => {
   return (
