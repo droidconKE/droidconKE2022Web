@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import type { NextPage } from 'next'
 import { Organizer } from '../types/types'
 import OrganizingTeam from '../components/about/Team'

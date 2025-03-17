@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useComponentVisible from '../../../hooks/useComponentVisible'
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
 export const PastEventsDropdown = () => {
   const [showMenu, setShowMenu] = useState(false)
   const { ref, isComponentVisible, setIsComponentVisible } =
@@ -26,7 +25,6 @@ export const PastEventsDropdown = () => {
         >
           <span
             className={
-              // eslint-disable-next-line sonarjs/no-duplicate-string
               router.pathname.includes('past-events')
                 ? 'active-link -ml-3'
                 : 'link -ml-3'
@@ -73,29 +71,23 @@ export const PastEventsDropdown = () => {
           ref={ref}
         >
           <div className="py-1 text-sm" role="none">
-            <Link href="/past-events/2022">
-              <a
-                className={
-                  router.pathname === '/past-events/2022'
-                    ? 'active-link'
-                    : 'link'
-                }
-              >
-                droidconKe 2022
-              </a>
+            <Link
+              href="/past-events/2022"
+              className={
+                router.pathname === '/past-events/2022' ? 'active-link' : 'link'
+              }
+            >
+              droidconKe 2022
             </Link>
           </div>
           <div className="py-1 text-sm" role="none">
-            <Link href="/past-events/2023">
-              <a
-                className={
-                  router.pathname === '/past-events/2023'
-                    ? 'active-link'
-                    : 'link'
-                }
-              >
-                droidconKe 2023
-              </a>
+            <Link
+              href="/past-events/2023"
+              className={
+                router.pathname === '/past-events/2023' ? 'active-link' : 'link'
+              }
+            >
+              droidconKe 2023
             </Link>
           </div>
         </div>

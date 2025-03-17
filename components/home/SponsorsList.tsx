@@ -4,7 +4,6 @@ import { useCallback, useContext } from 'react'
 import { Sponsor } from '../../types/types'
 import { ThemeContext } from '../../context/ThemeContext'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 function SponsorsList({
   sponsors,
   showSponsors = true,
@@ -103,8 +102,8 @@ function SponsorsList({
                     help make droidconKe happen and have your logo appear here
                     ...
                   </p>
-                  <Link href="/sponsors">
-                    <a className="btn-secondary w-56">sponsor droidconke</a>
+                  <Link href="/sponsors" className="btn-secondary w-56">
+                    sponsor droidconke
                   </Link>
                 </div>
               ) : (

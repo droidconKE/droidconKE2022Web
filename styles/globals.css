@@ -1,3 +1,5 @@
+/* @import "tailwindcss"; */
+
 :root {
   --font-family: 'Montserrat', sans-serif;
   --font-slab: 'Montserrat', sans-serif;
@@ -91,7 +93,7 @@ video::-webkit-media-controls-fullscreen-button {
 @tailwind components;
 @tailwind utilities;
 
-/*  reusable */
+ /* reusable */
 
 @layer components {
   .black,
@@ -122,7 +124,7 @@ video::-webkit-media-controls-fullscreen-button {
   .title {
     @apply uppercase font-black text-3xl md:text-5xl text-primary dark:text-primary-dark
   }
-  
+
   .title-w {
     @apply uppercase font-black text-3xl md:text-5xl text-white
   }

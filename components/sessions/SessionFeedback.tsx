@@ -102,8 +102,8 @@ export const SessionFeedback = ({
             {loading
               ? 'Sending Feedback ...'
               : sessionSlug
-              ? 'Session Feedback'
-              : 'Event Feedback'}
+                ? 'Session Feedback'
+                : 'Event Feedback'}
           </button>
         </div>
       </>

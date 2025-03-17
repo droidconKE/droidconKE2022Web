@@ -4,6 +4,8 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './constant/**/*.{js,ts}',
+    './globals.css',
+    './styles/**/*.{css,scss,sass}',
   ],
   theme: {
     container: {

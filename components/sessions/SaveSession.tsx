@@ -34,7 +34,7 @@ export const SaveSession = ({
           {isSaved ? 'Remove Session' : 'Save Session'}
         </div>
       </button>
-      <style jsx>
+      <style>
         {`
           .toggle__dot {
             top: -0.25rem;

@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable security/detect-object-injection */
-/* eslint-disable no-console */
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
@@ -18,8 +15,7 @@ export const NotificationsPrompt = () => {
   const toggleModal = () => {
     const body = document.querySelector('body')
     const modals = document.querySelectorAll('#notification-modal')
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < modals.length; i++) {
+    for (let i = 0; i < modals.length; i += 1) {
       modals[i].classList.toggle('opacity-0')
       modals[i].classList.toggle('pointer-events-none')
     }
@@ -39,11 +35,11 @@ export const NotificationsPrompt = () => {
 
   const sendTokenToServer = useCallback((currentToken: string) => {
     if (!isTokenSentToServer()) {
-      console.log('Sending token to server...')
+      // console.log('Sending token to server...')
       setTokenToTopic(currentToken)
       setTokenSentToServer(true)
     } else {
-      console.log("Token already sent to server so won't send it again ")
+      // console.log("Token already sent to server so won't send it again ")
     }
   }, [])
   const promptNotifications = () => {
@@ -53,22 +49,23 @@ export const NotificationsPrompt = () => {
       setTokenSentToServer(true)
     } else {
       Notification.requestPermission().then((permission) => {
-        console.log('Notification permission granted.')
+        // console.log('Notification permission granted.')
         toggleModal()
         // Get Token
         if (permission === 'granted') {
           toast.success('You will receive regular updates from droidconKe')
           getToken(messaging, { vapidKey: process.env.FIREBASE_PUBLIC_KEY })
             .then((token) => {
-              console.log(token)
+              // console.log(token)
               sendTokenToServer(token)
             })
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             .catch((err) => {
-              console.log('An error occurred while retrieving token. ', err)
+              // console.log('An error occurred while retrieving token. ', err)
             })
         } else if (permission === 'denied') {
           toast.error("Notifications from droidconKe won't be sent to you")
-          console.log('Unable to get permission to notify.')
+          // console.log('Unable to get permission to notify.')
         }
       })
     }
@@ -87,53 +84,55 @@ export const NotificationsPrompt = () => {
     }
     isMessage()
     if (isMessageSupported && isClient) {
-      console.log('Messaging Supported')
+      // console.log('Messaging Supported')
       const messaging = getMessaging(app)
 
       if (Notification.permission === 'granted') {
-        console.log('allowed')
+        // console.log('allowed')
         getToken(messaging, { vapidKey: process.env.FIREBASE_PUBLIC_KEY })
           .then((token) => {
-            console.log(token)
+            // console.log(token)
             sendTokenToServer(token)
           })
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           .catch((err) => {
-            console.log('An error occurred while retrieving token. ', err)
+            // console.log('An error occurred while retrieving token. ', err)
           })
       } else if (
         // Notification.permission === 'blocked' ||
         Notification.permission === 'denied'
       ) {
         /* the user has previously denied push. Can't reprompt. */
-        console.log('denied')
+        // console.log('denied')
       } else if (
         Notification.permission === 'default' &&
         !isTokenSentToServer()
       ) {
-        console.log('default')
+        // console.log('default')
         toggleModal()
       }
       // Callback fired if Instance ID token is updated.
       // messaging.onTokenRefresh( () {
       //   getToken(messaging, { vapidKey: process.env.FIREBASE_PUBLIC_KEY })
       //     .then( (refreshedToken) => {
-      //       console.log('Token refreshed.')
+      //       // console.log('Token refreshed.')
       //       // to the app server.
       //       setTokenSentToServer(false)
       //       // Send Instance ID token to app server.
       //       sendTokenToServer(refreshedToken)
       //     })
       //     .catch( (err) => {
-      //       console.log('Unable to retrieve refreshed token ', err)
+      //       // console.log('Unable to retrieve refreshed token ', err)
       //       setTokenSentToServer(false)
       //     })
       // })
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onMessage(messaging, (payload) => {
-        console.log('Message received. ', payload)
+        // console.log('Message received. ', payload)
       })
     } else {
-      console.log('Not Supported')
+      // console.log('Not Supported')
     }
   }, [isMessageSupported, sendTokenToServer])
 

@@ -4,8 +4,8 @@ import { groupBy3, objIsEmpty } from '../../utils/helpers'
 import { Event, FilterInterface } from '../../types/types'
 
 interface FilterSessionProps {
-  setShowFilterSession: (showFilterSession: boolean) => void
-  filterSession: (filter: FilterInterface) => void
+  setShowFilterSession: (_showFilterSession: boolean) => void
+  filterSession: (_filter: FilterInterface) => void
   event: Event
 }
 

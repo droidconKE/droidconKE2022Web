@@ -14,24 +14,21 @@ export const SpeakerCard = ({
       href={
         slug
           ? `/sessions/${slug}?from=/speakers`
-          : speaker.linkedin ?? String(speaker.twitter)
+          : (speaker.linkedin ?? String(speaker.twitter))
       }
+      className="bg-accent-3 dark:bg-accent-3-dark rounded-lg border-accent-3 dark:border-accent-3-dark"
+      target={slug ? undefined : '_blank'}
+      rel={slug ? undefined : 'noreferrer noopener'}
     >
-      <a
-        className="bg-accent-3 dark:bg-accent-3-dark rounded-lg border-accent-3 dark:border-accent-3-dark"
-        target={slug ? undefined : '_blank'}
-        rel={slug ? undefined : 'noreferrer noopener'}
-      >
-        <img
-          className="rounded-t-lg"
-          src={speaker.avatar ?? '/images/icon.png'}
-          alt={speaker.name}
-        />
-        <div className="p-2 md:p-4 text-center rounded-b-lg mt-auto">
-          <h4 className="text-base md:text-xl">{speaker.name}</h4>
-          <p className="text-xs md:text-sm">{speaker.tagline}</p>
-        </div>
-      </a>
+      <img
+        className="rounded-t-lg"
+        src={speaker.avatar ?? '/images/icon.png'}
+        alt={speaker.name}
+      />
+      <div className="p-2 md:p-4 text-center rounded-b-lg mt-auto">
+        <h4 className="text-base md:text-xl">{speaker.name}</h4>
+        <p className="text-xs md:text-sm">{speaker.tagline}</p>
+      </div>
     </Link>
   </div>
 )

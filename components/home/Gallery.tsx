@@ -75,7 +75,7 @@ export const Gallery = () => {
             )}
           </div>
         </div>
-        <style jsx>
+        <style>
           {`
             #images-wrapper {
               width: 100% !important;

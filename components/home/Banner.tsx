@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import Link from 'next/link'
 import { TICKETS_LINK } from '../../constant/constants'
 
@@ -52,8 +51,8 @@ export const Banner = () => {
               >
                 submit a talk
               </a> */}
-              <Link href="/sponsors">
-                <a className="btn-accent mt-3 md:mt-0">sponsor droidconke</a>
+              <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
+                sponsor droidconke
               </Link>
             </div>
             <div className="flex flex-wrap mt-6 md:mt-8 items-center">
