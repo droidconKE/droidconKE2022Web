@@ -49,7 +49,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   worldwide. With a seasoned team that has successfully
                   organized four previous Droidcons, boasting over 3000
                   attendees and 200 sessions, we are thrilled to present the 5th
-                  in-person event on November 6th - 8th 2024. The conference
+                  in-person event on November 5th - 7th 2025. The conference
                   will unite global Android & Kotlin developers, exhibitioners,
                   tech companies, and recruiters in Nairobi, Kenya, marking yet
                   another conference of its kind in Sub-Saharan Africa.
@@ -111,7 +111,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 attendance.
                 <br />
                 <br />
-                This year, we will host the 5th in-person event. Tech
+                This year, we will host the 6th in-person event. Tech
                 communities from the East African Region and continental members
                 will be present. Participants will have an excellent chance to
                 learn about Android development, opportunities and services in

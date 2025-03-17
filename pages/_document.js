@@ -123,7 +123,7 @@ const Document = () => {
         {/* <!-- maximum 140 char --> */}
         <meta
           name="twitter:image"
-          content="https://droidcon.co.ke/images/droidcon-24-kenya-announcement.png"
+          content="https://droidcon.co.ke/images/droidcon-25-kenya-announcement.png"
         />
         <meta name="twitter:image:alt" content="droidcon logo" />
         {/* <!-- when you post this page url in twitter , this image will be shown -->
@@ -138,7 +138,7 @@ const Document = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://droidcon.co.ke/images/droidcon-24-kenya-announcement.png"
+          content="https://droidcon.co.ke/images/droidcon-25-kenya-announcement.png"
         />
         <meta
           property="og:description"
