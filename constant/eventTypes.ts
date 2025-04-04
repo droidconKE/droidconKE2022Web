@@ -1,19 +1,20 @@
 export const eventTypes = [
-  {
-    id: 1,
-    eventName: 'Community Day',
-    imageName: 'community',
-    lightBG: 'bg-secondary',
-    darkBG: 'dark:bg-secondary-dark',
-    edgeRadius: 'rounded-l-xl',
-  },
+  // {
+  //   id: 1,
+  //   eventName: 'Community Day',
+  //   imageName: 'community',
+  //   lightBG: 'bg-secondary',
+  //   darkBG: 'dark:bg-secondary-dark',
+  //   edgeRadius: 'rounded-l-xl',
+  // },
   {
     id: 2,
     eventName: 'Workshops',
     imageName: 'workshop',
     lightBG: 'bg-primary',
+    edgeRadius: 'rounded-l-xl',
     darkBG: 'dark:bg-primary-dark',
-    edgeRadius: 'md:rounded-none rounded-r-xl',
+    // edgeRadius: 'md:rounded-none rounded-r-xl',
   },
   {
     id: 3,
