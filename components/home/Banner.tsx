@@ -56,14 +56,15 @@ export const Banner = () => {
               </Link>
             </div>
             <div className="flex flex-wrap mt-6 md:mt-8 items-center">
-              <img
+              {/* <img
                 className="h-[58px] md:h-[80px] mr-3 mt-4"
                 src="/images/hashtag-24.png"
                 alt="droid alt"
-              />
+              /> */}
               <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
-                <span>05TH - 7TH</span> <br />
-                NOVEMBER
+                <span>05TH - 7TH </span>
+                {/* <br /> */}
+                NOVEMBER 2025
               </div>
             </div>
           </div>
