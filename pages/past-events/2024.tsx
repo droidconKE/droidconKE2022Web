@@ -49,7 +49,7 @@ const Home2024: NextPage<SessionProps> = ({
           <div className="l-container mt-8 md:mt-0 py-2 md:py-4">
             <div className="w-full flex justify-between md:flex-row items-center mt-5 md:mt-6">
               <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
-                dcKe23 Sessions
+                dcKe24 Sessions
               </h3>
               <SessionToggles
                 setShowFilterSession={setShowFilterSession}
