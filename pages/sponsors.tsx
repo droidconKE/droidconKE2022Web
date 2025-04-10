@@ -24,10 +24,11 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
             </div>
             <div className="w-full flex  md:w-5/12 mt-10 md:mt-0 justify-center md:justify-end">
               <div className="mt-0 mb-6 flex flex-col md:flex-row flex-wrap md:mb-0 md:space-x-4">
-                <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe">
-                  <a className="btn-secondary mt-3 md:mt-0 font-semibold rounded-lg">
-                    Sponsor droidconke
-                  </a>
+                <Link
+                  href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"
+                  className="btn-secondary mt-3 md:mt-0 font-semibold rounded-lg"
+                >
+                  Sponsor droidconke
                 </Link>
                 {/* <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"> */}
                 {/* <a
@@ -71,7 +72,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                 <div className="w-full px-0 pl-0 md:pl-24">
                   {/* <img src="/images/svg/numbers.svg" alt="dread" /> */}
                   <h3 className="text-3xl md:text-4xl text-black dark:text-accent font-medium w-full mt-6 md:mt-0">
-                    <span className="font-black">dcKE24</span> at a glance
+                    <span className="font-black">dcKE25</span> at a glance
                   </h3>
                   <div className="py-4 md:py-5">
                     <div>
@@ -79,7 +80,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                         700+
                       </h4>
                       <h5 className="text-primary font-bold -mt-3 text-sm md:text-base">
-                        2024 Attendees Target
+                        2025 Attendees Target
                       </h5>
                     </div>
                     <div className="flex justify-end -mt-5">
@@ -115,7 +116,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
             <div className="w-full flex justify-center">
               <div className="text-center">
                 <h2 className="title text-accent lowercase">
-                  <span className="font-medium">Sponsor droidcon24</span>
+                  <span className="font-medium">Sponsor droidcon25</span>
                 </h2>
                 <div className="w-full">
                   <h6 className="mt-4 dark:text-lighter-dark text-xl md:text-2xl">
@@ -152,7 +153,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
               <h3 className="text-2xl md:text-3xl text-primary dark:text-white-dark pt-6 md:pt-0 lowercase">
-                <span className="font-black">To Sponsor</span> Droidcoke 2024
+                <span className="font-black">To Sponsor</span> Droidcoke 2025
                 Contacts us at?
               </h3>
               <p className="text-base text-primary dark:text-white-dark mt-3">
@@ -165,10 +166,11 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
               <div className="grow h-2 bg-secondary" />
             </div>
             <div className="w-8/12 flex md:w-4/12 mb-10 md:mb-0 justify-center px-2">
-              <Link href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe">
-                <a className=" text-xs md:text-base btn-accent mt-3 md:mt-0">
-                  Sponsor droidconke
-                </a>
+              <Link
+                href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"
+                className=" text-xs md:text-base btn-accent mt-3 md:mt-0"
+              >
+                Sponsor droidconke
               </Link>
             </div>
             <div className="w-2/12 md:w-4/12 ml-auto px-0 md:px-8 mb-8 md:mb-0">
@@ -177,7 +179,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
         </div>
       </section>
-      <SponsorsList sponsors={sponsors} showSponsors year={24} />
+      <SponsorsList sponsors={sponsors} showSponsors={false} year={25} />
     </div>
   )
 }

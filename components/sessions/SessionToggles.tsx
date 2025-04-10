@@ -3,9 +3,11 @@ import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 
 interface SessionPageProps {
-  setShowFilterSession: (showFilterSession: boolean) => void
-  onChangeViewType: (viewType: boolean) => void
-  onMySessions: (val: boolean) => void
+  setShowFilterSession: (_showFilterSession: boolean) => void
+
+  onChangeViewType: (_viewType: boolean) => void
+
+  onMySessions: (_val: boolean) => void
   isGridView: boolean
   isMySessions: boolean
 }
@@ -57,7 +59,7 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
               My Sessions
             </div>
           </button>
-          <style jsx>
+          <style>
             {`
               .toggle__dot {
                 top: -0.25rem;

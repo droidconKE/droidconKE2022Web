@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -11,7 +10,6 @@ import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
 
   const [navVisible, setNavVisible] = useState(false)
@@ -37,21 +35,19 @@ export const NavBar = () => {
     <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
       <div className="flex items-center flex-shrink-0 text-white mr-6 xl:pl-24">
         <Link href="/">
-          <a>
-            {!isDarkTheme ? (
-              <img
-                className="w-[200px] xl:w-[250px]"
-                src="/images/logo.svg"
-                alt="logo"
-              />
-            ) : (
-              <img
-                className="w-[200px] md:w-[250px]"
-                src="/images/logo-dark.svg"
-                alt="logo dark"
-              />
-            )}
-          </a>
+          {!isDarkTheme ? (
+            <img
+              className="w-[200px] xl:w-[250px]"
+              src="/images/logo.svg"
+              alt="logo"
+            />
+          ) : (
+            <img
+              className="w-[200px] md:w-[250px]"
+              src="/images/logo-dark.svg"
+              alt="logo dark"
+            />
+          )}
         </Link>
       </div>
       <div className="block lg:hidden">
@@ -85,58 +81,55 @@ export const NavBar = () => {
         >
           <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
             <li className="mr-3 black">
-              <Link href="/">
-                <a className={router.pathname === '/' ? 'active-link' : 'link'}>
-                  Home
-                </a>
+              <Link
+                href="/"
+                className={router.pathname === '/' ? 'active-link' : 'link'}
+              >
+                Home
               </Link>
             </li>
             {showSessions && (
               <li className="mr-3">
-                <Link href="/sessions">
-                  <a
-                    className={
-                      router.pathname === '/sessions' ? 'active-link' : 'link'
-                    }
-                  >
-                    Sessions
-                  </a>
+                <Link
+                  href="/sessions"
+                  className={
+                    router.pathname === '/sessions' ? 'active-link' : 'link'
+                  }
+                >
+                  Sessions
                 </Link>
               </li>
             )}
             {showSpeakers && (
               <li className="mr-3">
-                <Link href="/speakers">
-                  <a
-                    className={
-                      router.pathname === '/speakers' ? 'active-link' : 'link'
-                    }
-                  >
-                    Speakers
-                  </a>
+                <Link
+                  href="/speakers"
+                  className={
+                    router.pathname === '/speakers' ? 'active-link' : 'link'
+                  }
+                >
+                  Speakers
                 </Link>
               </li>
             )}
             <li className="mr-3">
-              <Link href="/about">
-                <a
-                  className={
-                    router.pathname === '/about' ? 'active-link' : 'link'
-                  }
-                >
-                  About
-                </a>
+              <Link
+                href="/about"
+                className={
+                  router.pathname === '/about' ? 'active-link' : 'link'
+                }
+              >
+                About
               </Link>
             </li>
             <li className="mr-3">
-              <Link href="/sponsors">
-                <a
-                  className={
-                    router.pathname === '/sponsors' ? 'active-link' : 'link'
-                  }
-                >
-                  Sponsors
-                </a>
+              <Link
+                href="/sponsors"
+                className={
+                  router.pathname === '/sponsors' ? 'active-link' : 'link'
+                }
+              >
+                Sponsors
               </Link>
             </li>
             <li className="mr-3">
@@ -150,14 +143,14 @@ export const NavBar = () => {
           } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
         >
           {/* <Link href="/sponsors"> */}
-          <a
+          <Link
             className="btn-secondary"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"
           >
             get your ticket
-          </a>
+          </Link>
           {/* </Link> */}
         </div>
 

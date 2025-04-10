@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import type { NextPage } from 'next'
 import { Organizer } from '../types/types'
 import OrganizingTeam from '../components/about/Team'
@@ -34,27 +32,32 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 />
                 <p className="dark:text-lighter-dark pt-2 text-base md:text-xl pr-0 md:pr-10 md:pb-16">
                   Droidcon is a global conference focused on the engineering of
-                  Android applications. Droidcon provides a forum for developers
-                  to network with other developers, share techniques, announce
-                  apps & products, learn, and teach. <br />
+                  Android applications. It provides a forum for developers to
+                  network with other developers, share techniques, announce apps
+                  and products, and learn and teach. <br />
                   <br />
-                  Droidcon Kenya stands as the largest Droidcon chapter in
-                  Sub-Saharan Africa, hosting an annual conference replete with
-                  workshops, talks, and sessions dedicated to Android and Kotlin
-                  technologies. Attendees are provided a prime opportunity to
-                  delve into the Android and Kotlin development ecosystems,
-                  explore various opportunities and services, and network with
-                  industry professionals and companies. <br />
+                  Building on six successful years of excellence, Droidcon Kenya
+                  continues its legacy as the largest Droidcon chapter in
+                  Sub-Saharan Africa. The 2025 edition marks our 6th annual
+                  conference, featuring an expanded program of workshops, talks,
+                  and sessions dedicated to Android and Kotlin technologies.
+                  Attendees will be able to delve into the Android and Kotlin
+                  development ecosystems, explore various opportunities and
+                  services, and network with industry professionals and
+                  companies.
+                  <br />
                   <br />
                   Since its inception in 2018, Droidcon Kenya has steadily
                   expanded its reach, attracting speakers and participants
-                  worldwide. With a seasoned team that has successfully
-                  organized four previous Droidcons, boasting over 3000
-                  attendees and 200 sessions, we are thrilled to present the 5th
-                  in-person event on November 6th - 8th 2024. The conference
-                  will unite global Android & Kotlin developers, exhibitioners,
-                  tech companies, and recruiters in Nairobi, Kenya, marking yet
-                  another conference of its kind in Sub-Saharan Africa.
+                  worldwide. The 2024 edition celebrated our 5th anniversary
+                  milestone with 350 participants and featured 40 carefully
+                  selected Android sessions from 100 submissions. This special
+                  event was co-located with the inaugural Fluttercon Kenya,
+                  creating a unique mobile development ecosystem. <br /> <br />
+                  The 2025 conference will unite global Android & Kotlin
+                  developers, exhibitors, tech companies, and recruiters in
+                  Nairobi, Kenya, further cementing our position as the premier
+                  Android event in Sub-Saharan Africa.
                 </p>
               </div>
             </div>
@@ -82,15 +85,24 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
             </div>
             <div className="w-full md:w-12/12 ml-auto pr-0 md:pr-20">
               <h3 className="title font-medium border-b-8 border-b-accent lowercase">
-                DROIDCON
+                HOW IT STARTED
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
-                Droidcon is a global developer conference focused on bringing
-                Android engineers together. It provides a platform for
-                developers to network, share techniques and announce new apps
-                and products in the ecosystem.
-                <br />
-                <br />
+                Droidcon Kenya was born from the passion and dedication of the
+                Android254 and Kotlin Kenya communities. The first event in 2018
+                attracted over 150 attendees and featured more than 50 sessions.
+                Over the years, the conference has grown exponentially—by 2024,
+                our community had expanded to over 3,000 attendees across all
+                editions, with 200+ sessions and numerous partnerships. <br />{' '}
+                <br /> The 2024 edition marked a significant milestone as we
+                celebrated our 5th anniversary while also introducing the
+                first-ever Fluttercon Kenya, creating an unprecedented
+                collaborative environment for mobile developers across both
+                ecosystems. <br /> <br /> As we approach our 5th event, Droidcon
+                Kenya has firmly established itself as a cornerstone for the
+                mobile development community in Africa, creating countless
+                opportunities for developers both within and beyond Sub-Saharan
+                Africa.
                 {/* The three-day gathering will be held in Nairobi, Kenya, from 6th
                 to 8th November 2024 and will be the largest in Africa.
                 <br />
@@ -103,23 +115,13 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               </p>
             </div>
 
-            <div className="w-full md:w-12/12 ml-auto pr-0 md:pr-20 md:mt-10">
+            {/* <div className="w-full md:w-12/12 ml-auto pr-0 md:pr-20 md:mt-10">
               <h3 className="title font-medium border-b-8 border-b-accent-2 mt-4 md:mt-0 lowercase">
                 PAST DROIDCONKE
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
-                We hosted the first-ever DroidconKE event in October 2018. More
-                than 500 people from various parts of the world were in
-                attendance.
-                <br />
-                <br />
-                This year, we will host the 5th in-person event. Tech
-                communities from the East African Region and continental members
-                will be present. Participants will have an excellent chance to
-                learn about Android development, opportunities and services in
-                the ecosystem.
               </p>
-            </div>
+            </div> */}
             <div className="w-full mt-2 -mb-32 md:-mb-32 pb-20 md:pb-0 flex justify-center pr-0 md:pr-20">
               <img
                 className="w-20 md:w-36"

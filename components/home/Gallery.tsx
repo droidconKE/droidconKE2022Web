@@ -38,34 +38,10 @@ export const Gallery = () => {
                 <a
                   className="lowercase font-bold btn-secondary"
                   target="_blank"
-                  href="https://bit.ly/DCKE23Day1"
+                  href="https://bit.ly/dcKe24gallery"
                   rel="noreferrer"
                 >
-                  View Day 1 Photos{' '}
-                  {/* <i
-                  className="fa fa-arrow-right ml-3"
-                  style={{ transform: 'scale(2.0,0.8)' }}
-                /> */}
-                </a>
-                <a
-                  className="lowercase font-bold btn-secondary"
-                  target="_blank"
-                  href="https://bit.ly/DCKE23Day2"
-                  rel="noreferrer"
-                >
-                  View Day 2 Photos{' '}
-                  {/* <i
-                  className="fa fa-arrow-right ml-3"
-                  style={{ transform: 'scale(2.0,0.8)' }}
-                /> */}
-                </a>
-                <a
-                  className="lowercase font-bold btn-secondary"
-                  target="_blank"
-                  href="https://bit.ly/DCKE23Day3"
-                  rel="noreferrer"
-                >
-                  View Day 3 Photos{' '}
+                  View Photos{' '}
                   {/* <i
                   className="fa fa-arrow-right ml-3"
                   style={{ transform: 'scale(2.0,0.8)' }}

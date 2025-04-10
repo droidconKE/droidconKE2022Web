@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { getCookie } from 'cookies-next'
-import type { AxiosRequestConfig } from 'axios'
+import type { InternalAxiosRequestConfig } from 'axios'
 // import { toast } from 'react-toastify'
 // import { isClient } from './helpers'
 
 axios.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     // eslint-disable-next-line no-param-reassign
     // config.headers['Api-Authorization-Key'] = process.env.NEXT_PUBLIC_API_KEY ?? ''
     const token = getCookie('token', { path: '/' })

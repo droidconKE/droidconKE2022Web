@@ -23,7 +23,6 @@ export default function Layout({ children }: { children: ReactNode }) {
       <ThemeProvider>
         <AuthProvider>
           <GoogleOAuthProvider
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
           >
             <div className="w-full min-h-screen bg-white dark:bg-dark">
