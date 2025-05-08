@@ -18,16 +18,15 @@ const Session: NextPage<SessionPageProp> = ({ session }) => {
 
   const navBackLink = router.query?.from ? router.query?.from : '/sessions'
 
+  const image =
+    session.session_image ??
+    'https://droidcon.co.ke/images/droidcon-25-kenya-announcement.png'
+
   return (
     <>
       <Head>
-        <meta
-          name="twitter:image"
-          content={
-            session.session_image ??
-            'https://droidcon.co.ke/images/droidcon-25-kenya-announcement.png'
-          }
-        />
+        <meta name="twitter:image" content={image} />
+        <meta name="og:image" content={image} />
       </Head>
       <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
         <section className="w-full bg-dark dark:bg-black-dark">
