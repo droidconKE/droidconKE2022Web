@@ -4,7 +4,7 @@ import { gallery2022 } from '../../constant/gallery2022'
 
 const allImages = [...gallery, ...gallery2022]
 
-const showMoreLink = true
+const showMoreLink = false
 
 export const Gallery = () => {
   return (
