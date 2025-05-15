@@ -26,7 +26,7 @@ const Session: NextPage<SessionPageProp> = ({ session }) => {
     <>
       <Head>
         <meta name="twitter:image" content={image} />
-        <meta name="og:image" content={image} />
+        <meta property="og:image" content={image} />
       </Head>
       <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
         <section className="w-full bg-dark dark:bg-black-dark">
