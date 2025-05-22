@@ -13,7 +13,7 @@ export const EventTypes = () => {
         <div className="w-full flex flex-wrap mt-4 md:mt-12 dark:text-white-dark">
           {eventTypes.map((eventType) => {
             return (
-              <div className="w-1/2 md:w-1/6 mt-10 md:mt-0" key={eventType.id}>
+              <div className="w-1/2 md:w-1/5 mt-10 md:mt-0" key={eventType.id}>
                 <div
                   className={`px-12 py-10 md:px-16 md:py-12 h-32 md:h-44 ${eventType.lightBG} ${eventType.darkBG} ${eventType.edgeRadius}`}
                 >
