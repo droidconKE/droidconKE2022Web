@@ -63,7 +63,9 @@ export const SessionGridCard = ({
                               schedule.session_image ??
                               (year === 24
                                 ? '/images/all-new.png'
-                                : '/images/all.png')
+                                : year === 26
+                                  ? '/images/all-2025.png'
+                                  : '/images/all.png')
                             }
                             alt={schedule.title}
                           />
