@@ -8,7 +8,7 @@ export const SessionGridCard = ({
   schedules,
   activeTab,
   from,
-  year = 24,
+  year = 25,
 }: {
   schedules: Schedule[]
   activeTab: number
@@ -45,7 +45,9 @@ export const SessionGridCard = ({
                               ? '/images/panel.png'
                               : year === 24
                                 ? '/images/all-new.png'
-                                : '/images/all.png')
+                                : year === 25
+                                  ? '/images/all-2025.png'
+                                  : '/images/all.png')
                           }
                           alt={schedule.title}
                         />
