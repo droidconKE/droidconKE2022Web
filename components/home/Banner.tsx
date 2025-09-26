@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CFS_LINK } from '../../constant/constants'
+import { TICKETS_LINK } from '../../constant/constants'
 
 export const Banner = () => {
   return (
@@ -34,23 +34,23 @@ export const Banner = () => {
           </div>
           <div>
             <div className="flex flex-wrap space-x-2 md:space-x-4">
-              {/* <a
+              <a
                 className="btn-primary mt-3 md:mt-0"
                 href={TICKETS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 get your ticket
-              </a> */}
+              </a>
 
-              <a
+              {/* <a
                 href={CFS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary mt-3 md:mt-0"
               >
                 submit a talk
-              </a>
+              </a> */}
               <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
                 sponsor droidconke
               </Link>
