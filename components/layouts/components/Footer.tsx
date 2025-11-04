@@ -33,7 +33,7 @@ export const Footer = () => {
           <div className="flex flex-wrap">
             <div className="w-full">
               <div className="flex flex-wrap items-top mb-14 md:mb-6 text-left">
-                <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0">
+                <div className="w-full sm:w-6/12 md:w-3/12 xl:w-3/12 pt-6 md:pt-0">
                   <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                     Venue
                   </span>
@@ -54,7 +54,7 @@ export const Footer = () => {
                 </div>
                 {showExtraInfo && (
                   <>
-                    <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
+                    <div className="w-full sm:w-6/12 md:w-3/12 xl:w-3/12 pt-6 md:pt-0 md:px-4">
                       <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                         Transport
                       </span>
@@ -65,7 +65,7 @@ export const Footer = () => {
                         </p>
                       </ul>
                     </div>
-                    <div className="w-full md:w-4/12 xl:w-4/12 pt-6 md:pt-0 md:px-4">
+                    <div className="w-full sm:w-6/12 md:w-3/12 xl:w-3/12 pt-6 md:pt-0 md:px-4">
                       <span className="text-accent dark:text-accent-dark lowercase text-2xl">
                         Parking
                       </span>
@@ -77,21 +77,22 @@ export const Footer = () => {
                     </div>
                   </>
                 )}
+                <div className="w-full sm:w-6/12 md:w-3/12 xl:w-3/12 pt-6 md:pt-0 md:px-4">
+                  <span className="text-accent-2 dark:text-accent-2-dark lowercase text-2xl">
+                    Code of Conduct
+                  </span>
+                  <ul className="list-unstyled mt-3">
+                    <Link
+                      href="https://drive.google.com/file/d/1Uj5_OjufuDsoaBFK4i60X0K41RWsR6Ro/view?usp=sharing"
+                      target="_blank"
+                      className="text-white dark:text-white-dark text-base hover:text-secondary dark:hover:text-secondary"
+                    >
+                      See the Flutterconke Code of Conduct
+                    </Link>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="">
-            <h2 className="title-w lowercase text-white dark:text-accent-dark">
-              <span>Code of</span> <span className="font-medium"> Conduct</span>
-            </h2>
-            <br />
-            <Link
-              href="https://drive.google.com/file/d/1Uj5_OjufuDsoaBFK4i60X0K41RWsR6Ro/view?usp=sharing"
-              target="_blank"
-              className="text-white dark:text-white-dark text-base hover:text-secondary dark:hover:text-secondary"
-            >
-              See the Droidconke Code of Conduct
-            </Link>
           </div>
         </div>
       </section>
