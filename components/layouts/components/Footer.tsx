@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { TICKETS_LINK } from '../../../constant/constants'
 
 export const Footer = () => {
@@ -78,6 +79,19 @@ export const Footer = () => {
                 )}
               </div>
             </div>
+          </div>
+          <div className="">
+            <h2 className="title-w lowercase text-white dark:text-accent-dark">
+              <span>Code of</span> <span className="font-medium"> Conduct</span>
+            </h2>
+            <br />
+            <Link
+              href="https://drive.google.com/file/d/1Uj5_OjufuDsoaBFK4i60X0K41RWsR6Ro/view?usp=sharing"
+              target="_blank"
+              className="text-white dark:text-white-dark text-base"
+            >
+              See the Droidconke Code of Conduct
+            </Link>
           </div>
         </div>
       </section>
