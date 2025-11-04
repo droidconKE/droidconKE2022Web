@@ -88,7 +88,7 @@ export const Footer = () => {
             <Link
               href="https://drive.google.com/file/d/1Uj5_OjufuDsoaBFK4i60X0K41RWsR6Ro/view?usp=sharing"
               target="_blank"
-              className="text-white dark:text-white-dark text-base"
+              className="text-white dark:text-white-dark text-base hover:text-secondary dark:hover:text-secondary"
             >
               See the Droidconke Code of Conduct
             </Link>
