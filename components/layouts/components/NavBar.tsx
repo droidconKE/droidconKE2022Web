@@ -143,13 +143,21 @@ export const NavBar = () => {
           } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
         >
           {/* <Link href="/sponsors"> */}
-          <Link
+          {/* <Link
             className="btn-secondary"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"
           >
             get your ticket
+          </Link> */}
+          <Link
+            className="btn-secondary"
+            href={TICKETS_LINK}
+            target="_blank"
+            rel="noreferrer"
+          >
+            get your swag
           </Link>
           {/* </Link> */}
         </div>
