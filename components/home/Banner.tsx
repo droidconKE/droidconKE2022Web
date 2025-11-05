@@ -51,8 +51,15 @@ export const Banner = () => {
               >
                 submit a talk
               </a> */}
-              <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
+              {/* <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
                 sponsor droidconke
+              </Link> */}
+              <Link
+                href="https://paystack.shop/dcke-fcke-merch-store"
+                className="btn-accent mt-3 md:mt-0"
+                target="_blank"
+              >
+                get your swag
               </Link>
             </div>
             <div className="flex flex-wrap mt-6 md:mt-8 items-center">
