@@ -9,7 +9,7 @@ export const Banner = () => {
           <h1 className="font-light text-3xl md:text-4xl black px-0">
             <span className="lowercase">welcome to</span> <br />
             <span className="font-black text-4xl md:text-5xl">
-              DROIDCONKE25
+              DROIDCONKE26
             </span>
           </h1>
           <div className="mt-12 md:mt-8 text-3xl md:text-4xl lowercase font-light">
@@ -69,7 +69,7 @@ export const Banner = () => {
                 alt="droid alt"
               />
               <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
-                <span>05TH - 7TH </span>
+                <span>04TH - 6TH </span>
                 <br />
                 NOVEMBER
               </div>
@@ -77,7 +77,7 @@ export const Banner = () => {
           </div>
         </div>
         <div className="mt-16 md:mt-0">
-          <video
+          {/* <video
             id="video"
             className="rounded-xl aspect-video  w-full  md:w-[670px] "
             loop
@@ -89,7 +89,7 @@ export const Banner = () => {
             controlsList="nodownload nofullscreen noremoteplayback"
           >
             <source type="video/mp4" src="/video/dcke25_report.mp4" />
-          </video>
+          </video> */}
           {/* <iframe
             className="rounded-xl aspect-video h-[250px] w-full md:h-[400px] md:w-[630px] -mt-20"
             src="https://www.youtube.com/embed/AO-j2kLvKJw?start=5&controls=0&showinfo=0&modestbranding=1&rel=0"
