@@ -62,18 +62,18 @@ export const Banner = () => {
                 get your swag
               </Link>
             </div>
-            {/* <div className="flex flex-wrap mt-6 md:mt-8 items-center">
-              <img
+            <div className="flex flex-wrap mt-6 md:mt-8 items-center">
+              {/* <img
                 className="h-[58px] md:h-[80px] mr-3 mt-4"
                 src="/images/web-dcke25.png"
                 alt="droid alt"
-              />
+              /> */}
               <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
                 <span>04TH - 6TH </span>
-                <br />
-                NOVEMBER
+                {/* <br /> */}
+                NOVEMBER 2026
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="mt-16 md:mt-0">
