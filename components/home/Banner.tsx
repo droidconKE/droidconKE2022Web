@@ -62,7 +62,7 @@ export const Banner = () => {
                 get your swag
               </Link>
             </div>
-            <div className="flex flex-wrap mt-6 md:mt-8 items-center">
+            {/* <div className="flex flex-wrap mt-6 md:mt-8 items-center">
               <img
                 className="h-[58px] md:h-[80px] mr-3 mt-4"
                 src="/images/web-dcke25.png"
@@ -73,7 +73,7 @@ export const Banner = () => {
                 <br />
                 NOVEMBER
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="mt-16 md:mt-0">
