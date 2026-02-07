@@ -34,11 +34,12 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   Droidcon is a global conference focused on the engineering of
                   Android applications. It provides a forum for developers to
                   network with other developers, share techniques, announce apps
-                  and products, and learn and teach. <br />
+                  and products, and learn and teach.
                   <br />
-                  Building on six successful years of excellence, Droidcon Kenya
-                  continues its legacy as the largest Droidcon chapter in
-                  Sub-Saharan Africa. The 2025 edition marks our 6th annual
+                  <br />
+                  Building on seven successful editions of excellence, Droidcon
+                  Kenya continues its legacy as the largest Droidcon chapter in
+                  Sub-Saharan Africa. The 2026 edition marks our 7th annual
                   conference, featuring an expanded program of workshops, talks,
                   and sessions dedicated to Android and Kotlin technologies.
                   Attendees will be able to delve into the Android and Kotlin
@@ -49,12 +50,13 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   <br />
                   Since its inception in 2018, Droidcon Kenya has steadily
                   expanded its reach, attracting speakers and participants
-                  worldwide. The 2024 edition celebrated our 5th anniversary
-                  milestone with 350 participants and featured 40 carefully
-                  selected Android sessions from 100 submissions. This special
-                  event was co-located with the inaugural Fluttercon Kenya,
-                  creating a unique mobile development ecosystem. <br /> <br />
-                  The 2025 conference will unite global Android & Kotlin
+                  worldwide. The 2025 edition celebrated our 6th anniversary
+                  milestone with 198 professional attendees and featured 26
+                  carefully selected Android sessions from 89 submissions. This
+                  special event was co-located with the second Fluttercon Kenya,
+                  creating a unique mobile development ecosystem.
+                  <br /> <br />
+                  The 2026 conference will unite global Android and Kotlin
                   developers, exhibitors, tech companies, and recruiters in
                   Nairobi, Kenya, further cementing our position as the premier
                   Android event in Sub-Saharan Africa.
@@ -91,16 +93,18 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 Droidcon Kenya was born from the passion and dedication of the
                 Android254 and Kotlin Kenya communities. The first event in 2018
                 attracted over 150 attendees and featured more than 50 sessions.
-                Over the years, the conference has grown exponentially—by 2024,
-                our community had expanded to over 3,000 attendees across all
-                editions, with 200+ sessions and numerous partnerships. <br />{' '}
-                <br /> The 2024 edition marked a significant milestone as we
-                celebrated our 5th anniversary while also introducing the
-                first-ever Fluttercon Kenya, creating an unprecedented
-                collaborative environment for mobile developers across both
-                ecosystems. <br /> <br /> As we approach our 5th event, Droidcon
-                Kenya has firmly established itself as a cornerstone for the
-                mobile development community in Africa, creating countless
+                Over the editions, the conference has grown exponentially—by
+                2025, our community has expanded to over 3,000 attendees across
+                all editions, with 230+ sessions and numerous partnerships.
+                <br /> <br /> The 2025 edition marked a significant milestone as
+                we successfully pivoted to a professional developer focus,
+                achieving 80.6% professional attendee composition while
+                introducing the Workshop Day format that replaced Community Day.
+                This strategic transformation has positioned Droidcon Kenya for
+                sustainable growth.
+                <br /> <br /> As we approach our 7th edition, Droidcon Kenya has
+                firmly established itself as a cornerstone for the mobile
+                development community in Africa, creating countless
                 opportunities for developers both within and beyond Sub-Saharan
                 Africa.
                 {/* The three-day gathering will be held in Nairobi, Kenya, from 6th
@@ -115,13 +119,82 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               </p>
             </div>
 
-            {/* <div className="w-full md:w-12/12 ml-auto pr-0 md:pr-20 md:mt-10">
+            <div className="w-full md:w-12/12 ml-auto pr-0 md:pr-20 md:mt-10">
               <h3 className="title font-medium border-b-8 border-b-accent-2 mt-4 md:mt-0 lowercase">
-                PAST DROIDCONKE
+                Tickets
               </h3>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
+                One ticket → Two conferences! When you purchase a ticket to
+                Droidcon Kenya 2026, you&apos;re automatically registered to
+                attend the co-located Fluttercon Kenya event. This integrated
+                approach, which has proven highly successful since 2024, allows
+                attendees to experience the best of both Android and Flutter
+                development. <br /> <br />
+                In 2026, Expect:
               </p>
-            </div> */}
+              <ul className="list-disc pl-5 marker:text-accent-2">
+                <li className="dark:text-white text-xl mb-2">
+                  3 days of immersive Android content (1 Workshop Day + 2
+                  Developer Days)
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  4 intensive, 4-hour hands-on workshops
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  2 Developer Keynotes
+                </li>
+                <li className="dark:text-white text-xl mb-2">26+ sessions</li>
+                <li className="dark:text-white text-xl mb-2">
+                  300+ Android & Kotlin Developers
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  Enhanced networking opportunities
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  Advanced practical skill development
+                </li>
+              </ul>
+            </div>
+            <div className="w-full md:w-12/12 ml-auto pr-0 md:pr-20 md:mt-10">
+              <h3 className="title font-medium border-b-8  border-b-accent-2 mt-4 md:mt-4 lowercase">
+                <span>Event</span>{' '}
+                <span className="font-medium">Highlights</span>
+              </h3>
+              <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
+                <span>1. Workshop Day</span>
+              </h4>
+              <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
+                Building on the success of 2025, the conference kicks off with
+                an immersive Workshop Day featuring four 4-hour hands-on
+                workshops. These in-depth, practical sessions allow participants
+                to gain valuable skills through guided instruction and real-time
+                application development. Led by Android and Kotlin experts,
+                these workshops provide an unparalleled opportunity for
+                developers to enhance their technical capabilities in a focused,
+                collaborative environment.
+              </p>
+              <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
+                <span>2. Developer Days (2 Days)</span>
+              </h4>
+              <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
+                The core of the conference features comprehensive Android and
+                Kotlin sessions across multiple tracks. The 2026 program offers
+                diverse content tailored for mid-level and senior developers,
+                with sessions curated around the &quot;Building for Africa&quot;
+                theme featuring speakers from leading Sub-Saharan African tech
+                companies.
+              </p>
+              <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
+                <span>3. After-Event Party</span>
+              </h4>
+              <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
+                Continuing the tradition established in previous editions, the
+                closing celebration will be co-shared with Fluttercon Kenya,
+                creating the perfect atmosphere for attendees from both
+                conferences to network, celebrate, and forge new connections in
+                the mobile development community.
+              </p>
+            </div>
             <div className="w-full mt-2 -mb-32 md:-mb-32 pb-20 md:pb-0 flex justify-center pr-0 md:pr-20">
               <img
                 className="w-20 md:w-36"
