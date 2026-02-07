@@ -30,6 +30,13 @@ function Team({ organizers: unOrderedOrgs }: { organizers: Organizer[] }) {
             </h2>
           </div>
         </div>
+        <p className="mb-4 md:mb-0 text-xl justify-center text-center">
+          Droidcon Kenya is a Codescape Limited product, organized by a seasoned
+          team with a proven seven-edition track record of delivering
+          exceptional developer events in Africa. The same team also organizes
+          Fluttercon Kenya, ensuring seamless integration between the two
+          conferences.
+        </p>
       </section>
       <section className="s-container">
         <div>

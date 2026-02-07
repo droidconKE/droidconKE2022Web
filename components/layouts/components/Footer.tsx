@@ -6,7 +6,7 @@ export const Footer = () => {
 
   return (
     <div>
-      <section className="w-full bg-primary dark:bg-black-dark">
+      <section className="w-full bg-gradient-to-b from-accent to-primary dark:from-black-dark dark:to-black">
         <div className="l-container py-6 md:py-12">
           <div className="items-center flex flex-wrap md:my-10">
             <div className="w-full md:w-8/12 ml-auto mt-4 md:mt-0">
@@ -39,17 +39,17 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled mt-3">
                     <p className="text-white dark:text-white-dark text-base">
-                      Golden Tulip Westlands Nairobi
+                      TBD
                     </p>
 
-                    <a
+                    {/* <a
                       href="https://maps.app.goo.gl/r3AQbUKjmpggvi2m6"
                       target="_blank"
                       className="text-white dark:text-white-dark text-base"
                       rel="noreferrer"
                     >
                       <i className="fa fa-map-marker" /> View Map location
-                    </a>
+                    </a> */}
                   </ul>
                 </div>
                 {showExtraInfo && (
@@ -96,7 +96,7 @@ export const Footer = () => {
           </div>
         </div>
       </section>
-      <div className="w-full items-center px-4 py-5">
+      <div className="w-full items-center px-4 py-5 dark:bg-black-dark">
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
             <div className="mt-0 w-full">

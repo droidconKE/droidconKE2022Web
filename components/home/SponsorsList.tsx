@@ -7,7 +7,7 @@ import { ThemeContext } from '../../context/ThemeContext'
 function SponsorsList({
   sponsors,
   showSponsors = true,
-  year = 22,
+  year = 25,
 }: {
   sponsors: Sponsor[]
   showSponsors?: boolean

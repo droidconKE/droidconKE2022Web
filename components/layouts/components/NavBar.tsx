@@ -6,7 +6,7 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import { Login } from '../../auth/Login'
 import { ToggleTheme } from './ToggleTheme'
 import { PastEventsDropdown } from './PastEventsDropdown'
-import { SWAG_LINK } from '../../../constant/constants'
+import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
@@ -143,22 +143,22 @@ export const NavBar = () => {
           } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
         >
           {/* <Link href="/sponsors"> */}
-          {/* <Link
+          <Link
             className="btn-secondary"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"
           >
             get your ticket
-          </Link> */}
-          <Link
+          </Link>
+          {/* <Link
             className="btn-secondary"
             href={SWAG_LINK}
             target="_blank"
             rel="noreferrer"
           >
             get your swag
-          </Link>
+          </Link> */}
           {/* </Link> */}
         </div>
 
