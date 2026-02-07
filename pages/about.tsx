@@ -130,7 +130,9 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 approach, which has proven highly successful since 2024, allows
                 attendees to experience the best of both Android and Flutter
                 development. <br /> <br />
-                In 2026, Expect:
+                <span className=" font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10">
+                  In 2026, Expect:
+                </span>
               </p>
               <ul className="list-disc pl-5 marker:text-accent-2">
                 <li className="dark:text-white text-xl mb-2">
