@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SWAG_LINK, TICKETS_LINK } from '../../constant/constants'
+import { TICKETS_LINK } from '../../constant/constants'
 
 export const Banner = () => {
   return (
@@ -51,16 +51,16 @@ export const Banner = () => {
               >
                 submit a talk
               </a> */}
-              {/* <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
+              <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
                 sponsor droidconke
-              </Link> */}
-              <Link
+              </Link>
+              {/* <Link
                 href={SWAG_LINK}
                 className="btn-accent mt-3 md:mt-0"
                 target="_blank"
               >
                 get your swag
-              </Link>
+              </Link> */}
             </div>
             <div className="flex flex-wrap mt-6 md:mt-8 items-center">
               {/* <img
