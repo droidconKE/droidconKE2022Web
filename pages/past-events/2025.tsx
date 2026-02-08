@@ -118,7 +118,7 @@ const Home2024: NextPage<SessionProps> = ({
         <div className="l-container py-8 md:py-10">
           <SpeakersList sessions={sessions} speakers={speakers} />
         </div>
-        <SponsorsList sponsors={sponsors} showSponsors year={24} />
+        <SponsorsList sponsors={sponsors} showSponsors year={25} />
       </div>
       {showFilterSession && (
         <FilterSessions
