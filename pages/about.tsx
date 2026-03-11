@@ -56,10 +56,11 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                   special event was co-located with the second Fluttercon Kenya,
                   creating a unique mobile development ecosystem.
                   <br /> <br />
-                  The 2026 conference will unite global Android and Kotlin
-                  developers, exhibitors, tech companies, and recruiters in
-                  Nairobi, Kenya, further cementing our position as the premier
-                  Android event in Sub-Saharan Africa.
+                  Set to take place from November 5th to 6th, the 2026
+                  conference will unite global Android and Kotlin developers,
+                  exhibitors, tech companies, and recruiters in Nairobi, Kenya,
+                  further cementing our position as the premier Android event in
+                  Sub-Saharan Africa.
                 </p>
               </div>
             </div>
@@ -94,8 +95,9 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 Android254 and Kotlin Kenya communities. The first event in 2018
                 attracted over 150 attendees and featured more than 50 sessions.
                 Over the editions, the conference has grown exponentially—by
-                2025, our community has expanded to over 3,000 attendees across
-                all editions, with 230+ sessions and numerous partnerships.
+                2025, our community will have expanded to over 3,000 attendees
+                across all editions, with 230+ sessions and numerous
+                partnerships.
                 <br /> <br /> The 2025 edition marked a significant milestone as
                 we successfully pivoted to a professional developer focus,
                 achieving 80.6% professional attendee composition while
@@ -126,25 +128,23 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
                 One ticket → Two conferences! When you purchase a ticket to
                 Droidcon Kenya 2026, you&apos;re automatically registered to
-                attend the co-located Fluttercon Kenya event. This integrated
-                approach, which has proven highly successful since 2024, allows
-                attendees to experience the best of both Android and Flutter
-                development. <br /> <br />
+                attend attend the co-located Fluttercon Kenya event. This
+                integrated approach, which has proven highly successful since
+                2024, allows to experience the best of both Android and Flutter
+                development.
+                <br /> <br />
                 <span className=" font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10">
                   In 2026, Expect:
                 </span>
               </p>
               <ul className="list-disc pl-5 marker:text-accent-2">
                 <li className="dark:text-white text-xl mb-2">
-                  3 days of immersive Android content (1 Workshop Day + 2
-                  Developer Days)
-                </li>
-                <li className="dark:text-white text-xl mb-2">
-                  4 intensive, 4-hour hands-on workshops
+                  2 days of immersive Android content
                 </li>
                 <li className="dark:text-white text-xl mb-2">
                   2 Developer Keynotes
                 </li>
+                <li className="dark:text-white text-xl mb-2">26+ sessions</li>
                 <li className="dark:text-white text-xl mb-2">26+ sessions</li>
                 <li className="dark:text-white text-xl mb-2">
                   300+ Android & Kotlin Developers
@@ -176,7 +176,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 collaborative environment.
               </p>
               <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
-                <span>2. Developer Days (2 Days)</span>
+                <span>2. Developer Days</span>
               </h4>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
                 The core of the conference features comprehensive Android and
