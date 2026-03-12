@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { TICKETS_LINK } from '../../constant/constants'
+import { CFS_LINK, TICKETS_LINK } from '../../constant/constants'
 
 export const Banner = () => {
   return (
@@ -42,15 +42,14 @@ export const Banner = () => {
               >
                 get your ticket
               </a>
-
-              {/* <a
+              <a
                 href={CFS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary mt-3 md:mt-0"
               >
                 submit a talk
-              </a> */}
+              </a>
               <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
                 sponsor droidconke
               </Link>
