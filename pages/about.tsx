@@ -139,18 +139,28 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               </p>
               <ul className="list-disc pl-5 marker:text-accent-2">
                 <li className="dark:text-white text-xl mb-2">
-                  2 days of immersive Android content
+                  2 days of immersive Android & Kotlin content
                 </li>
                 <li className="dark:text-white text-xl mb-2">
-                  2 Developer Keynotes
-                </li>
-                <li className="dark:text-white text-xl mb-2">26+ sessions</li>
-                <li className="dark:text-white text-xl mb-2">26+ sessions</li>
-                <li className="dark:text-white text-xl mb-2">
-                  300+ Android & Kotlin Developers
+                  Developer Keynotes
                 </li>
                 <li className="dark:text-white text-xl mb-2">
-                  Enhanced networking opportunities
+                  Curated sessions in a dedicated Drodicon Kenya Track
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  Panel discussions with industry leaders
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  Unconference track (shared across both conferences)
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  Interactive morning engagement sessions
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  200+ Android & Kotlin Developers
+                </li>
+                <li className="dark:text-white text-xl mb-2">
+                  Enhanced networking opportunitiies
                 </li>
                 <li className="dark:text-white text-xl mb-2">
                   Advanced practical skill development
@@ -163,17 +173,19 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 <span className="font-medium">Highlights</span>
               </h3>
               <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
-                <span>1. Workshop Day</span>
+                <span>1. Interactive Sessions & Workshops</span>
               </h4>
               <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
-                Building on the success of 2025, the conference kicks off with
-                an immersive Workshop Day featuring four 4-hour hands-on
-                workshops. These in-depth, practical sessions allow participants
-                to gain valuable skills through guided instruction and real-time
-                application development. Led by Android and Kotlin experts,
-                these workshops provide an unparalleled opportunity for
-                developers to enhance their technical capabilities in a focused,
-                collaborative environment.
+                This year&apos;s program features a rich mix of formats beyond
+                the main sessions. An unconference track shared across both
+                conferences enables attendee-driven discussions and lightning
+                talks. Panel discussions bring together engineering leaders to
+                explore trends and challenges in the Android ecosystem. Morning
+                engagement sessions kick off each day with high-energy,
+                interactive formats including speed interviewing, resume and
+                LinkedIn profile reviews, hands-on security workshops, AI agent
+                building using Android projects as context, multiplatform deep
+                dives, and many more.
               </p>
               <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
                 <span>2. Developer Days</span>
@@ -185,16 +197,6 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 with sessions curated around the &quot;Building for Africa&quot;
                 theme featuring speakers from leading Sub-Saharan African tech
                 companies.
-              </p>
-              <h4 className="title font-medium text-secondary md:text-3xl dark:text-secondary mt-6 md:mt-10 lowercase">
-                <span>3. After-Event Party</span>
-              </h4>
-              <p className="mt-2 md:mt-4 mb-4 md:mb-0 text-xl">
-                Continuing the tradition established in previous editions, the
-                closing celebration will be co-shared with Fluttercon Kenya,
-                creating the perfect atmosphere for attendees from both
-                conferences to network, celebrate, and forge new connections in
-                the mobile development community.
               </p>
             </div>
             <div className="w-full mt-2 -mb-32 md:-mb-32 pb-20 md:pb-0 flex justify-center pr-0 md:pr-20">
