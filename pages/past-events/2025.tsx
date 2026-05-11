@@ -57,6 +57,7 @@ const Home2024: NextPage<SessionProps> = ({
                 isGridView={isGridView}
                 onMySessions={setShowMysessions}
                 isMySessions={showMySessions}
+                reportLink="https://bit.ly/dcKe-flutterKe-2025-report"
               />
             </div>
           </div>

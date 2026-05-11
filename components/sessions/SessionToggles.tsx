@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useContext } from 'react'
+import Link from 'next/link'
 import { AuthContext } from '../../context/AuthContext'
 
 interface SessionPageProps {
@@ -10,6 +11,7 @@ interface SessionPageProps {
   onMySessions: (_val: boolean) => void
   isGridView: boolean
   isMySessions: boolean
+  reportLink?: string
 }
 
 export const SessionToggles: NextPage<SessionPageProps> = ({
@@ -18,19 +20,38 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
   isGridView,
   onMySessions,
   isMySessions,
+  reportLink,
 }) => {
   const { isAuthenticated } = useContext(AuthContext)
 
   return (
     <div className="space-x-4 md:space-x-8 w-full md:w-1/3 flex justify-end items-center">
-      <button type="button" onClick={() => onChangeViewType(true)}>
+      {reportLink && (
+        <Link
+          className="btn-secondary"
+          href={reportLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          View Annual Report
+        </Link>
+      )}
+      <button
+        type="button"
+        title="Grid View"
+        onClick={() => onChangeViewType(true)}
+      >
         <i
           className={`fa fa-th text-2xl ${
             !isGridView ? 'text-white dark:text-white-dark' : 'text-secondary'
           }`}
         />
       </button>
-      <button type="button" onClick={() => onChangeViewType(false)}>
+      <button
+        type="button"
+        title="List View"
+        onClick={() => onChangeViewType(false)}
+      >
         <i
           className={`fa fa-th-list text-2xl ${
             isGridView ? 'text-white dark:text-white-dark' : 'text-secondary'
