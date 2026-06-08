@@ -21,7 +21,7 @@ const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
 delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope ']
 
 export default defineConfig([
-  globalIgnores(['dist', '**/.next']),
+  globalIgnores(['dist', '**/.next', 'next-env.d.ts']),
   {
     extends: compat.extends(
       'next/core-web-vitals',
