@@ -86,12 +86,14 @@ Home renders in [pages/index.tsx](../../pages/index.tsx): Banner → About → E
 
 ## 6. Fonts
 
-- **Display: Rauschen B** — sans-serif grotesque by Philipp Herrmann / Out of the Dark (2021). Commercial/licensed (not on Google Fonts); self-hosted via `next/font/local`.
+> 📌 **Font wiring is deferred to a follow-up issue — see #125.** Decisions agreed: self-host **woff2 only** (exclude the `.otf`), load via **`@font-face` in `styles/globals.css`**. This plan PR stays docs/assets-only.
+
+- **Display: Rauschen B** — sans-serif grotesque by Philipp Herrmann / Out of the Dark (2021). Commercial/licensed (not on Google Fonts); self-hosted via `@font-face`.
 - **Font files received** ✅ — `docs/design/Rauschen B Font-20260527T105301Z-3-001.zip`, containing:
   - `Rauschen-BBook.otf`, `Rauschen-BBook.woff`, `Rauschen-BBook.woff2`
   - Only one weight present: **Book**. `.woff2` is ready for web.
   - ⚠️ Open item: the "BEYOND" headline reads heavy — confirm whether the design uses **Book + outline treatment** or needs a heavier cut not in this zip.
-  - To wire up: extract `.woff2`/`.woff` into `public/fonts/`, load via `next/font/local` (Phase 0), then remove the raw `.zip` from the repo.
+  - To wire up (deferred, #125): extract `.woff2` into `public/fonts/`, declare `@font-face` in `styles/globals.css`.
 - **Body font:** TBD — confirm from Figma whether body text is also Rauschen or a separate face.
 
 ---
