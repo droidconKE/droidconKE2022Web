@@ -32,19 +32,19 @@ export const NavBar = () => {
   }, [])
 
   return (
-    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
+    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-4 md:py-3 md:px-5 mt-2 fixed w-full z-10 top-0">
       <div className="flex items-center flex-shrink-0 text-white mr-6 xl:pl-24">
         <Link href="/">
           {!isDarkTheme ? (
             <img
               className="w-[200px] xl:w-[250px]"
-              src="/images/logo.svg"
+              src="/images/new-design/logo-light.png"
               alt="logo"
             />
           ) : (
             <img
               className="w-[200px] md:w-[250px]"
-              src="/images/logo-dark.svg"
+              src="/images/new-design/logo-dark.png"
               alt="logo dark"
             />
           )}
@@ -56,6 +56,7 @@ export const NavBar = () => {
           id="nav-toggle"
           className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
           onClick={() => toggleNav()}
+          aria-label="menu-button"
         >
           <svg
             className="fill-primary dark:fill-secondary-dark h-3 w-3"
