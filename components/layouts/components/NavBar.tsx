@@ -145,7 +145,7 @@ export const NavBar = () => {
         >
           {/* <Link href="/sponsors"> */}
           <Link
-            className="btn-secondary"
+            className="btn-primary uppercase"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"
