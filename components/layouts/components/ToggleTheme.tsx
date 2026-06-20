@@ -18,25 +18,22 @@ export const ToggleTheme = () => {
             type="checkbox"
             className="hidden"
             onChange={() => null}
+            aria-label="Toggle theme"
+            title="Toggle theme"
           />
-          <div className="toggle__line w-6 h-3 bg-accent rounded-full shadow-inner" />
-          <div className="toggle__dot absolute w-4 h-4 bg-primary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
+          <div className="toggle__line w-10 h-5 bg-black dark:bg-secondary rounded-full shadow-inner" />
+          <div className="toggle__dot absolute top-0.5 left-0.5 w-4 h-4 bg-white dark:bg-black rounded-full shadow" />
         </div>
         <div className="ml-3 text-gray-700 font-sm" />
       </button>
       <style>
         {`
           .toggle__dot {
-            top: -0.25rem;
-            left: -0.25rem;
-            transition: all 0.3s ease-in-out;
-          }
-          .toggle__line {
-            margin-top: -2px;
+            transition: transform 0.3s ease-in-out;
           }
 
           input:checked ~ .toggle__dot {
-            transform: translateX(100%);
+            transform: translateX(1.25rem);
           }
         `}
       </style>
