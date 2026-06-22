@@ -32,7 +32,7 @@ export const NavBar = () => {
   }, [])
 
   return (
-    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0">
+    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600 mb-4">
       <div className="flex items-center flex-shrink-0 text-white mr-6 xl:pl-24">
         <Link href="/">
           {!isDarkTheme ? (
@@ -232,6 +232,7 @@ export const NavBar = () => {
         )}
       </div>
       {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />}
+      {/* <hr className="border-gray-200 dark:border-gray-600" /> */}
     </nav>
   )
 }

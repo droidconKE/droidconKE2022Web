@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             <div className="w-full min-h-screen bg-white dark:bg-dark">
               <UpdatesAvailablePrompt />
               <NavBar />
-              <div>
+              <div className="pt-[60px] md:pt-[80px]">
                 <main>{children}</main>
               </div>
               <Footer />
