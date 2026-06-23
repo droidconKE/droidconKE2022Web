@@ -21,12 +21,11 @@ module.exports = {
         light: '#707070',
         black: '#000000',
         'accent-2': '#7DE1C3',
-        'secondary-2': '#FB7B3C',
         'accent-3': '#68DEA44D',
         // dark
         'primary-dark': '#0055FF',
         'secondary-dark': '#00FF4F',
-        'accent-dark': '#00E2C3',
+        'accent-dark': '#000000',
         'white-dark': '#ffffff',
         // for white bgs in dark
         dark: '#000000',
@@ -36,7 +35,10 @@ module.exports = {
         'black-dark': '#000000',
         'accent-2-dark': '#7DE1C3',
         'accent-3-dark': '#68DEA44D',
-        'secondary-2-dark': '#FB7B3C',
+      },
+      borderRadius: {
+        card: '1rem',
+        stat: '2rem',
       },
     },
   },
