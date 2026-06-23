@@ -12,10 +12,19 @@ module.exports = {
       center: true,
     },
     extend: {
+      animation: {
+        marquee: 'marquee 30s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
       colors: {
         primary: '#0055FF',
         secondary: '#00FF4F',
-        accent: '#000000',
+        accent: '#F0F5FF',
         // white exists
         lighter: '#F5F5F5',
         light: '#707070',
