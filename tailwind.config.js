@@ -32,7 +32,7 @@ module.exports = {
         'accent-dark': '#00FF4F',
         'white-dark': '#ffffff',
         // for white bgs in dark
-        dark: '#20201E',
+        dark: '#000000',
         'lighter-dark': '#F5F5F5',
         'light-dark': '#707070',
         'darker-dark': '#191D1D',

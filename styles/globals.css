@@ -124,7 +124,7 @@ video::-webkit-media-controls-fullscreen-button {
     @apply py-2 px-4 black
   }
   .active-link {
-    @apply text-primary dark:text-accent-dark px-4;
+    @apply text-primary dark:text-primary-dark px-4;
   }
   .l-container {
     @apply container mx-auto px-4 md:px-12 lg:px-40;
