@@ -172,7 +172,7 @@ export const NavBar = () => {
                 className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
                 onClick={() => setIsLoginOpen(true)}
               >
-                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
+                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-blue-50 dark:bg-[#00E2C3] mr-2">
                   <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
                 </span>
                 <span className="black">Login</span>
@@ -183,13 +183,13 @@ export const NavBar = () => {
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
-                  <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-accent dark:bg-accent-dark">
+                  <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-blue-50 dark:bg-[#00E2C3]">
                     <img
                       className="rounded-full"
                       src="/images/svg/maasai_male.svg"
                       alt="avatar icon"
                     />
-                    <span className="text-xs text-accent ml-2 block md:hidden">
+                    <span className="text-xs text-blue-50 ml-2 block md:hidden">
                       {currentUser?.name}
                     </span>
                   </span>
@@ -208,7 +208,7 @@ export const NavBar = () => {
                             <p>
                               <small className="text-xs">Logged in as</small>
                             </p>
-                            <span className="text-xs text-accent">
+                            <span className="text-xs text-blue-50">
                               {currentUser?.name}
                             </span>
                           </div>

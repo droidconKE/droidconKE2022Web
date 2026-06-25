@@ -25,7 +25,7 @@ const MarqueeContent = () => (
 
 const Marquee = () => {
   return (
-    <div className="mt-4 flex overflow-hidden w-full bg-accent border-y border-blue-200 dark:border-gray-700 dark:bg-dark py-2">
+    <div className="mt-4 flex overflow-hidden w-full bg-blue-50 border-y border-blue-200 dark:border-gray-700 dark:bg-dark py-2">
       <div className="flex w-max shrink-0 animate-marquee items-center">
         <MarqueeContent />
         <MarqueeContent />
