@@ -20,8 +20,6 @@ module.exports = {
         lighter: '#F5F5F5',
         light: '#707070',
         black: '#000000',
-        'accent-2': '#7DE1C3',
-        'accent-3': '#68DEA44D',
         // dark
         'primary-dark': '#0055FF',
         'secondary-dark': '#00FF4F',
@@ -33,8 +31,6 @@ module.exports = {
         'light-dark': '#707070',
         'darker-dark': '#191D1D',
         'black-dark': '#000000',
-        'accent-2-dark': '#7DE1C3',
-        'accent-3-dark': '#68DEA44D',
       },
       borderRadius: {
         card: '1rem',
