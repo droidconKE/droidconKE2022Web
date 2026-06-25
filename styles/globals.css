@@ -12,8 +12,10 @@
 }
 
 :root {
-  --font-family: 'Montserrat', sans-serif;
-  --font-slab: 'Montserrat', sans-serif;
+  /* Rauschen B is now the site-wide brand font; Montserrat is the fallback
+     when the licensed file isn't fetched (no font access at build). */
+  --font-family: 'Rauschen B', 'Montserrat', sans-serif;
+  --font-slab: 'Rauschen B', 'Montserrat', sans-serif;
   --font-display: 'Rauschen B', 'Montserrat', sans-serif;
 }
 html, body {
