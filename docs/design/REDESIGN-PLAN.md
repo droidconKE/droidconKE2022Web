@@ -49,20 +49,38 @@ All in [`public/images/new-design/`](../../public/images/new-design/):
 
 ## 3. Design language changes
 
-| Element        | Current                           | New                                                          |
-| -------------- | --------------------------------- | ------------------------------------------------------------ |
-| Logo           | `droidcon` flat                   | Bright-green `con` mark                                      |
-| Primary accent | Cyan `#00E2C3` + orange `#FF6E4D` | **Electric lime green** (`~#1FFF4F`)                         |
-| Blue           | `#000CEB` headings/buttons        | Same blue, used as **big filled cards**                      |
-| Display type   | Montserrat bold                   | **Rauschen B** (heavy grotesque), solid + **outline**        |
-| Images         | Plain photos                      | **Halftone / dot-pattern** overlays                          |
-| Layout         | Stacked sections                  | **Rounded card system** + stat cards (6TH, 2ND, 200+, 3000+) |
-| Footer         | Gradient block                    | **City skyline** illustration                                |
+| Element      | Current                           | New                                                          |
+| ------------ | --------------------------------- | ------------------------------------------------------------ |
+| Logo         | `droidcon` flat                   | Bright-green `con` mark                                      |
+| Brand accent | Cyan `#00E2C3` + orange `#FF6E4D` | **Electric green** `#00FF4F`                                 |
+| Primary      | `#000CEB` headings/buttons        | **Blue** `#0055FF` (used as **big filled cards**)            |
+| Display type | Montserrat bold                   | **Rauschen B** (heavy grotesque), solid + **outline**        |
+| Images       | Plain photos                      | **Halftone / dot-pattern** overlays                          |
+| Layout       | Stacked sections                  | **Rounded card system** + stat cards (6TH, 2ND, 200+, 3000+) |
+| Footer       | Gradient block                    | **City skyline** illustration                                |
+
+### Color tokens (from Figma variable export)
+
+Source exports committed at `public/docs/colors/` (`Droidcon-1` = green, `Droidcon-2` = blue). Full Tailwind-style ramps — map straight into `tailwind.config.js`:
+
+| Step | **Green** (brand accent) | **Blue** (primary)   |
+| ---- | ------------------------ | -------------------- |
+| 50   | `#EDFFF1`                | `#EDF6FF`            |
+| 100  | `#D5FFE1`                | `#D6EAFF`            |
+| 200  | `#AEFFC6`                | `#B5DBFF`            |
+| 300  | `#70FF9B`                | `#83C6FF`            |
+| 400  | `#2BFD6B`                | `#48A7FF`            |
+| 500  | `#00FF4F` ◀ accent      | `#1E83FF`            |
+| 600  | `#00C03C`                | `#0666FF`            |
+| 700  | `#00962F`                | `#0055FF` ◀ primary |
+| 800  | `#06752A`                | `#0842C5`            |
+| 900  | `#076025`                | `#0D3C9B`            |
+
+**Neutrals & dark mode** (not in the export — inferred from the mockups): text/ink `#20201E`, white `#FFFFFF`, muted `#707070`, surface `#F5F5F5`; dark-mode background near-black `#0A0A0A` / `#000000` with the green/blue accents popping.
 
 ### Confirmed decisions (2026-06-18)
 
-- **Colors:** replace fully — lime green + blue become the system; **retire cyan & orange**.
-- **Scope:** plan only for now (no code yet).
+- **Colors:** replace fully — **green `#00FF4F` + blue `#0055FF`** become the system; **retire cyan & orange**. Use the full ramps above as Tailwind color scales.
 - **Halftone images:** use provided PNGs **as-is** (no dynamic CSS overlay).
 
 ---
