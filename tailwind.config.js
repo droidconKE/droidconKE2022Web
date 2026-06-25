@@ -32,7 +32,7 @@ module.exports = {
           800: '#292929',
           900: '#1A1A1A',
         },
-        'droidcon-1': {
+        green: {
           50: '#EDFFF1',
           100: '#D5FFE1',
           200: '#AEFFC8',
@@ -44,7 +44,7 @@ module.exports = {
           800: '#06752A',
           900: '#076025',
         },
-        'droidcon-2': {
+        blue: {
           50: '#EDF8FF',
           100: '#D6EAFF',
           200: '#B5D8FF',
