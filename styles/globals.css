@@ -93,6 +93,16 @@ video::-webkit-media-controls-fullscreen-button {
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+}
+
  /* reusable */
 
 @layer components {
