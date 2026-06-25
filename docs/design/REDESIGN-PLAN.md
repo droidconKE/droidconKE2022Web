@@ -6,6 +6,17 @@ This is a **rebrand**, not just a home-page reshuffle: new logo, new color syste
 
 ---
 
+## 0. Branching & workflow
+
+> 🌿 **`feat/home-redesign-plan` is the central integration branch for the rebrand.**
+>
+> - **All** redesign sub-PRs (font, tokens, components, etc.) target **`feat/home-redesign-plan`** — **not** `dev`.
+> - Branch new redesign work **off** `feat/home-redesign-plan`.
+> - We merge `feat/home-redesign-plan` → `dev` **once, when the whole redesign is approved**, so everything lands together.
+> - Same strategy in both repos (droidconKE + flutterconKE).
+
+---
+
 ## 1. Design sources
 
 | Source                   | Reference                                                                                                  |
