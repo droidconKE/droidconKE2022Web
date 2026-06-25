@@ -49,5 +49,8 @@ yarn-error.log*
 *.swp
 *.swo
 
+# Licensed font archives (do not commit to public repo)
+docs/design/*.zip
+
 # Build-time injected licensed font (see scripts/fetch-font.sh)
 public/fonts/
