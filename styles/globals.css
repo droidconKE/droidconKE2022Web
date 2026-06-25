@@ -1,8 +1,20 @@
 /* @import "tailwindcss"; */
 
+/* Rauschen B — licensed droidcon brand display font, fetched at build time
+   into public/fonts/ (see scripts/fetch-font.sh). Falls back to the stack
+   in --font-display if the file is absent (no font access). */
+@font-face {
+  font-family: 'Rauschen B';
+  src: url('/fonts/Rauschen-BBook.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-family: 'Montserrat', sans-serif;
   --font-slab: 'Montserrat', sans-serif;
+  --font-display: 'Rauschen B', 'Montserrat', sans-serif;
 }
 html, body {
     width: 100%;
@@ -46,6 +58,12 @@ body {
 
 .rubik-font {
   font-family: var(--font-slab);
+}
+
+/* Brand display headlines (e.g. hero "BEYOND STACKS"). Gracefully falls back
+   to Montserrat when the licensed font isn't present. */
+.font-display {
+  font-family: var(--font-display);
 }
 
 #nav-content {

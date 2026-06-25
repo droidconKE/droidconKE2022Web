@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "fetch:font": "bash scripts/fetch-font.sh",
+    "dev": "yarn fetch:font && next dev",
+    "build": "yarn fetch:font && next build",
     "start": "next start",
     "lint": "next lint",
     "heroku-postbuild": "npm run build",
