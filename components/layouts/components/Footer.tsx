@@ -45,7 +45,7 @@ export const Footer = () => {
                   href={TICKETS_LINK}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center bg-primary dark:bg-primary-dark text-white px-8 py-3 text-sm md:text-base font-semibold uppercase hover:opacity-90 transition-opacity"
+                  className="btn-primary"
                 >
                   GET YOUR TICKET
                   <svg
