@@ -5,7 +5,7 @@ export const Footer = () => {
   const showExtraInfo = true
 
   return (
-    <footer className="w-full bg-[#F5F5F5] dark:bg-black-dark relative border-t border-gray-200 dark:border-gray-800">
+    <footer className="w-full bg-[#F5F5F5] dark:bg-black-dark relative">
       <div className="grid">
         {/* Skyline Backgrounds - In their own grid layer */}
         <div className="col-start-1 row-start-1 self-end w-full max-w-[1536px] mx-auto pointer-events-none z-0 flex items-start overflow-hidden max-h-[400px] md:max-h-[600px]">
@@ -22,7 +22,7 @@ export const Footer = () => {
         </div>
 
         {/* Footer Content - In the same grid cell, overlapping the image */}
-        <div className="col-start-1 row-start-1 self-end w-full z-10 flex flex-col justify-center h-full">
+        <div className="col-start-1 row-start-1 self-end w-full z-10 flex flex-col justify-end h-full">
           <div className="l-container pt-16 pb-8">
             {/* Top Row: Logo & Ticket Button */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16 items-center">
