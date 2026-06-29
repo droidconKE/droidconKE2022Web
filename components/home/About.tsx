@@ -10,9 +10,9 @@ const statsBoxes = [
 const About = () => {
   return (
     <section className="s-container ">
-      <div className="flex flex-col md:flex-row w-full rounded-4xl overflow-hidden shadow-xl">
+      <div className="flex flex-col md:flex-row w-full rounded-3xl overflow-hidden shadow-xl">
         {/* Left Column (Blue) */}
-        <div className="w-full md:w-[55%] bg-primary p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+        <div className="w-full md:w-[55%] bg-primary p-8 flex flex-col justify-center">
           <div className="flex items-center text-white text-sm md:text-base font-medium mb-6">
             <div className="w-6 h-px bg-white mr-3" />
             About droidconke

@@ -19,7 +19,7 @@ const eventCards = [
 export const EventTypes = () => {
   return (
     <section className="s-container my-12 md:my-24">
-      <div className="w-full bg-accent rounded-4xl p-8 md:p-12 lg:p-16 relative overflow-hidden shadow-xl min-h-[600px] flex flex-col justify-center">
+      <div className="w-full bg-accent rounded-3xl p-8 relative overflow-hidden shadow-xl min-h-[600px] flex flex-col justify-center">
         {/* Background Image (KICC) */}
         <div className="absolute bottom-0 right-0 w-full md:w-[70%] lg:w-[60%] xl:w-[50%] h-full z-0 flex items-end justify-end pointer-events-none">
           <img
