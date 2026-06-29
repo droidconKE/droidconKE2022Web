@@ -8,6 +8,7 @@ import { Sponsor } from '../components/home/Sponsor'
 import SponsorsList from '../components/home/SponsorsList'
 import { Organizer, Sponsor as SponsorType } from '../types/types'
 import axios from '../utils/axios'
+import Marquee from '../components/home/Marquee'
 
 interface HomeProps {
   organizers: Organizer[]
@@ -16,10 +17,8 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
   return (
-    <div
-      className="bg-[length:0%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat"
-      style={{ backgroundImage: 'url(/images/kenyatta.png)' }}
-    >
+    <div className="bg-[length:0%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat">
+      <Marquee />
       <Banner />
       <section className="s-container mt-8 md:mt-0 pb-6 md:pb-12">
         <div className="flex flex-wrap">

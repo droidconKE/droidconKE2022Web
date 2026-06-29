@@ -1,20 +1,20 @@
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../../context/AuthContext'
+// import { AuthContext } from '../../../context/AuthContext'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { Login } from '../../auth/Login'
+// import { Login } from '../../auth/Login'
 import { ToggleTheme } from './ToggleTheme'
 import { PastEventsDropdown } from './PastEventsDropdown'
 import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
-  const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
+  // const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
 
   const [navVisible, setNavVisible] = useState(false)
-  const [isLoginOpen, setIsLoginOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  // const [isLoginOpen, setIsLoginOpen] = useState(false)
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const router = useRouter()
 
   const toggleNav = () => {
@@ -32,19 +32,19 @@ export const NavBar = () => {
   }, [])
 
   return (
-    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-4 md:py-3 md:px-5 fixed w-full z-10 top-0">
+    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600 mb-4">
       <div className="flex items-center flex-shrink-0 text-white mr-6 xl:pl-24">
         <Link href="/">
           {!isDarkTheme ? (
             <img
               className="w-[200px] xl:w-[250px]"
-              src="/images/logo.svg"
+              src="/images/new-design/logo-light.png"
               alt="logo"
             />
           ) : (
             <img
               className="w-[200px] md:w-[250px]"
-              src="/images/logo-dark.svg"
+              src="/images/new-design/logo-dark.png"
               alt="logo dark"
             />
           )}
@@ -56,6 +56,7 @@ export const NavBar = () => {
           id="nav-toggle"
           className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
           onClick={() => toggleNav()}
+          aria-label="menu-button"
         >
           <svg
             className="fill-primary dark:fill-secondary-dark h-3 w-3"
@@ -144,7 +145,7 @@ export const NavBar = () => {
         >
           {/* <Link href="/sponsors"> */}
           <Link
-            className="btn-secondary"
+            className="btn-primary uppercase"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"
@@ -162,7 +163,7 @@ export const NavBar = () => {
           {/* </Link> */}
         </div>
 
-        {showLogin && (
+        {/* {showLogin && (
           <div className="w-2/12 flex-grow lg:flex justify-end">
             {!isAuthenticated ? (
               <button
@@ -171,7 +172,7 @@ export const NavBar = () => {
                 className="px-4 md:px-0 relative flex items-center my-2 md:my-0"
                 onClick={() => setIsLoginOpen(true)}
               >
-                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-accent dark:bg-accent-dark mr-2">
+                <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-8 w-8 p-2 bg-blue-50 dark:bg-[#00E2C3] mr-2">
                   <img className="w-4" src="/images/svg/lock.svg" alt="icon" />
                 </span>
                 <span className="black">Login</span>
@@ -182,13 +183,13 @@ export const NavBar = () => {
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
-                  <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-accent dark:bg-accent-dark">
+                  <span className="cursor-pointer inline-flex items-center justify-between transition-all duration-500 rounded-full h-9 w-9 border bg-blue-50 dark:bg-[#00E2C3]">
                     <img
                       className="rounded-full"
                       src="/images/svg/maasai_male.svg"
                       alt="avatar icon"
                     />
-                    <span className="text-xs text-accent ml-2 block md:hidden">
+                    <span className="text-xs text-blue-50 ml-2 block md:hidden">
                       {currentUser?.name}
                     </span>
                   </span>
@@ -207,7 +208,7 @@ export const NavBar = () => {
                             <p>
                               <small className="text-xs">Logged in as</small>
                             </p>
-                            <span className="text-xs text-accent">
+                            <span className="text-xs text-blue-50">
                               {currentUser?.name}
                             </span>
                           </div>
@@ -228,9 +229,10 @@ export const NavBar = () => {
               </div>
             )}
           </div>
-        )}
+        )} */}
       </div>
-      {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />}
+      {/* {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />} */}
+      {/* <hr className="border-gray-200 dark:border-gray-600" /> */}
     </nav>
   )
 }
