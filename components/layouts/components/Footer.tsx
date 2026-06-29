@@ -5,7 +5,7 @@ export const Footer = () => {
   const showExtraInfo = true
 
   return (
-    <footer className="w-full bg-[#F5F5F5] dark:bg-black-dark relative">
+    <footer className="w-full bg-white dark:bg-black-dark relative">
       <div className="grid">
         {/* Skyline Backgrounds - In their own grid layer */}
         <div className="col-start-1 row-start-1 self-end w-full max-w-[1536px] mx-auto pointer-events-none z-0 flex items-start overflow-hidden max-h-[400px] md:max-h-[600px]">
