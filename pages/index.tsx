@@ -3,7 +3,6 @@ import { Banner } from '../components/home/Banner'
 import { EventTypes } from '../components/home/EventTypes'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
-import { Sponsor } from '../components/home/Sponsor'
 import SponsorsList from '../components/home/SponsorsList'
 import { Organizer, Sponsor as SponsorType } from '../types/types'
 import axios from '../utils/axios'
@@ -22,7 +21,6 @@ const Home: NextPage<HomeProps> = ({ organizers, sponsors }) => {
       <Banner />
       <About />
       <EventTypes />
-      <Sponsor />
       <SponsorsList sponsors={sponsors} year={26} showSponsors />
       <Gallery />
       <Organizers organizers={organizers} />
