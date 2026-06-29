@@ -102,88 +102,86 @@ function SponsorsList({
   )
 
   return (
-    <section className="w-full bg-[#F4F4F4] py-16 md:py-24">
-      <div className="s-container max-w-5xl">
-        <div className="flex flex-col items-center text-center mb-16">
-          <div className="flex items-center text-primary text-sm md:text-base font-semibold ">
-            <div className="w-8 h-px bg-primary mr-3" />
-            dcke{year} sponsored by
-            <div className="w-8 h-px bg-primary ml-3" />
-          </div>
-          <h2 className="text-black text-4xl md:text-6xl lg:text-7xl font-display mb-2">
-            dcke{year} sponsored by
-          </h2>
-          <div className="text-primary text-base md:text-2xl font-display ">
-            &#47;&#47; help make droidconke happen and have your logo appear
-            here...
-          </div>
+    <section className="s-container w-full bg-white-dark dark:bg-dark py-16 md:py-24">
+      <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex items-center text-primary dark:text-secondary text-sm md:text-base font-semibold ">
+          <div className="w-8 h-px bg-primary dark:bg-secondary mr-3" />
+          dcke{year} sponsored by
+          <div className="w-8 h-px bg-primary dark:bg-secondary ml-3" />
         </div>
+        <h2 className="text-black dark:text-white text-4xl md:text-6xl lg:text-7xl font-display mb-2">
+          dcke{year} sponsored by
+        </h2>
+        <div className="text-primary dark:text-secondary  text-base md:text-2xl font-display ">
+          &#47;&#47; help make droidconke happen and have your logo appear
+          here...
+        </div>
+      </div>
 
-        {showSponsors ? (
-          <div className="flex flex-col gap-12 md:gap-20 w-full">
-            {/* Platinum Tier */}
-            {platinumSponsors.length > 0 && (
-              <div className="flex flex-col items-center">
-                <h3 className="text-black text-xl md:text-2xl font-semibold mb-6 capitalize">
-                  Platinum
-                </h3>
-                {platinumSponsors.map((sponsor) => (
+      {showSponsors ? (
+        <div className="flex flex-col gap-12 md:gap-20 w-full">
+          {/* Platinum Tier */}
+          {platinumSponsors.length > 0 && (
+            <div className="flex flex-col items-center">
+              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-6 capitalize">
+                Platinum
+              </h3>
+              {platinumSponsors.map((sponsor) => (
+                <SponsorCard
+                  key={sponsor.name}
+                  sponsor={sponsor}
+                  getImage={getImage}
+                  getImageClass={getImageClass}
+                  large
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Silver Tier */}
+          {silverSponsors.length > 0 && (
+            <div className="flex flex-col items-start w-full">
+              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-6 capitalize px-2">
+                Silver
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                {silverSponsors.map((sponsor) => (
                   <SponsorCard
                     key={sponsor.name}
                     sponsor={sponsor}
                     getImage={getImage}
                     getImageClass={getImageClass}
-                    large
                   />
                 ))}
               </div>
-            )}
+            </div>
+          )}
 
-            {/* Silver Tier */}
-            {silverSponsors.length > 0 && (
-              <div className="flex flex-col items-start w-full">
-                <h3 className="text-black text-xl md:text-2xl font-semibold mb-6 capitalize px-2">
-                  Silver
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                  {silverSponsors.map((sponsor) => (
-                    <SponsorCard
-                      key={sponsor.name}
-                      sponsor={sponsor}
-                      getImage={getImage}
-                      getImageClass={getImageClass}
-                    />
-                  ))}
+          {/* Other Tiers */}
+          {otherSponsors.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 w-full mt-4">
+              {otherSponsors.map((sponsor) => (
+                <div key={sponsor.name} className="flex flex-col items-start">
+                  <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-4 capitalize px-2">
+                    {getTypeName(sponsor)}
+                  </h3>
+                  <SponsorCard
+                    sponsor={sponsor}
+                    getImage={getImage}
+                    getImageClass={getImageClass}
+                  />
                 </div>
-              </div>
-            )}
-
-            {/* Other Tiers */}
-            {otherSponsors.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 w-full mt-4">
-                {otherSponsors.map((sponsor) => (
-                  <div key={sponsor.name} className="flex flex-col items-start">
-                    <h3 className="text-black text-lg md:text-xl font-semibold mb-4 capitalize px-2">
-                      {getTypeName(sponsor)}
-                    </h3>
-                    <SponsorCard
-                      sponsor={sponsor}
-                      getImage={getImage}
-                      getImageClass={getImageClass}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="flex justify-center mt-12">
-            <Link href="/sponsors" className="btn-secondary w-56">
-              sponsor droidconke
-            </Link>
-          </div>
-        )}
-      </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="flex justify-center mt-12">
+          <Link href="/sponsors" className="btn-secondary w-56">
+            sponsor droidconke
+          </Link>
+        </div>
+      )}
     </section>
   )
 }
