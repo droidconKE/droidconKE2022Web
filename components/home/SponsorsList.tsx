@@ -22,8 +22,8 @@ const SponsorCard = ({
 
   return (
     <div
-      className={`p-[2px] bg-gradient-to-br from-accent to-primary w-full mx-auto ${
-        large ? 'max-w-2xl' : 'max-w-sm'
+      className={`p-[4px] mb-2 bg-gradient-to-br from-accent to-primary w-full ${
+        large ? 'max-w-sm' : 'max-w-sm'
       }`}
       style={clipPathStyle}
     >
@@ -33,7 +33,7 @@ const SponsorCard = ({
         rel="noreferrer"
         className={`bg-white w-full flex items-center justify-center ${
           large
-            ? 'p-8 md:p-12 min-h-[160px] md:min-h-[220px]'
+            ? 'p-8 md:p-12 min-h-[120px] md:min-h-[180px]'
             : 'p-6 min-h-[120px] md:min-h-[160px]'
         }`}
         style={clipPathStyle}
@@ -102,8 +102,8 @@ function SponsorsList({
   )
 
   return (
-    <section className="s-container w-full bg-white-dark dark:bg-dark py-16 md:py-24">
-      <div className="flex flex-col items-center text-center mb-16">
+    <section className="s-container w-full bg-white-dark dark:bg-dark py-12 md:py-16">
+      <div className="flex flex-col items-center text-center mb-10">
         <div className="flex items-center text-primary dark:text-secondary text-sm md:text-base font-semibold ">
           <div className="w-8 h-px bg-primary dark:bg-secondary mr-3" />
           dcke{year} sponsored by
@@ -119,11 +119,11 @@ function SponsorsList({
       </div>
 
       {showSponsors ? (
-        <div className="flex flex-col gap-12 md:gap-20 w-full">
+        <div className="flex flex-col gap-8 md:gap-10 w-full">
           {/* Platinum Tier */}
           {platinumSponsors.length > 0 && (
-            <div className="flex flex-col items-center">
-              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-6 capitalize">
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-2 capitalize">
                 Platinum
               </h3>
               {platinumSponsors.map((sponsor) => (
@@ -141,10 +141,10 @@ function SponsorsList({
           {/* Silver Tier */}
           {silverSponsors.length > 0 && (
             <div className="flex flex-col items-start w-full">
-              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-6 capitalize px-2">
+              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-4 capitalize px-2">
                 Silver
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
                 {silverSponsors.map((sponsor) => (
                   <SponsorCard
                     key={sponsor.name}
@@ -159,10 +159,10 @@ function SponsorsList({
 
           {/* Other Tiers */}
           {otherSponsors.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 w-full mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 w-full mt-2">
               {otherSponsors.map((sponsor) => (
                 <div key={sponsor.name} className="flex flex-col items-start">
-                  <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-4 capitalize px-2">
+                  <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-3 capitalize px-2">
                     {getTypeName(sponsor)}
                   </h3>
                   <SponsorCard
