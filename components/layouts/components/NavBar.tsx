@@ -81,7 +81,7 @@ export const NavBar = () => {
           } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
           <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
-            <li className="mr-3 black">
+            <li className="mr-3 black text-xl">
               <Link
                 href="/"
                 className={router.pathname === '/' ? 'active-link' : 'link'}
@@ -90,7 +90,7 @@ export const NavBar = () => {
               </Link>
             </li>
             {showSessions && (
-              <li className="mr-3">
+              <li className="mr-3 text-xl">
                 <Link
                   href="/sessions"
                   className={
@@ -102,7 +102,7 @@ export const NavBar = () => {
               </li>
             )}
             {showSpeakers && (
-              <li className="mr-3">
+              <li className="mr-3 text-xl">
                 <Link
                   href="/speakers"
                   className={
@@ -113,7 +113,7 @@ export const NavBar = () => {
                 </Link>
               </li>
             )}
-            <li className="mr-3">
+            <li className="mr-3 text-xl">
               <Link
                 href="/about"
                 className={
@@ -123,7 +123,7 @@ export const NavBar = () => {
                 About
               </Link>
             </li>
-            <li className="mr-3">
+            <li className="mr-3 text-xl">
               <Link
                 href="/sponsors"
                 className={
@@ -133,7 +133,7 @@ export const NavBar = () => {
                 Sponsors
               </Link>
             </li>
-            <li className="mr-3">
+            <li className="mr-3 text-xl">
               <PastEventsDropdown />
             </li>
           </ul>
