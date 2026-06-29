@@ -1,102 +1,52 @@
-// import Image from 'next/image'
 import { gallery } from '../../constant/gallery'
 import { gallery2022 } from '../../constant/gallery2022'
 
 const allImages = [...gallery, ...gallery2022]
 
-const showMoreLink = false
+interface IGalleryImage {
+  imageName: string
+  imageTitle?: string
+  imageWidth?: number
+  imageHeight?: number
+}
+
+const GalleryImage = ({ image }: { image: IGalleryImage }) => {
+  return (
+    <div className="relative p-[3px] bg-accent w-full rounded-xl mb-4 md:mb-6 break-inside-avoid">
+      <div className="w-full bg-white dark:bg-black relative overflow-hidden rounded-xl">
+        <img
+          src={`/images/gallery/${image.imageName}.jpg`}
+          alt={image.imageTitle || 'Gallery image'}
+          className="w-full h-auto block object-contain"
+        />
+      </div>
+    </div>
+  )
+}
 
 export const Gallery = () => {
+  // Use all images as requested
+  const displayImages = allImages
+
   return (
-    <section className="w-full h-auto">
-      <div className="flex flex-wrap md:mb-10 md:py-12">
-        <div className="w-full text-center p-6 md:py-10 items-center justify-center">
-          <h2 className="title lowercase dark:text-accent-dark">
-            <span>Photos From</span>{' '}
-            <span className="font-medium">past DroidconKe</span>
-          </h2>
+    <section className="s-container w-full h-auto bg-white dark:bg-dark py-10 md:py-20 transition-colors">
+      {/* Header Block */}
+      <div className="w-full bg-primary dark:bg-primary-dark rounded-[20px] p-8 mb-12 md:mb-16">
+        <div className="flex items-center text-white text-sm md:text-base font-medium mb-4 md:mb-6 opacity-90">
+          <div className="w-6 md:w-8 h-px bg-white mr-3" />
+          Past droidcon events
         </div>
-        <div className="w-full items-center flex flex-wrap">
-          <div id="images-wrapper" className="lgx-photo-gallery">
-            {allImages.map((image) => {
-              return (
-                <div className="lgx-gallery-single p-0.5" key={image.imageName}>
-                  <img
-                    title={image.imageTitle}
-                    src={`/images/gallery/${image.imageName}.jpg`}
-                    alt={image.imageTitle}
-                    width={image.imageWidth}
-                    height={image.imageHeight}
-                  />
-                </div>
-              )
-            })}
-          </div>
-          <div className="w-full flex flex-wrap mt-4 mb-20 md:mb-0 justify-center items-center">
-            {showMoreLink && (
-              <div className="space-x-3 flex px-2">
-                <a
-                  className="lowercase font-bold btn-secondary"
-                  target="_blank"
-                  href="https://bit.ly/dcKe24gallery"
-                  rel="noreferrer"
-                >
-                  View Photos{' '}
-                  {/* <i
-                  className="fa fa-arrow-right ml-3"
-                  style={{ transform: 'scale(2.0,0.8)' }}
-                /> */}
-                </a>
-              </div>
-            )}
-          </div>
-        </div>
-        <style>
-          {`
-            #images-wrapper {
-              width: 100% !important;
-              line-height: 0;
-              -webkit-column-count: 4;
-              -webkit-column-gap: 0px;
-              -moz-column-count: 4;
-              -moz-column-gap: 0px;
-              column-count: 4;
-              column-gap: 0px;
-              margin-bottom: 10px;
-            }
-            #images-wrapper img {
-              width: 100% !important;
-              height: auto !important;
-              padding: 2px;
-            }
-            #images-wrapper {
-              display: inline-block;
-              margin-right: auto;
-              margin-left: auto;
-            }
-            @media (max-width: 1000px) {
-              #images-wrapper {
-                -moz-column-count: 3;
-                -webkit-column-count: 3;
-                column-count: 3;
-              }
-            }
-            @media (max-width: 800px) {
-              #images-wrapper {
-                -moz-column-count: 2;
-                -webkit-column-count: 2;
-                column-count: 2;
-              }
-            }
-            @media (max-width: 400px) {
-              #images-wrapper {
-                -moz-column-count: 2;
-                -webkit-column-count: 2;
-                column-count: 2;
-              }
-            }
-          `}
-        </style>
+        {/* Sized to always fit on one line up to extra large screens */}
+        <h2 className="text-accent text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px] leading-tight font-display whitespace-nowrap">
+          Past droidcon events
+        </h2>
+      </div>
+
+      {/* Masonry Layout to perfectly fit images without cropping */}
+      <div className="w-full columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6">
+        {displayImages.map((image, index) => (
+          <GalleryImage key={image.imageName || index} image={image} />
+        ))}
       </div>
     </section>
   )
