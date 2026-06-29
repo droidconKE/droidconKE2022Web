@@ -1,20 +1,20 @@
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../../context/AuthContext'
+// import { AuthContext } from '../../../context/AuthContext'
 import { ThemeContext } from '../../../context/ThemeContext'
-import { Login } from '../../auth/Login'
+// import { Login } from '../../auth/Login'
 import { ToggleTheme } from './ToggleTheme'
 import { PastEventsDropdown } from './PastEventsDropdown'
 import { TICKETS_LINK } from '../../../constant/constants'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
-  const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
+  // const { currentUser, isAuthenticated, logoutUser } = useContext(AuthContext)
 
   const [navVisible, setNavVisible] = useState(false)
-  const [isLoginOpen, setIsLoginOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  // const [isLoginOpen, setIsLoginOpen] = useState(false)
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const router = useRouter()
 
   const toggleNav = () => {
@@ -163,7 +163,7 @@ export const NavBar = () => {
           {/* </Link> */}
         </div>
 
-        {showLogin && (
+        {/* {showLogin && (
           <div className="w-2/12 flex-grow lg:flex justify-end">
             {!isAuthenticated ? (
               <button
@@ -229,9 +229,9 @@ export const NavBar = () => {
               </div>
             )}
           </div>
-        )}
+        )} */}
       </div>
-      {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />}
+      {/* {isLoginOpen && <Login closeDialog={() => setIsLoginOpen(false)} />} */}
       {/* <hr className="border-gray-200 dark:border-gray-600" /> */}
     </nav>
   )

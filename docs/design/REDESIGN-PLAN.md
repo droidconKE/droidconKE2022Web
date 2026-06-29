@@ -6,6 +6,17 @@ This is a **rebrand**, not just a home-page reshuffle: new logo, new color syste
 
 ---
 
+## 0. Branching & workflow
+
+> 🌿 **`feat/home-redesign-plan` is the central integration branch for the rebrand.**
+>
+> - **All** redesign sub-PRs (font, tokens, components, etc.) target **`feat/home-redesign-plan`** — **not** `dev`.
+> - Branch new redesign work **off** `feat/home-redesign-plan`.
+> - We merge `feat/home-redesign-plan` → `dev` **once, when the whole redesign is approved**, so everything lands together.
+> - Same strategy in both repos (droidconKE + flutterconKE).
+
+---
+
 ## 1. Design sources
 
 | Source                   | Reference                                                                                                  |
@@ -38,20 +49,38 @@ All in [`public/images/new-design/`](../../public/images/new-design/):
 
 ## 3. Design language changes
 
-| Element        | Current                           | New                                                          |
-| -------------- | --------------------------------- | ------------------------------------------------------------ |
-| Logo           | `droidcon` flat                   | Bright-green `con` mark                                      |
-| Primary accent | Cyan `#00E2C3` + orange `#FF6E4D` | **Electric lime green** (`~#1FFF4F`)                         |
-| Blue           | `#000CEB` headings/buttons        | Same blue, used as **big filled cards**                      |
-| Display type   | Montserrat bold                   | **Rauschen B** (heavy grotesque), solid + **outline**        |
-| Images         | Plain photos                      | **Halftone / dot-pattern** overlays                          |
-| Layout         | Stacked sections                  | **Rounded card system** + stat cards (6TH, 2ND, 200+, 3000+) |
-| Footer         | Gradient block                    | **City skyline** illustration                                |
+| Element      | Current                           | New                                                          |
+| ------------ | --------------------------------- | ------------------------------------------------------------ |
+| Logo         | `droidcon` flat                   | Bright-green `con` mark                                      |
+| Brand accent | Cyan `#00E2C3` + orange `#FF6E4D` | **Electric green** `#00FF4F`                                 |
+| Primary      | `#000CEB` headings/buttons        | **Blue** `#0055FF` (used as **big filled cards**)            |
+| Display type | Montserrat bold                   | **Rauschen B** (heavy grotesque), solid + **outline**        |
+| Images       | Plain photos                      | **Halftone / dot-pattern** overlays                          |
+| Layout       | Stacked sections                  | **Rounded card system** + stat cards (6TH, 2ND, 200+, 3000+) |
+| Footer       | Gradient block                    | **City skyline** illustration                                |
+
+### Color tokens (from Figma variable export)
+
+Source exports committed at `public/docs/colors/` (`Droidcon-1` = green, `Droidcon-2` = blue). Full Tailwind-style ramps — map straight into `tailwind.config.js`:
+
+| Step | **Green** (brand accent) | **Blue** (primary)   |
+| ---- | ------------------------ | -------------------- |
+| 50   | `#EDFFF1`                | `#EDF6FF`            |
+| 100  | `#D5FFE1`                | `#D6EAFF`            |
+| 200  | `#AEFFC6`                | `#B5DBFF`            |
+| 300  | `#70FF9B`                | `#83C6FF`            |
+| 400  | `#2BFD6B`                | `#48A7FF`            |
+| 500  | `#00FF4F` ◀ accent      | `#1E83FF`            |
+| 600  | `#00C03C`                | `#0666FF`            |
+| 700  | `#00962F`                | `#0055FF` ◀ primary |
+| 800  | `#06752A`                | `#0842C5`            |
+| 900  | `#076025`                | `#0D3C9B`            |
+
+**Neutrals & dark mode** (not in the export — inferred from the mockups): text/ink `#20201E`, white `#FFFFFF`, muted `#707070`, surface `#F5F5F5`; dark-mode background near-black `#0A0A0A` / `#000000` with the green/blue accents popping.
 
 ### Confirmed decisions (2026-06-18)
 
-- **Colors:** replace fully — lime green + blue become the system; **retire cyan & orange**.
-- **Scope:** plan only for now (no code yet).
+- **Colors:** replace fully — **green `#00FF4F` + blue `#0055FF`** become the system; **retire cyan & orange**. Use the full ramps above as Tailwind color scales.
 - **Halftone images:** use provided PNGs **as-is** (no dynamic CSS overlay).
 
 ---
@@ -86,14 +115,10 @@ Home renders in [pages/index.tsx](../../pages/index.tsx): Banner → About → E
 
 ## 6. Fonts
 
-> 📌 **Font wiring is deferred to a follow-up issue — see #125.** Decisions agreed: self-host **woff2 only** (exclude the `.otf`), load via **`@font-face` in `styles/globals.css`**. This plan PR stays docs/assets-only.
+> 📌 **Font wiring is tracked in #125.** The licensed font is **not** stored in this public repo — it lives in the private repo **[droidconKE/private-fonts](https://github.com/droidconKE/private-fonts)** and is **injected at build time** into gitignored `public/fonts/`, then loaded via `@font-face`.
 
-- **Display: Rauschen B** — sans-serif grotesque by Philipp Herrmann / Out of the Dark (2021). Commercial/licensed (not on Google Fonts); self-hosted via `@font-face`.
-- **Font files received** ✅ — `docs/design/Rauschen B Font-20260527T105301Z-3-001.zip`, containing:
-  - `Rauschen-BBook.otf`, `Rauschen-BBook.woff`, `Rauschen-BBook.woff2`
-  - Only one weight present: **Book**. `.woff2` is ready for web.
-  - ⚠️ Open item: the "BEYOND" headline reads heavy — confirm whether the design uses **Book + outline treatment** or needs a heavier cut not in this zip.
-  - To wire up (deferred, #125): extract `.woff2` into `public/fonts/`, declare `@font-face` in `styles/globals.css`.
+- **Display: Rauschen B** — sans-serif grotesque by Philipp Herrmann / Out of the Dark. The official droidcon brand display font; commercial/licensed. Web format (`.woff2`) is fetched from the private repo at build (auth via `FONT_REPO_TOKEN` → `gh auth token` → free fallback). See #125.
+  - Only the **Book** weight is available so far. ⚠️ The heavy "BEYOND" headline ideally needs a **Bold/Black** cut from the droidcon brand kit.
 - **Body font:** TBD — confirm from Figma whether body text is also Rauschen or a separate face.
 
 ---
