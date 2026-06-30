@@ -152,7 +152,7 @@ export const NotificationsPrompt = () => {
             <div className="flex flex-wrap w-full justify-between items-center mt-6">
               <button
                 type="button"
-                className="btn-accent px-6"
+                className="btn-primary px-6"
                 onClick={() => promptNotifications()}
               >
                 Allow
