@@ -21,7 +21,6 @@ export const NavBar = () => {
     setNavVisible((prev) => !prev)
   }
 
-  const showLogin = isEventReady
   const showSessions = isEventReady
   const showSpeakers = isEventReady
 
@@ -81,7 +80,7 @@ export const NavBar = () => {
           } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
           <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
-            <li className="mr-3 black">
+            <li className="mr-3 black text-xl">
               <Link
                 href="/"
                 className={router.pathname === '/' ? 'active-link' : 'link'}
@@ -90,7 +89,7 @@ export const NavBar = () => {
               </Link>
             </li>
             {showSessions && (
-              <li className="mr-3">
+              <li className="mr-3 text-xl">
                 <Link
                   href="/sessions"
                   className={
@@ -102,7 +101,7 @@ export const NavBar = () => {
               </li>
             )}
             {showSpeakers && (
-              <li className="mr-3">
+              <li className="mr-3 text-xl">
                 <Link
                   href="/speakers"
                   className={
@@ -113,7 +112,7 @@ export const NavBar = () => {
                 </Link>
               </li>
             )}
-            <li className="mr-3">
+            <li className="mr-3 text-xl">
               <Link
                 href="/about"
                 className={
@@ -123,7 +122,7 @@ export const NavBar = () => {
                 About
               </Link>
             </li>
-            <li className="mr-3">
+            <li className="mr-3 text-xl">
               <Link
                 href="/sponsors"
                 className={
@@ -133,19 +132,15 @@ export const NavBar = () => {
                 Sponsors
               </Link>
             </li>
-            <li className="mr-3">
+            <li className="mr-3 text-xl">
               <PastEventsDropdown />
             </li>
           </ul>
         </div>
-        <div
-          className={`w-full ${
-            isEventReady ? 'md:w-2/12' : showLogin ? 'md:w-3/12' : 'md:w-5/12'
-          } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
-        >
+        <div className="w-full md:w-auto flex md:justify-end mt-4 md:mt-0 px-4 md:px-0 md:ml-8">
           {/* <Link href="/sponsors"> */}
           <Link
-            className="btn-primary uppercase"
+            className="btn-primary uppercase whitespace-nowrap"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"

@@ -3,100 +3,108 @@ import { CFS_LINK, TICKETS_LINK } from '../../constant/constants'
 
 export const Banner = () => {
   return (
-    <div className="s-container">
-      <div className="w-full flex flex-col md:flex-row items-center min-h-screen justify-between">
-        <div className="mt-32 xl:mt-0">
-          <h1 className="font-light text-3xl md:text-4xl black px-0">
-            <span className="lowercase">welcome to</span> <br />
-            <span className="font-black text-4xl md:text-5xl">
-              DROIDCONKE26
-            </span>
-          </h1>
-          <div className="mt-12 md:mt-8 text-3xl md:text-4xl lowercase font-light">
-            <h3 className="dark:text-white-dark">
-              LARGEST ANDROID FOCUSED <br />
-              DEVELOPER CONFERENCE IN AFRICA.
-            </h3>
-          </div>
-          <div>
+    <div className="w-full flex flex-col items-center pt-10 md:pt-12 min-h-[calc(100vh-80px)] justify-center">
+      <div className="w-full flex flex-col justify-center items-center pb-8 md:pb-12">
+        <div className="max-w-5xl w-full px-4 flex flex-col items-center text-center">
+          {/* Hero Images */}
+          <h1 className="sr-only">Beyond Stacks</h1>
+          <div className="flex items-center justify-center space-x-4 md:space-x-8 mb-6">
             <img
-              className="w-full md:w-[440px] my-8 md:my-10"
-              src="/images/lines.png"
-              alt="line"
+              src="/images/new-design/beyond-stack-light.png"
+              alt="Beyond Stacks"
+              className="h-[120px] md:h-[240px] lg:h-[320px] dark:hidden block object-contain"
+            />
+            <img
+              src="/images/new-design/beyond-stack-dark.png"
+              alt="Beyond Stacks"
+              className="h-[120px] md:h-[240px] lg:h-[320px] hidden dark:block object-contain"
+            />
+            <img
+              src="/images/new-design/droidcon_icon.png"
+              alt="Droidcon Icon"
+              className="h-[80px] md:h-[160px] lg:h-[200px] object-contain"
             />
           </div>
-          <div className="py-3 mb-5">
-            <p>
-              One ticket, 2 conferences. When you buy a ticket to droidconKe,{' '}
-              <br />
-              you are automatically registered to attend FlutterconKe{' '}
-            </p>
-          </div>
-          <div>
-            <div className="flex flex-wrap space-x-2 md:space-x-4">
-              <a
-                className="btn-primary mt-3 md:mt-0"
-                href={TICKETS_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+
+          {/* Subtitle */}
+          <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mb-8 leading-snug mx-auto text-center">
+            Africa&apos;s largest Mobile developer conference. Two days. One
+            ticket. DroidconKE + FlutterconKE. Nairobi, November 2026.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-12 w-full justify-center">
+            <a
+              href={TICKETS_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary whitespace-nowrap"
+            >
+              GET YOUR TICKET
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                get your ticket
-              </a>
-              <a
-                href={CFS_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary mt-3 md:mt-0"
-              >
-                submit a talk
-              </a>
-              <Link href="/sponsors" className="btn-accent mt-3 md:mt-0">
-                sponsor droidconke
-              </Link>
-              {/* <Link
-                href={SWAG_LINK}
-                className="btn-accent mt-3 md:mt-0"
-                target="_blank"
-              >
-                get your swag
-              </Link> */}
-            </div>
-            <div className="flex flex-wrap mt-6 md:mt-8 items-center">
-              {/* <img
-                className="h-[58px] md:h-[80px] mr-3 mt-4"
-                src="/images/web-dcke25.png"
-                alt="droid alt"
-              /> */}
-              <div className="text-accent dark:text-accent-dark font-black text-base md:text-2xl mt-3 md:mt-4 lowercase">
-                <span>05TH - 06TH </span>
-                {/* <br /> */}
-                NOVEMBER 2026
-              </div>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H16V12M16 6L6 16"
+                />
+              </svg>
+            </a>
+            <a
+              href={CFS_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              SUBMIT A TALK
+            </a>
+            <Link href="/sponsors" className="btn-outline">
+              SPONSOR DROIDCONKE
+            </Link>
           </div>
         </div>
-        <div className="mt-16 md:mt-0">
-          {/* <video
-            id="video"
-            className="rounded-xl aspect-video  w-full  md:w-[670px] "
-            loop
-            autoPlay
-            muted
-            preload="auto"
-            controls
-            disablePictureInPicture
-            controlsList="nodownload nofullscreen noremoteplayback"
-          >
-            <source type="video/mp4" src="/video/dcke25_report.mp4" />
-          </video> */}
-          {/* <iframe
-            className="rounded-xl aspect-video h-[250px] w-full md:h-[400px] md:w-[630px] -mt-20"
-            src="https://www.youtube.com/embed/AO-j2kLvKJw?start=5&controls=0&showinfo=0&modestbranding=1&rel=0"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen={false}
-          /> */}
+      </div>
+
+      {/* Details Grid */}
+      <div className="w-full l-container pb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 border-y border-gray-300 dark:border-gray-700 text-left">
+          <div className="py-6 px-4 md:px-6 border-r border-b md:border-b-0 border-gray-300 dark:border-gray-700">
+            <p className="text-[10px] md:text-xs text-gray-500 dark:text-white uppercase mb-2 font-semibold">
+              DATE
+            </p>
+            <p className="font-bold text-sm md:text-base text-black dark:text-accent-dark uppercase">
+              05-06 NOV 2026
+            </p>
+          </div>
+          <div className="py-6 px-4 md:px-6 border-b md:border-b-0 md:border-r border-gray-300 dark:border-gray-700">
+            <p className="text-[10px] md:text-xs text-gray-500 dark:text-white uppercase mb-2 font-semibold">
+              LOCATION
+            </p>
+            <p className="font-bold text-sm md:text-base text-black dark:text-accent-dark uppercase">
+              NAIROBI, KENYA
+            </p>
+          </div>
+          <div className="py-6 px-4 md:px-6 border-r border-gray-300 dark:border-gray-700">
+            <p className="text-[10px] md:text-xs text-gray-500 dark:text-white uppercase mb-2 font-semibold">
+              EDITION
+            </p>
+            <p className="font-bold text-sm md:text-base text-black dark:text-accent-dark uppercase">
+              6TH &middot; ANNUAL
+            </p>
+          </div>
+          <div className="py-6 px-4 md:px-6">
+            <p className="text-[10px] md:text-xs text-gray-500 dark:text-white uppercase mb-2 font-semibold">
+              CONFERENCES
+            </p>
+            <p className="font-bold text-sm md:text-base text-black dark:text-accent-dark uppercase">
+              DROIDCON &middot; FLUTTER
+            </p>
+          </div>
         </div>
       </div>
     </div>
