@@ -2,7 +2,7 @@ import React from 'react'
 
 const statsBoxes = [
   { value: '6TH', label: 'DROIDCON EDITION', isPrimary: true },
-  { value: '2ND', label: 'FLUTTER EDITION', isPrimary: false },
+  { value: '3RD', label: 'FLUTTER EDITION', isPrimary: false },
   { value: '200+', label: 'SESSIONS', isPrimary: false },
   { value: '3000+', label: 'ATTENDEES', isPrimary: false },
 ]
@@ -25,8 +25,8 @@ const About = () => {
           <p className="text-white text-lg md:text-xl leading-relaxed">
             This 6th in-person event will include several tech communities from
             the East African Region and continental members. Participants will
-            have an excellent chance to learn about Android development and
-            opportunities and to network with Android experts in the ecosystem.
+            have an excellent chance to learn about Mobile development and
+            opportunities and to network with Mobile experts in the ecosystem.
           </p>
         </div>
 

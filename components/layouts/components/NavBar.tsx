@@ -21,7 +21,6 @@ export const NavBar = () => {
     setNavVisible((prev) => !prev)
   }
 
-  const showLogin = isEventReady
   const showSessions = isEventReady
   const showSpeakers = isEventReady
 
@@ -138,14 +137,10 @@ export const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div
-          className={`w-full ${
-            isEventReady ? 'md:w-2/12' : showLogin ? 'md:w-3/12' : 'md:w-5/12'
-          } flex md:justify-end mt-4 md:mt-0 px-4 md:px-0`}
-        >
+        <div className="w-full md:w-auto flex md:justify-end mt-4 md:mt-0 px-4 md:px-0 md:ml-8">
           {/* <Link href="/sponsors"> */}
           <Link
-            className="btn-primary uppercase"
+            className="btn-primary uppercase whitespace-nowrap"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"

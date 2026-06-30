@@ -63,7 +63,7 @@ export const PastEventsDropdown = () => {
   --> */}
       {showMenu && isComponentVisible && (
         <div
-          className="md:absolute md:right-0 z-10 mt-2 mb-2 ml-2 md:-mt-1 w-40 origin-top-right rounded-md bg-lighter dark:bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-1"
+          className="md:absolute md:right-0 z-10 mt-2 mb-2 ml-2 md:-mt-1 w-max min-w-[10rem] whitespace-nowrap origin-top-right rounded-md bg-lighter dark:bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-1"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

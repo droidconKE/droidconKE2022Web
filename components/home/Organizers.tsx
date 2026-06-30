@@ -1,4 +1,6 @@
-function Organizers() {
+import { Organizer } from '../../types/types'
+
+function Organizers({ organizers }: { organizers: Organizer[] }) {
   // Pattern overlay style using radial-gradient to simulate the Figma dot pattern
   const patternOverlayStyle = {
     backgroundImage: 'radial-gradient(circle, #0055FF 15%, transparent 15%)',
@@ -6,6 +8,12 @@ function Organizers() {
     opacity: 0.8,
     WebkitMaskImage: 'linear-gradient(to bottom, transparent 10%, black 90%)',
     maskImage: 'linear-gradient(to bottom, transparent 10%, black 90%)',
+  }
+
+  // Cut-corner clip-path matching the sponsor cards (smaller 16px notch)
+  const cardClipStyle = {
+    clipPath:
+      'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
   }
 
   return (
@@ -106,25 +114,32 @@ function Organizers() {
         </div>
       </div>
 
-      {/* Existing Organizers Logos */}
-      {/* Retain this incase of future use */}
-      {/* <div className="w-full grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4 lg:gap-8 pt-8">
-        {organizers.map((org) => (
-          <a
-            key={org.created_at || org.name}
-            target="_blank"
-            href={org.link}
-            className="w-full aspect-square p-4 flex items-center justify-center rounded-2xl bg-[#F4F4F4] dark:bg-[#121212] hover:scale-105 transition-transform"
-            rel="noreferrer"
-          >
-            <img
-              className="w-full h-full object-contain"
-              src={org.photo === null ? '/images/icon.png' : org.photo}
-              alt={org.name}
-            />
-          </a>
-        ))}
-      </div> */}
+      {/* Organizers loaded from the API — same cut-corner sponsor card, smaller */}
+      {organizers?.length > 0 && (
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5 pb-16">
+          {organizers.map((org) => (
+            <div
+              key={org.created_at || org.name}
+              className="p-[4px] bg-gradient-to-br from-accent to-primary w-full hover:scale-105 transition-transform"
+              style={cardClipStyle}
+            >
+              <a
+                href={org.link}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white w-full flex items-center justify-center p-3 min-h-[100px] md:min-h-[120px]"
+                style={cardClipStyle}
+              >
+                <img
+                  className="object-contain w-auto max-h-16 md:max-h-20"
+                  src={org.photo || '/images/icon.png'}
+                  alt={org.name}
+                />
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   )
 }

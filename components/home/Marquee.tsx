@@ -1,7 +1,7 @@
 import React from 'react'
 
 const marqueeItems: string[] = [
-  'The largest android Event in Africa',
+  'The largest Mobile Event in Africa',
   'DroidconKE 2026',
   '05-06 Nov 2026',
   'Nairobi, Kenya',

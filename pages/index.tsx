@@ -4,16 +4,17 @@ import { EventTypes } from '../components/home/EventTypes'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import SponsorsList from '../components/home/SponsorsList'
-import { Sponsor as SponsorType } from '../types/types'
+import { Organizer, Sponsor as SponsorType } from '../types/types'
 import axios from '../utils/axios'
 import Marquee from '../components/home/Marquee'
 import About from '../components/home/About'
 
 interface HomeProps {
   sponsors: SponsorType[]
+  organizers: Organizer[]
 }
 
-const Home: NextPage<HomeProps> = ({ sponsors }) => {
+const Home: NextPage<HomeProps> = ({ sponsors, organizers }) => {
   return (
     <div className="bg-[length:0%] md:bg-[length:47%] bg-[top_340px_left_110%] md:bg-[top_100px_left_110%] bg-no-repeat">
       <Marquee />
@@ -22,7 +23,7 @@ const Home: NextPage<HomeProps> = ({ sponsors }) => {
       <EventTypes />
       <SponsorsList sponsors={sponsors} year={26} showSponsors />
       <Gallery />
-      <Organizers />
+      <Organizers organizers={organizers} />
     </div>
   )
 }

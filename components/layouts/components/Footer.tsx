@@ -81,10 +81,11 @@ export const Footer = () => {
                 <Link
                   href="https://maps.app.goo.gl/Q2ZQ77s6cCJAmDiP7"
                   target="_blank"
-                  className="text-black dark:text-white text-sm"
+                  className="text-black dark:text-white text-sm hover:text-primary dark:hover:text-primary transition-colors"
                   rel="noreferrer"
                 >
-                  <i className="fa fa-map-marker" /> View Map location
+                  <i className="fa fa-map-marker" />{' '}
+                  <span className="underline">View Map location</span>
                 </Link>
               </div>
 
@@ -121,21 +122,22 @@ export const Footer = () => {
                   target="_blank"
                   className="text-black dark:text-white text-sm hover:text-primary dark:hover:text-primary transition-colors block"
                 >
-                  See the Flutterconke Code of Conduct
+                  See the DroidconKE{' '}
+                  <span className="underline">Code of Conduct</span>
                 </Link>
               </div>
             </div>
 
             {/* Social Icons & Copyright */}
             <div className="flex flex-col items-center justify-center space-y-4">
-              <div className="flex space-x-6">
+              <div className="flex items-center space-x-6">
                 <a
                   href="https://www.instagram.com/droidconke/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-primary dark:text-secondary-dark hover:opacity-80 transition-opacity"
                 >
-                  <i className="fa fa-instagram text-2xl" />
+                  <i className="fa fa-instagram text-2xl align-middle" />
                 </a>
                 <a
                   href="https://twitter.com/droidconke"
@@ -143,7 +145,14 @@ export const Footer = () => {
                   rel="noreferrer"
                   className="text-primary dark:text-secondary-dark hover:opacity-80 transition-opacity"
                 >
-                  <i className="fa fa-twitter text-2xl" />
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    className="w-6 h-6 inline-block align-middle"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </a>
                 <a
                   href="https://www.linkedin.com/company/droidconke/"
@@ -151,7 +160,7 @@ export const Footer = () => {
                   rel="noreferrer"
                   className="text-primary dark:text-secondary-dark hover:opacity-80 transition-opacity"
                 >
-                  <i className="fa fa-linkedin text-2xl" />
+                  <i className="fa fa-linkedin text-2xl align-middle" />
                 </a>
                 <a
                   href="https://www.youtube.com/channel/UCNumwOLkQjVgNmYdG8-qHVg"
@@ -159,7 +168,7 @@ export const Footer = () => {
                   rel="noreferrer"
                   className="text-primary dark:text-secondary-dark hover:opacity-80 transition-opacity"
                 >
-                  <i className="fa fa-youtube-play text-2xl" />
+                  <i className="fa fa-youtube-play text-2xl align-middle" />
                 </a>
               </div>
               <p className="text-black dark:text-white text-xs text-center font-medium pb-4">

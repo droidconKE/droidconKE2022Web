@@ -34,7 +34,7 @@ const SponsorCard = ({
         className={`bg-white w-full flex items-center justify-center ${
           large
             ? 'p-8 md:p-12 min-h-[120px] md:min-h-[180px]'
-            : 'p-6 min-h-[120px] md:min-h-[160px]'
+            : 'p-4 min-h-[100px] md:min-h-[130px]'
         }`}
         style={clipPathStyle}
       >
@@ -116,6 +116,12 @@ function SponsorsList({
           &#47;&#47; help make droidconke happen and have your logo appear
           here...
         </div>
+        <Link
+          href="/sponsors"
+          className="btn-primary uppercase whitespace-nowrap mt-6 w-fit"
+        >
+          sponsor droidconke
+        </Link>
       </div>
 
       {showSponsors ? (

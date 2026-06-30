@@ -10,7 +10,7 @@ interface AboutProps {
 
 const About: NextPage<AboutProps> = ({ organizers }) => {
   const team = organizers.filter((o) => o.type === 'individual')
-  // const company = organizers.filter((o) => o.type === 'company')
+  const company = organizers.filter((o) => o.type === 'company')
   return (
     <div
       className="min-h-screen bg-[length:0%] md:bg-[length:88%] bg-[top_360px_left_115%] md:bg-[top_140px_left_148%] bg-no-repeat"
@@ -210,7 +210,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
         </div>
       </section>
       <OrganizingTeam organizers={team} />
-      <Organizers />
+      <Organizers organizers={company} />
     </div>
   )
 }

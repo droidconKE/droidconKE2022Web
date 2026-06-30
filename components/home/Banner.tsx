@@ -28,7 +28,7 @@ export const Banner = () => {
 
           {/* Subtitle */}
           <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mb-8 leading-snug mx-auto text-center">
-            Africa&apos;s largest Android developer conference. Two days. One
+            Africa&apos;s largest Mobile developer conference. Two days. One
             ticket. DroidconKE + FlutterconKE. Nairobi, November 2026.
           </p>
 
@@ -38,7 +38,7 @@ export const Banner = () => {
               href={TICKETS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="btn-primary whitespace-nowrap"
             >
               GET YOUR TICKET
               <svg
