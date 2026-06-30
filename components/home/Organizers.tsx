@@ -25,7 +25,7 @@ function Organizers() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-16">
         {/* Row 1: Android254 */}
         <div className="w-full bg-primary rounded-[24px] md:rounded-[20px] p-8 md:p-12 flex flex-col justify-center">
-          <h4 className="title font-display text-accent text-5xl md:text-6xl mb-6">
+          <h4 className="font-display text-accent dark:text-accent text-5xl md:text-7xl mb-6">
             Android254
           </h4>
           <p className="text-white text-base md:text-lg leading-relaxed opacity-90">
@@ -76,7 +76,7 @@ function Organizers() {
           <div className="absolute inset-0 z-10" style={patternOverlayStyle} />
         </div>
         <div className="w-full bg-accent rounded-[24px] md:rounded-[32px] p-8 md:p-12 flex flex-col justify-center">
-          <h4 className="title font-display text-primary text-5xl md:text-6xl mb-6">
+          <h4 className="font-display text-primary text-5xl md:text-7xl mb-6">
             Kotlin Kenya
           </h4>
           <p className="text-black dark:text-dark text-base md:text-lg leading-relaxed opacity-90">
