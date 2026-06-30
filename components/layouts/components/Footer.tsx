@@ -72,11 +72,20 @@ export const Footer = () => {
                 <h3 className="text-secondary dark:text-secondary-dark font-medium text-lg mb-4">
                   Venue
                 </h3>
+                {/* TODO: Implement dynamic fetching of venue information */}
                 <p className="text-black dark:text-white text-sm">
                   PrideInn Azure Hotel Nairobi,
                   <br />
                   Westlands
                 </p>
+                <Link
+                  href="https://maps.app.goo.gl/Q2ZQ77s6cCJAmDiP7"
+                  target="_blank"
+                  className="text-black dark:text-white text-sm"
+                  rel="noreferrer"
+                >
+                  <i className="fa fa-map-marker" /> View Map location
+                </Link>
               </div>
 
               {showExtraInfo && (
