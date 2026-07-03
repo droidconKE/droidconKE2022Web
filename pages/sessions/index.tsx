@@ -1,6 +1,5 @@
 import React from 'react'
 import { NextPage } from 'next'
-import { getCookie } from 'cookies-next'
 import SessionListCard from '../../components/sessions/SessionListCard'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
@@ -90,11 +89,13 @@ const Sessions: NextPage<SessionProps> = ({
                     <SessionGridCard
                       schedules={schedules}
                       activeTab={activeTab}
+                      showStar
                     />
                   ) : (
                     <SessionListCard
                       schedules={schedules}
                       activeTab={activeTab}
+                      showStar
                     />
                   )}
                 </div>
@@ -118,12 +119,7 @@ const Sessions: NextPage<SessionProps> = ({
 
 export default Sessions
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function getServerSideProps({ req, res }: { req: any; res: any }) {
-  axios.defaults.headers.common.Authorization = `Bearer ${getCookie('token', {
-    req,
-    res,
-  })}`
+export async function getServerSideProps() {
   const schedules = await axios
     .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`)
     .then((response) => {

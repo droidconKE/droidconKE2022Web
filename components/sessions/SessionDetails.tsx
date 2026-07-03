@@ -50,7 +50,6 @@ export const SessionDetails = ({ session }: { session: Session }) => {
           Session Description:
         </h6>
         <p className="p gray mt-2 break-words">{session.description}</p>
-
         <div className="w-full justify-center md:justify-start flex flex-col mt-4 md:mt-10 mb-4 lg:mb-16">
           <StarIcon isStar={false} session={session} />
         </div>

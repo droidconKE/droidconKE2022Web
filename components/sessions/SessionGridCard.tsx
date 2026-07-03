@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour, truncateString } from '../../utils/helpers'
-import { StarIcon } from '../shared/StarIcon'
 import { NoSessions } from './NoSessions'
+import { StarIcon } from '../shared/StarIcon'
 
 export const SessionGridCard = ({
   schedules,
   activeTab,
   from,
   year = 25,
+  showStar = false,
 }: {
   schedules: Schedule[]
   activeTab: number
@@ -16,6 +17,8 @@ export const SessionGridCard = ({
   from?: string
   // eslint-disable-next-line react/require-default-props
   year?: number
+  // eslint-disable-next-line react/require-default-props
+  showStar?: boolean
 }) => {
   return (
     <>
@@ -139,13 +142,13 @@ export const SessionGridCard = ({
                                   </div>
                                 ))}
                             </div>
-                            <div className="w-full flex items-center justify-end">
+                            {showStar && (
                               <span>
                                 {!schedule.is_serviceSession && (
                                   <StarIcon session={schedule} />
                                 )}
                               </span>
-                            </div>
+                            )}
                           </div>
                         )}
                       </div>

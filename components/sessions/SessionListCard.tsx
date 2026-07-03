@@ -1,18 +1,21 @@
 import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour, time, timeAm, truncateString } from '../../utils/helpers'
-import { StarIcon } from '../shared/StarIcon'
 import { NoSessions } from './NoSessions'
+import { StarIcon } from '../shared/StarIcon'
 
 const SessionListCard = ({
   schedules,
   activeTab,
   from,
+  showStar = false,
 }: {
   schedules: Schedule[]
   activeTab: number
   // eslint-disable-next-line react/require-default-props
   from?: string
+  // eslint-disable-next-line react/require-default-props
+  showStar?: boolean
 }) => {
   return (
     <>
@@ -99,11 +102,13 @@ const SessionListCard = ({
                             </a>
                           ))}
                         </div>
-                        <div className="flex w-1/12 justify-center items-start md:pr-4">
-                          {!schedule.is_serviceSession && (
-                            <StarIcon session={schedule} />
-                          )}
-                        </div>
+                        {showStar && (
+                          <div className="flex w-1/12 justify-center items-start md:pr-4">
+                            {!schedule.is_serviceSession && (
+                              <StarIcon session={schedule} />
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
