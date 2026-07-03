@@ -148,7 +148,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
         </div>
       </section>
-      <section className="w-full bg-lighter dark:bg-black-dark md:px-32 sm:px-10">
+      <section className="w-full bg-white dark:bg-black-dark md:px-32 sm:px-10">
         <div className="s-container md:-mt-10 md:py-12">
           <div className="flex flex-wrap">
             <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
