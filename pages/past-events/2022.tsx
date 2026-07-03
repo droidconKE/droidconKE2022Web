@@ -1,6 +1,5 @@
 import React from 'react'
 import { NextPage } from 'next'
-import { getCookie } from 'cookies-next'
 import SessionListCard from '../../components/sessions/SessionListCard'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
@@ -29,8 +28,6 @@ const Home2022: NextPage<SessionProps> = ({
     setShowFilterSession,
     setActiveTab,
     changeViewType,
-    setShowMysessions,
-    showMySessions,
     loading,
     activeTab,
     showFilterSession,
@@ -50,8 +47,6 @@ const Home2022: NextPage<SessionProps> = ({
                 setShowFilterSession={setShowFilterSession}
                 onChangeViewType={changeViewType}
                 isGridView={isGridView}
-                onMySessions={setShowMysessions}
-                isMySessions={showMySessions}
               />
             </div>
           </div>
@@ -125,12 +120,7 @@ const Home2022: NextPage<SessionProps> = ({
 
 export default Home2022
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function getServerSideProps({ req, res }: { req: any; res: any }) {
-  axios.defaults.headers.common.Authorization = `Bearer ${getCookie('token', {
-    req,
-    res,
-  })}`
+export async function getServerSideProps() {
   const schedules = await axios
     .get(
       `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG_2022}/schedule?grouped=true`
