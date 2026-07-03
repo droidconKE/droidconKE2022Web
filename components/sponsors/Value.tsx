@@ -19,7 +19,7 @@ export const Value = () => (
             User adoption
           </p>
         </div>
-        <div className="justify-center flex items-center px-3 py-5 text-center bg-secondary">
+        <div className="justify-center flex items-center px-3 py-5 text-center bg-primary">
           <p className="text-xs md:text-xl text-white dark:text-white-dark  lowercase font-semibold">
             Build relationships
           </p>
