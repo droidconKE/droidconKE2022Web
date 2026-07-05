@@ -163,7 +163,15 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
           <div className="items-center flex flex-wrap py-4 mt-4">
             <div className="w-2/12 md:w-4/12 ml-auto px-0 md:px-8 mb-8 md:mb-0">
-              <div className="grow h-2 bg-secondary" />
+              <div
+                className="grow h-2 bg-secondary"
+                style={{
+                  maskImage:
+                    'repeating-linear-gradient(45deg, black, black 2px, transparent 2px, transparent 8px)',
+                  WebkitMaskImage:
+                    'repeating-linear-gradient(45deg, black, black 2px, transparent 2px, transparent 8px)',
+                }}
+              />
             </div>
             <div className="w-8/12 flex md:w-4/12 mb-10 md:mb-0 justify-center px-2">
               <Link
@@ -174,7 +182,15 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
               </Link>
             </div>
             <div className="w-2/12 md:w-4/12 ml-auto px-0 md:px-8 mb-8 md:mb-0">
-              <div className="grow h-2 bg-secondary" />
+              <div
+                className="grow h-2 bg-secondary"
+                style={{
+                  maskImage:
+                    'repeating-linear-gradient(45deg, black, black 2px, transparent 2px, transparent 8px)',
+                  WebkitMaskImage:
+                    'repeating-linear-gradient(45deg, black, black 2px, transparent 2px, transparent 8px)',
+                }}
+              />
             </div>
           </div>
         </div>
