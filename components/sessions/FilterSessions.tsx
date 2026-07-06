@@ -15,6 +15,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
   event,
 }) => {
   const [filter, setFilter] = useState<FilterInterface>({})
+  const [isOpen, setIsOpen] = useState(false)
 
   const [sessions3] = useState(event.cfs.cfs_settings.session_levels)
   const [sessions4] = useState(event.rooms.map((r) => r.title))
@@ -34,23 +35,36 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
     filterSession(filter)
   }, [filter, filterSession])
 
+  useEffect(() => {
+    setIsOpen(true)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowFilterSession(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [setShowFilterSession])
+
   return (
     <>
-      {/* <div
-        className="bg-transparent h-full top-0 left-0 z-10 w-1/6 sm:w-3/4 absolute"
+      <div
+        className="fixed inset-0 z-20 bg-transparent"
         onClick={() => setShowFilterSession(false)}
         aria-hidden="true"
-      /> */}
-      <div className="fixed right-0 top-0 w-25 bg-black dark:bg-black-dark z-20 text-white w-10/12 lg:w-1/4 md:w-1/3 h-screen transition-all ease-in-out duration-1000 transform translate-x-0">
+      />
+      <div
+        className={`fixed right-0 top-0 bg-black dark:bg-black-dark z-30 text-white w-10/12 lg:w-1/4 md:w-1/3 h-screen rounded-l-4xl overflow-y-auto transition-transform ease-in-out duration-300 transform ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
         <div className="bg-black dark:bg-black-dark relative">
           <div className="py-16 px-4 md:px-10">
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <div className="text-secondary text-base">
                 <i className="fa fa-filter text-xl" /> &nbsp; Filter
                 &nbsp;&nbsp;
                 {!objIsEmpty(filter) && (
                   <span
-                    className="purple text-xs cursor-pointer"
+                    className="text-accent underline text-xs cursor-pointer"
                     onClick={() => setFilter({})}
                     aria-hidden
                   >
@@ -60,14 +74,17 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               </div>
               <button
                 type="button"
-                className="text-base hover:cursor-pointer text-light uppercase"
+                aria-label="Close filters"
+                className="text-light hover:text-white transition-colors"
                 onClick={() => setShowFilterSession(false)}
               >
-                Cancel
+                <i className="fa fa-times text-xl" />
               </button>
             </div>
             <div className="mt-10">
-              <span className="my-4">Level</span>
+              <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
+                Level
+              </span>
               {groupBy3(sessions3).map((sessions: string[]) => (
                 <div className="flex pb-1 flex-wrap" key={sessions[0]}>
                   <button
@@ -112,7 +129,9 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
             </div>
 
             <div className="mt-10">
-              <span className="my-4">Rooms</span>
+              <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
+                Rooms
+              </span>
               {groupBy3(sessions4).map((sessions: string[]) => (
                 <div
                   key={sessions[0]}
@@ -165,7 +184,9 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
             </div>
 
             <div className="mt-10">
-              <span className="my-4">Session Types</span>
+              <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
+                Session Types
+              </span>
               {groupBy3(sessions5).map((sessions: string[]) => (
                 <div
                   key={sessions[0]}

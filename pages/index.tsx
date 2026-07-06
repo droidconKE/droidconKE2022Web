@@ -34,12 +34,14 @@ export async function getServerSideProps() {
     .then((response) => {
       return response.data.data
     })
+    .catch(() => [])
 
   const sponsors = await axios
     .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
     .then((response) => {
       return response.data.data
     })
+    .catch(() => [])
 
   // Pass data to the page via props
   return { props: { organizers, sponsors } }

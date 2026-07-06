@@ -4,6 +4,11 @@ import { hour, time, timeAm, truncateString } from '../../utils/helpers'
 import { NoSessions } from './NoSessions'
 import { StarIcon } from '../shared/StarIcon'
 
+const levelPill =
+  'bg-green-100 dark:bg-green-500/15 text-green-800 dark:text-accent-dark text-xs font-semibold px-3 py-1 rounded-full'
+const formatPill =
+  'bg-blue-50 dark:bg-primary/20 text-primary dark:text-blue-300 text-xs font-semibold px-3 py-1 rounded-full'
+
 const SessionListCard = ({
   schedules,
   activeTab,
@@ -19,97 +24,93 @@ const SessionListCard = ({
 }) => {
   return (
     <>
-      <div className="space-y-10 md:pl-4">
+      <div className="space-y-5">
         {Object.keys(schedules)?.map(
           (key, i) =>
             activeTab === i &&
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             (schedules[key].length ? (
-              <div key={key}>
+              <div key={key} className="space-y-5">
                 {// eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 schedules[key]?.map((schedule: Session) => (
-                  <div key={schedule.id}>
-                    <div className="shadow-md px-2 h-auto rounded-md py-4 justify-center content-center bg-white dark:bg-black-dark mb-6">
-                      <div className="flex flex-row items-start">
-                        <div className="flex flex-col w-2/12 justify-start items-center">
-                          <h4 className="font-bold md:text-xl text-primary dark:text-accent-dark">
-                            {time(schedule.start_date_time)}
+                  <div
+                    key={schedule.id}
+                    className="rounded-4xl bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 px-4 md:px-6 py-5"
+                  >
+                    <div className="flex flex-row items-start gap-4">
+                      <div className="flex flex-col w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-primary/15 py-3">
+                        <span className="font-display text-lg leading-none text-primary dark:text-accent-dark">
+                          {time(schedule.start_date_time)}
+                        </span>
+                        <span className="text-xs font-medium text-light dark:text-light-dark mt-1">
+                          {timeAm(schedule.start_date_time)}
+                        </span>
+                      </div>
+                      <div className="flex-1">
+                        {schedule.is_serviceSession ? (
+                          <h4 className="font-bold text-base md:text-lg text-black dark:text-white-dark">
+                            {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
+                            {schedule.title}
                           </h4>
-                          <h4 className="font-bold md:text-xl text-primary dark:text-accent-dark">
-                            {timeAm(schedule.start_date_time)}
-                          </h4>
-                        </div>
-                        <div className="w-9/12 content-center justify-center">
-                          {schedule.is_serviceSession ? (
-                            <h4 className="font-bold md:text-xl dark:text-white">
+                        ) : (
+                          <Link
+                            href={`/sessions/${schedule.slug}${
+                              from ? `?from=${from}` : ''
+                            }`}
+                          >
+                            <h4 className="font-bold text-base md:text-lg text-black dark:text-white-dark hover:text-primary dark:hover:text-accent-dark transition-colors">
                               {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
                               {schedule.title}
                             </h4>
-                          ) : (
-                            <Link
-                              href={`/sessions/${schedule.slug}${
-                                from ? `?from=${from}` : ''
-                              }`}
-                            >
-                              <h4 className="font-bold md:text-xl dark:text-white">
-                                {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
-                                {schedule.title}
-                              </h4>
-                            </Link>
-                          )}
-                          {schedule.description && (
-                            <p className="font-normal text-sm md:text-base py-2 break-words">
-                              {truncateString(schedule.description, 150)}
-                            </p>
-                          )}
-                          {!schedule.is_serviceSession && (
-                            <p className="text-xs mt-2 mb-3">
-                              <span className="uppercase text-xs text-white dark:text-dark text-px-10 bg-black dark:bg-white-dark py-0.5 px-2 rounded-full">
-                                #
-                                {schedule.is_keynote
-                                  ? 'Keynote'
-                                  : schedule.session_level}
-                              </span>
-                              <span className="black"> | </span>{' '}
-                              <span className="text-primary dark:text-accent-dark">
-                                {schedule.session_format}
-                              </span>{' '}
-                            </p>
-                          )}
-                          <p className="text-xs md:text-sm font-light">
-                            <span>
-                              {hour(schedule.start_date_time)} -{' '}
-                              {hour(schedule.end_date_time)}
-                            </span>{' '}
-                            |{' '}
-                            {schedule.rooms?.map((venue) => (
-                              <span key={venue.id} className="rooms">
-                                {venue.title}
-                              </span>
-                            ))}
-                          </p>
-                          {schedule.speakers?.map((speaker) => (
-                            <a
-                              key={speaker.avatar}
-                              href="#1"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-xs md:text-sm pt-1 text-primary dark:text-accent-dark mr-2"
-                            >
-                              <i className="fa fa-android" /> {speaker.name}
-                            </a>
-                          ))}
-                        </div>
-                        {showStar && (
-                          <div className="flex w-1/12 justify-center items-start md:pr-4">
-                            {!schedule.is_serviceSession && (
-                              <StarIcon session={schedule} />
-                            )}
+                          </Link>
+                        )}
+                        {!schedule.is_serviceSession && (
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            <span className={levelPill}>
+                              #
+                              {schedule.is_keynote
+                                ? 'Keynote'
+                                : schedule.session_level}
+                            </span>
+                            <span className={formatPill}>
+                              {schedule.session_format}
+                            </span>
                           </div>
                         )}
+                        {schedule.description && (
+                          <p className="font-normal text-sm text-black dark:text-white-dark py-2 break-words">
+                            {truncateString(schedule.description, 150)}
+                          </p>
+                        )}
+                        <p className="text-xs md:text-sm text-light dark:text-light-dark font-medium">
+                          {hour(schedule.start_date_time)} -{' '}
+                          {hour(schedule.end_date_time)} ·{' '}
+                          {schedule.rooms?.map((venue) => (
+                            <span key={venue.id} className="rooms">
+                              {venue.title}
+                            </span>
+                          ))}
+                        </p>
+                        {schedule.speakers?.length ? (
+                          <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
+                            {schedule.speakers?.map((speaker) => (
+                              <span
+                                key={speaker.avatar}
+                                className="text-xs md:text-sm text-primary dark:text-accent-dark font-medium"
+                              >
+                                {speaker.name}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
                       </div>
+                      {showStar && !schedule.is_serviceSession && (
+                        <div className="shrink-0 flex justify-center items-start">
+                          <StarIcon session={schedule} />
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
