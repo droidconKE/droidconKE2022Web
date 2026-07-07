@@ -22,12 +22,7 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
   }
 
   return (
-    <div className="w-full flex-wrap lg:w-4/12 flex border-r-0 pr-0 lg:pr-4 mb-6 md:mb-0">
-      <div className="w-full py-4">
-        <h4 className="w-full lowercase font-black text-2xl md:text-3xl dark:text-white-dark">
-          Speaker
-        </h4>
-      </div>
+    <div className="w-full rounded-4xl md:rounded-5xl overflow-hidden bg-gradient-to-b from-accent to-primary p-6 md:p-10">
       <Carousel
         autoPlay={session.speakers.length > 1}
         interval={10000}
@@ -38,59 +33,50 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
       >
         {session.speakers.map((speaker) => {
           return (
-            <div key={speaker.name}>
-              <div className="w-full flex items-start text-center">
-                <div className="w-1/3 md:pr-4 flex-none bg-green-c-2 rounded">
+            <div key={speaker.name} className="text-left">
+              <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10">
+                <div className="relative w-40 md:w-56 flex-none rounded-2xl border-4 border-accent overflow-hidden bg-blue-600">
                   <img
-                    className="w-full p-0 rounded-lg border-2 border-green-500"
+                    className="w-full aspect-[3/4] object-cover grayscale contrast-125 mix-blend-screen"
                     src={speaker.avatar ?? '/images/icons/apple-icon.png'}
                     alt={speaker.name}
                   />
+                  <span className="pointer-events-none absolute inset-0 mix-blend-overlay [background-image:radial-gradient(rgba(255,255,255,0.3)_1px,transparent_1.4px)] [background-size:6px_6px]" />
                 </div>
-                <div className="text-left px-2 py-1 lg:py-4">
-                  <div className="md:text-xl text-primary dark:text-white-dark font-bold">
+                <div className="flex-1">
+                  <p className="text-primary dark:text-primary font-bold uppercase tracking-wide text-sm md:text-base mb-2">
+                    ( Speaker )
+                  </p>
+                  <h2 className="font-display text-black dark:text-black text-4xl md:text-6xl leading-none">
                     {speaker.name}
-                  </div>
-                  <p className="text-xs md:text-sm text-light dark:text-lighter-dark py-1">
+                  </h2>
+                  <p className="text-black dark:text-black font-bold text-base md:text-xl mt-3">
                     {speaker.tagline}
                   </p>
-                  <p className="pt-1">
-                    <a
-                      href="https://twitter.com/droidconke"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-primary dark:text-accent text-sm lowercase font-medium"
-                    >
-                      <a
-                        href={speaker.twitter ?? String(speaker.linkedin)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary dark:text-accent text-sm lowercase font-medium"
-                      >
-                        @
-                        {getTwitterUsername(speaker.twitter ?? '') ||
-                          speaker.name}
-                      </a>
-                    </a>
-                  </p>
+                  <a
+                    href={speaker.twitter ?? String(speaker.linkedin)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-primary text-sm font-medium mt-2 hover:underline"
+                  >
+                    @{getTwitterUsername(speaker.twitter ?? '') || speaker.name}
+                  </a>
+                  {speaker.biography && (
+                    <div className="mt-5">
+                      <h4 className="font-bold text-black dark:text-black text-lg">
+                        Bio
+                      </h4>
+                      <p className="mt-2 text-black dark:text-black leading-relaxed">
+                        {speaker.biography}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
-              {speaker.biography && (
-                <div className="w-full">
-                  <h4 className="font-bold mt-5 text-xl md:mt-4 dark:text-white-dark">
-                    Bio:
-                  </h4>
-                  <p className="mt-2 md:mt-4 mb-4 lg:mb-16">
-                    {speaker.biography}
-                  </p>
-                </div>
-              )}
             </div>
           )
         })}
       </Carousel>
-
-      {/* <SpeakerSkeleton /> */}
     </div>
   )
 }

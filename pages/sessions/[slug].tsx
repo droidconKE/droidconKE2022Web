@@ -19,7 +19,7 @@ const Session: NextPage<SessionPageProp> = ({ session }) => {
 
   const image =
     session.session_image ??
-    'https://droidcon.co.ke/images/droidcon-26-kenya-announcement.png'
+    'https://droidcon.co.ke/images/svg/droidcon-kenya-26_02.svg'
 
   return (
     <>

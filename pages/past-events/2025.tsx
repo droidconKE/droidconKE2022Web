@@ -41,81 +41,73 @@ const Home2024: NextPage<SessionProps> = ({
 
   return (
     <>
-      <div className="w-full mt-10 mb-0">
-        <section className="w-full bg-dark dark:bg-black-dark">
-          <div className="l-container mt-8 md:mt-0 py-2 md:py-4">
-            <div className="w-full flex justify-between md:flex-row items-center mt-5 md:mt-6">
-              <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
-                dcKe25 Sessions
-              </h3>
-              <SessionToggles
-                setShowFilterSession={setShowFilterSession}
-                onChangeViewType={changeViewType}
-                isGridView={isGridView}
-                reportLink="https://bit.ly/dcKe-flutterKe-2025-report"
-              />
-            </div>
+      <div className="s-container my-10 md:my-16">
+        {/* Header card */}
+        <section className="w-full bg-primary rounded-4xl md:rounded-5xl px-6 py-8 md:px-12 md:py-10">
+          <div className="flex items-center text-white/80 text-sm md:text-base font-medium mb-3">
+            <div className="w-6 h-px bg-white/80 mr-3" />
+            droidconKE 2025
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <h1 className="text-accent font-display text-5xl md:text-7xl leading-none">
+              Sessions
+            </h1>
+            <SessionToggles
+              setShowFilterSession={setShowFilterSession}
+              onChangeViewType={changeViewType}
+              isGridView={isGridView}
+            />
           </div>
         </section>
 
-        <section className="w-full py-2 md:py-12 mb-0">
-          {!loading ? (
-            <div className="l-container flex flex-wrap">
-              <div className="flex flex-row lg:flex-col w-full lg:w-1/12 h-auto lg:h-64 bor border-r-0 lg:border-r border-green-200 space-y-0 lg:space-y-6 space-x-6 lg:space-x-0 items-center lg:items-start justify-center lg:justify-start py-2 lg:py-0 sticky nav-bg nav-side z-0 top-[60px] md:top-[80px]">
-                {Object.keys(schedules)?.map((key, i) => {
-                  return (
-                    <div
-                      key={key}
-                      className={`w-4/12 px-4 py-2 lg:w-full cursor-pointer rounded-tl-lg rounded-bl-lg rounded-r-lg lg:rounded-r-none ${
-                        activeTab === i
-                          ? 'bg-secondary dark:bg-secondary-dark'
-                          : 'bg-green-100 dark:bg-black-dark'
-                      }`}
-                      onClick={() => setActiveTab(i)}
-                      aria-hidden="true"
-                    >
-                      <h4
-                        className={`font-bold ${
-                          activeTab === i ? 'text-white' : ''
-                        } dark:text-white-dark`}
-                      >
-                        {timeDay(key)}{' '}
-                        <small className="text-px-13 font-normal">
-                          Day {i + 1}
-                        </small>
-                      </h4>
-                    </div>
-                  )
-                })}
-              </div>
-              <div className="w-full lg:w-11/12">
-                <div className="px-0 md:px-6 mt-3">
-                  {isGridView ? (
-                    <SessionGridCard
-                      schedules={schedules}
-                      activeTab={activeTab}
-                      from="/past-events/2025"
-                      year={25}
-                    />
-                  ) : (
-                    <SessionListCard
-                      schedules={schedules}
-                      activeTab={activeTab}
-                      from="/past-events/2025"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <SessionsSkeleton />
+        {/* Day pills */}
+        <div className="mt-8 md:mt-10 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {Object.keys(schedules)?.map((key, i) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setActiveTab(i)}
+              className={`shrink-0 rounded-full px-6 py-3 text-left transition-colors ${
+                activeTab === i
+                  ? 'bg-primary text-white'
+                  : 'bg-blue-50 dark:bg-darker-dark text-black dark:text-white-dark hover:bg-blue-100 dark:hover:bg-white/5'
+              }`}
+            >
+              <span className="font-bold block leading-tight">
+                {timeDay(key)}
+              </span>
+              <span className="text-px-13 font-normal opacity-70">
+                Day {i + 1}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Sessions */}
+        <section className="mt-8 md:mt-10">
+          {!loading && isGridView && (
+            <SessionGridCard
+              schedules={schedules}
+              activeTab={activeTab}
+              from="/past-events/2025"
+              year={25}
+            />
           )}
+          {!loading && !isGridView && (
+            <SessionListCard
+              schedules={schedules}
+              activeTab={activeTab}
+              from="/past-events/2025"
+            />
+          )}
+          {loading && <SessionsSkeleton />}
         </section>
-        <div className="l-container py-8 md:py-10">
+        {/* Speakers */}
+        <div className="mt-12 md:mt-16">
           <SpeakersList sessions={sessions} speakers={speakers} />
         </div>
-        <SponsorsList sponsors={sponsors} showSponsors year={25} />
       </div>
+      <SponsorsList sponsors={sponsors} showSponsors year={25} />
       {showFilterSession && (
         <FilterSessions
           setShowFilterSession={setShowFilterSession}

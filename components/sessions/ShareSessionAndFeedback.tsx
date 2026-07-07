@@ -12,6 +12,7 @@ import {
 import { SessionFeedback } from './SessionFeedback'
 import { Session } from '../../types/types'
 import { truncateString } from '../../utils/helpers'
+import { StarIcon } from '../shared/StarIcon'
 
 export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
@@ -25,16 +26,17 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
   )} \r`
 
   return (
-    <div className="w-full px-0 md:px-6 flex-col items-start justify-start lg:w-3/12 flex py-4 mb-16 lg:mb-0 space-y-5">
+    <div className="w-full flex flex-wrap items-center gap-4 py-2">
+      <StarIcon isStar={false} session={session} />
       <button
         type="button"
-        className="btn-accent"
+        className="btn-accent uppercase"
         onClick={() => setShowShare(!showShare)}
       >
         share <i className="fa fa-share" />
       </button>
       {showShare && (
-        <div className="space-x-4">
+        <div className="flex items-center space-x-4">
           <LinkedinShareButton
             url={window.location.href}
             source={window.location.href}

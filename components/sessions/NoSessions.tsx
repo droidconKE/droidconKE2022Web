@@ -1,19 +1,9 @@
 export const NoSessions = () => {
   return (
-    <div className="l-container flex flex-wrap">
-      <div className="w-2/12 h-20 items-center justify-center text-right hidden lg:flex" />
-      <div className="w-full lg:w-10/12 flex bg-white dark:bg-black-dark rounded-lg">
-        <div className="h-auto w-full lg:h-24 shadow rounded-lg px-4 py-3 flex flex-col justify-center">
-          <div className="flex flex-wrap items-center">
-            <div className="w-10/12">
-              <div className="mb-2 dark:text-white">
-                Seems there are no seesions here from the filter or saved
-                session !
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="w-full flex items-center justify-center rounded-4xl bg-blue-50 dark:bg-darker-dark border border-blue-100 dark:border-white/10 px-6 py-12 text-center">
+      <p className="text-light dark:text-light-dark">
+        No sessions here yet — try another day or clear your filters.
+      </p>
     </div>
   )
 }
