@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 const Document = () => {
-  const title = `The Largest Android Developers' Conference in Africa`
+  const title = `The Largest Mobile Developers' Conference in Africa`
   return (
     <Html lang="en">
       <Head>
