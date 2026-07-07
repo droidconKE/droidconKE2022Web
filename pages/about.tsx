@@ -79,7 +79,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
         </div>
       </section>
       <section className="s-container mb-12 md:mb-16">
-        <div className="relative overflow-hidden w-full rounded-4xl md:rounded-5xl bg-accent px-6 py-10 md:px-12 md:py-16">
+        <div className="relative isolate overflow-hidden w-full rounded-4xl md:rounded-5xl bg-accent px-6 py-10 md:px-12 md:py-16">
           <span className="pointer-events-none absolute top-0 left-0 right-0 h-28 z-0 [background-image:radial-gradient(rgba(255,255,255,0.5)_1.4px,transparent_1.6px)] [background-size:10px_10px] [mask-image:linear-gradient(to_bottom,#000,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,#000,transparent)]" />
           <div className="relative z-10 flex flex-wrap">
             <div className="w-full py-2 pb-12">
