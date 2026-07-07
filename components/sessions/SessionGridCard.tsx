@@ -37,50 +37,38 @@ export const SessionGridCard = ({
               <div className="lg:grid gap-5 grid-cols-3" key={key}>
                 {// eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                schedules[key]?.map((schedule: Session) => (
-                  <div className="flex" key={schedule.id}>
-                    <div className="relative w-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 mb-6 flex flex-col">
+                schedules[key]?.map((schedule: Session) => {
+                  const href = `/sessions/${schedule.slug}${
+                    from ? `?from=${from}` : ''
+                  }`
+                  const imgSrc =
+                    schedule.session_image ??
+                    (schedule.is_serviceSession
+                      ? // TODO: remove after 2024
+                        schedule.title.includes('Building And Scaling Tech')
+                        ? '/images/panel.png'
+                        : year === 24
+                          ? '/images/all-new.png'
+                          : year === 25
+                            ? '/images/all-2025.png'
+                            : '/images/all.png'
+                      : year === 24
+                        ? '/images/all-new.png'
+                        : year === 26
+                          ? '/images/all-2025.png'
+                          : '/images/all.png')
+                  const cardClass =
+                    'group relative w-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent hover:-translate-y-1 transition-all duration-200 mb-6 flex flex-col'
+                  const inner = (
+                    <>
                       {/* halftone dots at the top corners */}
                       <span className="session-dots session-dots-l pointer-events-none absolute top-0 left-0 w-24 h-24 z-10" />
                       <span className="session-dots session-dots-r pointer-events-none absolute top-0 right-0 w-24 h-24 z-10" />
-                      {schedule.is_serviceSession ? (
-                        <img
-                          className="w-full h-44 object-cover"
-                          src={
-                            schedule.session_image ??
-                            // TODO: remove after 2024
-                            (schedule.title.includes(
-                              'Building And Scaling Tech'
-                            )
-                              ? '/images/panel.png'
-                              : year === 24
-                                ? '/images/all-new.png'
-                                : year === 25
-                                  ? '/images/all-2025.png'
-                                  : '/images/all.png')
-                          }
-                          alt={schedule.title}
-                        />
-                      ) : (
-                        <Link
-                          href={`/sessions/${schedule.slug}${
-                            from ? `?from=${from}` : ''
-                          }`}
-                        >
-                          <img
-                            className="w-full h-44 object-cover"
-                            src={
-                              schedule.session_image ??
-                              (year === 24
-                                ? '/images/all-new.png'
-                                : year === 26
-                                  ? '/images/all-2025.png'
-                                  : '/images/all.png')
-                            }
-                            alt={schedule.title}
-                          />
-                        </Link>
-                      )}
+                      <img
+                        className="w-full h-44 object-cover"
+                        src={imgSrc}
+                        alt={schedule.title}
+                      />
                       <div className="p-5 flex flex-1 flex-wrap">
                         <div className="w-full">
                           <h3 className="text-primary dark:text-accent-dark text-sm font-bold mb-3">
@@ -109,23 +97,10 @@ export const SessionGridCard = ({
                               </span>
                             </div>
                           )}
-                          {schedule.is_serviceSession ? (
-                            <p className="text-base font-bold text-black dark:text-white-dark mb-2">
-                              {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
-                              {schedule.title}
-                            </p>
-                          ) : (
-                            <Link
-                              href={`/sessions/${schedule.slug}${
-                                from ? `?from=${from}` : ''
-                              }`}
-                            >
-                              <p className="text-base font-bold text-black dark:text-white-dark mb-2 hover:text-primary dark:hover:text-accent-dark transition-colors">
-                                {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
-                                {schedule.title}
-                              </p>
-                            </Link>
-                          )}
+                          <p className="text-base font-bold text-black dark:text-white-dark mb-2 group-hover:text-primary dark:group-hover:text-accent-dark transition-colors">
+                            {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
+                            {schedule.title}
+                          </p>
                           {schedule.description && (
                             <p className="font-normal text-sm text-black dark:text-white-dark break-words w-full">
                               {truncateString(schedule.description, 120)}
@@ -152,9 +127,20 @@ export const SessionGridCard = ({
                           </div>
                         )}
                       </div>
+                    </>
+                  )
+                  return (
+                    <div className="flex" key={schedule.id}>
+                      {schedule.is_serviceSession ? (
+                        <div className={cardClass}>{inner}</div>
+                      ) : (
+                        <Link href={href} className={`${cardClass} block`}>
+                          {inner}
+                        </Link>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             ) : (
               <NoSessions key={key} />

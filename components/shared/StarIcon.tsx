@@ -17,7 +17,11 @@ export const StarIcon = ({ isStar = true, session }: StarIconProps) => {
       width="27.895"
       height="27"
       className="cursor-pointer"
-      onClick={() => bookmark()}
+      onClick={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        bookmark()
+      }}
     >
       <g data-name="Layer 2">
         <g data-name="Layer 1">

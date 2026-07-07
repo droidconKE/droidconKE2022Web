@@ -67,8 +67,8 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
                 className="hidden"
                 onChange={() => null}
               />
-              <div className="toggle__line h-3 w-8 sm:h-4 bg-white rounded-full shadow-inner" />
-              <div className="toggle__dot absolute h-4 w-4 sm:w-5 sm:h-5 bg-secondary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
+              <div className="ms-toggle__line h-3 w-8 sm:h-4 bg-white rounded-full shadow-inner" />
+              <div className="ms-toggle__dot absolute h-4 w-4 sm:w-5 sm:h-5 bg-secondary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
             </div>
             <div className="ml-3 text-white dark:text-white-dark font-sm mt-2 sm:mt-0">
               My Sessions
@@ -76,16 +76,16 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
           </button>
           <style>
             {`
-              .toggle__dot {
+              .ms-toggle__dot {
                 top: -0.25rem;
                 left: -0.25rem;
                 transition: all 0.3s ease-in-out;
               }
-              .toggle__line {
+              .ms-toggle__line {
                 margin-top: -2px;
               }
 
-              input:checked ~ .toggle__dot {
+              input:checked ~ .ms-toggle__dot {
                 transform: translateX(100%);
               }
             `}

@@ -34,11 +34,13 @@ const SessionListCard = ({
               <div key={key} className="space-y-5">
                 {// eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                schedules[key]?.map((schedule: Session) => (
-                  <div
-                    key={schedule.id}
-                    className="rounded-4xl bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 px-4 md:px-6 py-5"
-                  >
+                schedules[key]?.map((schedule: Session) => {
+                  const href = `/sessions/${schedule.slug}${
+                    from ? `?from=${from}` : ''
+                  }`
+                  const cardClass =
+                    'group block rounded-4xl bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent hover:-translate-y-1 transition-all duration-200 px-4 md:px-6 py-5'
+                  const inner = (
                     <div className="flex flex-row items-start gap-4">
                       <div className="flex flex-col w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-primary/15 py-3">
                         <span className="font-display text-lg leading-none text-primary dark:text-accent-dark">
@@ -49,23 +51,10 @@ const SessionListCard = ({
                         </span>
                       </div>
                       <div className="flex-1">
-                        {schedule.is_serviceSession ? (
-                          <h4 className="font-bold text-base md:text-lg text-black dark:text-white-dark">
-                            {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
-                            {schedule.title}
-                          </h4>
-                        ) : (
-                          <Link
-                            href={`/sessions/${schedule.slug}${
-                              from ? `?from=${from}` : ''
-                            }`}
-                          >
-                            <h4 className="font-bold text-base md:text-lg text-black dark:text-white-dark hover:text-primary dark:hover:text-accent-dark transition-colors">
-                              {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
-                              {schedule.title}
-                            </h4>
-                          </Link>
-                        )}
+                        <h4 className="font-bold text-base md:text-lg text-black dark:text-white-dark group-hover:text-primary dark:group-hover:text-accent-dark transition-colors">
+                          {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
+                          {schedule.title}
+                        </h4>
                         {!schedule.is_serviceSession && (
                           <div className="flex flex-wrap gap-2 mt-2">
                             <span className={levelPill}>
@@ -112,8 +101,17 @@ const SessionListCard = ({
                         </div>
                       )}
                     </div>
-                  </div>
-                ))}
+                  )
+                  return schedule.is_serviceSession ? (
+                    <div key={schedule.id} className={cardClass}>
+                      {inner}
+                    </div>
+                  ) : (
+                    <Link key={schedule.id} href={href} className={cardClass}>
+                      {inner}
+                    </Link>
+                  )
+                })}
               </div>
             ) : (
               <NoSessions key={key} />
