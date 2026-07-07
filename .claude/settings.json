@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(cp /Users/manuel/React/droidconKE2022Web/components/sessions/SessionGridCard.tsx /Users/manuel/React/flutterconKE2024Web/components/sessions/SessionGridCard.tsx)",
-      "Bash(perl -pi -e 's/green-/magenta-/g; s/#00ff4f/#F73EDE/g; s/#00FF4F/#F73EDE/gi' /Users/manuel/React/flutterconKE2024Web/components/sessions/SessionGridCard.tsx)"
-    ]
-  }
-}

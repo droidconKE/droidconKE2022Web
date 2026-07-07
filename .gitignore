@@ -54,3 +54,5 @@ docs/design/*.zip
 
 # Build-time injected licensed font (see scripts/fetch-font.sh)
 public/fonts/
+
+.claude/
