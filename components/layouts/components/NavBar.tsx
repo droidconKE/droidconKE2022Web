@@ -26,7 +26,7 @@ export const NavBar = () => {
   }, [])
 
   return (
-    <nav className="flex items-center justify-between flex-wrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600 mb-4">
+    <nav className="flex items-center justify-between flex-wrap lg:flex-nowrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600 mb-4">
       <div className="flex items-center flex-shrink-0 text-white mr-6 xl:pl-24">
         <Link href="/">
           {!isDarkTheme ? (
@@ -65,14 +65,14 @@ export const NavBar = () => {
       <ToggleTheme />
       <div
         id="nav-content"
-        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 xl:pr-24 md:px-5  ${
+        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
           navVisible ? '' : 'hidden'
         }`}
       >
         <div
-          className={`w-full flex-grow lg:flex ${
+          className={`w-full lg:w-auto flex-grow lg:flex ${
             navVisible ? 'bg-white dark:bg-dark' : ''
-          } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
+          }`}
         >
           <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
             <li className="mr-3 black text-xl">
