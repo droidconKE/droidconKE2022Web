@@ -4,7 +4,6 @@ import React, { ReactNode } from 'react'
 import { ThemeProvider } from '../../context/ThemeContext'
 import { Footer } from './components/Footer'
 import { NavBar } from './components/NavBar'
-import { NotificationsPrompt } from './components/NotificationsPrompt'
 import { UpdatesAvailablePrompt } from './components/UpdatesAvailablePrompt'
 import { EventFeedback } from './components/EventFeedback'
 
@@ -27,7 +26,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           </div>
           <Footer />
           {isEventReady && <EventFeedback />}
-          <NotificationsPrompt />
         </div>
       </ThemeProvider>
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
