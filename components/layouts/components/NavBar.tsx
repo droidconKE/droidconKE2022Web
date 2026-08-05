@@ -67,7 +67,7 @@ export const NavBar = () => {
         id="nav-content"
         className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
           navVisible ? '' : 'hidden'
-        }`}
+        } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
       >
         <div
           className={`w-full lg:w-auto flex-grow lg:flex ${
