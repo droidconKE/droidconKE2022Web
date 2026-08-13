@@ -18,9 +18,10 @@
   --font-slab: 'Rauschen B', 'Montserrat', sans-serif;
   --font-display: 'Rauschen B', 'Montserrat', sans-serif;
 }
-html, body {
-    width: 100%;
-    margin: 0;
+html,
+body {
+  width: 100%;
+  margin: 0;
 }
 
 *,
@@ -29,9 +30,9 @@ html, body {
   box-sizing: border-box;
   margin: 0;
   margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 h1,
@@ -46,9 +47,9 @@ h5,
 h6 {
   font-family: var(--font-slab);
   margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 p,
@@ -88,7 +89,7 @@ body {
 }
 
 .modal-bg {
-  background-color: rgba(25, 29, 29, .8);
+  background-color: rgba(25, 29, 29, 0.8);
   -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
 }
@@ -101,12 +102,12 @@ video::-webkit-media-controls-fullscreen-button {
 }
 
 .carousel .control-dots .dot {
-  background: #000CEB!important;
-  height: 10px!important;
-  width: 10px!important;
+  background: #000ceb !important;
+  height: 10px !important;
+  width: 10px !important;
 }
 .carousel .control-dots {
-  margin: 0px!important;
+  margin: 0px !important;
 }
 
 @tailwind base;
@@ -115,23 +116,28 @@ video::-webkit-media-controls-fullscreen-button {
 
 @layer utilities {
   @keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
   .animate-marquee {
     animation: marquee 30s linear infinite;
   }
 }
 
- /* reusable */
+/* reusable */
 
 @layer components {
   .black,
-  p, a {
+  p,
+  a {
     @apply text-black dark:text-lighter-dark;
   }
   .link {
-    @apply py-2 px-4 black
+    @apply py-2 px-4 black;
   }
   .active-link {
     @apply text-primary dark:text-primary-dark px-4;
@@ -142,29 +148,30 @@ video::-webkit-media-controls-fullscreen-button {
   .s-container {
     @apply container mx-auto md:px-24 px-4 sm:px-10 sm:p-5;
   }
+  /* 2026 rebrand: primary/accent/outline are pills. */
   .btn-primary {
-    @apply bg-primary dark:bg-primary uppercase text-white text-sm md:text-base font-medium px-8 py-3 hover:opacity-90 transition-opacity inline-flex items-center justify-center;
+    @apply bg-primary dark:bg-primary uppercase text-white text-sm md:text-base font-medium px-8 py-3 rounded-full hover:opacity-90 transition-opacity inline-flex items-center justify-center;
   }
   .btn-outline {
-    @apply bg-transparent border border-gray-300 dark:border-gray-600 text-black dark:text-white uppercase text-sm md:text-base font-medium px-8 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors inline-flex items-center justify-center;
+    @apply bg-transparent border border-gray-300 dark:border-gray-600 text-black dark:text-white uppercase text-sm md:text-base font-medium px-8 py-3 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-colors inline-flex items-center justify-center;
   }
   .btn-secondary {
     @apply bg-secondary dark:bg-secondary-dark lowercase text-black text-sm md:text-base dark:text-black px-4 md:px-5 py-1.5 md:py-2.5 rounded;
   }
   .btn-accent {
-    @apply bg-accent dark:bg-accent-dark lowercase text-black text-sm md:text-base dark:text-black px-4 md:px-5 py-1.5 md:py-2.5 rounded;
+    @apply bg-accent dark:bg-accent-dark uppercase text-black dark:text-black text-sm md:text-base font-medium px-8 py-3 rounded-full hover:opacity-90 transition-opacity inline-flex items-center justify-center;
   }
   .title {
-    @apply uppercase font-black text-3xl md:text-5xl text-primary dark:text-primary-dark
+    @apply uppercase font-black text-3xl md:text-5xl text-primary dark:text-primary-dark;
   }
 
   .title-w {
-    @apply uppercase font-black text-3xl md:text-5xl text-white
+    @apply uppercase font-black text-3xl md:text-5xl text-white;
   }
   .title-lower {
-    @apply font-black text-2xl md:text-4xl black
+    @apply font-black text-2xl md:text-4xl black;
   }
   .title-l {
-    @apply uppercase font-light text-2xl md:text-4xl black
+    @apply uppercase font-light text-2xl md:text-4xl black;
   }
 }

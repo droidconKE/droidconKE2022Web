@@ -15,36 +15,23 @@ const SponsorCard = ({
   getImageClass: (s: Sponsor) => string
   large?: boolean
 }) => {
-  const clipPathStyle = {
-    clipPath:
-      'polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px))',
-  }
-
   return (
-    <div
-      className={`p-[4px] mb-2 bg-gradient-to-br from-accent to-primary w-full ${
-        large ? 'max-w-sm' : 'max-w-sm'
+    <a
+      target="_blank"
+      href={sponsor.link}
+      rel="noreferrer"
+      className={`bg-lighter dark:bg-white rounded-2xl w-full max-w-sm flex items-center justify-center transition-opacity hover:opacity-90 ${
+        large
+          ? 'p-8 md:p-12 min-h-[120px] md:min-h-[180px]'
+          : 'p-4 min-h-[100px] md:min-h-[130px]'
       }`}
-      style={clipPathStyle}
     >
-      <a
-        target="_blank"
-        href={sponsor.link}
-        rel="noreferrer"
-        className={`bg-white w-full flex items-center justify-center ${
-          large
-            ? 'p-8 md:p-12 min-h-[120px] md:min-h-[180px]'
-            : 'p-4 min-h-[100px] md:min-h-[130px]'
-        }`}
-        style={clipPathStyle}
-      >
-        <img
-          className={`${getImageClass(sponsor)} object-contain w-auto`}
-          src={sponsor.logo === null ? '/images/icon.png' : getImage(sponsor)}
-          alt={sponsor.name}
-        />
-      </a>
-    </div>
+      <img
+        className={`${getImageClass(sponsor)} object-contain w-auto`}
+        src={sponsor.logo === null ? '/images/icon.png' : getImage(sponsor)}
+        alt={sponsor.name}
+      />
+    </a>
   )
 }
 
@@ -95,41 +82,39 @@ function SponsorsList({
     [isDarkTheme]
   )
 
+  // Row 1 platinum, row 2 gold, row 3 everything else in this order.
+  const REMAINING_TIER_ORDER = ['silver', 'bronze', 'snack']
+
   const platinumSponsors = sponsors.filter((s) => s.sponsor_type === 'platinum')
-  const silverSponsors = sponsors.filter((s) => s.sponsor_type === 'silver')
-  const otherSponsors = sponsors.filter(
-    (s) => s.sponsor_type !== 'platinum' && s.sponsor_type !== 'silver'
-  )
+  const goldSponsors = sponsors.filter((s) => s.sponsor_type === 'gold')
+  const remainingSponsors = sponsors
+    .filter((s) => s.sponsor_type !== 'platinum' && s.sponsor_type !== 'gold')
+    .sort((a, b) => {
+      // Unknown tiers sort after the known ones, keeping their relative order.
+      const rank = (tier: string) => {
+        const index = REMAINING_TIER_ORDER.indexOf(tier)
+        return index === -1 ? REMAINING_TIER_ORDER.length : index
+      }
+      return rank(a.sponsor_type) - rank(b.sponsor_type)
+    })
 
   return (
     <section className="s-container w-full bg-white-dark dark:bg-dark py-12 md:py-16">
-      <div className="flex flex-col items-center text-center mb-10">
-        <div className="flex items-center text-primary dark:text-secondary text-sm md:text-base font-semibold ">
-          <div className="w-8 h-px bg-primary dark:bg-secondary mr-3" />
-          dcke{year} sponsored by
-          <div className="w-8 h-px bg-primary dark:bg-secondary ml-3" />
-        </div>
-        <h2 className="text-black dark:text-white text-4xl md:text-6xl lg:text-7xl font-display mb-2">
-          dcke{year} sponsored by
+      <div className="flex flex-col items-center text-center mb-8">
+        <h2 className="text-primary dark:text-primary-dark text-4xl md:text-6xl lg:text-7xl font-display">
+          Our 20{year} Sponsors
         </h2>
-        <div className="text-primary dark:text-secondary  text-base md:text-2xl font-display ">
-          &#47;&#47; help make droidconke happen and have your logo appear
-          here...
+        <div className="text-black dark:text-white text-sm md:text-base uppercase mt-4">
+          ( Thanks to our sponsors )
         </div>
-        <Link
-          href="/sponsors"
-          className="btn-primary uppercase whitespace-nowrap mt-6 w-fit"
-        >
-          sponsor droidconke
-        </Link>
       </div>
 
       {showSponsors ? (
-        <div className="flex flex-col gap-8 md:gap-10 w-full">
+        <div className="flex flex-col w-full">
           {/* Platinum Tier */}
           {platinumSponsors.length > 0 && (
-            <div className="flex flex-col items-center gap-4">
-              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-2 capitalize">
+            <div className="flex flex-col items-center gap-4 border-t border-dotted border-green-500 pt-8 pb-10">
+              <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-2 capitalize">
                 Platinum
               </h3>
               {platinumSponsors.map((sponsor) => (
@@ -144,31 +129,38 @@ function SponsorsList({
             </div>
           )}
 
-          {/* Silver Tier */}
-          {silverSponsors.length > 0 && (
-            <div className="flex flex-col items-start w-full">
-              <h3 className="text-black dark:text-white text-xl md:text-2xl font-semibold mb-4 capitalize px-2">
-                Silver
+          {/* Gold Tier */}
+          {goldSponsors.length > 0 && (
+            <div className="flex flex-col items-center border-t border-dotted border-green-500 pt-8 pb-10 w-full">
+              <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-4 capitalize">
+                Gold
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                {silverSponsors.map((sponsor) => (
-                  <SponsorCard
+              <div className="flex flex-wrap justify-center gap-4 w-full">
+                {goldSponsors.map((sponsor) => (
+                  <div
                     key={sponsor.name}
-                    sponsor={sponsor}
-                    getImage={getImage}
-                    getImageClass={getImageClass}
-                  />
+                    className="w-full sm:w-[280px] md:w-[320px] flex justify-center"
+                  >
+                    <SponsorCard
+                      sponsor={sponsor}
+                      getImage={getImage}
+                      getImageClass={getImageClass}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Other Tiers */}
-          {otherSponsors.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 w-full mt-2">
-              {otherSponsors.map((sponsor) => (
-                <div key={sponsor.name} className="flex flex-col items-start">
-                  <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-3 capitalize px-2">
+          {/* Everything else — silver, then bronze, then snack */}
+          {remainingSponsors.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-6 w-full border-t border-dotted border-green-500 pt-8 pb-10">
+              {remainingSponsors.map((sponsor) => (
+                <div
+                  key={sponsor.name}
+                  className="flex flex-col items-center w-full sm:w-[280px] md:w-[300px]"
+                >
+                  <h3 className="text-black dark:text-white text-lg md:text-xl font-semibold mb-4 capitalize">
                     {getTypeName(sponsor)}
                   </h3>
                   <SponsorCard
@@ -180,11 +172,17 @@ function SponsorsList({
               ))}
             </div>
           )}
+
+          <div className="flex justify-center border-t border-dotted border-green-500 pt-10">
+            <Link href="/sponsors" className="btn-accent whitespace-nowrap">
+              SPONSOR DROIDCONKE
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="flex justify-center mt-12">
-          <Link href="/sponsors" className="btn-secondary w-56">
-            sponsor droidconke
+          <Link href="/sponsors" className="btn-accent whitespace-nowrap">
+            SPONSOR DROIDCONKE
           </Link>
         </div>
       )}

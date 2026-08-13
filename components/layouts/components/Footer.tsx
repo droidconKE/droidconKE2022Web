@@ -6,41 +6,12 @@ export const Footer = () => {
 
   return (
     <footer className="w-full bg-white dark:bg-black-dark relative">
-      <div className="grid">
-        {/* Skyline Backgrounds - In their own grid layer */}
-        <div className="col-start-1 row-start-1 self-end w-full max-w-[1536px] mx-auto pointer-events-none z-0 flex items-start overflow-hidden max-h-[400px] md:max-h-[600px]">
-          <img
-            src="/images/new-design/Footer_Blue.png"
-            alt="Skyline"
-            className="w-full h-auto dark:hidden block grayscale opacity-30"
-          />
-          <img
-            src="/images/new-design/Footer_Black.png"
-            alt="Skyline"
-            className="w-full h-auto hidden dark:block"
-          />
-        </div>
-
-        {/* Footer Content - In the same grid cell, overlapping the image */}
-        <div className="col-start-1 row-start-1 self-end w-full z-10 flex flex-col justify-end h-full">
+      <div>
+        <div className="w-full">
           <div className="l-container pt-16 pb-8">
-            {/* Top Row: Logo & Ticket Button */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16 items-center">
-              <div className="col-span-1">
-                <Link href="/">
-                  <img
-                    src="/images/new-design/logo-light.png"
-                    alt="logo"
-                    className="w-[200px] md:w-[280px] dark:hidden block"
-                  />
-                  <img
-                    src="/images/new-design/logo-dark.png"
-                    alt="logo"
-                    className="w-[200px] md:w-[280px] hidden dark:block"
-                  />
-                </Link>
-              </div>
-              <div className="col-span-1 md:col-span-2 flex md:justify-center mt-8 md:mt-0">
+            {/* Ticket CTA */}
+            <div className="flex justify-center mb-10 md:mb-12">
+              <div>
                 <a
                   href={TICKETS_LINK}
                   target="_blank"
@@ -64,6 +35,26 @@ export const Footer = () => {
                   </svg>
                 </a>
               </div>
+            </div>
+
+            {/* KICC halftone with the wordmark overlapping its base */}
+            <div className="relative w-full mb-10 md:mb-16 pointer-events-none select-none">
+              <img
+                src="/images/new-design/revised/new-footer-2.png"
+                alt=""
+                aria-hidden="true"
+                className="w-[80%] md:w-[70%] h-auto mx-auto object-contain"
+              />
+              <img
+                src="/images/new-design/revised/droidcon-large-light.svg"
+                alt="droidcon"
+                className="absolute bottom-0 left-0 w-full h-auto dark:hidden block"
+              />
+              <img
+                src="/images/new-design/revised/droidcon-large-dark.svg"
+                alt="droidcon"
+                className="absolute bottom-0 left-0 w-full h-auto hidden dark:block"
+              />
             </div>
 
             {/* Info Columns */}

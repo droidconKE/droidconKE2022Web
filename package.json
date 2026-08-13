@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@splinetool/runtime": "^1.12.98",
     "@types/next-pwa": "^5.6.9",
     "axios": "^1.8.3",
     "dayjs": "^1.11.13",

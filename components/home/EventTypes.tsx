@@ -1,80 +1,64 @@
 import React from 'react'
 
 const eventCards = [
-  {
-    name: 'Panels',
-    id: 'panels',
-    image: '/images/svg/panels.svg',
-    className: 'col-span-1 row-span-1',
-  },
-  {
-    name: 'Workshops',
-    id: 'workshops',
-    image: '/images/svg/workshops.svg',
-    className: 'col-span-1 row-span-1',
-  },
-  {
-    name: 'Speakers',
-    id: 'speakers',
-    image: '/images/svg/speakers.svg',
-    className: 'col-span-1 lg:row-span-2 flex-col justify-center',
-  },
-  {
-    name: 'Networking',
-    id: 'networking',
-    image: '/images/svg/networking.svg',
-    className: 'col-span-1 row-span-1',
-  },
+  { name: 'Panels', id: 'panels', image: '/images/svg/panels.svg' },
+  { name: 'Workshops', id: 'workshops', image: '/images/svg/workshops.svg' },
+  { name: 'Networking', id: 'networking', image: '/images/svg/networking.svg' },
   {
     name: 'Exhibitions',
     id: 'exhibitions',
     image: '/images/svg/exhibitions.svg',
-    className: 'col-span-1 row-span-1',
   },
+  // Speakers is hidden for 2026 (CFP closed) — restore next year:
+  // { name: 'Speakers', id: 'speakers', image: '/images/svg/speakers.svg' },
 ]
 
 export const EventTypes = () => {
   return (
     <section className="s-container my-12 md:my-24">
-      <div className="w-full bg-accent rounded-[32px] p-8 md:p-12 relative isolate overflow-hidden shadow-xl min-h-[600px] flex flex-col justify-center">
-        {/* Background Image (KICC) */}
-        <div className="absolute bottom-0 right-0 w-full md:w-[70%] lg:w-[60%] xl:w-[50%] h-full z-0 flex items-end justify-end pointer-events-none">
-          <img
-            src="/images/new-design/kenyatta-types.png"
-            alt="KICC"
-            className="w-full h-auto object-contain object-bottom translate-x-4 md:translate-x-12 translate-y-4 md:translate-y-8"
-          />
-        </div>
+      {/* Gradient card */}
+      {/* Deep bottom padding is per the design — the labels sit well clear of
+          the white card below, not tight against it. */}
+      <div className="w-full rounded-[32px] p-8 md:p-12 pb-16 md:pb-24 shadow-xl bg-gradient-to-b from-primary to-accent">
+        <h2 className="text-white text-4xl md:text-6xl font-display mb-12 md:mb-20">
+          2026 Conf. Essentials
+        </h2>
 
-        {/* Content */}
-        <div className="relative z-10 w-full lg:w-2/3">
-          <div className="flex items-center text-primary text-sm md:text-base font-medium mb-4">
-            <div className="w-6 h-px bg-primary mr-3" />
-            Event types
-          </div>
-          <h2 className="text-black text-5xl md:text-7xl font-display mb-10">
-            Event Types
-          </h2>
-
-          {/* Cards Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-xs md:max-w-md lg:max-w-lg">
-            {eventCards.map((card) => (
-              <div
-                key={card.name}
-                className={`bg-primary rounded-[20px] p-4 md:p-5 flex flex-col items-center justify-center ${card.className} ${card.id !== 'speakers' ? 'aspect-square' : ''}`}
-              >
-                <img
-                  src={card.image}
-                  alt={card.name}
-                  className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 object-contain"
-                />
-                <h4 className="text-white text-sm md:text-base lg:text-lg  text-center mt-2 md:mt-4">
-                  {card.name}
-                </h4>
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          {eventCards.map((card) => (
+            <div
+              key={card.id}
+              className="flex flex-col items-center justify-start text-center"
+            >
+              <img
+                src={card.image}
+                alt=""
+                aria-hidden="true"
+                className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain"
+              />
+              <h3 className="text-white text-lg md:text-xl lg:text-2xl mt-4 md:mt-6">
+                {card.name}
+              </h3>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* More Stacks pill — overlaps the bottom of the gradient card */}
+      <div className="relative -mt-6 md:-mt-8 w-full bg-white dark:bg-white border border-primary rounded-[28px] px-6 md:px-10 py-5 md:py-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* The pill stays white in both themes, so pin the text colour too —
+            the global `p` rule would otherwise lighten it in dark mode. */}
+        <p className="text-primary dark:text-primary text-xl md:text-2xl lg:text-3xl font-display leading-tight text-center sm:text-left">
+          More Stacks.
+          <br />
+          All Mobile.
+        </p>
+        <img
+          src="/images/new-design/revised/stacks.png"
+          alt="Kotlin, Swift, React, AI and Flutter"
+          // 88px at lg matches the strip's authored size in the design (573x88).
+          className="h-10 md:h-16 lg:h-[88px] w-auto max-w-full object-contain"
+        />
       </div>
     </section>
   )

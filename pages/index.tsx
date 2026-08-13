@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { Banner } from '../components/home/Banner'
 import { EventTypes } from '../components/home/EventTypes'
+import { ConfHighlights } from '../components/home/ConfHighlights'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import SponsorsList from '../components/home/SponsorsList'
@@ -21,6 +22,7 @@ const Home: NextPage<HomeProps> = ({ sponsors, organizers }) => {
       <Banner />
       <About />
       <EventTypes />
+      <ConfHighlights />
       <SponsorsList sponsors={sponsors} year={26} showSponsors />
       <Gallery />
       <Organizers organizers={organizers} />
