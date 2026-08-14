@@ -95,7 +95,7 @@ const Document = () => {
           name="msapplication-TileImage"
           content="/images/icons/ms-icon-144x144.png"
         />
-        <meta name="theme-color" content="#FF6E4D" />
+        <meta name="theme-color" content="#0055FF" />
 
         {/* SEO Headers */}
         <meta
@@ -123,9 +123,12 @@ const Document = () => {
         {/* <!-- maximum 140 char --> */}
         <meta
           name="twitter:image"
-          content="https://droidcon.co.ke/images/svg/droidcon-kenya-26_02.svg"
+          content="https://droidcon.co.ke/images/new-design/revised/dcke-cover.png"
         />
-        <meta name="twitter:image:alt" content="droidcon logo" />
+        <meta
+          name="twitter:image:alt"
+          content="droidconKE 2026 — Nov 5-6, Nairobi"
+        />
         {/* <!-- when you post this page url in twitter , this image will be shown -->
 	<!-- twitter card ends from here --> */}
 
@@ -138,7 +141,7 @@ const Document = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://droidcon.co.ke/images/svg/droidcon-kenya-26_02.svg"
+          content="https://droidcon.co.ke/images/new-design/revised/dcke-cover.png"
         />
         <meta
           property="og:description"
