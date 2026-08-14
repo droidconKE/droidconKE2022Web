@@ -35,8 +35,8 @@ const About = () => {
             <div
               key={box.value}
               className={`p-6 md:p-8 lg:p-10 flex flex-col justify-center ${
-                index % 2 === 0 ? 'border-r border-primary' : ''
-              } ${index < 2 ? 'border-b border-primary' : ''}`}
+                index < 2 ? 'border-b border-primary' : ''
+              }`}
             >
               <div className="text-primary text-3xl md:text-5xl lg:text-6xl font-display mb-2">
                 {box.value}
