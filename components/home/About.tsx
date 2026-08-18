@@ -2,9 +2,9 @@ import React from 'react'
 
 const statsBoxes = [
   { value: '7TH', label: 'DROIDCON EDITION' },
-  { value: '3RD', label: 'FLUTTER EDITION' },
-  { value: '200+', label: 'SESSIONS' },
-  { value: '3000+', label: 'ATTENDEES' },
+  { value: '3RD', label: 'FLUTTERCON EDITION' },
+  { value: '200+', label: 'Sessions Delivered' },
+  { value: '3,000+', label: 'Attendees Since 2018' },
 ]
 
 const About = () => {

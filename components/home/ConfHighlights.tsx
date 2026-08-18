@@ -5,7 +5,7 @@ const highlights = [
   {
     id: 'beyond-the-sessions',
     title: ['Beyond the', 'Sessions'],
-    body: 'Hands-on labs, engineering leader panels, and real dev talk. Master Agentic AI, level up your security game, and fast-track your career at the Fluttercon Kenya joint track.',
+    body: 'Hands-on labs, engineering leader panels, and real dev talk. Master Agentic AI, level up your security game, and fast-track your career at the Unconference Track.',
     image: '/images/new-design/revised/beyond-sessions.png',
     imageAlt: 'Two toy robots shaking hands',
     cardClass: 'bg-primary',

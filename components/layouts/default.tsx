@@ -15,7 +15,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Head>
-        <title>The Largest Mobile Developers&apos; Conference in Africa</title>
+        <title>
+          Sub-Saharan Africa&apos;s premier mobile development conference
+        </title>
       </Head>
       <ThemeProvider>
         <div className="w-full min-h-screen bg-white dark:bg-dark">

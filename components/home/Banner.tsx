@@ -178,7 +178,7 @@ export const Banner = () => {
 
           {/* Subtitle */}
           <p className="text-gray-700 dark:text-accent-dark text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mb-8 leading-snug mx-auto text-center">
-            Africa&apos;s largest Mobile developer conference.
+            Sub-Saharan Africa&apos;s premier mobile development conference.
             <br />2 Days 1 Ticket.
           </p>
 
@@ -254,7 +254,7 @@ export const Banner = () => {
               CONFERENCES
             </p>
             <p className="font-bold text-sm md:text-base text-black dark:text-white uppercase">
-              DROIDCON &middot; FLUTTER
+              DROIDCON &middot; FLUTTERCON
             </p>
           </div>
         </div>
