@@ -8,14 +8,19 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
   return (
     <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
       <section className="s-container mt-6 md:mt-10 mb-8 md:mb-0">
-        <div className="bg-primary rounded-4xl md:rounded-5xl px-6 py-8 md:px-12 md:py-12">
+        <div className="relative isolate overflow-hidden bg-primary rounded-4xl md:rounded-5xl px-6 py-8 md:px-16 md:py-14">
+          <img
+            className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover"
+            src="/images/new-design/revised/dcke-sponsor.png"
+            alt=""
+          />
           <div className="items-center flex flex-wrap mb-0">
             <div className="w-full md:w-7/12 mt-4 md:mt-6">
               <div className="text-center md:text-left">
-                <h2 className="font-display capitalize text-3xl md:text-5xl text-accent dark:text-accent-dark mt-6 md:mt-0">
+                <h2 className="font-display first-letter:uppercase text-3xl md:text-5xl leading-tight md:leading-none text-white dark:text-white mt-6 md:mt-0">
                   <span>sponsor</span> <span>droidconke</span>
                 </h2>
-                <p className="text-white dark:text-white-dark text-xl md:text-2xl mt-4 lowercase">
+                <p className="text-white dark:text-white-dark text-[10px] md:text-xs mt-3 uppercase tracking-wide max-w-sm">
                   PROMOTE YOUR BRAND | DEMONSTRATE THOUGHT LEADERSHIP | MEET &
                   ENGAGE WITH DEVELOPERS.
                 </p>
@@ -25,7 +30,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
               <div className="mt-0 mb-6 flex flex-col md:flex-row flex-wrap md:mb-0 md:space-x-4">
                 <Link
                   href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"
-                  className="btn-secondary uppercase px-8 py-3 mt-3 md:mt-0"
+                  className="btn-accent text-xs md:text-sm px-6 py-2.5 mt-3 md:mt-0"
                 >
                   Sponsor droidconke
                 </Link>
@@ -50,89 +55,55 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
         </div>
       </section>
       <section className="w-full">
-        <div className="s-container md:py-10">
-          <div className="mx-auto md:py-10">
-            <div className="rounded-4xl md:rounded-5xl bg-gradient-to-br from-primary to-accent p-6 md:p-10 lg:p-12">
-              <div className="flex flex-wrap">
-                <div className="w-full md:w-4/12 mt-4 md:mt-0">
-                  <div>
-                    <h3 className="text-left text-accent dark:text-accent text-3xl md:text-4xl font-display w-full mt-4 md:mt-0 underline underline-offset-8 decoration-8 decoration-accent capitalize">
-                      ATTENDEE PROFILE
-                    </h3>
-                    <p className="text-white py-10 md:py-8 text-xl">
-                      The event targets students, professional software
-                      developers who work in mid to large sized organizations
-                      and who develop systems of all sizes for enterprise
-                      companies. The event aims to attract attendees across
-                      industries such as financial services, media houses,
-                      telco’s etc.
-                    </p>
-                  </div>
+        <div className="s-container md:py-6">
+          <div className="mx-auto">
+            <div className="rounded-4xl md:rounded-5xl bg-gradient-to-b from-primary from-15% to-accent to-55% pb-0">
+              <div className="flex flex-wrap gap-y-6 px-7 pt-6 pb-8 md:px-[3.75rem] md:pt-10 md:pb-12">
+                <div className="w-full md:w-4/12 md:pr-8">
+                  <h3 className="text-left text-accent dark:text-accent text-3xl md:text-5xl font-display leading-tight md:leading-none max-w-[8ch]">
+                    Attendee Profile
+                  </h3>
                 </div>
-                <div className="w-full flex flex-wrap md:w-8/12 md:mt-0 mb-4 md:mb-0 justify-center px-4 md:px-16">
-                  <div className="w-full px-0 pl-0 md:pl-24">
-                    {/* <img src="/images/svg/numbers.svg" alt="dread" /> */}
-                    <h3 className="font-display capitalize text-3xl md:text-4xl text-accent dark:text-accent w-full mt-6 md:mt-0">
+                <div className="w-full md:w-8/12">
+                  <p className="text-white text-sm md:text-base leading-relaxed">
+                    The event targets students, professional software developers
+                    who work in mid to large sized organizations and who develop
+                    systems of all sizes for enterprise companies. The event
+                    aims to attract attendees across industries such as
+                    financial services, media houses, telco’s etc.
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-3xl md:rounded-4xl bg-white border-[3px] md:border-4 border-accent px-7 py-6 md:px-[3.75rem] md:py-12 -mb-20 md:-mb-28">
+                <div className="flex flex-wrap items-center gap-y-8">
+                  <div className="w-full md:w-4/12 md:pr-8">
+                    <h3 className="font-display text-2xl md:text-4xl leading-tight md:leading-tight text-primary dark:text-primary max-w-[7ch]">
                       dcKe26 at a glance
                     </h3>
-                    <div className="py-4 md:py-5">
-                      <div>
-                        <h4 className="text-white font-black text-[50px] md:text-[75px]">
-                          700+
-                        </h4>
-                        <h5 className="text-white/80 font-bold -mt-3 text-sm md:text-base">
-                          2026 Attendees Target
-                        </h5>
+                  </div>
+                  <div className="w-full md:w-8/12 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-14">
+                    {[
+                      { value: '700+', label: '2026 Attendees Target' },
+                      { value: '80+', label: 'Sessions' },
+                      { value: '3', label: 'Tracks' },
+                      { value: '5000+', label: 'Newsletter Reach' },
+                      { value: '3200+', label: 'Twitter Followers' },
+                      { value: '2', label: 'Day Event' },
+                    ].map((stat) => (
+                      <div key={stat.label}>
+                        <p className="font-display leading-none text-4xl md:text-5xl text-primary dark:text-primary">
+                          {stat.value}
+                        </p>
+                        <p className="mt-1.5 text-[11px] md:text-xs font-semibold text-primary dark:text-primary">
+                          {stat.label}
+                        </p>
                       </div>
-                      <div className="flex justify-end -mt-5">
-                        <div>
-                          <h4 className="text-white font-black text-[50px] md:text-[75px]">
-                            80+
-                          </h4>
-                          <h5 className="text-white/80 font-bold -mt-3 text-sm md:text-base">
-                            Sessions
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 py-8 md:py-12">
-                {[
-                  {
-                    value: '3',
-                    label: 'Tracks',
-                    color: 'text-accent dark:text-accent',
-                  },
-                  {
-                    value: '5000+',
-                    label: 'Newsletter Reach',
-                    color: 'text-primary dark:text-primary',
-                  },
-                  {
-                    value: '2',
-                    label: 'Day Event',
-                    color: 'text-accent dark:text-accent',
-                  },
-                  {
-                    value: '3200+',
-                    label: 'Twitter Followers',
-                    color: 'text-primary dark:text-primary',
-                  },
-                ].map((stat) => (
-                  <div key={stat.label}>
-                    <p className="font-display leading-none text-5xl md:text-7xl text-white">
-                      {stat.value}
-                    </p>
-                    <p className="mt-2 text-sm md:text-base font-semibold text-white/90">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
-            <div className="md:py-10">
+            <div className="mt-28 md:mt-44">
               <Value />
             </div>
           </div>
