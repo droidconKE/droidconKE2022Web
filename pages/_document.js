@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 const Document = () => {
-  const title = `The Largest Android Developers' Conference in Africa`
+  const title = `The Largest Mobile Developers' Conference in Africa`
   return (
     <Html lang="en">
       <Head>
@@ -95,12 +95,12 @@ const Document = () => {
           name="msapplication-TileImage"
           content="/images/icons/ms-icon-144x144.png"
         />
-        <meta name="theme-color" content="#FF6E4D" />
+        <meta name="theme-color" content="#0055FF" />
 
         {/* SEO Headers */}
         <meta
           name="description"
-          content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
+          content="Droidcon is a global conference focused on the engineering of mobile applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
         />
         <meta
           name="keywords"
@@ -118,14 +118,17 @@ const Document = () => {
         {/* <!-- maximum 140 char --> */}
         <meta
           name="twitter:description"
-          content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
+          content="Droidcon is a global conference focused on the engineering of mobile applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
         />
         {/* <!-- maximum 140 char --> */}
         <meta
           name="twitter:image"
-          content="https://droidcon.co.ke/images/droidcon-26-kenya-announcement.png"
+          content="https://droidcon.co.ke/images/new-design/revised/dcke-cover.png"
         />
-        <meta name="twitter:image:alt" content="droidcon logo" />
+        <meta
+          name="twitter:image:alt"
+          content="droidconKE 2026 — Nov 5-6, Nairobi"
+        />
         {/* <!-- when you post this page url in twitter , this image will be shown -->
 	<!-- twitter card ends from here --> */}
 
@@ -138,11 +141,11 @@ const Document = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://droidcon.co.ke/images/droidcon-26-kenya-announcement.png"
+          content="https://droidcon.co.ke/images/new-design/revised/dcke-cover.png"
         />
         <meta
           property="og:description"
-          content="Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
+          content="Droidcon is a global conference focused on the engineering of mobile applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps &products, learn, and teach."
         />
         {/* <!-- when you post this page url in facebook , this image will be shown -->
 	<!-- facebook open graph ends from here --></meta> */}

@@ -22,51 +22,51 @@ function Team({ organizers: unOrderedOrgs }: { organizers: Organizer[] }) {
   })
   return (
     <>
-      <section className="l-container mt-4 md:mt-10">
-        <div className="flex flex-wrap md:py-16">
-          <div className="w-full text-center mb-2 md:mb-0 mt-4 md:mt-0 items-center justify-center">
-            <h2 className="title lowercase dark:text-accent-dark pt-6 md:pt-0">
-              <span>organizing</span> <span className="font-medium">team</span>
-            </h2>
+      <section className="s-container mt-8 md:mt-12">
+        <div className="w-full bg-gradient-to-b from-primary from-55% to-accent rounded-4xl md:rounded-5xl px-6 py-8 md:px-12 md:py-12 text-left">
+          <div className="flex items-center text-white/80 text-sm md:text-base font-medium mb-3">
+            <div className="w-6 h-px bg-white/80 mr-3" />
+            meet the team
           </div>
+          <h2 className="font-display capitalize text-accent text-3xl md:text-5xl">
+            <span>organizing</span> <span>team</span>
+          </h2>
+          <p className="mt-4 text-white text-lg md:text-xl leading-relaxed lg:w-10/12">
+            Droidcon Kenya is organized by a seasoned team with a seven-edition
+            track record of delivering developer events in Africa. The same team
+            organizes Fluttercon Kenya, ensuring that the two conferences
+            function as a single experience.
+          </p>
         </div>
-        <p className="mb-4 md:mb-0 text-xl justify-center text-center">
-          Droidcon Kenya is a Codescape Limited product, organized by a seasoned
-          team with a proven seven-edition track record of delivering
-          exceptional developer events in Africa. The same team also organizes
-          Fluttercon Kenya, ensuring seamless integration between the two
-          conferences.
-        </p>
       </section>
-      <section className="s-container">
+      <section className="s-container mt-8 md:mt-10">
         <div>
           <div className="items-center flex flex-wrap">
-            <div className="w-full px-0 md:px-24 mr-auto mb-4 md:mb-0 pb-0 lg:pb-16">
-              <div className="w-full flex-wrap grid sm:grid-cols-4 md:grid-cols-5 grid-cols-3 gap-2 lg:gap-4">
+            <div className="w-full mr-auto mb-4 md:mb-0 pb-0 lg:pb-16">
+              <div className="w-full flex-wrap grid sm:grid-cols-4 md:grid-cols-5 grid-cols-3 gap-4 md:gap-6">
                 {organizers.map((org) => (
                   <a
                     key={org.created_at}
                     target="_blank"
                     href={org.link}
-                    className="text-center"
                     rel="noreferrer"
+                    className="group flex flex-col h-full rounded-2xl overflow-hidden bg-white dark:bg-darker-dark border-2 border-accent dark:border-accent shadow-md hover:shadow-xl transition-all duration-200"
                   >
-                    <div className="flex justify-center">
-                      <div className="w-24 h-24 md:w-44 md:h-44 p-2 md:p-4 bg-green-c-2 rounded">
-                        <img
-                          className="w-full p-0 flex rounded-lg border border-accent-2"
-                          src={
-                            org.photo === null ? '/images/icon.png' : org.photo
-                          }
-                          alt={org.name}
-                        />
-                      </div>
+                    <div className="relative overflow-hidden bg-blue-600">
+                      <img
+                        className="w-full aspect-square object-cover grayscale contrast-125 mix-blend-screen group-hover:scale-105 transition-transform duration-300"
+                        src={
+                          org.photo === null ? '/images/icon.png' : org.photo
+                        }
+                        alt={org.name}
+                      />
+                      <span className="pointer-events-none absolute inset-0 mix-blend-overlay [background-image:radial-gradient(rgba(255,255,255,0.3)_1px,transparent_1.4px)] [background-size:6px_6px]" />
                     </div>
-                    <div className="self-start">
-                      <p className="mt-2 w-full text-base md:text-xl">
+                    <div className="p-2 md:p-3 text-center flex-1 flex flex-col justify-center">
+                      <p className="text-xs md:text-base font-bold text-accent dark:text-accent">
                         {org.name}
                       </p>
-                      <p className="text-xs md:text-sm text-light dark:text-light">
+                      <p className="text-[10px] md:text-xs text-black dark:text-white-dark mt-0.5 line-clamp-2">
                         {org.tagline}
                       </p>
                     </div>

@@ -5,7 +5,7 @@ export const ToggleTheme = () => {
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext)
 
   return (
-    <div className="inline-block p-4 absolute top-0 right-0 mt-3 lg:mt-2  mr-12 md:mr-12 lg:mr-0">
+    <div className="inline-block p-4 absolute top-1/2 -translate-y-1/2 right-0 mr-12 md:mr-12 lg:mr-0">
       <button
         type="button"
         className="flex items-center cursor-pointer"
@@ -18,25 +18,22 @@ export const ToggleTheme = () => {
             type="checkbox"
             className="hidden"
             onChange={() => null}
+            aria-label="Toggle theme"
+            title="Toggle theme"
           />
-          <div className="toggle__line w-6 h-3 bg-accent rounded-full shadow-inner" />
-          <div className="toggle__dot absolute w-4 h-4 bg-primary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
+          <div className="theme-toggle__line w-10 h-5 bg-black dark:bg-secondary rounded-full shadow-inner" />
+          <div className="theme-toggle__dot absolute top-0.5 left-0.5 w-4 h-4 bg-white dark:bg-black rounded-full shadow" />
         </div>
         <div className="ml-3 text-gray-700 font-sm" />
       </button>
       <style>
         {`
-          .toggle__dot {
-            top: -0.25rem;
-            left: -0.25rem;
-            transition: all 0.3s ease-in-out;
-          }
-          .toggle__line {
-            margin-top: -2px;
+          .theme-toggle__dot {
+            transition: transform 0.3s ease-in-out;
           }
 
-          input:checked ~ .toggle__dot {
-            transform: translateX(100%);
+          input:checked ~ .theme-toggle__dot {
+            transform: translateX(1.25rem);
           }
         `}
       </style>

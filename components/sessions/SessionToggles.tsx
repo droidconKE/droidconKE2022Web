@@ -1,16 +1,12 @@
 import type { NextPage } from 'next'
-import { useContext } from 'react'
 import Link from 'next/link'
-import { AuthContext } from '../../context/AuthContext'
 
 interface SessionPageProps {
   setShowFilterSession: (_showFilterSession: boolean) => void
-
   onChangeViewType: (_viewType: boolean) => void
-
-  onMySessions: (_val: boolean) => void
   isGridView: boolean
-  isMySessions: boolean
+  onMySessions?: (_val: boolean) => void
+  isMySessions?: boolean
   reportLink?: string
 }
 
@@ -22,8 +18,6 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
   isMySessions,
   reportLink,
 }) => {
-  const { isAuthenticated } = useContext(AuthContext)
-
   return (
     <div className="space-x-4 md:space-x-8 w-full md:w-1/3 flex justify-end items-center">
       {reportLink && (
@@ -58,7 +52,7 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
           }`}
         />
       </button>
-      {isAuthenticated && (
+      {onMySessions && (
         <div className="sm:px-5">
           <button
             type="button"
@@ -73,8 +67,8 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
                 className="hidden"
                 onChange={() => null}
               />
-              <div className="toggle__line h-3 w-8 sm:h-4 bg-white rounded-full shadow-inner" />
-              <div className="toggle__dot absolute h-4 w-4 sm:w-5 sm:h-5 bg-secondary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
+              <div className="ms-toggle__line h-3 w-8 sm:h-4 bg-white rounded-full shadow-inner" />
+              <div className="ms-toggle__dot absolute h-4 w-4 sm:w-5 sm:h-5 bg-secondary dark:bg-secondary-dark rounded-full shadow inset-y-0 left-0" />
             </div>
             <div className="ml-3 text-white dark:text-white-dark font-sm mt-2 sm:mt-0">
               My Sessions
@@ -82,16 +76,16 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
           </button>
           <style>
             {`
-              .toggle__dot {
+              .ms-toggle__dot {
                 top: -0.25rem;
                 left: -0.25rem;
                 transition: all 0.3s ease-in-out;
               }
-              .toggle__line {
+              .ms-toggle__line {
                 margin-top: -2px;
               }
 
-              input:checked ~ .toggle__dot {
+              input:checked ~ .ms-toggle__dot {
                 transform: translateX(100%);
               }
             `}

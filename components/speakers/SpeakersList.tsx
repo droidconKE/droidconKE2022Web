@@ -4,16 +4,21 @@ import { SpeakerCard } from './SpeakerCard'
 export const SpeakersList = ({
   speakers,
   sessions,
+  hideTitle = false,
 }: {
   speakers: Speaker[]
   sessions: Session[]
+  // eslint-disable-next-line react/require-default-props
+  hideTitle?: boolean
 }) => (
   <div>
-    <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 lowercase md:mt-12">
-      <span className="font-black">All</span> speakers
-    </h3>
-    <div className="py-10">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 gap-y-16">
+    {!hideTitle && (
+      <h3 className="font-display capitalize text-3xl md:text-4xl text-primary dark:text-accent-dark w-full">
+        all speakers
+      </h3>
+    )}
+    <div className={hideTitle ? 'pb-8 md:pb-10' : 'py-8 md:py-10'}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 md:gap-y-10">
         {speakers.map((speaker) => {
           const speakerSession = sessions.find((s) =>
             s.speakers.find((sp) => sp.name === speaker.name)

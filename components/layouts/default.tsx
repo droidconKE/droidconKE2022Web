@@ -1,13 +1,10 @@
 import Head from 'next/head'
 import Script from 'next/script'
 import React, { ReactNode } from 'react'
-import { GoogleOAuthProvider } from '@react-oauth/google'
 import { ThemeProvider } from '../../context/ThemeContext'
 import { Footer } from './components/Footer'
 import { NavBar } from './components/NavBar'
-import { NotificationsPrompt } from './components/NotificationsPrompt'
 import { UpdatesAvailablePrompt } from './components/UpdatesAvailablePrompt'
-import { AuthProvider } from '../../context/AuthContext'
 import { EventFeedback } from './components/EventFeedback'
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -18,25 +15,18 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Head>
-        <title>The Largest Android Developers&apos; Conference in Africa</title>
+        <title>The Largest Mobile Developers&apos; Conference in Africa</title>
       </Head>
       <ThemeProvider>
-        <AuthProvider>
-          <GoogleOAuthProvider
-            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
-          >
-            <div className="w-full min-h-screen bg-white dark:bg-dark">
-              <UpdatesAvailablePrompt />
-              <NavBar />
-              <div>
-                <main>{children}</main>
-              </div>
-              <Footer />
-              {isEventReady && <EventFeedback />}
-              <NotificationsPrompt />
-            </div>
-          </GoogleOAuthProvider>
-        </AuthProvider>
+        <div className="w-full min-h-screen bg-white dark:bg-dark">
+          <UpdatesAvailablePrompt />
+          <NavBar />
+          <div className="pt-[60px] md:pt-[80px]">
+            <main>{children}</main>
+          </div>
+          <Footer />
+          {isEventReady && <EventFeedback />}
+        </div>
       </ThemeProvider>
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import moment from 'moment'
 import { Session, FilterInterface, Room, Schedule } from '../types/types'
 import { objIsEmpty, isClient } from '../utils/helpers'
-import axios from '../utils/axios'
+import { readStarred, STARRED_EVENT } from './useStarredSessions'
 
 const ACTIVE_VIEW = 'droidcon_view'
 const MY_SESSIONS = 'droidcon_my_sessions'
@@ -14,7 +14,6 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
   const [showMySessions, setShowMysessions] = useState(false)
   const [loading, setLoading] = useState(false)
   const [schedules, setSchedules] = useState<Schedule[]>(allSchedules)
-  const [mySchedules, setMySchedules] = useState<Schedule[] | []>([])
 
   const originalSchedules = allSchedules
 
@@ -28,18 +27,20 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
     }
   }
 
-  const getMySchedules = useCallback(async () => {
-    setLoading(true)
-    await axios
-      .get(
-        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/bookmarked_schedule?grouped=true`
-      )
-      .then((response) => {
-        setLoading(false)
-        setSchedules(response.data.data)
-        setMySchedules(response.data.data)
-      })
-  }, [])
+  // My Sessions is now a purely client-side bookmark list kept in
+  // localStorage (see useStarredSessions) — filter the schedule to only the
+  // sessions the user has starred, preserving the day grouping.
+  const computeMySchedules = useCallback((): Schedule[] => {
+    const starred = readStarred()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const grouped = originalSchedules as any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result: any = {}
+    Object.keys(grouped).forEach((key) => {
+      result[key] = grouped[key].filter((s: Session) => starred.includes(s.id))
+    })
+    return result as Schedule[]
+  }, [originalSchedules])
 
   useEffect(() => {
     if (!isClient) {
@@ -52,22 +53,21 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
       setIsGridView(true)
     }
     if (localStorage.getItem(MY_SESSIONS) === 'mine') {
-      getMySchedules()
       setShowMysessions(true)
     }
-  }, [getMySchedules])
+  }, [])
 
   const handleSessionsToggle = useCallback(() => {
+    setLoading(true)
     if (showMySessions) {
-      // eslint-disable-next-line no-unused-expressions
-      mySchedules.length ? setSchedules(mySchedules) : getMySchedules()
+      setSchedules(computeMySchedules())
       localStorage.setItem(MY_SESSIONS, 'mine')
     } else {
       setSchedules(originalSchedules)
       localStorage.setItem(MY_SESSIONS, 'all')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showMySessions])
+    setLoading(false)
+  }, [showMySessions, computeMySchedules, originalSchedules])
 
   const filterSession = (filter: FilterInterface) => {
     if (objIsEmpty(filter)) {
@@ -75,12 +75,11 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
       return
     }
     const newSchedule = {
-      ...(showMySessions ? mySchedules : originalSchedules),
+      ...(showMySessions ? computeMySchedules() : originalSchedules),
     }
     Object.keys(newSchedule).forEach((key) => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      // eslint-disable-next-line security/detect-object-injection
       newSchedule[key] = newSchedule[key].filter((e: Session) => {
         return (
           (filter?.level
@@ -101,6 +100,20 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
   useEffect(() => {
     handleSessionsToggle()
   }, [handleSessionsToggle])
+
+  // Keep the My Sessions view live as the user stars/unstars elsewhere.
+  useEffect(() => {
+    if (!isClient) {
+      return undefined
+    }
+    const sync = () => {
+      if (showMySessions) {
+        setSchedules(computeMySchedules())
+      }
+    }
+    window.addEventListener(STARRED_EVENT, sync)
+    return () => window.removeEventListener(STARRED_EVENT, sync)
+  }, [showMySessions, computeMySchedules])
 
   const selectTabByday = useCallback(() => {
     if (moment().format('DD') === '05') setActiveTab(0)

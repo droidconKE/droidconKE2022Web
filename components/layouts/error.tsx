@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <ThemeProvider>
         <div className="w-full bg-white dark:bg-dark h-screen">
           <NavBar />
-          <div>
+          <div className="pt-[60px] md:pt-[80px]">
             <main>{children}</main>
           </div>
         </div>
