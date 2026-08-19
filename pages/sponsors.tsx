@@ -103,7 +103,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                       { value: '60+', label: 'Sessions' },
                       { value: '3', label: 'Tracks' },
                       { value: '14000+', label: 'Newsletter Reach' },
-                      { value: '6000+', label: 'Twitter Followers' },
+                      { value: '6000+', label: 'Social Media Reach' },
                       { value: '2', label: 'Day Event' },
                     ].map((stat) => (
                       <div key={stat.label}>
