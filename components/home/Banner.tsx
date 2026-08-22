@@ -178,7 +178,7 @@ export const Banner = () => {
 
           {/* Subtitle */}
           <p className="text-gray-700 dark:text-accent-dark text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mb-8 leading-snug mx-auto text-center">
-            Sub-Saharan Africa&apos;s premier mobile development conference.
+            Africa&apos;s largest Mobile developer conference
             <br />2 Days 1 Ticket.
           </p>
 
