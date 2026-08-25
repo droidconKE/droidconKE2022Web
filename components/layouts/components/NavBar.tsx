@@ -44,28 +44,32 @@ export const NavBar = () => {
           )}
         </Link>
       </div>
-      <div className="block lg:hidden">
-        <button
-          type="button"
-          id="nav-toggle"
-          className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
-          onClick={() => toggleNav()}
-          aria-label="menu-button"
-        >
-          <svg
-            className="fill-primary dark:fill-secondary-dark h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className="flex items-center lg:order-last">
+        <ToggleTheme />
+        <div className="block lg:hidden">
+          <button
+            type="button"
+            id="nav-toggle"
+            className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
+            onClick={() => toggleNav()}
+            aria-label="Toggle navigation menu"
+            aria-expanded={navVisible}
+            aria-controls="nav-content"
           >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
+            <svg
+              className="fill-primary dark:fill-secondary-dark h-3 w-3"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
       </div>
-      <ToggleTheme />
       <div
         id="nav-content"
-        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
+        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 md:px-5  ${
           navVisible ? '' : 'hidden'
         }`}
       >
