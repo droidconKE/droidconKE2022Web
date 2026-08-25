@@ -4,7 +4,7 @@ const marqueeItems: string[] = [
   'DroidconKE 2026',
   '05-06 Nov 2026',
   'Nairobi, Kenya',
-  "Africa's largest Mobile developer conference",
+  "Africa's Largest Mobile Developer Conference",
 ]
 
 const MarqueeContent = () => (

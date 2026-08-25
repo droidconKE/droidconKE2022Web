@@ -20,13 +20,13 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               <div className="w-full md:flex-1 md:min-w-0">
                 <h1 className="sr-only">about droidconke</h1>
                 <h2 className="font-display text-accent dark:text-accent text-3xl md:text-5xl lg:text-6xl leading-tight md:leading-[0.92] tracking-tight">
-                  Largest
+                  Africa&apos;s
                   <br />
-                  Mobile Focused
+                  Largest Mobile
                   <br />
                   Developer
                   <br />
-                  Conference in Africa.
+                  Conference.
                 </h2>
               </div>
               <div className="w-full md:w-auto flex justify-center md:justify-end shrink-0">
