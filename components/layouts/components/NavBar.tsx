@@ -1,15 +1,20 @@
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { ToggleTheme } from './ToggleTheme'
 import { PastEventsDropdown } from './PastEventsDropdown'
 import { TICKETS_LINK } from '../../../constant/constants'
+import useComponentVisible from '../../../hooks/useComponentVisible'
 
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
 
-  const [navVisible, setNavVisible] = useState(false)
+  const {
+    ref,
+    isComponentVisible: navVisible,
+    setIsComponentVisible: setNavVisible,
+  } = useComponentVisible(false)
   const router = useRouter()
 
   const toggleNav = () => {
@@ -20,13 +25,20 @@ export const NavBar = () => {
   const showSpeakers = isEventReady
 
   useEffect(() => {
-    Router.events.on('beforeHistoryChange', () => {
+    const closeNav = () => {
       setNavVisible(false)
-    })
-  }, [])
+    }
+    Router.events.on('beforeHistoryChange', closeNav)
+    return () => {
+      Router.events.off('beforeHistoryChange', closeNav)
+    }
+  }, [setNavVisible])
 
   return (
-    <nav className="flex items-center justify-between flex-wrap lg:flex-nowrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600 mb-4">
+    <nav
+      ref={ref}
+      className="flex items-center justify-between flex-wrap lg:flex-nowrap nav-bg px-2 py-6 md:py-3 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600 mb-4"
+    >
       <div className="flex items-center flex-shrink-0 text-white mr-6 xl:pl-24">
         <Link href="/">
           {!isDarkTheme ? (
@@ -44,25 +56,29 @@ export const NavBar = () => {
           )}
         </Link>
       </div>
-      <div className="block lg:hidden">
-        <button
-          type="button"
-          id="nav-toggle"
-          className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
-          onClick={() => toggleNav()}
-          aria-label="menu-button"
-        >
-          <svg
-            className="fill-primary dark:fill-secondary-dark h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className="flex items-center lg:order-last">
+        <ToggleTheme />
+        <div className="block lg:hidden">
+          <button
+            type="button"
+            id="nav-toggle"
+            className="flex items-center px-3 py-2 border rounded text-primary dark:text-secondary-dark border-primary dark:border-secondary-dark"
+            onClick={() => toggleNav()}
+            aria-label="Toggle navigation menu"
+            aria-expanded={navVisible}
+            aria-controls="nav-content"
           >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
+            <svg
+              className="fill-primary dark:fill-secondary-dark h-3 w-3"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
       </div>
-      <ToggleTheme />
       <div
         id="nav-content"
         className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-6 lg:pt-0 lg:pr-24 md:px-5  ${
@@ -74,7 +90,7 @@ export const NavBar = () => {
             navVisible ? 'bg-white dark:bg-dark' : ''
           } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
-          <ul className="list-reset lg:flex justify-end text-base flex-1 items-center space-y-2 md:space-y-0">
+          <ul className="list-reset lg:flex justify-end text-base flex-1 items-center pt-2 lg:pt-0 space-y-2 md:space-y-0">
             <li className="mr-3 black text-xl">
               <Link
                 href="/"
