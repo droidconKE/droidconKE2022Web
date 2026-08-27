@@ -31,6 +31,10 @@ export const SessionFeedback = ({
   }, [closeDialog])
 
   const sendFeedback = async () => {
+    if (rating === 0) {
+      setErrors({ rating: ['Please select a star rating'] })
+      return
+    }
     setLoading(true)
     setErrors(null)
     const eventSlug = process.env.NEXT_PUBLIC_EVENT_SLUG
@@ -113,14 +117,14 @@ export const SessionFeedback = ({
             }`}
             onChange={(e) => setMessage(e.target.value)}
           />
-          {errors?.feedback && (
+          {!!errors?.feedback?.length && (
             <p className="text-red-500 text-xs italic mt-1">
               {errors?.feedback[0]}.
             </p>
           )}
           <div className="mt-5 w-full">
             <p className="text-sm font-medium text-black dark:text-white-dark mb-2">
-              Rating
+              Rating <span className="text-red-500">*</span>
             </p>
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/*  @ts-ignore */}
@@ -128,9 +132,14 @@ export const SessionFeedback = ({
               emptySymbol="fa fa-star-o fa-2x"
               fullSymbol="fa fa-star fa-2x"
               className="space-x-4 flex text-secondary"
-              onChange={(v) => setRating(v)}
+              onChange={(v) => {
+                setRating(v)
+                setErrors((prev) =>
+                  prev ? { ...prev, rating: undefined } : prev
+                )
+              }}
             />
-            {errors?.rating && (
+            {!!errors?.rating?.length && (
               <p className="text-red-500 text-xs italic mt-1">
                 {errors?.rating[0]}.
               </p>
