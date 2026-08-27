@@ -81,8 +81,8 @@ export interface Schedule {
 }
 
 export interface FeedbackError {
-  feedback: string[]
-  rating: string[]
+  feedback?: string[]
+  rating?: string[]
 }
 
 export interface StarIconProps {
