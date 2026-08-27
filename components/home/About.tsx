@@ -3,7 +3,7 @@ import React from 'react'
 const statsBoxes = [
   { value: '7TH', label: 'DROIDCON EDITION' },
   { value: '3RD', label: 'FLUTTERCON EDITION' },
-  { value: '200+', label: 'Sessions Delivered' },
+  { value: '230+', label: 'Sessions Delivered' },
   { value: '3,000+', label: 'Attendees Since 2018' },
 ]
 
