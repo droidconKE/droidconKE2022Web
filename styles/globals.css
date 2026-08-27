@@ -17,6 +17,23 @@
   --font-family: 'Rauschen B', 'Montserrat', sans-serif;
   --font-slab: 'Rauschen B', 'Montserrat', sans-serif;
   --font-display: 'Rauschen B', 'Montserrat', sans-serif;
+
+  /* Height of the fixed navbar. The navbar sets this as its min-height and the
+     layout pads the page by the same amount, so page content can never slide
+     under the header. Keep the two in sync by only ever changing it here. */
+  --nav-h: 56px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-h: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --nav-h: 72px;
+  }
 }
 html,
 body {

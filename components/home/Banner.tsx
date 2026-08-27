@@ -147,7 +147,7 @@ export const Banner = () => {
   const cubeEnabled = useCubeEnabled()
 
   return (
-    <div className="w-full flex flex-col items-center pt-10 md:pt-12 min-h-[calc(100vh-80px)] justify-center">
+    <div className="w-full flex flex-col items-center pt-10 md:pt-12 min-h-[calc(100vh-var(--nav-h))] justify-center">
       <div className="w-full flex flex-col justify-center items-center pb-8 md:pb-12">
         <div className="max-w-5xl w-full px-4 flex flex-col items-center text-center">
           {/* Hero lockup — the cube sits behind the wordmark */}

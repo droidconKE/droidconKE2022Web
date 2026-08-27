@@ -21,7 +21,9 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="w-full min-h-screen bg-white dark:bg-dark">
           <UpdatesAvailablePrompt />
           <NavBar />
-          <div className="pt-[60px] md:pt-[80px]">
+          {/* Offset the fixed navbar. --nav-h is the navbar's min-height, so
+              this can never fall short and let content slide under it. */}
+          <div className="pt-[var(--nav-h)]">
             <main>{children}</main>
           </div>
           <Footer />
