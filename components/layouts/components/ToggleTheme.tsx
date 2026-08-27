@@ -5,7 +5,7 @@ export const ToggleTheme = () => {
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext)
 
   return (
-    <div className="inline-block p-4">
+    <div className="inline-block p-2 md:p-3">
       <button
         type="button"
         className="flex items-center cursor-pointer"
