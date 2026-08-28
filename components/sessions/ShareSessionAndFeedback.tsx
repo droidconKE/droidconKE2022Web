@@ -10,6 +10,7 @@ import {
   WhatsappIcon,
 } from 'react-share'
 import { SessionFeedback } from './SessionFeedback'
+import { AddToCalendar } from './AddToCalendar'
 import { Session } from '../../types/types'
 import { truncateString } from '../../utils/helpers'
 import { StarIcon } from '../shared/StarIcon'
@@ -62,6 +63,7 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
           </WhatsappShareButton>
         </div>
       )}
+      <AddToCalendar session={session} />
       <button
         type="button"
         className="btn-primary"

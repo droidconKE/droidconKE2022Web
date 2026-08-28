@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
 import { hour, truncateString } from '../../utils/helpers'
 import { NoSessions } from './NoSessions'
+import { AddToCalendar } from './AddToCalendar'
 import { StarIcon } from '../shared/StarIcon'
 
 const levelPill =
@@ -123,7 +124,10 @@ export const SessionGridCard = ({
                                 </div>
                               ))}
                             </div>
-                            {showStar && <StarIcon session={schedule} />}
+                            <div className="flex items-center gap-3">
+                              <AddToCalendar session={schedule} compact />
+                              {showStar && <StarIcon session={schedule} />}
+                            </div>
                           </div>
                         )}
                       </div>
