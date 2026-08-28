@@ -10,11 +10,19 @@ import {
   WhatsappIcon,
 } from 'react-share'
 import { SessionFeedback } from './SessionFeedback'
+import { AddToCalendar } from './AddToCalendar'
 import { Session } from '../../types/types'
 import { truncateString } from '../../utils/helpers'
 import { StarIcon } from '../shared/StarIcon'
 
-export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
+export const ShareSessionAndFeedback = ({
+  session,
+  venue,
+}: {
+  session: Session
+  // eslint-disable-next-line react/require-default-props
+  venue?: string
+}) => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
   const [showShare, setShowShare] = useState(false)
 
@@ -62,6 +70,7 @@ export const ShareSessionAndFeedback = ({ session }: { session: Session }) => {
           </WhatsappShareButton>
         </div>
       )}
+      <AddToCalendar session={session} venue={venue} />
       <button
         type="button"
         className="btn-primary"

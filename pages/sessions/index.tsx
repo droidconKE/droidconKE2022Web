@@ -33,6 +33,10 @@ const Sessions: NextPage<SessionProps> = ({
     filterSession,
   } = useSession({ allSchedules })
 
+  const eventVenue = event
+    ? [event.venue_name, event.venue_address].filter(Boolean).join(', ')
+    : undefined
+
   return (
     <>
       <div className="s-container my-10 md:my-16">
@@ -86,6 +90,7 @@ const Sessions: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               showStar
+              eventVenue={eventVenue}
             />
           )}
           {!loading && !isGridView && (
@@ -93,6 +98,7 @@ const Sessions: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               showStar
+              eventVenue={eventVenue}
             />
           )}
           {loading && <SessionsSkeleton />}
@@ -112,23 +118,26 @@ const Sessions: NextPage<SessionProps> = ({
 export default Sessions
 
 export async function getServerSideProps() {
-  const schedules = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
-
-  const event = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
+  const [schedules, event] = await Promise.all([
+    axios
+      .get(
+        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`
+      )
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+    axios
+      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+  ])
 
   if (!schedules) {
     return {
