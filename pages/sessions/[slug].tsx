@@ -5,14 +5,15 @@ import { useRouter } from 'next/router'
 import { SessionDetails } from '../../components/sessions/SessionDetails'
 import { ShareSessionAndFeedback } from '../../components/sessions/ShareSessionAndFeedback'
 import { SpeakersDetails } from '../../components/sessions/SpeakersDetails'
-import { Session as SessionProp } from '../../types/types'
+import { Event, Session as SessionProp } from '../../types/types'
 import axios from '../../utils/axios'
 
 interface SessionPageProp {
   session: SessionProp
+  event: Event | null
 }
 
-const Session: NextPage<SessionPageProp> = ({ session }) => {
+const Session: NextPage<SessionPageProp> = ({ session, event }) => {
   const router = useRouter()
 
   const navBackLink = router.query?.from ? router.query?.from : '/sessions'
@@ -36,7 +37,16 @@ const Session: NextPage<SessionPageProp> = ({ session }) => {
         </Link>
         <SpeakersDetails session={session} />
         <SessionDetails session={session} />
-        <ShareSessionAndFeedback session={session} />
+        <ShareSessionAndFeedback
+          session={session}
+          venue={
+            event
+              ? [event.venue_name, event.venue_address]
+                  .filter(Boolean)
+                  .join(', ')
+              : undefined
+          }
+        />
       </div>
     </>
   )
@@ -58,6 +68,15 @@ export async function getServerSideProps({
       return null
     })
 
+  const event = await axios
+    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+    .then((response) => {
+      return response.data.data
+    })
+    .catch(() => {
+      return null
+    })
+
   // Pass data to the page via props
 
   if (!session) {
@@ -65,6 +84,6 @@ export async function getServerSideProps({
       notFound: true,
     }
   }
-  return { props: { session } }
+  return { props: { session, event } }
 }
 export default Session

@@ -33,6 +33,10 @@ const Sessions: NextPage<SessionProps> = ({
     filterSession,
   } = useSession({ allSchedules })
 
+  const eventVenue = event
+    ? [event.venue_name, event.venue_address].filter(Boolean).join(', ')
+    : undefined
+
   return (
     <>
       <div className="s-container my-10 md:my-16">
@@ -86,6 +90,7 @@ const Sessions: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               showStar
+              eventVenue={eventVenue}
             />
           )}
           {!loading && !isGridView && (
@@ -93,6 +98,7 @@ const Sessions: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               showStar
+              eventVenue={eventVenue}
             />
           )}
           {loading && <SessionsSkeleton />}

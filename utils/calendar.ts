@@ -1,5 +1,4 @@
 import { Session } from '../types/types'
-import { VENUE } from '../constant/constants'
 
 // Session times come from the API as naive "YYYY-MM-DD HH:mm:ss" strings in
 // EAT (UTC+3). Parsing them with Date/moment would interpret them in the
@@ -7,7 +6,14 @@ import { VENUE } from '../constant/constants'
 const EAT_UTC_OFFSET_HOURS = 3
 
 const parseEat = (value: string): Date | null => {
-  const m = value?.match(
+  if (!value) return null
+  // If the API ever starts sending an explicit zone (Z or ±HH:MM), trust it
+  // rather than double-shifting by the manual EAT offset.
+  if (/(?:Z|[+-]\d{2}:?\d{2})$/i.test(value.trim())) {
+    const zoned = new Date(value)
+    return Number.isNaN(zoned.getTime()) ? null : zoned
+  }
+  const m = value.match(
     /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?/
   )
   if (!m) return null
@@ -30,10 +36,6 @@ const utcStamp = (date: Date): string =>
     .replace(/[-:]/g, '')
     .replace(/\.\d{3}/, '')
 
-// "YYYY-MM-DDTHH:mm:ssZ" — the ISO form Outlook expects
-const utcIso = (date: Date): string =>
-  date.toISOString().replace(/\.\d{3}Z$/, 'Z')
-
 const sessionTimes = (session: Session) => {
   const start = parseEat(session.start_date_time)
   const end = parseEat(session.end_date_time)
@@ -54,12 +56,15 @@ const buildDetails = (session: Session): string => {
     .join('\n\n')
 }
 
-const buildLocation = (session: Session): string => {
-  const rooms = session.rooms?.map((r) => r.title).join(', ')
-  return rooms ? `${rooms}, ${VENUE}` : VENUE
-}
+const buildLocation = (session: Session, venue?: string): string =>
+  [session.rooms?.map((r) => r.title).join(', '), venue]
+    .filter(Boolean)
+    .join(', ')
 
-export const googleCalendarUrl = (session: Session): string | null => {
+export const googleCalendarUrl = (
+  session: Session,
+  venue?: string
+): string | null => {
   const times = sessionTimes(session)
   if (!times) return null
   const params = new URLSearchParams({
@@ -67,27 +72,14 @@ export const googleCalendarUrl = (session: Session): string | null => {
     text: session.title,
     dates: `${utcStamp(times.start)}/${utcStamp(times.end)}`,
     details: buildDetails(session),
-    location: buildLocation(session),
+    location: buildLocation(session, venue),
   })
   return `https://calendar.google.com/calendar/render?${params.toString()}`
 }
 
-export const outlookCalendarUrl = (session: Session): string | null => {
-  const times = sessionTimes(session)
-  if (!times) return null
-  const params = new URLSearchParams({
-    path: '/calendar/action/compose',
-    rru: 'addevent',
-    subject: session.title,
-    startdt: utcIso(times.start),
-    enddt: utcIso(times.end),
-    body: buildDetails(session),
-    location: buildLocation(session),
-  })
-  return `https://outlook.office.com/calendar/0/action/compose?${params.toString()}`
-}
-
-// RFC 5545: escape structural characters, CRLF line endings, fold lines > 75 octets
+// RFC 5545: escape structural characters, CRLF line endings, fold lines
+// longer than 75 octets (bytes, not characters — folding is measured in
+// UTF-8 octets and must never split a surrogate pair, so we walk code points)
 const icsEscape = (value: string): string =>
   value
     .replace(/\\/g, '\\\\')
@@ -95,21 +87,34 @@ const icsEscape = (value: string): string =>
     .replace(/,/g, '\\,')
     .replace(/\r?\n/g, '\\n')
 
+const encoder = new TextEncoder()
+
 const icsFold = (line: string): string => {
-  const chunks = []
-  let rest = line
-  while (rest.length > 74) {
-    chunks.push(rest.slice(0, 74))
-    rest = ` ${rest.slice(74)}`
-  }
-  chunks.push(rest)
-  return chunks.join('\r\n')
+  const folded: string[] = []
+  let current = ''
+  let currentBytes = 0
+  Array.from(line).forEach((char) => {
+    const charBytes = encoder.encode(char).length
+    // Continuation lines carry a leading space, leaving 74 octets of content
+    const budget = folded.length === 0 ? 75 : 74
+    if (currentBytes + charBytes > budget) {
+      folded.push(current)
+      current = char
+      currentBytes = charBytes
+    } else {
+      current += char
+      currentBytes += charBytes
+    }
+  })
+  folded.push(current)
+  return folded.map((part, i) => (i === 0 ? part : ` ${part}`)).join('\r\n')
 }
 
-export const downloadIcs = (session: Session): void => {
+export const downloadIcs = (session: Session, venue?: string): void => {
   const times = sessionTimes(session)
   if (!times) return
   const url = sessionUrl(session)
+  const eventLocation = buildLocation(session, venue)
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -121,7 +126,7 @@ export const downloadIcs = (session: Session): void => {
     `DTEND:${utcStamp(times.end)}`,
     `SUMMARY:${icsEscape(session.title)}`,
     `DESCRIPTION:${icsEscape(buildDetails(session))}`,
-    `LOCATION:${icsEscape(buildLocation(session))}`,
+    ...(eventLocation ? [`LOCATION:${icsEscape(eventLocation)}`] : []),
     ...(url ? [`URL:${url}`] : []),
     'END:VEVENT',
     'END:VCALENDAR',
@@ -135,5 +140,6 @@ export const downloadIcs = (session: Session): void => {
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
-  URL.revokeObjectURL(blobUrl)
+  // Revoking synchronously can cancel the download in Firefox/Safari
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 0)
 }

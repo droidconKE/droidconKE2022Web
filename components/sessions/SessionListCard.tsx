@@ -15,6 +15,7 @@ const SessionListCard = ({
   activeTab,
   from,
   showStar = false,
+  eventVenue,
 }: {
   schedules: Schedule[]
   activeTab: number
@@ -22,6 +23,8 @@ const SessionListCard = ({
   from?: string
   // eslint-disable-next-line react/require-default-props
   showStar?: boolean
+  // eslint-disable-next-line react/require-default-props
+  eventVenue?: string
 }) => {
   return (
     <>
@@ -39,8 +42,9 @@ const SessionListCard = ({
                   const href = `/sessions/${schedule.slug}${
                     from ? `?from=${from}` : ''
                   }`
+                  const showActions = showStar && !schedule.is_serviceSession
                   const cardClass =
-                    'group block rounded-4xl bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent hover:-translate-y-1 transition-all duration-200 px-4 md:px-6 py-5'
+                    'group block rounded-4xl bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 px-4 md:px-6 py-5'
                   const inner = (
                     <div className="flex flex-row items-start gap-4">
                       <div className="flex flex-col w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-primary/15 py-3">
@@ -51,7 +55,7 @@ const SessionListCard = ({
                           {timeAm(schedule.start_date_time)}
                         </span>
                       </div>
-                      <div className="flex-1">
+                      <div className={`flex-1 ${showActions ? 'pr-8' : ''}`}>
                         <h4 className="font-bold text-base md:text-lg text-black dark:text-white-dark group-hover:text-primary dark:group-hover:text-accent-dark transition-colors">
                           {schedule.is_keynote ? 'Keynote: ' : ''}{' '}
                           {schedule.title}
@@ -96,22 +100,33 @@ const SessionListCard = ({
                           </div>
                         ) : null}
                       </div>
-                      {!schedule.is_serviceSession && (
-                        <div className="shrink-0 flex flex-col items-center gap-3">
-                          {showStar && <StarIcon session={schedule} />}
-                          <AddToCalendar session={schedule} compact />
+                    </div>
+                  )
+                  // Actions render as siblings of the Link, not inside it —
+                  // interactive content can't nest inside an <a>.
+                  return (
+                    <div
+                      key={schedule.id}
+                      className="relative hover:-translate-y-1 transition-transform duration-200"
+                    >
+                      {schedule.is_serviceSession ? (
+                        <div className={cardClass}>{inner}</div>
+                      ) : (
+                        <Link href={href} className={cardClass}>
+                          {inner}
+                        </Link>
+                      )}
+                      {showActions && (
+                        <div className="absolute top-5 right-4 md:right-6 flex flex-col items-center gap-3">
+                          <StarIcon session={schedule} />
+                          <AddToCalendar
+                            session={schedule}
+                            venue={eventVenue}
+                            compact
+                          />
                         </div>
                       )}
                     </div>
-                  )
-                  return schedule.is_serviceSession ? (
-                    <div key={schedule.id} className={cardClass}>
-                      {inner}
-                    </div>
-                  ) : (
-                    <Link key={schedule.id} href={href} className={cardClass}>
-                      {inner}
-                    </Link>
                   )
                 })}
               </div>
