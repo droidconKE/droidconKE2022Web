@@ -59,23 +59,24 @@ export async function getServerSideProps({
 }) {
   const { slug } = query
 
-  const session = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule/${slug}`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
-
-  const event = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
+  const [session, event] = await Promise.all([
+    axios
+      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule/${slug}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+    axios
+      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+  ])
 
   // Pass data to the page via props
 

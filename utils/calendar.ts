@@ -67,13 +67,14 @@ export const googleCalendarUrl = (
 ): string | null => {
   const times = sessionTimes(session)
   if (!times) return null
+  const eventLocation = buildLocation(session, venue)
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: session.title,
     dates: `${utcStamp(times.start)}/${utcStamp(times.end)}`,
     details: buildDetails(session),
-    location: buildLocation(session, venue),
   })
+  if (eventLocation) params.set('location', eventLocation)
   return `https://calendar.google.com/calendar/render?${params.toString()}`
 }
 

@@ -112,7 +112,11 @@ export const SessionGridCard = ({
                           )}
                         </div>
                         {!schedule.is_serviceSession && (
-                          <div className="flex justify-between items-center mt-4 w-full self-end">
+                          <div
+                            className={`flex items-center mt-4 w-full self-end ${
+                              showStar ? 'pr-16' : ''
+                            }`}
+                          >
                             <div className="flex items-center -space-x-2">
                               {schedule.speakers?.map((speaker) => (
                                 <div key={speaker.name} className="w-9 h-9">
@@ -127,7 +131,6 @@ export const SessionGridCard = ({
                                 </div>
                               ))}
                             </div>
-                            {showStar && <StarIcon session={schedule} />}
                           </div>
                         )}
                       </div>
@@ -147,12 +150,13 @@ export const SessionGridCard = ({
                       )}
                       {/* Sibling of the Link — interactive content can't nest inside an <a> */}
                       {showStar && !schedule.is_serviceSession && (
-                        <div className="absolute bottom-6 right-14">
+                        <div className="absolute bottom-5 right-5 z-20 flex items-center gap-3">
                           <AddToCalendar
                             session={schedule}
                             venue={eventVenue}
                             compact
                           />
+                          <StarIcon session={schedule} />
                         </div>
                       )}
                     </div>

@@ -1,10 +1,11 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { Session } from '../../types/types'
 import { downloadIcs, googleCalendarUrl } from '../../utils/calendar'
 
-// Outlook web/desktop import .ics fine, so Google + .ics covers everyone —
-// the Outlook compose deeplink differs between work and personal accounts
-// and can't be offered reliably behind a single button.
+// Compact options sit beside the trigger, as a sibling of the card <Link> —
+// session cards clip overflow-hidden, and a <button> cannot nest in an <a>.
+// Google + .ics covers everyone: Outlook web/desktop import .ics, and the
+// compose deeplink differs between work and personal accounts.
 export const AddToCalendar = ({
   session,
   venue,
@@ -18,11 +19,30 @@ export const AddToCalendar = ({
 }) => {
   const [showOptions, setShowOptions] = useState(false)
   const optionsId = useId()
+  const rootRef = useRef<HTMLDivElement>(null)
 
   const openGoogle = () => {
     const url = googleCalendarUrl(session, venue)
     if (url) window.open(url, '_blank', 'noopener')
   }
+
+  useEffect(() => {
+    if (!showOptions) return undefined
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowOptions(false)
+    }
+    const onPointerDown = (e: PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) {
+        setShowOptions(false)
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [showOptions])
 
   const optionClass = compact
     ? 'text-primary dark:text-accent-dark hover:opacity-70 transition-opacity px-1'
@@ -30,6 +50,7 @@ export const AddToCalendar = ({
 
   return (
     <div
+      ref={rootRef}
       className={
         compact ? 'relative inline-flex' : 'flex flex-wrap items-center gap-4'
       }
@@ -71,7 +92,7 @@ export const AddToCalendar = ({
             className={optionClass}
             aria-label="Add to Google Calendar"
             title="Google Calendar"
-            onClick={() => openGoogle()}
+            onClick={openGoogle}
           >
             {compact ? <i className="fa fa-google" /> : 'Google'}
           </button>

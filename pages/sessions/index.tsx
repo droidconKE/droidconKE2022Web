@@ -118,23 +118,26 @@ const Sessions: NextPage<SessionProps> = ({
 export default Sessions
 
 export async function getServerSideProps() {
-  const schedules = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
-
-  const event = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
+  const [schedules, event] = await Promise.all([
+    axios
+      .get(
+        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`
+      )
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+    axios
+      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+  ])
 
   if (!schedules) {
     return {
