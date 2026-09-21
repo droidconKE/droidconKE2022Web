@@ -2,6 +2,15 @@ import { Session } from '../../types/types'
 import { hour } from '../../utils/helpers'
 
 export const SessionDetails = ({ session }: { session: Session }) => {
+  const recordingLinkOnly =
+    session.recording_url && !session.recording_youtube_id
+  const hasMaterials = Boolean(
+    session.slides_url ||
+      session.video_url ||
+      session.resources?.length ||
+      recordingLinkOnly
+  )
+
   return (
     <div className="relative isolate overflow-hidden w-full rounded-4xl md:rounded-5xl bg-accent p-6 md:p-12">
       {/* halftone dots at the top of the card */}
@@ -39,6 +48,32 @@ export const SessionDetails = ({ session }: { session: Session }) => {
             </>
           )}
         </div>
+        {session.recording_youtube_id && (
+          <div className="mt-6">
+            <div className="aspect-video w-full overflow-hidden rounded-2xl">
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube-nocookie.com/embed/${session.recording_youtube_id}`}
+                title={session.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+            {session.recording_url && (
+              <a
+                href={session.recording_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 text-primary dark:text-primary text-sm font-semibold hover:underline"
+              >
+                <i className="fa fa-youtube-play mr-2" />
+                Watch on YouTube
+              </a>
+            )}
+          </div>
+        )}
         <div className="flex flex-col md:flex-row gap-6 mt-6">
           {session.session_image && (
             <img
@@ -51,6 +86,60 @@ export const SessionDetails = ({ session }: { session: Session }) => {
             {session.description}
           </p>
         </div>
+        {hasMaterials && (
+          <div className="mt-6">
+            <h2 className="text-primary dark:text-primary font-bold uppercase tracking-wide text-sm mb-2">
+              ( Materials )
+            </h2>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              {session.slides_url && (
+                <a
+                  href={session.slides_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary dark:text-primary font-semibold hover:underline"
+                >
+                  <i className="fa fa-file-text-o mr-2" />
+                  Slides
+                </a>
+              )}
+              {session.video_url && (
+                <a
+                  href={session.video_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary dark:text-primary font-semibold hover:underline"
+                >
+                  <i className="fa fa-youtube-play mr-2" />
+                  Recording by the speaker
+                </a>
+              )}
+              {recordingLinkOnly && (
+                <a
+                  href={session.recording_url ?? undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary dark:text-primary font-semibold hover:underline"
+                >
+                  <i className="fa fa-youtube-play mr-2" />
+                  Recording
+                </a>
+              )}
+              {session.resources?.map((resource) => (
+                <a
+                  key={`${resource.label}-${resource.url}`}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary dark:text-primary font-semibold hover:underline"
+                >
+                  <i className="fa fa-external-link mr-2" />
+                  {resource.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

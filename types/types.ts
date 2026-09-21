@@ -54,6 +54,11 @@ export interface Room {
   id: number
 }
 
+export interface SessionResource {
+  label: string
+  url: string
+}
+
 export interface Session {
   id: number
   title: string
@@ -74,6 +79,11 @@ export interface Session {
   end_time: string
   speakers: Speaker[]
   rooms: Room[]
+  slides_url?: string | null
+  video_url?: string | null
+  recording_url?: string | null
+  recording_youtube_id?: string | null
+  resources?: SessionResource[]
 }
 
 export interface Schedule {
