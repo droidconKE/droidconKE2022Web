@@ -1,19 +1,23 @@
 import Link from 'next/link'
 import { Speaker } from '../../types/types'
+import { sessionHref } from '../../utils/helpers'
 
 export const SpeakerCard = ({
   speaker,
   slug,
+  eventSlug,
 }: {
   speaker: Speaker
   // eslint-disable-next-line react/require-default-props
   slug?: string
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
 }) => (
   <div key={speaker.name} className="h-full">
     <Link
       href={
         slug
-          ? `/sessions/${slug}?from=/speakers`
+          ? sessionHref(slug, '/speakers', eventSlug)
           : (speaker.linkedin ?? String(speaker.twitter))
       }
       className="group flex flex-col h-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200"

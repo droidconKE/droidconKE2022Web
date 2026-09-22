@@ -6,7 +6,7 @@ import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Event, Schedule } from '../../types/types'
-import { timeDay } from '../../utils/helpers'
+import { eventVenue, timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 
@@ -33,9 +33,7 @@ const Sessions: NextPage<SessionProps> = ({
     filterSession,
   } = useSession({ allSchedules })
 
-  const eventVenue = event
-    ? [event.venue_name, event.venue_address].filter(Boolean).join(', ')
-    : undefined
+  const venue = eventVenue(event)
 
   return (
     <>
@@ -90,7 +88,7 @@ const Sessions: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               showStar
-              eventVenue={eventVenue}
+              eventVenue={venue}
             />
           )}
           {!loading && !isGridView && (
@@ -98,7 +96,7 @@ const Sessions: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               showStar
-              eventVenue={eventVenue}
+              eventVenue={venue}
             />
           )}
           {loading && <SessionsSkeleton />}

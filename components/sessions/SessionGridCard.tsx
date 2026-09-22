@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Schedule, Session } from '../../types/types'
-import { hour, truncateString } from '../../utils/helpers'
+import { hour, sessionHref, truncateString } from '../../utils/helpers'
 import { NoSessions } from './NoSessions'
 import { AddToCalendar } from './AddToCalendar'
 import { StarIcon } from '../shared/StarIcon'
@@ -17,6 +17,7 @@ export const SessionGridCard = ({
   year = 25,
   showStar = false,
   eventVenue,
+  eventSlug,
 }: {
   schedules: Schedule[]
   activeTab: number
@@ -28,6 +29,8 @@ export const SessionGridCard = ({
   showStar?: boolean
   // eslint-disable-next-line react/require-default-props
   eventVenue?: string
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
 }) => {
   return (
     <>
@@ -42,9 +45,7 @@ export const SessionGridCard = ({
                 {// eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 schedules[key]?.map((schedule: Session) => {
-                  const href = `/sessions/${schedule.slug}${
-                    from ? `?from=${from}` : ''
-                  }`
+                  const href = sessionHref(schedule.slug, from, eventSlug)
                   const imgSrc =
                     schedule.session_image ??
                     (schedule.is_serviceSession

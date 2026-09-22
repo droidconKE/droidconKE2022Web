@@ -18,10 +18,13 @@ import { StarIcon } from '../shared/StarIcon'
 export const ShareSessionAndFeedback = ({
   session,
   venue,
+  isCurrentEvent = true,
 }: {
   session: Session
   // eslint-disable-next-line react/require-default-props
   venue?: string
+  // eslint-disable-next-line react/require-default-props
+  isCurrentEvent?: boolean
 }) => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
   const [showShare, setShowShare] = useState(false)
@@ -70,15 +73,20 @@ export const ShareSessionAndFeedback = ({
           </WhatsappShareButton>
         </div>
       )}
-      <AddToCalendar session={session} venue={venue} />
-      <button
-        type="button"
-        className="btn-primary"
-        onClick={() => setShowFeedbackModal(true)}
-      >
-        Session Feedback{' '}
-        <i className="fa fa-send" style={{ transform: 'rotate(55deg)' }} />
-      </button>
+      {/* Scheduling and reviewing only apply to the event being run now. */}
+      {isCurrentEvent && (
+        <>
+          <AddToCalendar session={session} venue={venue} />
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={() => setShowFeedbackModal(true)}
+          >
+            Session Feedback{' '}
+            <i className="fa fa-send" style={{ transform: 'rotate(55deg)' }} />
+          </button>
+        </>
+      )}
       {showFeedbackModal && (
         <SessionFeedback
           closeDialog={() => setShowFeedbackModal(false)}
