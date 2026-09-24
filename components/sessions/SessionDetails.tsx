@@ -1,14 +1,26 @@
 import { Session } from '../../types/types'
 import { hour } from '../../utils/helpers'
 
+// Speakers and organizers supply these URLs, and they end up in an href.
+// React already refuses a javascript: URL, but data: and vbscript: would be
+// rendered as given, so only a plain web link is kept. Pasted values often
+// carry surrounding whitespace, so it is trimmed rather than treated as a
+// reason to drop the link.
+const safeHref = (url?: string | null) => {
+  const trimmed = url?.trim()
+  return trimmed && /^https?:\/\//i.test(trimmed) ? trimmed : null
+}
+
 export const SessionDetails = ({ session }: { session: Session }) => {
-  const recordingLinkOnly =
-    session.recording_url && !session.recording_youtube_id
+  const slidesUrl = safeHref(session.slides_url)
+  const speakerVideoUrl = safeHref(session.video_url)
+  const recordingUrl = safeHref(session.recording_url)
+  const resources = (session.resources ?? [])
+    .map((r) => ({ label: r.label, url: safeHref(r.url) }))
+    .filter((r): r is { label: string; url: string } => !!r.url)
+  const recordingLinkOnly = recordingUrl && !session.recording_youtube_id
   const hasMaterials = Boolean(
-    session.slides_url ||
-      session.video_url ||
-      session.resources?.length ||
-      recordingLinkOnly
+    slidesUrl || speakerVideoUrl || resources.length || recordingLinkOnly
   )
 
   return (
@@ -56,14 +68,14 @@ export const SessionDetails = ({ session }: { session: Session }) => {
                 src={`https://www.youtube-nocookie.com/embed/${session.recording_youtube_id}`}
                 title={session.title}
                 loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
-            {session.recording_url && (
+            {recordingUrl && (
               <a
-                href={session.recording_url}
+                href={recordingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-2 text-primary dark:text-primary text-sm font-semibold hover:underline"
@@ -92,9 +104,9 @@ export const SessionDetails = ({ session }: { session: Session }) => {
               ( Materials )
             </h2>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              {session.slides_url && (
+              {slidesUrl && (
                 <a
-                  href={session.slides_url}
+                  href={slidesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary dark:text-primary font-semibold hover:underline"
@@ -103,9 +115,9 @@ export const SessionDetails = ({ session }: { session: Session }) => {
                   Slides
                 </a>
               )}
-              {session.video_url && (
+              {speakerVideoUrl && (
                 <a
-                  href={session.video_url}
+                  href={speakerVideoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary dark:text-primary font-semibold hover:underline"
@@ -116,7 +128,7 @@ export const SessionDetails = ({ session }: { session: Session }) => {
               )}
               {recordingLinkOnly && (
                 <a
-                  href={session.recording_url ?? undefined}
+                  href={recordingUrl ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary dark:text-primary font-semibold hover:underline"
@@ -125,7 +137,7 @@ export const SessionDetails = ({ session }: { session: Session }) => {
                   Recording
                 </a>
               )}
-              {session.resources?.map((resource) => (
+              {resources.map((resource) => (
                 <a
                   key={`${resource.label}-${resource.url}`}
                   href={resource.url}
