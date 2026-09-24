@@ -82,3 +82,10 @@ export const resolveEventSlug = (param?: string | string[]) =>
   typeof param === 'string' && EVENT_SLUG.test(param)
     ? param.toLowerCase()
     : process.env.NEXT_PUBLIC_EVENT_SLUG
+
+// Whether a URL is pointing at the event being run now. Both sides are
+// normalised here rather than at the call sites, so the comparison cannot be
+// made two different ways.
+export const isCurrentEventSlug = (param?: string | string[]) =>
+  resolveEventSlug(param)?.toLowerCase() ===
+  process.env.NEXT_PUBLIC_EVENT_SLUG?.toLowerCase()

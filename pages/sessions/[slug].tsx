@@ -7,7 +7,11 @@ import { ShareSessionAndFeedback } from '../../components/sessions/ShareSessionA
 import { SpeakersDetails } from '../../components/sessions/SpeakersDetails'
 import { Event, Session as SessionProp } from '../../types/types'
 import axios from '../../utils/axios'
-import { eventVenue, resolveEventSlug } from '../../utils/helpers'
+import {
+  eventVenue,
+  isCurrentEventSlug,
+  resolveEventSlug,
+} from '../../utils/helpers'
 
 interface SessionPageProp {
   session: SessionProp
@@ -96,7 +100,7 @@ export async function getServerSideProps({
       session,
       event,
       // Saving, scheduling and reviewing only apply to the event being run now.
-      isCurrentEvent: eventSlug === process.env.NEXT_PUBLIC_EVENT_SLUG,
+      isCurrentEvent: isCurrentEventSlug(eventParam),
     },
   }
 }
