@@ -91,6 +91,7 @@ const Home2024: NextPage<SessionProps> = ({
               activeTab={activeTab}
               from="/past-events/2024"
               year={24}
+              eventSlug={process.env.NEXT_PUBLIC_EVENT_SLUG_2024}
             />
           )}
           {!loading && !isGridView && (
@@ -98,6 +99,7 @@ const Home2024: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               from="/past-events/2024"
+              eventSlug={process.env.NEXT_PUBLIC_EVENT_SLUG_2024}
             />
           )}
           {loading && <SessionsSkeleton />}
@@ -105,7 +107,11 @@ const Home2024: NextPage<SessionProps> = ({
 
         {/* Speakers */}
         <div className="mt-12 md:mt-16">
-          <SpeakersList sessions={sessions} speakers={speakers} />
+          <SpeakersList
+            sessions={sessions}
+            speakers={speakers}
+            eventSlug={process.env.NEXT_PUBLIC_EVENT_SLUG_2024}
+          />
         </div>
       </div>
       <SponsorsList sponsors={sponsors} showSponsors year={24} />

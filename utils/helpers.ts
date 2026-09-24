@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { Event } from '../types/types'
 
 export const isServer = typeof window === 'undefined'
 
@@ -41,3 +42,51 @@ export const objIsEmpty = (obj: any) => {
   }
   return true
 }
+
+// Where an event is held, for a calendar entry. Some events repeat the name as
+// the address, so identical parts are only said once.
+export const eventVenue = (event?: Event | null): string | undefined => {
+  if (!event) return undefined
+  const parts = [event.venue_name, event.venue_address].filter(Boolean)
+  return (
+    parts.filter((part, i) => parts.indexOf(part) === i).join(', ') || undefined
+  )
+}
+
+// A link to a session. The event is carried when the session belongs to a past
+// event — slugs are unique per event, not globally — and left off for the
+// event being run now, which is what the detail page falls back to.
+export const sessionHref = (
+  slug?: string,
+  from?: string,
+  eventSlug?: string
+) => {
+  if (!slug) return '/sessions'
+  const query = [
+    from ? `from=${encodeURIComponent(from)}` : '',
+    eventSlug ? `event=${encodeURIComponent(eventSlug)}` : '',
+  ]
+    .filter(Boolean)
+    .join('&')
+  return `/sessions/${slug}${query ? `?${query}` : ''}`
+}
+
+// An event slug read back off a URL, so it is kept to the shape of a slug
+// before it goes into an API path. Anything else — a malformed value, or a
+// repeated parameter, which arrives as an array — falls back to the event
+// being run now. The single place this is decided, so the page and the
+// feedback button cannot read the same URL differently.
+const EVENT_SLUG = /^[a-z0-9][a-z0-9-]*$/i
+
+// Always lower-cased, including the fallback: the environment value is typed
+// by hand at deploy time, and a stray capital there must not make the event
+// being run now look like somebody else's.
+export const resolveEventSlug = (param?: string | string[]) =>
+  typeof param === 'string' && EVENT_SLUG.test(param)
+    ? param.toLowerCase()
+    : (process.env.NEXT_PUBLIC_EVENT_SLUG ?? '').toLowerCase()
+
+// Whether a URL is pointing at the event being run now. Both sides come out of
+// the same resolver, so the comparison cannot be made two different ways.
+export const isCurrentEventSlug = (param?: string | string[]) =>
+  resolveEventSlug(param) === resolveEventSlug()

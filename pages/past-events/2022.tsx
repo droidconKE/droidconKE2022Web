@@ -86,6 +86,7 @@ const Home2022: NextPage<SessionProps> = ({
               activeTab={activeTab}
               from="/past-events/2022"
               year={22}
+              eventSlug={process.env.NEXT_PUBLIC_EVENT_SLUG_2022}
             />
           )}
           {!loading && !isGridView && (
@@ -93,6 +94,7 @@ const Home2022: NextPage<SessionProps> = ({
               schedules={schedules}
               activeTab={activeTab}
               from="/past-events/2022"
+              eventSlug={process.env.NEXT_PUBLIC_EVENT_SLUG_2022}
             />
           )}
           {loading && <SessionsSkeleton />}

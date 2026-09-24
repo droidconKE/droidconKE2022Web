@@ -7,13 +7,23 @@ import { ShareSessionAndFeedback } from '../../components/sessions/ShareSessionA
 import { SpeakersDetails } from '../../components/sessions/SpeakersDetails'
 import { Event, Session as SessionProp } from '../../types/types'
 import axios from '../../utils/axios'
+import {
+  eventVenue,
+  isCurrentEventSlug,
+  resolveEventSlug,
+} from '../../utils/helpers'
 
 interface SessionPageProp {
   session: SessionProp
   event: Event | null
+  isCurrentEvent: boolean
 }
 
-const Session: NextPage<SessionPageProp> = ({ session, event }) => {
+const Session: NextPage<SessionPageProp> = ({
+  session,
+  event,
+  isCurrentEvent,
+}) => {
   const router = useRouter()
 
   const navBackLink = router.query?.from ? router.query?.from : '/sessions'
@@ -39,13 +49,8 @@ const Session: NextPage<SessionPageProp> = ({ session, event }) => {
         <SessionDetails session={session} />
         <ShareSessionAndFeedback
           session={session}
-          venue={
-            event
-              ? [event.venue_name, event.venue_address]
-                  .filter(Boolean)
-                  .join(', ')
-              : undefined
-          }
+          venue={eventVenue(event)}
+          isCurrentEvent={isCurrentEvent}
         />
       </div>
     </>
@@ -57,11 +62,16 @@ export async function getServerSideProps({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   query: any
 }) {
-  const { slug } = query
+  const { slug, event: eventParam } = query
+
+  // Session slugs are unique per event, not globally, so a session opened from
+  // a past-event page carries the event it belongs to. Current-event links
+  // leave it off and fall back to the event being run now.
+  const eventSlug = resolveEventSlug(eventParam)
 
   const [session, event] = await Promise.all([
     axios
-      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule/${slug}`)
+      .get(`/events/${eventSlug}/schedule/${slug}`)
       .then((response) => {
         return response.data.data
       })
@@ -69,7 +79,7 @@ export async function getServerSideProps({
         return null
       }),
     axios
-      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+      .get(`/events/${eventSlug}`)
       .then((response) => {
         return response.data.data
       })
@@ -85,6 +95,13 @@ export async function getServerSideProps({
       notFound: true,
     }
   }
-  return { props: { session, event } }
+  return {
+    props: {
+      session,
+      event,
+      // Saving, scheduling and reviewing only apply to the event being run now.
+      isCurrentEvent: isCurrentEventSlug(eventParam),
+    },
+  }
 }
 export default Session
