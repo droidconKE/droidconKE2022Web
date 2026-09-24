@@ -9,6 +9,8 @@ const levelPill =
   'bg-green-100 dark:bg-green-500/15 text-green-800 dark:text-accent-dark text-xs font-semibold px-3 py-1 rounded-full'
 const formatPill =
   'bg-blue-50 dark:bg-primary/20 text-primary dark:text-blue-300 text-xs font-semibold px-3 py-1 rounded-full'
+const recordingPill =
+  'bg-primary dark:bg-primary text-white dark:text-white text-xs font-semibold px-3 py-1 rounded-full'
 
 export const SessionGridCard = ({
   schedules,
@@ -100,6 +102,12 @@ export const SessionGridCard = ({
                               <span className={formatPill}>
                                 {schedule.session_format}
                               </span>
+                              {schedule.recording_youtube_id && (
+                                <span className={recordingPill}>
+                                  <i className="fa fa-youtube-play mr-1" />
+                                  Recording
+                                </span>
+                              )}
                             </div>
                           )}
                           <p className="text-base font-bold text-black dark:text-white-dark mb-2 group-hover:text-primary dark:group-hover:text-accent-dark transition-colors">
