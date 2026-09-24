@@ -1,7 +1,10 @@
-import type { PWAConfig } from 'next-pwa'
-
 declare module 'next-pwa' {
   interface PWAConfig {
+    dest?: string
+    register?: boolean
+    skipWaiting?: boolean
+    disable?: boolean
+    cacheOnFrontEndNav?: boolean
     runtimeCaching?: Array<{
       urlPattern: RegExp | string
       handler:
@@ -20,5 +23,5 @@ declare module 'next-pwa' {
     }>
   }
 
-  export default function withPWA(config: PWAConfig): any
+  export default function withPWA(config?: PWAConfig): <T>(nextConfig?: T) => T
 }

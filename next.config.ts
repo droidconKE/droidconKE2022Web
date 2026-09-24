@@ -3,13 +3,6 @@ import withPWA from 'next-pwa'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: {
-    optimizePackageImports: [
-      '@heroicons/react',
-      'react-datepicker',
-      'react-hot-toast',
-    ],
-  },
   images: {
     remotePatterns: [
       {
@@ -34,6 +27,10 @@ const pwaConfig = withPWA({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
+  // All pages are server-rendered, so a document request only ever happens on a
+  // full load/refresh. Caching pages on front-end navigation is what makes an
+  // offline refresh of a visited page work instead of erroring (#89).
+  cacheOnFrontEndNav: true,
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com/,
@@ -70,12 +67,12 @@ const pwaConfig = withPWA({
     },
     {
       urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-      handler: 'NetworkOnly',
+      handler: 'StaleWhileRevalidate',
       options: {
         cacheName: 'static-image-assets',
         expiration: {
           maxEntries: 64,
-          maxAgeSeconds: 1 * 24 * 60 * 60,
+          maxAgeSeconds: 30 * 24 * 60 * 60,
         },
       },
     },
