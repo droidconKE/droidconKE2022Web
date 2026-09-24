@@ -78,14 +78,15 @@ export const sessionHref = (
 // feedback button cannot read the same URL differently.
 const EVENT_SLUG = /^[a-z0-9][a-z0-9-]*$/i
 
+// Always lower-cased, including the fallback: the environment value is typed
+// by hand at deploy time, and a stray capital there must not make the event
+// being run now look like somebody else's.
 export const resolveEventSlug = (param?: string | string[]) =>
   typeof param === 'string' && EVENT_SLUG.test(param)
     ? param.toLowerCase()
-    : process.env.NEXT_PUBLIC_EVENT_SLUG
+    : (process.env.NEXT_PUBLIC_EVENT_SLUG ?? '').toLowerCase()
 
-// Whether a URL is pointing at the event being run now. Both sides are
-// normalised here rather than at the call sites, so the comparison cannot be
-// made two different ways.
+// Whether a URL is pointing at the event being run now. Both sides come out of
+// the same resolver, so the comparison cannot be made two different ways.
 export const isCurrentEventSlug = (param?: string | string[]) =>
-  resolveEventSlug(param)?.toLowerCase() ===
-  process.env.NEXT_PUBLIC_EVENT_SLUG?.toLowerCase()
+  resolveEventSlug(param) === resolveEventSlug()
