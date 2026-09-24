@@ -8,10 +8,16 @@ import axios from '../../utils/axios'
 export const SessionFeedback = ({
   closeDialog,
   sessionSlug,
+  // Feedback is collected per event, so every page passes the event it is
+  // showing — a nudge on a past-event page must post under that event, not
+  // under the one being run now. Defaults to the current event.
+  eventSlug = process.env.NEXT_PUBLIC_EVENT_SLUG,
 }: {
   closeDialog: () => void
   // eslint-disable-next-line react/require-default-props
   sessionSlug?: string
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
 }) => {
   const [mounted, setMounted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -37,7 +43,6 @@ export const SessionFeedback = ({
     }
     setLoading(true)
     setErrors(null)
-    const eventSlug = process.env.NEXT_PUBLIC_EVENT_SLUG
     await axios
       .post(
         sessionSlug
@@ -51,11 +56,27 @@ export const SessionFeedback = ({
         closeDialog()
       })
       .catch((error) => {
-        if (error.response.status === 422) {
-          setErrors(error.response.data.errors)
-        }
-        if (error.response.status === 401) {
+        // Read off the response before touching it: when the request never
+        // reaches the server — conference wifi, a timeout, the room full of
+        // people trying the same thing — error.response is undefined, and an
+        // unguarded access here would throw past setLoading(false), leaving
+        // the modal spinning with no toast and no way to retry.
+        const status = error.response?.status
+        const data = error.response?.data
+
+        if (status === 422) {
+          // Validation failures keep the errors shape; the window/schedule
+          // refusals send { message } with no errors key — surface those as
+          // a toast, like the 401 branch below.
+          if (data?.errors) {
+            setErrors(data.errors)
+          } else if (data?.message) {
+            toast.error(data.message)
+          }
+        } else if (status === 401) {
           toast.error('Login to give feedback')
+        } else if (!error.response) {
+          toast.error('Could not send your feedback — check your connection')
         }
         setLoading(false)
       })

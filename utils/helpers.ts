@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { Event } from '../types/types'
+import { parseEat } from './calendar'
 
 export const isServer = typeof window === 'undefined'
 
@@ -90,3 +91,44 @@ export const resolveEventSlug = (param?: string | string[]) =>
 // the same resolver, so the comparison cannot be made two different ways.
 export const isCurrentEventSlug = (param?: string | string[]) =>
   resolveEventSlug(param) === resolveEventSlug()
+
+// Speaker and organizer input ends up in hrefs. React already refuses a
+// javascript: URL in both the server and client bundles, and the backend
+// refuses the dangerous schemes at the door; this is the front-end half of
+// the same agreement, so a stray ftp: or future scheme renders as nothing
+// rather than as a link that opens nothing. Pasted values often carry
+// surrounding whitespace, so it is trimmed rather than treated as a reason
+// to drop the link.
+export const isSafeHref = (url?: string | null): url is string => {
+  const trimmed = url?.trim()
+  return !!trimmed && /^https?:\/\//i.test(trimmed)
+}
+
+// The organizer's feedback window is a single boolean on the event payload.
+// Missing (an older backend, a cached payload) stays open — the default is
+// on, never off: a window we cannot read must never be the reason somebody
+// cannot leave feedback.
+export const eventFeedbackOpen = (event?: Event | null): boolean =>
+  event?.feedback_open !== false
+
+// Where in that window we are. Before the event nothing should render — a
+// permanent grey "Not open yet" chip on every page for six weeks reads as a
+// site that looks broken — while after it a closed chip is worth keeping, in
+// case somebody comes looking for the form. The start date is parsed with the
+// explicit EAT offset, so the answer is the same on the server and on a
+// visitor's device whatever their timezone.
+export type FeedbackWindowState = 'open' | 'not-open-yet' | 'closed'
+
+export const feedbackWindowState = (
+  event?: Event | null
+): FeedbackWindowState => {
+  if (eventFeedbackOpen(event)) return 'open'
+  const start = event?.start_date ? parseEat(event.start_date) : null
+  return start && start.getTime() > Date.now() ? 'not-open-yet' : 'closed'
+}
+
+// The user-facing label for a shut window.
+export const feedbackWindowLabel = (event?: Event | null): string =>
+  feedbackWindowState(event) === 'not-open-yet'
+    ? 'Not open yet'
+    : 'Feedback has closed'
