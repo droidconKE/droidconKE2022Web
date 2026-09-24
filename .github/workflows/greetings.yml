@@ -1,13 +1,40 @@
 name: Greetings
 
-on: [pull_request, issues]
+# `pull_request_target`, not `pull_request`.
+#
+# A pull request from a fork is handed a **read-only** GITHUB_TOKEN, whatever
+# the repository's default permission is set to — a fork can edit workflow
+# files, so its token gets no write access here. So this job could never post
+# its comment on an outside contributor's PR, which is the only PR it exists
+# for: a first-time contributor's first contribution was met with a failed
+# check saying "Resource not accessible by integration".
+#
+# `pull_request_target` runs in the base repository's context with a token
+# that can write. That event is normally the dangerous one, because it gives
+# write access to a workflow triggered by untrusted code — it is safe here
+# because this job never checks the pull request out and never runs anything
+# from it. **Do not add a checkout step to this file.**
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+# Only what the greeting needs. Without this block the job takes the
+# repository default, which an organization can change without touching this
+# file.
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/first-interaction@main
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        issue_message: "Thank you **@${{ github.actor }}** for your issue! We are glad you contributed!"
-        pr_message: "Thank you **@${{ github.actor }}** for your first pull Request!"
+      # Pinned to a commit rather than @main: an action on a moving branch is
+      # whatever that repository pushed last, running in ours.
+      - uses: actions/first-interaction@1c4688942c71f71d4f5502a26ea67c331730fa4d # v3.1.0
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: "Thank you **@${{ github.actor }}** for your issue! We are glad you contributed!"
+          pr_message: "Thank you **@${{ github.actor }}** for your first pull Request!"
