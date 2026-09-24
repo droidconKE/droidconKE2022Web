@@ -38,7 +38,11 @@ export const ShareSessionAndFeedback = ({
 
   return (
     <div className="w-full flex flex-wrap items-center gap-4 py-2">
-      <StarIcon isStar={false} session={session} />
+      {/* Saving only applies to the event being run now: My Sessions filters
+          the current event's schedule by the ids saved here, and no
+          past-event page renders that filter at all — so saving a past
+          session writes an id nothing can ever surface. */}
+      {isCurrentEvent && <StarIcon isStar={false} session={session} />}
       <button
         type="button"
         className="btn-accent uppercase"
@@ -73,7 +77,10 @@ export const ShareSessionAndFeedback = ({
           </WhatsappShareButton>
         </div>
       )}
-      {/* Scheduling and reviewing only apply to the event being run now. */}
+      {/* Scheduling and reviewing only apply to the event being run now:
+          feedback posts against the current event, so a past session must not
+          offer it. Share stays — a talk from 2023 is still worth sending to
+          somebody. */}
       {isCurrentEvent && (
         <>
           <AddToCalendar session={session} venue={venue} />
