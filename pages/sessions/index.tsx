@@ -6,7 +6,7 @@ import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Event, Schedule } from '../../types/types'
-import { eventVenue, timeDay } from '../../utils/helpers'
+import { eventVenue, feedbackWindowState, timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 
@@ -34,6 +34,10 @@ const Sessions: NextPage<SessionProps> = ({
   } = useSession({ allSchedules })
 
   const venue = eventVenue(event)
+
+  // The organizer's feedback window: missing field (older backend, cached
+  // payload) is treated as open — the default is on, never off.
+  const feedbackOpen = feedbackWindowState(event) === 'open'
 
   return (
     <>
@@ -89,6 +93,7 @@ const Sessions: NextPage<SessionProps> = ({
               activeTab={activeTab}
               showStar
               eventVenue={venue}
+              feedbackOpen={feedbackOpen}
             />
           )}
           {!loading && !isGridView && (
@@ -97,6 +102,7 @@ const Sessions: NextPage<SessionProps> = ({
               activeTab={activeTab}
               showStar
               eventVenue={venue}
+              feedbackOpen={feedbackOpen}
             />
           )}
           {loading && <SessionsSkeleton />}

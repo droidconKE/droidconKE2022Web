@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { Event } from '../types/types'
+import { parseEat } from './calendar'
 
 export const isServer = typeof window === 'undefined'
 
@@ -90,3 +91,63 @@ export const resolveEventSlug = (param?: string | string[]) =>
 // the same resolver, so the comparison cannot be made two different ways.
 export const isCurrentEventSlug = (param?: string | string[]) =>
   resolveEventSlug(param) === resolveEventSlug()
+
+// Speaker and organizer input ends up in hrefs. React already refuses a
+// javascript: URL in both the server and client bundles, and the backend
+// refuses the dangerous schemes at the door; this is the front-end half of
+// the same agreement, so a stray ftp: or future scheme renders as nothing
+// rather than as a link that opens nothing. Pasted values often carry
+// surrounding whitespace, so it is trimmed rather than treated as a reason
+// to drop the link.
+export const isSafeHref = (url?: string | null): url is string => {
+  const trimmed = url?.trim()
+  return !!trimmed && /^https?:\/\//i.test(trimmed)
+}
+
+// The organizer's master switch on the event payload. Missing (an older
+// backend, a cached payload) stays open — the default is on, never off: a
+// window we cannot read must never be the reason somebody cannot leave
+// feedback.
+const eventFeedbackOpen = (event?: Event | null): boolean =>
+  event?.feedback_open !== false
+
+// Where in the organizer's feedback window we are. The window lives on the
+// payload as feedback_opens_at / feedback_closes_at, always present and
+// always resolved — a window the organizer never set arrives as the default
+// it stands for — so the dates alone decide and nothing is guessed from the
+// event's own start_date: an organizer who opens feedback on day two of a
+// three-day event must not show "Feedback has closed" to everybody on day
+// one, on the surface the door QR codes point at. Both ends go through
+// parseEat, which trusts a zoned string as-is and pins a naive one to EAT,
+// so the answer is the same on the server and on a visitor's device whatever
+// their timezone. A payload carrying neither field predates them — fall back
+// to the master switch, and when it says closed, render nothing rather than
+// the wrong chip: "not open" is all we honestly know.
+export type FeedbackWindowState = 'open' | 'not-open-yet' | 'closed'
+
+export const feedbackWindowState = (
+  event?: Event | null
+): FeedbackWindowState => {
+  const opens = event?.feedback_opens_at
+    ? parseEat(event.feedback_opens_at)
+    : null
+  const closes = event?.feedback_closes_at
+    ? parseEat(event.feedback_closes_at)
+    : null
+
+  if (opens === null && closes === null) {
+    return eventFeedbackOpen(event) ? 'open' : 'not-open-yet'
+  }
+
+  const now = Date.now()
+  if (opens !== null && opens.getTime() > now) return 'not-open-yet'
+  if (!eventFeedbackOpen(event)) return 'closed'
+  if (closes !== null && closes.getTime() <= now) return 'closed'
+  return 'open'
+}
+
+// The user-facing label for a shut window.
+export const feedbackWindowLabel = (event?: Event | null): string =>
+  feedbackWindowState(event) === 'not-open-yet'
+    ? 'Not open yet'
+    : 'Feedback has closed'

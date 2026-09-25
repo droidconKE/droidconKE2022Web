@@ -8,10 +8,16 @@ import axios from '../../utils/axios'
 export const SessionFeedback = ({
   closeDialog,
   sessionSlug,
+  // Feedback is collected per event, so every page passes the event it is
+  // showing — a nudge on a past-event page must post under that event, not
+  // under the one being run now. Defaults to the current event.
+  eventSlug = process.env.NEXT_PUBLIC_EVENT_SLUG,
 }: {
   closeDialog: () => void
   // eslint-disable-next-line react/require-default-props
   sessionSlug?: string
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
 }) => {
   const [mounted, setMounted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -37,7 +43,6 @@ export const SessionFeedback = ({
     }
     setLoading(true)
     setErrors(null)
-    const eventSlug = process.env.NEXT_PUBLIC_EVENT_SLUG
     await axios
       .post(
         sessionSlug
@@ -51,11 +56,35 @@ export const SessionFeedback = ({
         closeDialog()
       })
       .catch((error) => {
-        if (error.response.status === 422) {
-          setErrors(error.response.data.errors)
-        }
-        if (error.response.status === 401) {
+        // Read off the response before touching it: when the request never
+        // reaches the server — conference wifi, a timeout, the room full of
+        // people trying the same thing — error.response is undefined, and an
+        // unguarded access here would throw past setLoading(false), leaving
+        // the modal spinning with no toast and no way to retry.
+        const status = error.response?.status
+        const data = error.response?.data
+
+        if (status === 422) {
+          // Every refusal carries errors — as {} when there is no per-field
+          // detail, on purpose — and {} is truthy, so a bare truthiness check
+          // would swallow the message: setErrors({}) renders under no field,
+          // and a closed window fails silently all over again. Only
+          // non-empty errors render inline; everything else toasts.
+          if (data?.errors && Object.keys(data.errors).length) {
+            setErrors(data.errors)
+          } else {
+            toast.error(data?.message ?? 'Feedback is not open right now')
+          }
+        } else if (status === 401) {
           toast.error('Login to give feedback')
+        } else if (status) {
+          // Any other server answer — a 500, a 404 — toasts as well, so
+          // after this block "no toast" means "no response" and only that.
+          toast.error(
+            data?.message || 'Something went wrong. Please try again.'
+          )
+        } else {
+          toast.error('Could not send your feedback — check your connection')
         }
         setLoading(false)
       })

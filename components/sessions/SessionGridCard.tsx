@@ -3,6 +3,7 @@ import { Schedule, Session } from '../../types/types'
 import { hour, sessionHref, truncateString } from '../../utils/helpers'
 import { NoSessions } from './NoSessions'
 import { AddToCalendar } from './AddToCalendar'
+import { FeedbackNudge } from './FeedbackNudge'
 import { StarIcon } from '../shared/StarIcon'
 
 const levelPill =
@@ -20,6 +21,7 @@ export const SessionGridCard = ({
   showStar = false,
   eventVenue,
   eventSlug,
+  feedbackOpen = true,
 }: {
   schedules: Schedule[]
   activeTab: number
@@ -33,6 +35,8 @@ export const SessionGridCard = ({
   eventVenue?: string
   // eslint-disable-next-line react/require-default-props
   eventSlug?: string
+  // eslint-disable-next-line react/require-default-props
+  feedbackOpen?: boolean
 }) => {
   return (
     <>
@@ -147,7 +151,7 @@ export const SessionGridCard = ({
                   )
                   return (
                     <div
-                      className="flex relative mb-6 hover:-translate-y-1 transition-transform duration-200"
+                      className="flex flex-col relative mb-6 hover:-translate-y-1 transition-transform duration-200"
                       key={schedule.id}
                     >
                       {schedule.is_serviceSession ? (
@@ -168,6 +172,11 @@ export const SessionGridCard = ({
                           <StarIcon session={schedule} />
                         </div>
                       )}
+                      <FeedbackNudge
+                        session={schedule}
+                        feedbackOpen={feedbackOpen}
+                        eventSlug={eventSlug}
+                      />
                     </div>
                   )
                 })}
