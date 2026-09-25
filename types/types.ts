@@ -178,4 +178,9 @@ export interface Event {
   // payload) is treated as open — the default is on, never off.
   feedback_url: string
   feedback_open?: boolean
+  // When the organizer's feedback window opens and closes. The API resolves
+  // both always — a window it never set arrives as the default it stands
+  // for — so a payload carrying neither predates the fields.
+  feedback_opens_at?: string
+  feedback_closes_at?: string
 }

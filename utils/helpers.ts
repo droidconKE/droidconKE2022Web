@@ -104,27 +104,46 @@ export const isSafeHref = (url?: string | null): url is string => {
   return !!trimmed && /^https?:\/\//i.test(trimmed)
 }
 
-// The organizer's feedback window is a single boolean on the event payload.
-// Missing (an older backend, a cached payload) stays open — the default is
-// on, never off: a window we cannot read must never be the reason somebody
-// cannot leave feedback.
-export const eventFeedbackOpen = (event?: Event | null): boolean =>
+// The organizer's master switch on the event payload. Missing (an older
+// backend, a cached payload) stays open — the default is on, never off: a
+// window we cannot read must never be the reason somebody cannot leave
+// feedback.
+const eventFeedbackOpen = (event?: Event | null): boolean =>
   event?.feedback_open !== false
 
-// Where in that window we are. Before the event nothing should render — a
-// permanent grey "Not open yet" chip on every page for six weeks reads as a
-// site that looks broken — while after it a closed chip is worth keeping, in
-// case somebody comes looking for the form. The start date is parsed with the
-// explicit EAT offset, so the answer is the same on the server and on a
-// visitor's device whatever their timezone.
+// Where in the organizer's feedback window we are. The window lives on the
+// payload as feedback_opens_at / feedback_closes_at, always present and
+// always resolved — a window the organizer never set arrives as the default
+// it stands for — so the dates alone decide and nothing is guessed from the
+// event's own start_date: an organizer who opens feedback on day two of a
+// three-day event must not show "Feedback has closed" to everybody on day
+// one, on the surface the door QR codes point at. Both ends go through
+// parseEat, which trusts a zoned string as-is and pins a naive one to EAT,
+// so the answer is the same on the server and on a visitor's device whatever
+// their timezone. A payload carrying neither field predates them — fall back
+// to the master switch, and when it says closed, render nothing rather than
+// the wrong chip: "not open" is all we honestly know.
 export type FeedbackWindowState = 'open' | 'not-open-yet' | 'closed'
 
 export const feedbackWindowState = (
   event?: Event | null
 ): FeedbackWindowState => {
-  if (eventFeedbackOpen(event)) return 'open'
-  const start = event?.start_date ? parseEat(event.start_date) : null
-  return start && start.getTime() > Date.now() ? 'not-open-yet' : 'closed'
+  const opens = event?.feedback_opens_at
+    ? parseEat(event.feedback_opens_at)
+    : null
+  const closes = event?.feedback_closes_at
+    ? parseEat(event.feedback_closes_at)
+    : null
+
+  if (opens === null && closes === null) {
+    return eventFeedbackOpen(event) ? 'open' : 'not-open-yet'
+  }
+
+  const now = Date.now()
+  if (opens !== null && opens.getTime() > now) return 'not-open-yet'
+  if (!eventFeedbackOpen(event)) return 'closed'
+  if (closes !== null && closes.getTime() <= now) return 'closed'
+  return 'open'
 }
 
 // The user-facing label for a shut window.

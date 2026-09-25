@@ -6,7 +6,7 @@ import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Event, Schedule, Sponsor } from '../../types/types'
-import { eventFeedbackOpen, timeDay } from '../../utils/helpers'
+import { feedbackWindowState, timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 import SponsorsList from '../../components/home/SponsorsList'
@@ -36,7 +36,7 @@ const Home2022: NextPage<SessionProps> = ({
 
   // The organizer's feedback window: missing field (older backend, cached
   // payload) is treated as open — the default is on, never off.
-  const feedbackOpen = eventFeedbackOpen(event)
+  const feedbackOpen = feedbackWindowState(event) === 'open'
 
   return (
     <>

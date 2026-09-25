@@ -65,17 +65,25 @@ export const SessionFeedback = ({
         const data = error.response?.data
 
         if (status === 422) {
-          // Validation failures keep the errors shape; the window/schedule
-          // refusals send { message } with no errors key — surface those as
-          // a toast, like the 401 branch below.
-          if (data?.errors) {
+          // Every refusal carries errors — as {} when there is no per-field
+          // detail, on purpose — and {} is truthy, so a bare truthiness check
+          // would swallow the message: setErrors({}) renders under no field,
+          // and a closed window fails silently all over again. Only
+          // non-empty errors render inline; everything else toasts.
+          if (data?.errors && Object.keys(data.errors).length) {
             setErrors(data.errors)
-          } else if (data?.message) {
-            toast.error(data.message)
+          } else {
+            toast.error(data?.message ?? 'Feedback is not open right now')
           }
         } else if (status === 401) {
           toast.error('Login to give feedback')
-        } else if (!error.response) {
+        } else if (status) {
+          // Any other server answer — a 500, a 404 — toasts as well, so
+          // after this block "no toast" means "no response" and only that.
+          toast.error(
+            data?.message || 'Something went wrong. Please try again.'
+          )
+        } else {
           toast.error('Could not send your feedback — check your connection')
         }
         setLoading(false)
