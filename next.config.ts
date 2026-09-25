@@ -3,13 +3,6 @@ import withPWA from 'next-pwa'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: {
-    optimizePackageImports: [
-      '@heroicons/react',
-      'react-datepicker',
-      'react-hot-toast',
-    ],
-  },
   images: {
     remotePatterns: [
       {
@@ -34,6 +27,10 @@ const pwaConfig = withPWA({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
+  // All pages are server-rendered, so a document request only ever happens on a
+  // full load/refresh. Caching pages on front-end navigation is what makes an
+  // offline refresh of a visited page work instead of erroring (#89).
+  cacheOnFrontEndNav: true,
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com/,
@@ -47,7 +44,11 @@ const pwaConfig = withPWA({
       },
     },
     {
-      urlPattern: /\.(?:mp4|webp)$/,
+      // Video only — webp is an image format and belongs to the image route
+      // below: Workbox takes the first matching route, so a webp here would
+      // stay CacheFirst with no revalidation for a month, and a speaker
+      // photo replaced at the same URL would never arrive.
+      urlPattern: /\.mp4$/,
       handler: 'CacheFirst',
       options: {
         cacheName: 'media-assets',
@@ -70,12 +71,15 @@ const pwaConfig = withPWA({
     },
     {
       urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-      handler: 'NetworkOnly',
+      handler: 'StaleWhileRevalidate',
       options: {
         cacheName: 'static-image-assets',
+        // A conference is 50+ speaker photos on top of session images and
+        // sponsor logos; the entries now actually get written, so give the
+        // LRU room before it starts evicting.
         expiration: {
-          maxEntries: 64,
-          maxAgeSeconds: 1 * 24 * 60 * 60,
+          maxEntries: 128,
+          maxAgeSeconds: 30 * 24 * 60 * 60,
         },
       },
     },
@@ -124,18 +128,32 @@ const pwaConfig = withPWA({
         },
       },
     },
-    {
-      urlPattern: new RegExp(`${process.env.NEXT_PUBLIC_API_BASE_URL || ''}`),
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'api-cache',
-        networkTimeoutSeconds: 10,
-        expiration: {
-          maxEntries: 16,
-          maxAgeSeconds: 24 * 60 * 60,
-        },
-      },
-    },
+    // The API base is a plain URL, but urlPattern reads it as a regular
+    // expression — escape it, or a stray regex metacharacter in the deploy
+    // env changes what this matches. And when the variable is missing at
+    // build time, leave the route out entirely: an empty pattern matches
+    // every request and funnels the whole site through a 16-entry cache.
+    ...(process.env.NEXT_PUBLIC_API_BASE_URL
+      ? [
+          {
+            urlPattern: new RegExp(
+              `^${process.env.NEXT_PUBLIC_API_BASE_URL.replace(
+                /[.*+?^${}()|[\]\\]/g,
+                '\\$&'
+              )}`
+            ),
+            handler: 'NetworkFirst' as const,
+            options: {
+              cacheName: 'api-cache',
+              networkTimeoutSeconds: 10,
+              expiration: {
+                maxEntries: 16,
+                maxAgeSeconds: 24 * 60 * 60,
+              },
+            },
+          },
+        ]
+      : []),
     {
       urlPattern: /.*/i,
       handler: 'NetworkFirst',
