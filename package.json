@@ -26,8 +26,10 @@
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^5.2.2",
     "react-toastify": "^11.0.5",
-    "sharp": "^0.33.5",
-    "workbox-window": "7.0.0"
+    "sharp": "^0.33.5"
+  },
+  "resolutions": {
+    "@types/next-pwa/next": "^15.2.2"
   },
   "devDependencies": {
     "@types/estree": "^1.0.6",
@@ -40,7 +42,6 @@
     "@types/react-dom": "^19.0.4",
     "@types/scheduler": "^0.23.0",
     "@types/trusted-types": "^2.0.7",
-    "@types/workbox-window": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "8.26.1",
     "autoprefixer": "^10.4.21",
     "eslint": "9.22.0",
