@@ -121,8 +121,11 @@ const eventFeedbackOpen = (event?: Event | null): boolean =>
 // parseEat, which trusts a zoned string as-is and pins a naive one to EAT,
 // so the answer is the same on the server and on a visitor's device whatever
 // their timezone. A payload carrying neither field predates them — fall back
-// to the master switch, and when it says closed, render nothing rather than
-// the wrong chip: "not open" is all we honestly know.
+// to the master switch, and when it says closed, let the event's end_date
+// (already on the payload) tell "not open yet" from "has closed": before the
+// event renders nothing, after it the muted chip stays, in case somebody is
+// looking for the form. An event without an end_date renders nothing — with
+// no window and no end, "not open" is all we honestly know.
 export type FeedbackWindowState = 'open' | 'not-open-yet' | 'closed'
 
 export const feedbackWindowState = (
@@ -136,7 +139,11 @@ export const feedbackWindowState = (
     : null
 
   if (opens === null && closes === null) {
-    return eventFeedbackOpen(event) ? 'open' : 'not-open-yet'
+    if (eventFeedbackOpen(event)) return 'open'
+    const end = event?.end_date ? parseEat(event.end_date) : null
+    return end !== null && end.getTime() <= Date.now()
+      ? 'closed'
+      : 'not-open-yet'
   }
 
   const now = Date.now()
