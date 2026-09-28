@@ -84,6 +84,9 @@ export interface Session {
   recording_url?: string | null
   recording_youtube_id?: string | null
   resources?: SessionResource[]
+  // Per-session feedback form (null until the talk is on the timetable, or
+  // if it was taken off it). The site's own modal posts to the API with it.
+  feedback_url?: string | null
 }
 
 export interface Schedule {
@@ -170,4 +173,14 @@ export interface Event {
   remaining_tickets: number
   cfs: Cfs
   rooms: Room[]
+  // Event-level feedback form plus the organizer's window: whether feedback
+  // is being taken right now. Missing feedback_open (older backend, cached
+  // payload) is treated as open — the default is on, never off.
+  feedback_url: string
+  feedback_open?: boolean
+  // When the organizer's feedback window opens and closes. The API resolves
+  // both always — a window it never set arrives as the default it stands
+  // for — so a payload carrying neither predates the fields.
+  feedback_opens_at?: string
+  feedback_closes_at?: string
 }

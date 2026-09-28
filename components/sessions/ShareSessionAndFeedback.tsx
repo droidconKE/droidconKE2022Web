@@ -12,22 +12,38 @@ import {
 import { SessionFeedback } from './SessionFeedback'
 import { AddToCalendar } from './AddToCalendar'
 import { Session } from '../../types/types'
-import { truncateString } from '../../utils/helpers'
+import {
+  FeedbackWindowState,
+  isSafeHref,
+  truncateString,
+} from '../../utils/helpers'
+import { sessionHasEnded } from '../../utils/calendar'
 import { StarIcon } from '../shared/StarIcon'
 
 export const ShareSessionAndFeedback = ({
   session,
   venue,
   isCurrentEvent = true,
+  feedbackWindow = 'open',
+  eventSlug,
 }: {
   session: Session
   // eslint-disable-next-line react/require-default-props
   venue?: string
   // eslint-disable-next-line react/require-default-props
   isCurrentEvent?: boolean
+  // eslint-disable-next-line react/require-default-props
+  feedbackWindow?: FeedbackWindowState
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
 }) => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
   const [showShare, setShowShare] = useState(false)
+
+  // After a session ends the banner nudge ("How was it? Rate this session")
+  // takes over as the session-feedback entry point, so the button stands
+  // down rather than stacking a second identical CTA on the page.
+  const nudgeHasTakenOver = sessionHasEnded(session)
 
   const title = `${session.title} by ${session.speakers.map(
     (s) => ` ${s.name}`
@@ -78,26 +94,57 @@ export const ShareSessionAndFeedback = ({
         </div>
       )}
       {/* Scheduling and reviewing only apply to the event being run now:
-          feedback posts against the current event, so a past session must not
-          offer it. Share stays — a talk from 2023 is still worth sending to
-          somebody. */}
+          feedback posts against the event on screen, so a past session must
+          not offer it. Share stays — a talk from 2023 is still worth sending
+          to somebody. The two gates compose here rather than either standing
+          alone: isCurrentEvent says this page's event takes feedback, the
+          window says it is taking it now. Before the window opens nothing
+          renders; once it has closed a disabled chip says why. */}
       {isCurrentEvent && (
         <>
           <AddToCalendar session={session} venue={venue} />
-          <button
-            type="button"
-            className="btn-primary"
-            onClick={() => setShowFeedbackModal(true)}
-          >
-            Session Feedback{' '}
-            <i className="fa fa-send" style={{ transform: 'rotate(55deg)' }} />
-          </button>
+          {feedbackWindow === 'open' && !nudgeHasTakenOver && (
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setShowFeedbackModal(true)}
+            >
+              Session Feedback{' '}
+              <i
+                className="fa fa-send"
+                style={{ transform: 'rotate(55deg)' }}
+              />
+            </button>
+          )}
+          {feedbackWindow === 'closed' && (
+            <button
+              type="button"
+              disabled
+              className="btn-primary cursor-not-allowed"
+            >
+              Feedback has closed
+            </button>
+          )}
         </>
       )}
+      {isCurrentEvent &&
+        feedbackWindow === 'open' &&
+        isSafeHref(session.feedback_url) && (
+          <a
+            href={session.feedback_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary dark:text-accent-dark hover:underline"
+          >
+            Official feedback form
+            <i className="fa fa-external-link" aria-hidden="true" />
+          </a>
+        )}
       {showFeedbackModal && (
         <SessionFeedback
           closeDialog={() => setShowFeedbackModal(false)}
           sessionSlug={session.slug}
+          eventSlug={eventSlug}
         />
       )}
     </div>

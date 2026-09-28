@@ -1,5 +1,6 @@
 import { Session } from '../../types/types'
-import { hour } from '../../utils/helpers'
+import { hour, FeedbackWindowState } from '../../utils/helpers'
+import { FeedbackNudge } from './FeedbackNudge'
 
 // Speakers and organizers supply these URLs, and they end up in an href.
 // React already refuses a javascript: URL, but data: and vbscript: would be
@@ -11,7 +12,17 @@ const safeHref = (url?: string | null) => {
   return trimmed && /^https?:\/\//i.test(trimmed) ? trimmed : null
 }
 
-export const SessionDetails = ({ session }: { session: Session }) => {
+export const SessionDetails = ({
+  session,
+  feedbackWindow = 'open',
+  eventSlug,
+}: {
+  session: Session
+  // eslint-disable-next-line react/require-default-props
+  feedbackWindow?: FeedbackWindowState
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
+}) => {
   const slidesUrl = safeHref(session.slides_url)
   const speakerVideoUrl = safeHref(session.video_url)
   const recordingUrl = safeHref(session.recording_url)
@@ -22,7 +33,6 @@ export const SessionDetails = ({ session }: { session: Session }) => {
   const hasMaterials = Boolean(
     slidesUrl || speakerVideoUrl || resources.length || recordingLinkOnly
   )
-
   return (
     <div className="relative isolate overflow-hidden w-full rounded-4xl md:rounded-5xl bg-accent p-6 md:p-12">
       {/* halftone dots at the top of the card */}
@@ -152,6 +162,12 @@ export const SessionDetails = ({ session }: { session: Session }) => {
             </div>
           </div>
         )}
+        <FeedbackNudge
+          session={session}
+          feedbackOpen={feedbackWindow === 'open'}
+          eventSlug={eventSlug}
+          className="mt-6 flex justify-end"
+        />
       </div>
     </div>
   )

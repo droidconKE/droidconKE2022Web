@@ -9,6 +9,7 @@ import { Event, Session as SessionProp } from '../../types/types'
 import axios from '../../utils/axios'
 import {
   eventVenue,
+  feedbackWindowState,
   isCurrentEventSlug,
   resolveEventSlug,
 } from '../../utils/helpers'
@@ -17,12 +18,14 @@ interface SessionPageProp {
   session: SessionProp
   event: Event | null
   isCurrentEvent: boolean
+  eventSlug: string
 }
 
 const Session: NextPage<SessionPageProp> = ({
   session,
   event,
   isCurrentEvent,
+  eventSlug,
 }) => {
   const router = useRouter()
 
@@ -31,6 +34,10 @@ const Session: NextPage<SessionPageProp> = ({
   const image =
     session.session_image ??
     'https://droidcon.co.ke/images/new-design/revised/dcke-cover.png'
+
+  // The organizer's feedback window as a tri-state: before the event nothing
+  // renders, during it the actions show, after it a disabled chip says so.
+  const feedbackWindow = feedbackWindowState(event)
 
   return (
     <>
@@ -46,11 +53,17 @@ const Session: NextPage<SessionPageProp> = ({
           <i className="fa fa-arrow-left mr-2" /> back
         </Link>
         <SpeakersDetails session={session} />
-        <SessionDetails session={session} />
+        <SessionDetails
+          session={session}
+          feedbackWindow={feedbackWindow}
+          eventSlug={eventSlug}
+        />
         <ShareSessionAndFeedback
           session={session}
           venue={eventVenue(event)}
           isCurrentEvent={isCurrentEvent}
+          feedbackWindow={feedbackWindow}
+          eventSlug={eventSlug}
         />
       </div>
     </>
@@ -101,6 +114,9 @@ export async function getServerSideProps({
       event,
       // Saving, scheduling and reviewing only apply to the event being run now.
       isCurrentEvent: isCurrentEventSlug(eventParam),
+      // The event this session belongs to — feedback from this page posts
+      // under it, so a past session never lands in the current event's form.
+      eventSlug,
     },
   }
 }

@@ -5,7 +5,10 @@ import { Session } from '../types/types'
 // visitor's local timezone, so the offset is applied explicitly instead.
 const EAT_UTC_OFFSET_HOURS = 3
 
-const parseEat = (value: string): Date | null => {
+// Exported for the feedback window helpers: the organizer's window opens on
+// the event's start date, and that comparison must agree with this file's
+// EAT-pinned session times rather than with the visitor's timezone.
+export const parseEat = (value: string): Date | null => {
   if (!value) return null
   // If the API ever starts sending an explicit zone (Z or ±HH:MM), trust it
   // rather than double-shifting by the manual EAT offset.
@@ -40,6 +43,17 @@ const sessionTimes = (session: Session) => {
   const start = parseEat(session.start_date_time)
   const end = parseEat(session.end_date_time)
   return start && end ? { start, end } : null
+}
+
+// Whether the session's scheduled end (EAT) is already in the past. Uses the
+// same explicit-offset parsing as the calendar builders, so the answer is
+// identical on the server and the client no matter the visitor's timezone.
+// Compared once on render — no ticking clock.
+export const sessionHasEnded = (
+  session: Pick<Session, 'end_date_time'>
+): boolean => {
+  const end = parseEat(session.end_date_time)
+  return !!end && end.getTime() <= Date.now()
 }
 
 const sessionUrl = (session: Session): string =>
