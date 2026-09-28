@@ -7,6 +7,8 @@ function Organizers({
   organizers: Organizer[]
   compact: boolean
 }) {
+  const hasOrganizers = organizers?.length > 0
+
   return (
     <section
       className={`s-container w-full h-auto bg-white dark:bg-dark transition-colors ${
@@ -14,11 +16,15 @@ function Organizers({
       }`}
     >
       <div className="w-full bg-accent rounded-[32px] p-8 md:p-12">
-        <h2 className="text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-display mb-8 md:mb-12">
+        <h2
+          className={`text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-display ${
+            hasOrganizers ? 'mb-8 md:mb-12' : 'mb-4 md:mb-6'
+          }`}
+        >
           Our Community Partners
         </h2>
 
-        {organizers?.length > 0 && (
+        {hasOrganizers ? (
           <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
             {organizers.map((org) => (
               <a
@@ -32,10 +38,25 @@ function Organizers({
                   className="object-contain w-auto max-h-14 md:max-h-16"
                   src={org.photo || '/images/icon.png'}
                   alt={org.name}
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
             ))}
           </div>
+        ) : (
+          <p className="text-primary/80 text-base md:text-lg max-w-2xl">
+            Community partners for this year are being announced — follow{' '}
+            <a
+              href="https://twitter.com/droidconke"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-4 hover:opacity-80 transition-opacity"
+            >
+              @droidconke
+            </a>{' '}
+            for updates.
+          </p>
         )}
       </div>
     </section>
