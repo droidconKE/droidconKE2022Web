@@ -158,3 +158,12 @@ export const feedbackWindowLabel = (event?: Event | null): string =>
   feedbackWindowState(event) === 'not-open-yet'
     ? 'Not open yet'
     : 'Feedback has closed'
+
+// The @handle from a speaker's profile URL, whatever domain it is on today —
+// profiles have been migrating twitter.com -> x.com, and splitting on the
+// literal 'twitter.com/' yields `@undefined` for the new ones (#165).
+export const getTwitterUsername = (url?: string | null): string | null => {
+  if (!url) return null
+  const match = url.match(/(?:twitter\.com|x\.com)\/([^/?#]+)/i)
+  return match?.[1] ?? null
+}
