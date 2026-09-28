@@ -156,6 +156,7 @@ export async function getServerSideProps() {
     .then((response) => {
       return response.data.data
     })
+    .catch(() => [])
 
   // Pass data to the page via props
   return { props: { sponsors } }
