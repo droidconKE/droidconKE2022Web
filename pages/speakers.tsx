@@ -43,12 +43,14 @@ export async function getServerSideProps() {
     .then((response) => {
       return response.data.data
     })
+    .catch(() => [])
 
   const sessions = await axios
     .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sessions?per_page=100`)
     .then((response) => {
       return response.data.data
     })
+    .catch(() => [])
 
   // Pass data to the page via props
   return { props: { speakers, sessions } }
