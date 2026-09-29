@@ -8,18 +8,17 @@ export const ToggleTheme = () => {
     <div className="inline-block p-2 md:p-3">
       <button
         type="button"
+        aria-label="Toggle theme"
+        aria-pressed={isDarkTheme}
         className="flex items-center cursor-pointer"
         onClick={() => toggleTheme()}
       >
         <div className="relative">
           <input
-            id="toogleA"
             checked={isDarkTheme}
             type="checkbox"
             className="hidden"
             onChange={() => null}
-            aria-label="Toggle theme"
-            title="Toggle theme"
           />
           <div className="theme-toggle__line w-10 h-5 bg-black dark:bg-secondary rounded-full shadow-inner" />
           <div className="theme-toggle__dot absolute top-0.5 left-0.5 w-4 h-4 bg-white dark:bg-black rounded-full shadow" />
