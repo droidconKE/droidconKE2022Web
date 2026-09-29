@@ -5,6 +5,7 @@ import { ConfHighlights } from '../components/home/ConfHighlights'
 import { Gallery } from '../components/home/Gallery'
 import Organizers from '../components/home/Organizers'
 import SponsorsList from '../components/home/SponsorsList'
+import { BackToTop } from '../components/home/BackToTop'
 import { Organizer, Sponsor as SponsorType } from '../types/types'
 import axios from '../utils/axios'
 import Marquee from '../components/home/Marquee'
@@ -26,6 +27,7 @@ const Home: NextPage<HomeProps> = ({ sponsors, organizers }) => {
       <SponsorsList sponsors={sponsors} year={26} showSponsors />
       <Gallery />
       <Organizers organizers={organizers} compact={false} />
+      <BackToTop />
     </div>
   )
 }
