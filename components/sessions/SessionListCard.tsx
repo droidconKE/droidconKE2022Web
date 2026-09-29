@@ -13,7 +13,7 @@ import { FeedbackNudge } from './FeedbackNudge'
 import { StarIcon } from '../shared/StarIcon'
 
 const levelPill =
-  'bg-green-100 dark:bg-green-500/15 text-green-800 dark:text-accent-dark text-xs font-semibold px-3 py-1 rounded-full'
+  'bg-green-100 dark:bg-green-500/20 text-green-800 dark:text-accent-dark text-xs font-semibold px-3 py-1 rounded-full'
 const formatPill =
   'bg-blue-50 dark:bg-primary/20 text-primary dark:text-blue-300 text-xs font-semibold px-3 py-1 rounded-full'
 const recordingPill =
@@ -56,11 +56,11 @@ const SessionListCard = ({
                     'group block rounded-4xl bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 px-4 md:px-6 py-5'
                   const inner = (
                     <div className="flex flex-row items-start gap-4">
-                      <div className="flex flex-col w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-primary/15 py-3">
+                      <div className="flex flex-col w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-primary/20 py-3">
                         <span className="font-display text-lg leading-none text-primary dark:text-accent-dark">
                           {time(schedule.start_date_time)}
                         </span>
-                        <span className="text-xs font-medium text-light dark:text-light-dark mt-1">
+                        <span className="text-xs font-medium text-light dark:text-accent-2-dark mt-1">
                           {timeAm(schedule.start_date_time)}
                         </span>
                       </div>
