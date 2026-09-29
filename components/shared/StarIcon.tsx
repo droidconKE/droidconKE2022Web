@@ -14,13 +14,16 @@ export const StarIcon = ({ isStar = true, session }: StarIconProps) => {
   return isStar ? (
     // The save control is a real button: keyboard focusable, named for screen
     // readers, and its pressed state is not carried by fill colour alone —
-    // a bare clickable SVG failed all three (#181).
+    // a bare clickable SVG failed all three (#181). The accessible name stays
+    // stable and aria-pressed carries the state: a label that flips with the
+    // state is the alternative toggle pattern, and using both announces a
+    // contradiction ("Remove from my sessions, pressed"). No title either —
+    // duplicating the label gets announced twice by some pairings.
     <button
       type="button"
       onClick={bookmark}
-      aria-label={isStared ? 'Remove from my sessions' : 'Save to my sessions'}
+      aria-label="Save to my sessions"
       aria-pressed={isStared}
-      title={isStared ? 'Remove from my sessions' : 'Save to my sessions'}
       className="cursor-pointer inline-flex items-center justify-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <svg
