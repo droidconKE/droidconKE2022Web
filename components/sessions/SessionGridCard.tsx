@@ -7,7 +7,7 @@ import { FeedbackNudge } from './FeedbackNudge'
 import { StarIcon } from '../shared/StarIcon'
 
 const levelPill =
-  'bg-green-100 dark:bg-green-500/15 text-green-800 dark:text-accent-dark text-xs font-semibold px-3 py-1 rounded-full'
+  'bg-green-100 dark:bg-green-500/20 text-green-800 dark:text-accent-dark text-xs font-semibold px-3 py-1 rounded-full'
 const formatPill =
   'bg-blue-50 dark:bg-primary/20 text-primary dark:text-blue-300 text-xs font-semibold px-3 py-1 rounded-full'
 const recordingPill =
