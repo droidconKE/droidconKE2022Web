@@ -32,7 +32,8 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
       )}
       <button
         type="button"
-        title="Grid View"
+        aria-label="Grid view"
+        aria-pressed={isGridView}
         onClick={() => onChangeViewType(true)}
       >
         <i
@@ -43,7 +44,8 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
       </button>
       <button
         type="button"
-        title="List View"
+        aria-label="List view"
+        aria-pressed={!isGridView}
         onClick={() => onChangeViewType(false)}
       >
         <i
@@ -61,7 +63,6 @@ export const SessionToggles: NextPage<SessionPageProps> = ({
           >
             <div className="relative">
               <input
-                id="toogleA"
                 checked={isMySessions}
                 type="checkbox"
                 className="hidden"
