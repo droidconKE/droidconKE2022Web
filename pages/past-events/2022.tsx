@@ -146,6 +146,9 @@ export async function getServerSideProps() {
     .then((response) => {
       return response.data.data
     })
+    .catch(() => {
+      return []
+    })
 
   if (!schedules) {
     return {
