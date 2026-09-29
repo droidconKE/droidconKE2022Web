@@ -23,7 +23,7 @@ export const SessionGridCard = ({
   eventSlug,
   feedbackOpen = true,
 }: {
-  schedules: Schedule[]
+  schedules: Schedule
   activeTab: number
   // eslint-disable-next-line react/require-default-props
   from?: string
@@ -44,13 +44,9 @@ export const SessionGridCard = ({
         {Object.keys(schedules)?.map(
           (key, i) =>
             activeTab === i &&
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             (schedules[key].length ? (
               <div className="lg:grid gap-5 grid-cols-3" key={key}>
-                {// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                schedules[key]?.map((schedule: Session) => {
+                {schedules[key]?.map((schedule: Session) => {
                   const href = sessionHref(schedule.slug, from, eventSlug)
                   const imgSrc =
                     schedule.session_image ??

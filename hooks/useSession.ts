@@ -7,13 +7,13 @@ import { readStarred, STARRED_EVENT } from './useStarredSessions'
 const ACTIVE_VIEW = 'droidcon_view'
 const MY_SESSIONS = 'droidcon_my_sessions'
 
-export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
+export const useSession = ({ allSchedules }: { allSchedules: Schedule }) => {
   const [showFilterSession, setShowFilterSession] = useState(false)
   const [isGridView, setIsGridView] = useState(true)
   const [activeTab, setActiveTab] = useState(0)
   const [showMySessions, setShowMysessions] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [schedules, setSchedules] = useState<Schedule[]>(allSchedules)
+  const [schedules, setSchedules] = useState<Schedule>(allSchedules)
 
   const originalSchedules = allSchedules
 
@@ -30,16 +30,15 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
   // My Sessions is now a purely client-side bookmark list kept in
   // localStorage (see useStarredSessions) — filter the schedule to only the
   // sessions the user has starred, preserving the day grouping.
-  const computeMySchedules = useCallback((): Schedule[] => {
+  const computeMySchedules = useCallback((): Schedule => {
     const starred = readStarred()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const grouped = originalSchedules as any
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result: any = {}
-    Object.keys(grouped).forEach((key) => {
-      result[key] = grouped[key].filter((s: Session) => starred.includes(s.id))
+    const result: Schedule = {}
+    Object.keys(originalSchedules).forEach((key) => {
+      result[key] = originalSchedules[key].filter((s: Session) =>
+        starred.includes(s.id)
+      )
     })
-    return result as Schedule[]
+    return result
   }, [originalSchedules])
 
   useEffect(() => {
@@ -78,8 +77,6 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule[] }) => {
       ...(showMySessions ? computeMySchedules() : originalSchedules),
     }
     Object.keys(newSchedule).forEach((key) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       newSchedule[key] = newSchedule[key].filter((e: Session) => {
         return (
           (filter?.level
