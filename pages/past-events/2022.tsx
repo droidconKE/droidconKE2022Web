@@ -12,7 +12,7 @@ import { useSession } from '../../hooks/useSession'
 import SponsorsList from '../../components/home/SponsorsList'
 
 interface SessionProps {
-  schedules: Schedule[]
+  schedules: Schedule
   event: Event
   sponsors: Sponsor[]
 }

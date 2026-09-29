@@ -11,7 +11,8 @@ import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSk
 import { useSession } from '../../hooks/useSession'
 
 interface SessionProps {
-  schedules: Schedule[]
+  // The grouped schedule — keyed by day, exactly as Schedule declares.
+  schedules: Schedule
   event: Event
 }
 
@@ -78,8 +79,19 @@ const Sessions: NextPage<SessionProps> = ({
               <span className="font-bold block leading-tight">
                 {timeDay(key)}
               </span>
-              <span className="text-px-13 font-normal opacity-70">
+              {/* Session count for this day — the same length the card grids
+                  read, so pills, grids and My-Sessions filtering always agree. */}
+              <span className="text-px-13 font-normal opacity-70 flex items-center gap-2">
                 Day {i + 1}
+                <span
+                  className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
+                    activeTab === i
+                      ? 'bg-white/20 text-white'
+                      : 'bg-primary/10 text-primary dark:bg-white/10 dark:text-white-dark'
+                  }`}
+                >
+                  {schedules[key]?.length ?? 0}
+                </span>
               </span>
             </button>
           ))}

@@ -13,7 +13,7 @@ import SponsorsList from '../../components/home/SponsorsList'
 import { SpeakersList } from '../../components/speakers/SpeakersList'
 
 interface SessionProps {
-  schedules: Schedule[]
+  schedules: Schedule
   event: Event
   sponsors: Sponsor[]
   speakers: Speaker[]
