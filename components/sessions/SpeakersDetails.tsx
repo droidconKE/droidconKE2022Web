@@ -48,14 +48,27 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
                   <p className="text-black dark:text-black font-bold text-base md:text-xl mt-3">
                     {speaker.tagline}
                   </p>
-                  <a
-                    href={speaker.twitter ?? String(speaker.linkedin)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block text-primary text-sm font-medium mt-2 hover:underline"
-                  >
-                    @{getTwitterUsername(speaker.twitter ?? '') || speaker.name}
-                  </a>
+                  {/* A missing social must not become an <a href="undefined">;
+                      when there is no destination, the name renders as text. */}
+                  {(() => {
+                    const socialHref = speaker.twitter || speaker.linkedin
+                    return socialHref ? (
+                      <a
+                        href={socialHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-primary text-sm font-medium mt-2 hover:underline"
+                      >
+                        @
+                        {getTwitterUsername(speaker.twitter ?? '') ||
+                          speaker.name}
+                      </a>
+                    ) : (
+                      <span className="inline-block text-primary text-sm font-medium mt-2">
+                        {speaker.name}
+                      </span>
+                    )
+                  })()}
                   {speaker.biography && (
                     <div className="mt-5">
                       <h4 className="font-bold text-black dark:text-black text-lg">
