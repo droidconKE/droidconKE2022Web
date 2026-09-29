@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import { Session } from '../../types/types'
+import { getTwitterUsername } from '../../utils/helpers'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 export const SpeakersDetails = ({ session }: { session: Session }) => {
@@ -13,12 +14,6 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
 
   if (!showChild) {
     return null
-  }
-
-  const getTwitterUsername = (url: string): string | null => {
-    if (!url) return null
-    const match = url.match(/(?:twitter\.com|x\.com)\/([^/?#]+)/i)
-    return match?.[1] ?? null
   }
 
   return (
