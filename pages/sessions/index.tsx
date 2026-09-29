@@ -5,13 +5,14 @@ import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
-import { Event, Schedule, Session } from '../../types/types'
+import { Event, Schedule } from '../../types/types'
 import { eventVenue, feedbackWindowState, timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 
 interface SessionProps {
-  schedules: Schedule[]
+  // The grouped schedule — keyed by day, exactly as Schedule declares.
+  schedules: Schedule
   event: Event
 }
 
@@ -34,11 +35,6 @@ const Sessions: NextPage<SessionProps> = ({
   } = useSession({ allSchedules })
 
   const venue = eventVenue(event)
-
-  // The grouped schedule arrives annotated as Schedule[] but is in fact keyed
-  // by day (see Schedule's index signature) — one truthful alias keeps the
-  // pill counts type-safe without per-use @ts-ignore.
-  const dayGroups = schedules as unknown as Record<string, Session[]>
 
   // The organizer's feedback window: missing field (older backend, cached
   // payload) is treated as open — the default is on, never off.
@@ -94,7 +90,7 @@ const Sessions: NextPage<SessionProps> = ({
                       : 'bg-primary/10 text-primary dark:bg-white/10 dark:text-white-dark'
                   }`}
                 >
-                  {dayGroups[key]?.length ?? 0}
+                  {schedules[key]?.length ?? 0}
                 </span>
               </span>
             </button>

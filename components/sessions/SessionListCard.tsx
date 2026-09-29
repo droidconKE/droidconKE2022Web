@@ -28,7 +28,7 @@ const SessionListCard = ({
   eventSlug,
   feedbackOpen = true,
 }: {
-  schedules: Schedule[]
+  schedules: Schedule
   activeTab: number
   // eslint-disable-next-line react/require-default-props
   from?: string
@@ -47,13 +47,9 @@ const SessionListCard = ({
         {Object.keys(schedules)?.map(
           (key, i) =>
             activeTab === i &&
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             (schedules[key].length ? (
               <div key={key} className="space-y-5">
-                {// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                schedules[key]?.map((schedule: Session) => {
+                {schedules[key]?.map((schedule: Session) => {
                   const href = sessionHref(schedule.slug, from, eventSlug)
                   const showActions = showStar && !schedule.is_serviceSession
                   const cardClass =
