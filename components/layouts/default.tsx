@@ -30,20 +30,28 @@ export default function Layout({ children }: { children: ReactNode }) {
           {isEventReady && <EventFeedback />}
         </div>
       </ThemeProvider>
-      {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
+      {/* <!-- Global site tag (gtag.js) - Google Analytics. Both scripts are
+           gated on the env being set: without it the old markup shipped a
+           request for the literal placeholder GA_MEASUREMENT_ID plus a
+           gtag('config', 'undefined') on every page view, and the dataLayer
+           was polluted with a junk config that can never measure anything. --> */}
+      {gTagCode && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gTagCode}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('js', new Date());
 
-          gtag('config', '${gTagCode}');
-        `}
-      </Script>
+              gtag('config', '${gTagCode}');
+            `}
+          </Script>
+        </>
+      )}
     </>
   )
 }
