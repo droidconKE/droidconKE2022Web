@@ -86,7 +86,7 @@ const Sessions: NextPage<SessionProps> = ({
                 <span
                   className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
                     activeTab === i
-                      ? 'bg-white/15 text-white'
+                      ? 'bg-white/20 text-white'
                       : 'bg-primary/10 text-primary dark:bg-white/10 dark:text-white-dark'
                   }`}
                 >
