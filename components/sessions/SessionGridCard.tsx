@@ -49,7 +49,9 @@ export const SessionGridCard = ({
                 {schedules[key]?.map((schedule: Session) => {
                   const href = sessionHref(schedule.slug, from, eventSlug)
                   const imgSrc =
-                    schedule.session_image ??
+                    // The API's absent value is "", which ?? lets through — only a
+                    // falsy check reaches the default artwork.
+                    schedule.session_image ||
                     (schedule.is_serviceSession
                       ? // TODO: remove after 2024
                         schedule.title.includes('Building And Scaling Tech')

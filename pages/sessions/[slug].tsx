@@ -31,8 +31,9 @@ const Session: NextPage<SessionPageProp> = ({
 
   const navBackLink = router.query?.from ? router.query?.from : '/sessions'
 
+  // "" is the API's absent value here — ?? would ship an empty og:image.
   const image =
-    session.session_image ??
+    session.session_image ||
     'https://droidcon.co.ke/images/new-design/revised/dcke-cover.png'
 
   // The organizer's feedback window as a tri-state: before the event nothing
