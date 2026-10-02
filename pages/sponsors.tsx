@@ -154,7 +154,7 @@ export async function getServerSideProps() {
   const sponsors = await axios
     .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sponsors`)
     .then((response) => {
-      return response.data.data
+      return response.data.data ?? []
     })
     .catch(() => [])
 
