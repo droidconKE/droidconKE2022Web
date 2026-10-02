@@ -111,6 +111,7 @@ export const Footer = () => {
                 <Link
                   href="https://drive.google.com/file/d/1Uj5_OjufuDsoaBFK4i60X0K41RWsR6Ro/view?usp=sharing"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-black dark:text-white text-sm hover:text-primary dark:hover:text-primary transition-colors block"
                 >
                   See the DroidconKE{' '}
