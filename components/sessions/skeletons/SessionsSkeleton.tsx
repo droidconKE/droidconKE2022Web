@@ -7,7 +7,7 @@ export const SessionsSkeleton = () => {
     <div className="l-container flex flex-wrap">
       <div
         className="flex flex-row lg:flex-col w-full lg:w-1/12 h-auto lg:h-64 bor border-r-0 lg:border-r border-gray-300 dark:border-black-dark animate-pulse space-y-0 lg:space-y-6 space-x-6 lg:space-x-0 items-center lg:items-start justify-center lg:justify-start pb-4 lg:pb-0 sticky"
-        style={{ top: '80px' }}
+        style={{ top: 'var(--nav-h)' }}
       >
         {[...Array(3)].map((i) => (
           <div

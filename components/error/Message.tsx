@@ -19,27 +19,25 @@ const MessageComponent = ({ message }: Props) => {
             {message}
           </p>
           <p className="md:mt-16 2xl:mt-20 mt-12">
-            <Link href="/">
-              <a className="block items-baseline text-center mx-auto">
-                {isDarkTheme ? (
-                  <img
-                    src="/images/icons/home-icon-white.svg"
-                    className="mr-2 inline"
-                    width="18px"
-                    alt="droidcon home icon white"
-                  />
-                ) : (
-                  <img
-                    src="/images/icons/home-icon.svg"
-                    className="mr-2 inline"
-                    width="18px"
-                    alt="droidcon home icon"
-                  />
-                )}
-                <span className="text-primary lg:text-lg align-text-top text-base dark:text-white">
-                  Head back home
-                </span>
-              </a>
+            <Link href="/" className="block items-baseline text-center mx-auto">
+              {isDarkTheme ? (
+                <img
+                  src="/images/icons/home-icon-white.svg"
+                  className="mr-2 inline"
+                  width="18px"
+                  alt="droidcon home icon white"
+                />
+              ) : (
+                <img
+                  src="/images/icons/home-icon.svg"
+                  className="mr-2 inline"
+                  width="18px"
+                  alt="droidcon home icon"
+                />
+              )}
+              <span className="text-primary lg:text-lg align-text-top text-base dark:text-white">
+                Head back home
+              </span>
             </Link>
           </p>
         </div>

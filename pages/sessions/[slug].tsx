@@ -1,4 +1,3 @@
-import { getCookie } from 'cookies-next'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -6,86 +5,102 @@ import { useRouter } from 'next/router'
 import { SessionDetails } from '../../components/sessions/SessionDetails'
 import { ShareSessionAndFeedback } from '../../components/sessions/ShareSessionAndFeedback'
 import { SpeakersDetails } from '../../components/sessions/SpeakersDetails'
-import { Session as SessionProp } from '../../types/types'
+import { Event, Session as SessionProp } from '../../types/types'
 import axios from '../../utils/axios'
+import {
+  eventVenue,
+  feedbackWindowState,
+  isCurrentEventSlug,
+  resolveEventSlug,
+} from '../../utils/helpers'
 
 interface SessionPageProp {
   session: SessionProp
+  event: Event | null
+  isCurrentEvent: boolean
+  eventSlug: string
 }
 
-const Session: NextPage<SessionPageProp> = ({ session }) => {
+const Session: NextPage<SessionPageProp> = ({
+  session,
+  event,
+  isCurrentEvent,
+  eventSlug,
+}) => {
   const router = useRouter()
 
   const navBackLink = router.query?.from ? router.query?.from : '/sessions'
 
+  // "" is the API's absent value here — ?? would ship an empty og:image.
+  const image =
+    session.session_image ||
+    'https://droidcon.co.ke/images/new-design/revised/dcke-cover.png'
+
+  // The organizer's feedback window as a tri-state: before the event nothing
+  // renders, during it the actions show, after it a disabled chip says so.
+  const feedbackWindow = feedbackWindowState(event)
+
   return (
     <>
       <Head>
-        <meta
-          name="twitter:image"
-          content={
-            session.session_image ??
-            'https://droidcon.co.ke/images/droidcon-23-kenya-announcement.png'
-          }
-        />
+        <meta name="twitter:image" content={image} />
+        <meta property="og:image" content={image} />
       </Head>
-      <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
-        <section className="w-full bg-dark dark:bg-black-dark">
-          <div className="s-container mt-8 md:mt-0 py-2 md:py-4">
-            <div className="w-full flex items-center space-x-5 mt-5">
-              <Link href={String(navBackLink)}>
-                <a className="text-white dark:text-white-dark">
-                  <i
-                    className="fa fa-arrow-left mr-3"
-                    style={{ transform: 'scale(2.0,0.8)' }}
-                  />{' '}
-                  back
-                </a>
-              </Link>
-              <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
-                Session Details
-              </h3>
-            </div>
-          </div>
-        </section>
-        <section className="s-container py-2 md:py-4">
-          <div className="w-full flex flex-wrap items-start py-0 md:py-3">
-            <SpeakersDetails session={session} />
-            <SessionDetails session={session} />
-            <ShareSessionAndFeedback session={session} />
-          </div>
-        </section>
+      <div className="s-container mt-4 md:mt-6 mb-10 md:mb-16 space-y-5 md:space-y-6">
+        <Link
+          href={String(navBackLink)}
+          className="inline-flex items-center text-primary dark:text-accent-dark hover:opacity-80 text-sm md:text-base font-medium transition-opacity"
+        >
+          <i className="fa fa-arrow-left mr-2" /> back
+        </Link>
+        <SpeakersDetails session={session} />
+        <SessionDetails
+          session={session}
+          feedbackWindow={feedbackWindow}
+          eventSlug={eventSlug}
+        />
+        <ShareSessionAndFeedback
+          session={session}
+          venue={eventVenue(event)}
+          isCurrentEvent={isCurrentEvent}
+          feedbackWindow={feedbackWindow}
+          eventSlug={eventSlug}
+        />
       </div>
     </>
   )
 }
 export async function getServerSideProps({
   query,
-  res,
-  req,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   query: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  res: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  req: any
 }) {
-  const { slug } = query
+  const { slug, event: eventParam } = query
 
-  axios.defaults.headers.common.Authorization = `Bearer ${getCookie('token', {
-    req,
-    res,
-  })}`
+  // Session slugs are unique per event, not globally, so a session opened from
+  // a past-event page carries the event it belongs to. Current-event links
+  // leave it off and fall back to the event being run now.
+  const eventSlug = resolveEventSlug(eventParam)
 
-  const session = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule/${slug}`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
+  const [session, event] = await Promise.all([
+    axios
+      .get(`/events/${eventSlug}/schedule/${slug}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+    axios
+      .get(`/events/${eventSlug}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+  ])
 
   // Pass data to the page via props
 
@@ -94,6 +109,16 @@ export async function getServerSideProps({
       notFound: true,
     }
   }
-  return { props: { session } }
+  return {
+    props: {
+      session,
+      event,
+      // Saving, scheduling and reviewing only apply to the event being run now.
+      isCurrentEvent: isCurrentEventSlug(eventParam),
+      // The event this session belongs to — feedback from this page posts
+      // under it, so a past session never lands in the current event's form.
+      eventSlug,
+    },
+  }
 }
 export default Session

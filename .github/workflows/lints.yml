@@ -18,21 +18,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x, 24.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+        cache: yarn
     - run: yarn
     - run: yarn lint
     - run: yarn build
 
     - name: Comment on success
       if: success() && github.event_name == 'repository_dispatch'
-      uses: peter-evans/create-or-update-comment@v1.4.1
+      uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
         reactions: hooray, +1
@@ -41,7 +42,7 @@ jobs:
 
     - name: Comment on failure
       if: failure() && github.event_name == 'repository_dispatch'
-      uses: peter-evans/create-or-update-comment@v1.4.1
+      uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
         reactions: eyes, confused, -1

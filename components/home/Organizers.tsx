@@ -1,37 +1,63 @@
 import { Organizer } from '../../types/types'
 
-function Organizers({ organizers }: { organizers: Organizer[] }) {
+function Organizers({
+  organizers,
+  compact,
+}: {
+  organizers: Organizer[]
+  compact: boolean
+}) {
+  const hasOrganizers = organizers?.length > 0
+
   return (
-    <section className="bg-lighter dark:bg-black">
-      <div className="s-container pb-6 md:pb-12">
-        <div className="items-center flex flex-wrap">
-          <div className="w-full md:w-6/12 ml-auto">
-            <div className="md:pr-12 text-left mt-3 md:mt-0">
-              <h2 className="title lowercase dark:text-accent-dark">
-                <span>organized</span> <span className="font-medium"> by;</span>
-              </h2>
-            </div>
+    <section
+      className={`s-container w-full h-auto bg-white dark:bg-dark transition-colors ${
+        compact ? 'pt-4 md:pt-6 pb-6 md:pb-8' : 'pt-10 md:pt-20 pb-16'
+      }`}
+    >
+      <div className="w-full bg-accent rounded-[32px] p-8 md:p-12">
+        <h2
+          className={`text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-display ${
+            hasOrganizers ? 'mb-8 md:mb-12' : 'mb-4 md:mb-6'
+          }`}
+        >
+          Our Community Partners
+        </h2>
+
+        {hasOrganizers ? (
+          <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            {organizers.map((org) => (
+              <a
+                key={org.created_at || org.name}
+                href={org.link}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white rounded-2xl w-full aspect-square flex items-center justify-center p-3 hover:scale-105 transition-transform"
+              >
+                <img
+                  className="object-contain w-auto max-h-14 md:max-h-16"
+                  src={org.photo || '/images/icon.png'}
+                  alt={org.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            ))}
           </div>
-          <div className="w-full md:w-6/12 mr-auto pt-4 sm:mt-10 md:pt-0 justify-end">
-            <div className="w-full md:p-10 sm:p-0  grid md:grid-cols-4 grid-cols-3 gap-4 lg:gap-8">
-              {organizers.map((org) => (
-                <a
-                  key={org.created_at}
-                  target="_blank"
-                  href={org.link}
-                  className="w-24 h-24 p-3 flex rounded border border-green-200 bg-white dark:bg-white-dark justify-center"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="p-0 w-full object-scale-down"
-                    src={org.photo === null ? '/images/icon.png' : org.photo}
-                    alt={org.name}
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        ) : (
+          <p className="text-primary/80 text-base md:text-lg max-w-2xl">
+            Community partners for this year are being announced — follow{' '}
+            <a
+              href="https://twitter.com/droidconke"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-4 hover:opacity-80 transition-opacity"
+            >
+              @droidconke
+            </a>{' '}
+            for updates.
+          </p>
+        )}
       </div>
     </section>
   )

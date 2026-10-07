@@ -1,7 +1,7 @@
 import axios from '../utils/axios'
 import { Speaker, Session } from '../types/types'
 // import { KeynoteSpeakers } from '../components/speakers/KeynoteSpeakers'
-import { SpeakerCard } from '../components/speakers/SpeakerCard'
+import { SpeakersList } from '../components/speakers/SpeakersList'
 
 export default function SpeakersPage({
   speakers,
@@ -11,50 +11,28 @@ export default function SpeakersPage({
   sessions: Session[]
 }) {
   return (
-    <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
-      <section className="w-full bg-dark dark:bg-black-dark">
-        <div className="s-container mt-8 md:mt-0 py-2 md:py-4">
-          <div className="w-full flex items-center space-x-5 mt-5">
-            <h1 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
-              Speakers
-            </h1>
-          </div>
+    <div className="s-container my-10 md:my-16">
+      {/* Header card */}
+      <section className="w-full bg-primary rounded-4xl md:rounded-5xl px-6 py-8 md:px-12 md:py-10">
+        <div className="flex items-center text-white/80 text-sm md:text-base font-medium mb-3">
+          <div className="w-6 h-px bg-white/80 mr-3" />
+          the line-up
         </div>
+        <h1 className="text-accent font-display text-5xl md:text-7xl leading-none">
+          Speakers
+        </h1>
       </section>
-      <section className="bg-[url('/images/element_left.png'),url('/images/svg/login-dark.svg')] bg-no-repeat bg-[position:bottom_100.17%_right_110%,bottom_100.2%_left_100%] md:bg-[position:bottom_102.2%_right_109%,bottom_103%_left_103%] bg-[length:100px,_110px] md:bg-[length:350px,_450px]">
-        <div className="l-container py-8 md:py-16">
-          {/* <div>
-            <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 md:mt-0 lowercase">
-              <span className="font-black">keynote</span> speakers
-            </h3>
-            <div className="py-10">
-              <KeynoteSpeakers />
-            </div>
-          </div> */}
-          <div>
-            <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 lowercase md:mt-12">
-              <span className="font-black">All</span> speakers
-            </h3>
-            <div className="py-10">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 gap-y-16">
-                {speakers.map((speaker) => {
-                  const speakerSession = sessions.find((s) =>
-                    s.speakers.find((sp) => sp.name === speaker.name)
-                  )
-
-                  return (
-                    <SpeakerCard
-                      speaker={speaker}
-                      slug={speakerSession?.slug}
-                      key={speaker.name}
-                    />
-                  )
-                })}
-              </div>
-            </div>
+      <div className="mt-8 md:mt-12">
+        {/* <div>
+          <h3 className="text-3xl md:text-4xl text-primary dark:text-accent font-medium w-full mt-6 md:mt-0 lowercase">
+            <span className="font-black">keynote</span> speakers
+          </h3>
+          <div className="py-10">
+            <KeynoteSpeakers />
           </div>
-        </div>
-      </section>
+        </div> */}
+        <SpeakersList sessions={sessions} speakers={speakers} hideTitle />
+      </div>
     </div>
   )
 }
@@ -63,14 +41,16 @@ export async function getServerSideProps() {
   const speakers = await axios
     .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/speakers?per_page=100`)
     .then((response) => {
-      return response.data.data
+      return response.data.data ?? []
     })
+    .catch(() => [])
 
   const sessions = await axios
     .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/sessions?per_page=100`)
     .then((response) => {
-      return response.data.data
+      return response.data.data ?? []
     })
+    .catch(() => [])
 
   // Pass data to the page via props
   return { props: { speakers, sessions } }

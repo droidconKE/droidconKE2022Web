@@ -54,6 +54,11 @@ export interface Room {
   id: number
 }
 
+export interface SessionResource {
+  label: string
+  url: string
+}
+
 export interface Session {
   id: number
   title: string
@@ -74,6 +79,14 @@ export interface Session {
   end_time: string
   speakers: Speaker[]
   rooms: Room[]
+  slides_url?: string | null
+  video_url?: string | null
+  recording_url?: string | null
+  recording_youtube_id?: string | null
+  resources?: SessionResource[]
+  // Per-session feedback form (null until the talk is on the timetable, or
+  // if it was taken off it). The site's own modal posts to the API with it.
+  feedback_url?: string | null
 }
 
 export interface Schedule {
@@ -81,8 +94,37 @@ export interface Schedule {
 }
 
 export interface FeedbackError {
-  feedback: string[]
-  rating: string[]
+  feedback?: string[]
+  rating?: string[]
+  name?: string[]
+  // The backend keys per-question failures as "answers.<id>", so the shape
+  // is open — anything not named above is a question id.
+  [key: string]: string[] | undefined
+}
+
+// One of the organizer's own questions on the feedback form.
+export interface FeedbackQuestion {
+  id: string
+  label: string
+  type: 'choice' | 'scale' | 'text'
+  options: string[] | null
+  required: boolean
+  applies_to: 'event' | 'session' | 'both'
+}
+
+export type FeedbackAnswerValue = string | number
+
+export type FeedbackAnswers = Record<string, FeedbackAnswerValue>
+
+// What GET …/feedback/mine returns when this browser has answered already.
+export interface MyFeedback {
+  rating: number
+  feedback: string | null
+  answers: FeedbackAnswers | null
+  name?: string | null
+  sent_at: string
+  editable: boolean
+  editable_for_minutes: number
 }
 
 export interface StarIconProps {
@@ -160,4 +202,17 @@ export interface Event {
   remaining_tickets: number
   cfs: Cfs
   rooms: Room[]
+  // Event-level feedback form plus the organizer's window: whether feedback
+  // is being taken right now. Missing feedback_open (older backend, cached
+  // payload) is treated as open — the default is on, never off.
+  feedback_url: string
+  feedback_open?: boolean
+  // The organizer's own questions, rendered by the form for whichever scope
+  // it is open on. Missing (an older backend) means no questions.
+  feedback_questions?: FeedbackQuestion[]
+  // When the organizer's feedback window opens and closes. The API resolves
+  // both always — a window it never set arrives as the default it stands
+  // for — so a payload carrying neither predates the fields.
+  feedback_opens_at?: string
+  feedback_closes_at?: string
 }
