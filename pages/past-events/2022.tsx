@@ -6,7 +6,11 @@ import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Event, Schedule, Sponsor } from '../../types/types'
-import { feedbackWindowState, timeDay } from '../../utils/helpers'
+import {
+  feedbackWindowState,
+  sessionCountLabel,
+  timeDay,
+} from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 import SponsorsList from '../../components/home/SponsorsList'
@@ -81,6 +85,7 @@ const Home2022: NextPage<SessionProps> = ({
               <span className="text-px-13 font-normal opacity-70 flex items-center gap-2">
                 Day {i + 1}
                 <span
+                  aria-label={sessionCountLabel(schedules[key]?.length ?? 0)}
                   className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
                     activeTab === i
                       ? 'bg-white/20 text-white'

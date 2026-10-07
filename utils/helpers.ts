@@ -167,3 +167,10 @@ export const getTwitterUsername = (url?: string | null): string | null => {
   const match = url.match(/(?:twitter\.com|x\.com)\/([^/?#]+)/i)
   return match?.[1] ?? null
 }
+
+// A11y name for the day-pill session-count chip (#211). The chip renders a
+// bare digit, which a screen reader glues onto the day name as "Day 1 3";
+// as the chip's aria-label the count is announced as part of the pill
+// instead, with the singular spelled out.
+export const sessionCountLabel = (count: number): string =>
+  `${count} ${count === 1 ? 'session' : 'sessions'}`
