@@ -86,8 +86,8 @@ const Sessions: NextPage<SessionProps> = ({
               </span>
               {/* Session count for this day — the same length the card grids
                   read, so pills, grids and My-Sessions filtering always agree. */}
-              <span className="text-px-13 font-normal opacity-70 flex items-center gap-2">
-                Day {i + 1}
+              <span className="text-px-13 font-normal flex items-center gap-2">
+                <span className="opacity-70">Day {i + 1}</span>
                 <span
                   aria-label={sessionCountLabel(schedules[key]?.length ?? 0)}
                   className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
