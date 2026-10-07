@@ -133,4 +133,12 @@ export default defineConfig([
       'sonarjs/cognitive-complexity': 'off',
     },
   },
+  {
+    // Tests and the runner config import vitest, which is a devDependency;
+    // airbnb's allow-list only knows *.test.js, not .ts.
+    files: ['**/*.test.ts', 'vitest.config.mts'],
+    rules: {
+      'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    },
+  },
 ])
