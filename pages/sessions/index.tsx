@@ -6,7 +6,12 @@ import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Event, Schedule } from '../../types/types'
-import { eventVenue, feedbackWindowState, timeDay } from '../../utils/helpers'
+import {
+  eventVenue,
+  feedbackWindowState,
+  sessionCountLabel,
+  timeDay,
+} from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 
@@ -81,9 +86,10 @@ const Sessions: NextPage<SessionProps> = ({
               </span>
               {/* Session count for this day — the same length the card grids
                   read, so pills, grids and My-Sessions filtering always agree. */}
-              <span className="text-px-13 font-normal opacity-70 flex items-center gap-2">
-                Day {i + 1}
+              <span className="text-px-13 font-normal flex items-center gap-2">
+                <span className="opacity-70">Day {i + 1}</span>
                 <span
+                  aria-label={sessionCountLabel(schedules[key]?.length ?? 0)}
                   className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
                     activeTab === i
                       ? 'bg-white/20 text-white'
