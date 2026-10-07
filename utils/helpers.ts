@@ -140,7 +140,11 @@ export const feedbackWindowState = (
 
   if (opens === null && closes === null) {
     if (eventFeedbackOpen(event)) return 'open'
-    const end = event?.end_date ? parseEat(event.end_date) : null
+    // end_date is a date, with no time on it — it needs allowDateOnly or it
+    // parses as null and this branch can only ever say 'not-open-yet'.
+    const end = event?.end_date
+      ? parseEat(event.end_date, { allowDateOnly: true })
+      : null
     return end !== null && end.getTime() <= Date.now()
       ? 'closed'
       : 'not-open-yet'

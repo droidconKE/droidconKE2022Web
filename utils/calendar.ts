@@ -8,7 +8,10 @@ const EAT_UTC_OFFSET_HOURS = 3
 // Exported for the feedback window helpers: the organizer's window opens on
 // the event's start date, and that comparison must agree with this file's
 // EAT-pinned session times rather than with the visitor's timezone.
-export const parseEat = (value: string): Date | null => {
+export const parseEat = (
+  value: string,
+  { allowDateOnly = false }: { allowDateOnly?: boolean } = {}
+): Date | null => {
   if (!value) return null
   // If the API ever starts sending an explicit zone (Z or ±HH:MM), trust it
   // rather than double-shifting by the manual EAT offset.
@@ -17,16 +20,21 @@ export const parseEat = (value: string): Date | null => {
     return Number.isNaN(zoned.getTime()) ? null : zoned
   }
   const m = value.match(
-    /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?/
+    /^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2}))?)?/
   )
   if (!m) return null
+  // A bare date reads as that day's midnight in Nairobi only when the caller
+  // says so: an event's end_date is typed as a plain string and arrives
+  // without a time, but a session end time never should, and reading one as
+  // 00:00 would call the session over before it ran.
+  if (m[4] === undefined && !allowDateOnly) return null
   return new Date(
     Date.UTC(
       Number(m[1]),
       Number(m[2]) - 1,
       Number(m[3]),
-      Number(m[4]) - EAT_UTC_OFFSET_HOURS,
-      Number(m[5]),
+      Number(m[4] ?? '0') - EAT_UTC_OFFSET_HOURS,
+      Number(m[5] ?? '0'),
       Number(m[6] ?? '0')
     )
   )
