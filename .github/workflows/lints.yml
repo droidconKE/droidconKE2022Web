@@ -33,7 +33,7 @@ jobs:
 
     - name: Comment on success
       if: success() && github.event_name == 'repository_dispatch'
-      uses: peter-evans/create-or-update-comment@v1.4.1
+      uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
         reactions: hooray, +1
@@ -42,7 +42,7 @@ jobs:
 
     - name: Comment on failure
       if: failure() && github.event_name == 'repository_dispatch'
-      uses: peter-evans/create-or-update-comment@v1.4.1
+      uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
         reactions: eyes, confused, -1
