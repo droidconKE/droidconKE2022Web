@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const isEventReady = Boolean(process.env.NEXT_PUBLIC_EVENT_READY) || false
+const isEventReady = process.env.NEXT_PUBLIC_EVENT_READY === 'true' || false
 
-const BLOCKED_ROUTES = ['/sessions']
+const BLOCKED_ROUTES = ['/sessions', '/speakers']
 
 export function middleware(request: NextRequest) {
   if (!isEventReady && BLOCKED_ROUTES.includes(request.nextUrl.pathname)) {

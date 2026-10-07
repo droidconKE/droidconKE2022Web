@@ -1,29 +1,30 @@
+import Link from 'next/link'
 import { ErrorInterface } from '../../types/types'
-import TitleComponent from './Title'
-import MessageComponent from './Message'
 
 const ErrorComponent = ({ message, status }: ErrorInterface) => {
+  // Short codes (404, 500) render huge; word statuses (OFFLINE) render smaller.
+  const isShort = String(status).length <= 4
+
   return (
-    <div className="bg-lighter dark:bg-black flex flex-col h-screen justify-center">
-      <div className="absolute top-[32%] left-[15%] rotate-[340deg]">
-        <img
-          src="/images/svg/colored-x.svg"
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h20 lg:w-28 lg:h-28"
-          alt="droidcon colored-x icon"
-        />
-      </div>
-
-      <div className="absolute top-[70%] right-[5%] sm:right-[7%] md:top-96 md:right-[7%] lg:right-[7%] xl:right-[10%] 2xl:right-[15%]">
-        <img
-          src="/images/element_left.png"
-          className="w-14 sm:w-24 sm:h-20 md:w-28 md:h-24 lg:w-36 lg:h-32"
-          alt="droidcon element-x icon"
-        />
-      </div>
-
-      <TitleComponent status={status} />
-
-      <MessageComponent message={message} />
+    <div className="s-container min-h-[75vh] flex flex-col items-center justify-center text-center py-16 md:py-24">
+      <p className="text-primary dark:text-primary font-bold uppercase tracking-wide text-sm md:text-base mb-3">
+        ( Error )
+      </p>
+      <h1
+        className={`relative font-display text-black dark:text-white-dark leading-none break-words max-w-full ${
+          isShort ? 'text-8xl md:text-[11rem]' : 'text-5xl md:text-8xl'
+        }`}
+      >
+        {status}
+        {/* halftone accent behind the code */}
+        <span className="pointer-events-none absolute -top-4 -right-6 w-24 h-24 [background-image:radial-gradient(#00FF4F_1.5px,transparent_1.7px)] [background-size:10px_10px] [mask-image:radial-gradient(circle_at_top_right,#000,transparent_70%)] [-webkit-mask-image:radial-gradient(circle_at_top_right,#000,transparent_70%)]" />
+      </h1>
+      <p className="mt-6 text-base md:text-lg text-black dark:text-white-dark max-w-md">
+        {message}
+      </p>
+      <Link href="/" className="btn-primary uppercase mt-8">
+        Head back home
+      </Link>
     </div>
   )
 }

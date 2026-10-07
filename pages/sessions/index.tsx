@@ -1,18 +1,18 @@
 import React from 'react'
 import { NextPage } from 'next'
-import { getCookie } from 'cookies-next'
 import SessionListCard from '../../components/sessions/SessionListCard'
 import { SessionToggles } from '../../components/sessions/SessionToggles'
 import { FilterSessions } from '../../components/sessions/FilterSessions'
 import axios from '../../utils/axios'
 import { SessionGridCard } from '../../components/sessions/SessionGridCard'
 import { Event, Schedule } from '../../types/types'
-import { timeDay } from '../../utils/helpers'
+import { eventVenue, feedbackWindowState, timeDay } from '../../utils/helpers'
 import { SessionsSkeleton } from '../../components/sessions/skeletons/SessionsSkeleton'
 import { useSession } from '../../hooks/useSession'
 
 interface SessionProps {
-  schedules: Schedule[]
+  // The grouped schedule — keyed by day, exactly as Schedule declares.
+  schedules: Schedule
   event: Event
 }
 
@@ -34,75 +34,90 @@ const Sessions: NextPage<SessionProps> = ({
     filterSession,
   } = useSession({ allSchedules })
 
+  const venue = eventVenue(event)
+
+  // The organizer's feedback window: missing field (older backend, cached
+  // payload) is treated as open — the default is on, never off.
+  const feedbackOpen = feedbackWindowState(event) === 'open'
+
   return (
     <>
-      <div className="w-full mt-10 lg:mt-20 xl:mt-10 mb-0">
-        <section className="w-full bg-dark dark:bg-black-dark">
-          <div className="l-container mt-8 md:mt-0 py-2 md:py-4">
-            <div className="w-full flex justify-between md:flex-row items-center mt-5 md:mt-6">
-              <h3 className="lowercase text-2xl md:text-3xl text-white dark:text-white-dark">
-                Sessions
-              </h3>
-              <SessionToggles
-                setShowFilterSession={setShowFilterSession}
-                onChangeViewType={changeViewType}
-                isGridView={isGridView}
-                onMySessions={setShowMysessions}
-                isMySessions={showMySessions}
-              />
-            </div>
+      <div className="s-container my-10 md:my-16">
+        {/* Header card */}
+        <section className="w-full bg-primary rounded-4xl md:rounded-5xl px-6 py-8 md:px-12 md:py-10 relative overflow-hidden">
+          <div className="flex items-center text-white/80 text-sm md:text-base font-medium mb-3">
+            <div className="w-6 h-px bg-white/80 mr-3" />
+            agenda
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <h1 className="text-accent font-display text-5xl md:text-7xl leading-none">
+              Sessions
+            </h1>
+            <SessionToggles
+              setShowFilterSession={setShowFilterSession}
+              onChangeViewType={changeViewType}
+              isGridView={isGridView}
+              onMySessions={setShowMysessions}
+              isMySessions={showMySessions}
+            />
           </div>
         </section>
 
-        <section className="w-full py-2 md:py-12 mb-0">
-          {!loading ? (
-            <div className="l-container flex flex-wrap">
-              <div className="flex flex-row lg:flex-col w-full lg:w-1/12 h-auto lg:h-64 bor border-r-0 lg:border-r border-green-200 space-y-0 lg:space-y-6 space-x-6 lg:space-x-0 items-center lg:items-start justify-center lg:justify-start py-2 lg:py-0 sticky nav-bg nav-side z-0 top-[60px] md:top-[80px]">
-                {Object.keys(schedules)?.map((key, i) => {
-                  return (
-                    <div
-                      key={key}
-                      className={`w-4/12 px-4 py-2 lg:w-full cursor-pointer rounded-tl-lg rounded-bl-lg rounded-r-lg lg:rounded-r-none ${
-                        activeTab === i
-                          ? 'bg-secondary dark:bg-secondary-dark'
-                          : 'bg-green-100 dark:bg-black-dark'
-                      }`}
-                      onClick={() => setActiveTab(i)}
-                      aria-hidden="true"
-                    >
-                      <h4
-                        className={`font-bold ${
-                          activeTab === i ? 'text-white' : ''
-                        } dark:text-white-dark`}
-                      >
-                        {timeDay(key)}{' '}
-                        <small className="text-px-13 font-normal">
-                          Day {i + 1}
-                        </small>
-                      </h4>
-                    </div>
-                  )
-                })}
-              </div>
-              <div className="w-full lg:w-11/12">
-                <div className="px-0 md:px-6 mt-3">
-                  {isGridView ? (
-                    <SessionGridCard
-                      schedules={schedules}
-                      activeTab={activeTab}
-                    />
-                  ) : (
-                    <SessionListCard
-                      schedules={schedules}
-                      activeTab={activeTab}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <SessionsSkeleton />
+        {/* Day pills */}
+        <div className="mt-8 md:mt-10 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {Object.keys(schedules)?.map((key, i) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setActiveTab(i)}
+              className={`shrink-0 rounded-full px-6 py-3 text-left transition-colors ${
+                activeTab === i
+                  ? 'bg-primary text-white'
+                  : 'bg-blue-50 dark:bg-darker-dark text-black dark:text-white-dark hover:bg-blue-100 dark:hover:bg-white/5'
+              }`}
+            >
+              <span className="font-bold block leading-tight">
+                {timeDay(key)}
+              </span>
+              {/* Session count for this day — the same length the card grids
+                  read, so pills, grids and My-Sessions filtering always agree. */}
+              <span className="text-px-13 font-normal opacity-70 flex items-center gap-2">
+                Day {i + 1}
+                <span
+                  className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
+                    activeTab === i
+                      ? 'bg-white/20 text-white'
+                      : 'bg-primary/10 text-primary dark:bg-white/10 dark:text-white-dark'
+                  }`}
+                >
+                  {schedules[key]?.length ?? 0}
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Sessions */}
+        <section className="mt-8 md:mt-10">
+          {!loading && isGridView && (
+            <SessionGridCard
+              schedules={schedules}
+              activeTab={activeTab}
+              showStar
+              eventVenue={venue}
+              feedbackOpen={feedbackOpen}
+            />
           )}
+          {!loading && !isGridView && (
+            <SessionListCard
+              schedules={schedules}
+              activeTab={activeTab}
+              showStar
+              eventVenue={venue}
+              feedbackOpen={feedbackOpen}
+            />
+          )}
+          {loading && <SessionsSkeleton />}
         </section>
       </div>
       {showFilterSession && (
@@ -118,29 +133,27 @@ const Sessions: NextPage<SessionProps> = ({
 
 export default Sessions
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function getServerSideProps({ req, res }: { req: any; res: any }) {
-  axios.defaults.headers.common.Authorization = `Bearer ${getCookie('token', {
-    req,
-    res,
-  })}`
-  const schedules = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
-
-  const event = await axios
-    .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
-    .then((response) => {
-      return response.data.data
-    })
-    .catch(() => {
-      return null
-    })
+export async function getServerSideProps() {
+  const [schedules, event] = await Promise.all([
+    axios
+      .get(
+        `/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}/schedule?grouped=true`
+      )
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+    axios
+      .get(`/events/${process.env.NEXT_PUBLIC_EVENT_SLUG}`)
+      .then((response) => {
+        return response.data.data
+      })
+      .catch(() => {
+        return null
+      }),
+  ])
 
   if (!schedules) {
     return {

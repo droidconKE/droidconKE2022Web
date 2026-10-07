@@ -1,39 +1,59 @@
-import { useStarSession } from '../../hooks/useStarSession'
+import { useStarredSessions } from '../../hooks/useStarredSessions'
 import { StarIconProps } from '../../types/types'
 import { SaveSession } from '../sessions/SaveSession'
 
 export const StarIcon = ({ isStar = true, session }: StarIconProps) => {
-  const { bookmark, isStared } = useStarSession({ session })
+  const { isStarred, toggleStar } = useStarredSessions()
+  const isStared = isStarred(session.id)
+  const bookmark = () => toggleStar(session.id)
 
-  const color = isStared ? '#FF6E4D' : 'none'
-  const stroke = isStared ? '#FF6E4D' : '#000ceb'
-  const fill = isStared ? '#FF6E4D' : '#000ceb'
+  const color = isStared ? '#00FF4F' : 'none'
+  const stroke = isStared ? '#00FF4F' : '#0055FF'
+  const fill = isStared ? '#00FF4F' : '#0055FF'
 
   return isStar ? (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="27.895"
-      height="27"
-      className="cursor-pointer"
-      onClick={() => bookmark()}
+    // The save control is a real button: keyboard focusable, named for screen
+    // readers, and its pressed state is not carried by fill colour alone —
+    // a bare clickable SVG failed all three (#181). The accessible name stays
+    // stable and aria-pressed carries the state: a label that flips with the
+    // state is the alternative toggle pattern, and using both announces a
+    // contradiction ("Remove from my sessions, pressed"). No title either —
+    // duplicating the label gets announced twice by some pairings.
+    <button
+      type="button"
+      onClick={bookmark}
+      aria-label="Save to my sessions"
+      aria-pressed={isStared}
+      className="cursor-pointer inline-flex items-center justify-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
-      <g data-name="Layer 2">
-        <g data-name="Layer 1">
-          <path data-name="Rectangle 593" fill="none" d="M.474 0h27v27h-27z" />
-          <path
-            data-name="Path 114"
-            d="M26.603 10.459a.634.634 0 0 0-.537-.435l-7.971-1.16-3.572-7.236a.639.639 0 0 0-1.149 0L9.801 8.864l-7.987 1.16a.639.639 0 0 0-.35 1.074l5.77 5.656-.032.188-1.311 7.767a.628.628 0 0 0 .258.628.618.618 0 0 0 .677.048l7.144-3.76 7.144 3.763a.639.639 0 0 0 .892-.677l-1.342-7.957 5.774-5.635a.628.628 0 0 0 .165-.66Z"
-            fill={color}
-          />
-          <path
-            data-name="Path 115"
-            d="M27.307 10.234a1.37 1.37 0 0 0-1.117-.945l-7.6-1.1-3.4-6.892a1.386 1.386 0 0 0-2.482 0l-3.4 6.892-7.6 1.1a1.38 1.38 0 0 0-1.117.945 1.364 1.364 0 0 0 .349 1.418l5.49 5.361-1.291 7.568a1.386 1.386 0 0 0 2.009 1.461l6.8-3.545 6.795 3.545a1.418 1.418 0 0 0 .65.161 1.364 1.364 0 0 0 .811-.263 1.391 1.391 0 0 0 .537-1.359l-1.273-7.568 5.5-5.371a1.364 1.364 0 0 0 .339-1.408Zm-6.644 6.521 1.343 7.955a.639.639 0 0 1-.929.677l-7.145-3.759-7.144 3.76a.618.618 0 0 1-.677-.048.628.628 0 0 1-.22-.628l1.329-7.769.032-.188-5.8-5.635a.639.639 0 0 1 .355-1.074l7.987-1.16 3.579-7.258a.639.639 0 0 1 1.147 0l3.572 7.235 7.987 1.16a.639.639 0 0 1 .355 1.074Z"
-            fill={fill}
-            stroke={stroke}
-          />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="27.895"
+        height="27"
+        aria-hidden="true"
+      >
+        <g data-name="Layer 2">
+          <g data-name="Layer 1">
+            <path
+              data-name="Rectangle 593"
+              fill="none"
+              d="M.474 0h27v27h-27z"
+            />
+            <path
+              data-name="Path 114"
+              d="M26.603 10.459a.634.634 0 0 0-.537-.435l-7.971-1.16-3.572-7.236a.639.639 0 0 0-1.149 0L9.801 8.864l-7.987 1.16a.639.639 0 0 0-.35 1.074l5.77 5.656-.032.188-1.311 7.767a.628.628 0 0 0 .258.628.618.618 0 0 0 .677.048l7.144-3.76 7.144 3.763a.639.639 0 0 0 .892-.677l-1.342-7.957 5.774-5.635a.628.628 0 0 0 .165-.66Z"
+              fill={color}
+            />
+            <path
+              data-name="Path 115"
+              d="M27.307 10.234a1.37 1.37 0 0 0-1.117-.945l-7.6-1.1-3.4-6.892a1.386 1.386 0 0 0-2.482 0l-3.4 6.892-7.6 1.1a1.38 1.38 0 0 0-1.117.945 1.364 1.364 0 0 0 .349 1.418l5.49 5.361-1.291 7.568a1.386 1.386 0 0 0 2.009 1.461l6.8-3.545 6.795 3.545a1.418 1.418 0 0 0 .65.161 1.364 1.364 0 0 0 .811-.263 1.391 1.391 0 0 0 .537-1.359l-1.273-7.568 5.5-5.371a1.364 1.364 0 0 0 .339-1.408Zm-6.644 6.521 1.343 7.955a.639.639 0 0 1-.929.677l-7.145-3.759-7.144 3.76a.618.618 0 0 1-.677-.048.628.628 0 0 1-.22-.628l1.329-7.769.032-.188-5.8-5.635a.639.639 0 0 1 .355-1.074l7.987-1.16 3.579-7.258a.639.639 0 0 1 1.147 0l3.572 7.235 7.987 1.16a.639.639 0 0 1 .355 1.074Z"
+              fill={fill}
+              stroke={stroke}
+            />
+          </g>
         </g>
-      </g>
-    </svg>
+      </svg>
+    </button>
   ) : (
     <SaveSession bookmark={bookmark} isStared={isStared} />
   )
