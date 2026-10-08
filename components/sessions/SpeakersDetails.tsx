@@ -52,6 +52,9 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
                       when there is no destination, the name renders as text. */}
                   {(() => {
                     const socialHref = speaker.twitter || speaker.linkedin
+                    // The @ is a Twitter convention: it prefixes a parsed
+                    // handle, not a name that happens to link to LinkedIn.
+                    const handle = getTwitterUsername(speaker.twitter)
                     return socialHref ? (
                       <a
                         href={socialHref}
@@ -59,9 +62,7 @@ export const SpeakersDetails = ({ session }: { session: Session }) => {
                         rel="noopener noreferrer"
                         className="inline-block text-primary text-sm font-medium mt-2 hover:underline"
                       >
-                        @
-                        {getTwitterUsername(speaker.twitter ?? '') ||
-                          speaker.name}
+                        {handle ? `@${handle}` : speaker.name}
                       </a>
                     ) : (
                       <span className="inline-block text-primary text-sm font-medium mt-2">

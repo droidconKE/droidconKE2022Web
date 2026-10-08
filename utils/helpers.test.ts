@@ -3,6 +3,7 @@ import {
   feedbackWindowLabel,
   feedbackWindowState,
   getTwitterUsername,
+  sessionShareUrl,
 } from './helpers'
 import type { Event } from '../types/types'
 
@@ -37,6 +38,52 @@ describe('getTwitterUsername', () => {
     expect(getTwitterUsername(null)).toBeNull()
     expect(getTwitterUsername('')).toBeNull()
     expect(getTwitterUsername('https://linkedin.com/in/someone')).toBeNull()
+  })
+})
+
+describe('sessionShareUrl', () => {
+  const share = (over: Partial<Parameters<typeof sessionShareUrl>[0]> = {}) =>
+    sessionShareUrl({
+      forwardedProto: 'https',
+      host: 'droidcon.co.ke',
+      resolvedUrl: '/sessions/opening-keynote',
+      eventSlug: 'droidconke-23',
+      ...over,
+    })
+
+  it('takes the first forwarded protocol when a proxy sends two', () => {
+    expect(share({ forwardedProto: 'https,http' })).toBe(
+      'https://droidcon.co.ke/sessions/opening-keynote'
+    )
+  })
+
+  it('is empty when the host is missing', () => {
+    expect(share({ host: undefined })).toBe('')
+    expect(share({ host: '' })).toBe('')
+  })
+
+  it('keeps event and drops a campaign tag', () => {
+    expect(
+      share({
+        resolvedUrl:
+          '/sessions/opening-keynote?utm_source=twitter&event=droidconke-23',
+        eventParam: 'droidconke-23',
+      })
+    ).toBe(
+      'https://droidcon.co.ke/sessions/opening-keynote?event=droidconke-23'
+    )
+  })
+
+  it('publishes the resolved slug, not a repeated raw parameter', () => {
+    expect(
+      share({
+        resolvedUrl: '/sessions/opening-keynote?event=nope&event=also',
+        eventParam: ['nope', 'also'],
+        eventSlug: 'droidconke-23',
+      })
+    ).toBe(
+      'https://droidcon.co.ke/sessions/opening-keynote?event=droidconke-23'
+    )
   })
 })
 

@@ -12,6 +12,7 @@ import {
   feedbackWindowState,
   isCurrentEventSlug,
   resolveEventSlug,
+  sessionShareUrl,
 } from '../../utils/helpers'
 
 interface SessionPageProp {
@@ -96,17 +97,13 @@ export async function getServerSideProps({
   // leave it off and fall back to the event being run now.
   const eventSlug = resolveEventSlug(eventParam)
 
-  // A proxy can send "https,http". The first value is the visitor's. The
-  // page path is resolvedUrl, so a client navigation never publishes the
-  // /_next/data URL as the share card. No host means no tag, rather than
-  // a card that points at "undefined".
-  const forwarded = req.headers['x-forwarded-proto']
-  const protocol =
-    (Array.isArray(forwarded) ? forwarded[0] : forwarded || '')
-      .split(',')[0]
-      .trim() || 'https'
-  const { host } = req.headers
-  const fullUrl = host ? `${protocol}://${host}${resolvedUrl}` : ''
+  const fullUrl = sessionShareUrl({
+    forwardedProto: req.headers['x-forwarded-proto'],
+    host: req.headers.host,
+    resolvedUrl,
+    eventParam,
+    eventSlug,
+  })
 
   const [session, event] = await Promise.all([
     axios
