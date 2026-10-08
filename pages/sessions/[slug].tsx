@@ -17,6 +17,7 @@ import {
 interface SessionPageProp {
   session: SessionProp
   event: Event | null
+  fullUrl: string
   isCurrentEvent: boolean
   eventSlug: string
 }
@@ -24,6 +25,7 @@ interface SessionPageProp {
 const Session: NextPage<SessionPageProp> = ({
   session,
   event,
+  fullUrl,
   isCurrentEvent,
   eventSlug,
 }) => {
@@ -45,6 +47,12 @@ const Session: NextPage<SessionPageProp> = ({
       <Head>
         <meta name="twitter:image" content={image} />
         <meta property="og:image" content={image} />
+        {fullUrl && (
+          <>
+            <meta property="og:url" content={fullUrl} />
+            <meta name="twitter:url" content={fullUrl} />
+          </>
+        )}
       </Head>
       <div className="s-container mt-4 md:mt-6 mb-10 md:mb-16 space-y-5 md:space-y-6">
         <Link
@@ -72,9 +80,14 @@ const Session: NextPage<SessionPageProp> = ({
 }
 export async function getServerSideProps({
   query,
+  req,
+  resolvedUrl,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   query: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  req: any
+  resolvedUrl: string
 }) {
   const { slug, event: eventParam } = query
 
@@ -82,6 +95,18 @@ export async function getServerSideProps({
   // a past-event page carries the event it belongs to. Current-event links
   // leave it off and fall back to the event being run now.
   const eventSlug = resolveEventSlug(eventParam)
+
+  // A proxy can send "https,http". The first value is the visitor's. The
+  // page path is resolvedUrl, so a client navigation never publishes the
+  // /_next/data URL as the share card. No host means no tag, rather than
+  // a card that points at "undefined".
+  const forwarded = req.headers['x-forwarded-proto']
+  const protocol =
+    (Array.isArray(forwarded) ? forwarded[0] : forwarded || '')
+      .split(',')[0]
+      .trim() || 'https'
+  const { host } = req.headers
+  const fullUrl = host ? `${protocol}://${host}${resolvedUrl}` : ''
 
   const [session, event] = await Promise.all([
     axios
@@ -113,6 +138,7 @@ export async function getServerSideProps({
     props: {
       session,
       event,
+      fullUrl,
       // Saving, scheduling and reviewing only apply to the event being run now.
       isCurrentEvent: isCurrentEventSlug(eventParam),
       // The event this session belongs to — feedback from this page posts

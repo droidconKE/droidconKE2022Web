@@ -19,6 +19,13 @@ describe('getTwitterUsername', () => {
     expect(getTwitterUsername('https://x.com/droidconke')).toBe('droidconke')
   })
 
+  it('drops an @ that was pasted into the profile URL', () => {
+    expect(getTwitterUsername('https://twitter.com/@droidconke')).toBe(
+      'droidconke'
+    )
+    expect(getTwitterUsername('https://x.com/@droidconke')).toBe('droidconke')
+  })
+
   it('ignores a query string or fragment', () => {
     expect(getTwitterUsername('https://x.com/droidconke?s=20')).toBe(
       'droidconke'
