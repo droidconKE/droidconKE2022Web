@@ -1,0 +1,33 @@
+# Dependabot, kept to a few pull requests rather than a hundred.
+#
+# Without this file Dependabot opens **one pull request per vulnerable
+# package**. Across this organisation's repositories that is around a hundred
+# at once, which is a queue rather than progress — and is almost certainly why
+# security updates were switched off here to begin with.
+#
+# `groups` is the control. One grouped pull request per ecosystem, so a
+# security sweep arrives as something a person can read in a sitting.
+# `open-pull-requests-limit` deliberately does **not** help: it applies to
+# version updates only, and GitHub exempts security updates from it.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # Everything with a published fix, in one pull request. Most of these
+      # are transitive build tooling that moves with a single lockfile update.
+      security:
+        applies-to: security-updates
+        patterns:
+          - '*'
+      # Routine bumps, also together, and monthly rather than weekly: nobody
+      # reads the fourth patch-bump pull request of the week.
+      routine:
+        applies-to: version-updates
+        patterns:
+          - '*'
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
