@@ -92,6 +92,36 @@ export const resolveEventSlug = (param?: string | string[]) =>
 export const isCurrentEventSlug = (param?: string | string[]) =>
   resolveEventSlug(param) === resolveEventSlug()
 
+// The URL a session share card points at. A proxy can send "https,http";
+// the first value is the visitor's. The path is the page, never a
+// /_next/data URL. Only `event` is kept from the query, and only when the
+// link carried one — a campaign tag must not become a second canonical URL.
+// No host means no tag, rather than one that points at "undefined".
+export const sessionShareUrl = ({
+  forwardedProto,
+  host,
+  resolvedUrl,
+  eventParam,
+  eventSlug,
+}: {
+  forwardedProto?: string | string[]
+  host?: string
+  resolvedUrl: string
+  eventParam?: string | string[]
+  eventSlug: string
+}): string => {
+  const protocol =
+    (Array.isArray(forwardedProto) ? forwardedProto[0] : forwardedProto || '')
+      .split(',')[0]
+      .trim() || 'https'
+  if (!host) return ''
+  const path = resolvedUrl.split('?')[0]
+  const share = eventParam
+    ? `${path}?event=${encodeURIComponent(eventSlug)}`
+    : path
+  return `${protocol}://${host}${share}`
+}
+
 // Speaker and organizer input ends up in hrefs. React already refuses a
 // javascript: URL in both the server and client bundles, and the backend
 // refuses the dangerous schemes at the door; this is the front-end half of
@@ -102,6 +132,40 @@ export const isCurrentEventSlug = (param?: string | string[]) =>
 export const isSafeHref = (url?: string | null): url is string => {
   const trimmed = url?.trim()
   return !!trimmed && /^https?:\/\//i.test(trimmed)
+}
+
+// A back link may only be a path on this site. isSafeHref is the opposite
+// check: it accepts https://evil.com and rejects /past-events/2024. "//evil"
+// and "/\evil" are other sites too. Anything else falls back.
+export const internalPath = (
+  value?: string | string[] | null
+): string | null => {
+  const raw = (Array.isArray(value) ? value[0] : value)?.trim() ?? ''
+  // Browsers strip tab, LF and CR out of a URL before resolving it, so
+  // "/\n//evil.com" passes a leading-slash check and then loads
+  // "///evil.com" — another site. Reject every control character rather
+  // than guess which ones get stripped.
+  if (
+    // eslint-disable-next-line no-control-regex
+    /[\u0000-\u001f\u007f]/.test(raw) ||
+    !raw.startsWith('/') ||
+    raw.startsWith('//') ||
+    raw.includes('\\') ||
+    raw.includes('://')
+  ) {
+    return null
+  }
+  return raw
+}
+
+// Which agenda pill is today in Nairobi. Schedule keys start with YYYY-MM-DD.
+// A date that is not one of those days stays on the first day, rather than
+// selecting a tab that does not exist.
+export const agendaTabForDate = (keys: string[], date: string): number => {
+  const index = keys.findIndex(
+    (key) => key.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] === date
+  )
+  return index < 0 ? 0 : index
 }
 
 // The organizer's master switch on the event payload. Missing (an older
@@ -168,7 +232,7 @@ export const feedbackWindowLabel = (event?: Event | null): string =>
 // literal 'twitter.com/' yields `@undefined` for the new ones (#165).
 export const getTwitterUsername = (url?: string | null): string | null => {
   if (!url) return null
-  const match = url.match(/(?:twitter\.com|x\.com)\/([^/?#]+)/i)
+  const match = url.match(/(?:twitter\.com|x\.com)\/@?([^/?#]+)/i)
   return match?.[1] ?? null
 }
 

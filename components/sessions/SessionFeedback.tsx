@@ -14,6 +14,18 @@ import { feedbackHeaders } from '../../utils/feedback'
 import { resolveEventSlug } from '../../utils/helpers'
 
 const REQUEST_TIMEOUT = 5000
+// A write on slow wifi can legitimately take longer than a read, and a
+// timed-out write may already have landed — resubmitting replaces it, so
+// waiting longer is the cheaper mistake.
+const WRITE_TIMEOUT = 15000
+
+// A request that never produced a response: either the network is gone or
+// it was too slow. axios marks the second with ECONNABORTED, and telling
+// someone on a slow link they have "no connection" is wrong.
+const noResponseMessage = (error: { code?: string }) =>
+  error?.code === 'ECONNABORTED'
+    ? 'That took too long — check your connection and try again.'
+    : 'No connection — check your internet and try again.'
 
 const chipBase =
   'rounded-full px-4 py-2 text-sm font-medium border transition-colors'
@@ -132,7 +144,7 @@ export const SessionFeedback = ({
           ? `/events/${eventSlug}/feedback/sessions/${sessionSlug}`
           : `/events/${eventSlug}/feedback`,
         body,
-        { headers: feedbackHeaders() }
+        { headers: feedbackHeaders(), timeout: WRITE_TIMEOUT }
       )
       .then((response) => {
         // This API wraps payloads in { data: ... } — the two reads above
@@ -178,7 +190,7 @@ export const SessionFeedback = ({
             data?.message || 'Something went wrong. Please try again.'
           )
         } else {
-          toast.error('Could not send your feedback — check your connection')
+          toast.error(noResponseMessage(error))
         }
         setLoading(false)
       })
@@ -195,7 +207,7 @@ export const SessionFeedback = ({
         sessionSlug
           ? `/events/${eventSlug}/feedback/sessions/${sessionSlug}`
           : `/events/${eventSlug}/feedback`,
-        { headers: feedbackHeaders(), timeout: REQUEST_TIMEOUT }
+        { headers: feedbackHeaders(), timeout: WRITE_TIMEOUT }
       )
       .then(() => {
         toast.success('Your feedback was removed.')
@@ -210,7 +222,7 @@ export const SessionFeedback = ({
         } else if (status) {
           toast.error(data.message || 'Something went wrong. Please try again.')
         } else {
-          toast.error('Could not send your feedback — check your connection')
+          toast.error(noResponseMessage(error))
         }
         setRemoving(false)
         setConfirmRemove(false)

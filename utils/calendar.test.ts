@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseEat, sessionHasEnded } from './calendar'
+import { parseEat, sessionHasEnded, eatCalendarDate } from './calendar'
 
 // These pin the timezone behaviour, which is the part nobody can check by
 // looking: the API sends naive "YYYY-MM-DD HH:mm:ss" strings in EAT (UTC+3),
@@ -55,5 +55,18 @@ describe('sessionHasEnded', () => {
 
   it('reads an unparseable end as not ended, so nothing is nudged wrongly', () => {
     expect(sessionHasEnded({ end_date_time: '' })).toBe(false)
+  })
+})
+
+describe('eatCalendarDate', () => {
+  it('is the Nairobi date, including across midnight UTC', () => {
+    // 21:00 UTC on the 5th is 00:00 on the 6th in Nairobi.
+    expect(eatCalendarDate(Date.parse('2026-11-05T21:00:00.000Z'))).toBe(
+      '2026-11-06'
+    )
+    // One second earlier is still the 5th there.
+    expect(eatCalendarDate(Date.parse('2026-11-05T20:59:59.000Z'))).toBe(
+      '2026-11-05'
+    )
   })
 })

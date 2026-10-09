@@ -10,13 +10,16 @@ import axios from '../../utils/axios'
 import {
   eventVenue,
   feedbackWindowState,
+  internalPath,
   isCurrentEventSlug,
   resolveEventSlug,
+  sessionShareUrl,
 } from '../../utils/helpers'
 
 interface SessionPageProp {
   session: SessionProp
   event: Event | null
+  fullUrl: string
   isCurrentEvent: boolean
   eventSlug: string
 }
@@ -24,12 +27,13 @@ interface SessionPageProp {
 const Session: NextPage<SessionPageProp> = ({
   session,
   event,
+  fullUrl,
   isCurrentEvent,
   eventSlug,
 }) => {
   const router = useRouter()
 
-  const navBackLink = router.query?.from ? router.query?.from : '/sessions'
+  const navBackLink = internalPath(router.query.from) ?? '/sessions'
 
   // "" is the API's absent value here — ?? would ship an empty og:image.
   const image =
@@ -45,6 +49,12 @@ const Session: NextPage<SessionPageProp> = ({
       <Head>
         <meta name="twitter:image" content={image} />
         <meta property="og:image" content={image} />
+        {fullUrl && (
+          <>
+            <meta property="og:url" content={fullUrl} />
+            <meta name="twitter:url" content={fullUrl} />
+          </>
+        )}
       </Head>
       <div className="s-container mt-4 md:mt-6 mb-10 md:mb-16 space-y-5 md:space-y-6">
         <Link
@@ -72,9 +82,14 @@ const Session: NextPage<SessionPageProp> = ({
 }
 export async function getServerSideProps({
   query,
+  req,
+  resolvedUrl,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   query: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  req: any
+  resolvedUrl: string
 }) {
   const { slug, event: eventParam } = query
 
@@ -82,6 +97,14 @@ export async function getServerSideProps({
   // a past-event page carries the event it belongs to. Current-event links
   // leave it off and fall back to the event being run now.
   const eventSlug = resolveEventSlug(eventParam)
+
+  const fullUrl = sessionShareUrl({
+    forwardedProto: req.headers['x-forwarded-proto'],
+    host: req.headers.host,
+    resolvedUrl,
+    eventParam,
+    eventSlug,
+  })
 
   const [session, event] = await Promise.all([
     axios
@@ -113,6 +136,7 @@ export async function getServerSideProps({
     props: {
       session,
       event,
+      fullUrl,
       // Saving, scheduling and reviewing only apply to the event being run now.
       isCurrentEvent: isCurrentEventSlug(eventParam),
       // The event this session belongs to — feedback from this page posts
