@@ -10,6 +10,7 @@ import axios from '../../utils/axios'
 import {
   eventVenue,
   feedbackWindowState,
+  internalPath,
   isCurrentEventSlug,
   resolveEventSlug,
   sessionShareUrl,
@@ -32,7 +33,7 @@ const Session: NextPage<SessionPageProp> = ({
 }) => {
   const router = useRouter()
 
-  const navBackLink = router.query?.from ? router.query?.from : '/sessions'
+  const navBackLink = internalPath(router.query.from) ?? '/sessions'
 
   // "" is the API's absent value here — ?? would ship an empty og:image.
   const image =

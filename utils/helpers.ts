@@ -134,6 +134,40 @@ export const isSafeHref = (url?: string | null): url is string => {
   return !!trimmed && /^https?:\/\//i.test(trimmed)
 }
 
+// A back link may only be a path on this site. isSafeHref is the opposite
+// check: it accepts https://evil.com and rejects /past-events/2024. "//evil"
+// and "/\evil" are other sites too. Anything else falls back.
+export const internalPath = (
+  value?: string | string[] | null
+): string | null => {
+  const raw = (Array.isArray(value) ? value[0] : value)?.trim() ?? ''
+  // Browsers strip tab, LF and CR out of a URL before resolving it, so
+  // "/\n//evil.com" passes a leading-slash check and then loads
+  // "///evil.com" — another site. Reject every control character rather
+  // than guess which ones get stripped.
+  if (
+    // eslint-disable-next-line no-control-regex
+    /[\u0000-\u001f\u007f]/.test(raw) ||
+    !raw.startsWith('/') ||
+    raw.startsWith('//') ||
+    raw.includes('\\') ||
+    raw.includes('://')
+  ) {
+    return null
+  }
+  return raw
+}
+
+// Which agenda pill is today in Nairobi. Schedule keys start with YYYY-MM-DD.
+// A date that is not one of those days stays on the first day, rather than
+// selecting a tab that does not exist.
+export const agendaTabForDate = (keys: string[], date: string): number => {
+  const index = keys.findIndex(
+    (key) => key.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] === date
+  )
+  return index < 0 ? 0 : index
+}
+
 // The organizer's master switch on the event payload. Missing (an older
 // backend, a cached payload) stays open — the default is on, never off: a
 // window we cannot read must never be the reason somebody cannot leave

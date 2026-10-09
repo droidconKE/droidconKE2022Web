@@ -3,6 +3,8 @@ import {
   feedbackWindowLabel,
   feedbackWindowState,
   getTwitterUsername,
+  internalPath,
+  agendaTabForDate,
   sessionShareUrl,
 } from './helpers'
 import type { Event } from '../types/types'
@@ -148,5 +150,51 @@ describe('feedbackWindowLabel', () => {
         event({ feedback_open: false, end_date: '2099-01-02' })
       )
     ).toBe('Not open yet')
+  })
+})
+
+describe('internalPath', () => {
+  it('keeps a path on this site', () => {
+    expect(internalPath('/past-events/2024')).toBe('/past-events/2024')
+    expect(internalPath('  /sessions  ')).toBe('/sessions')
+    expect(internalPath(['/past-events/2025'])).toBe('/past-events/2025')
+  })
+
+  it('refuses another site, including the forms that look like a path', () => {
+    expect(internalPath('https://evil.com')).toBeNull()
+    expect(internalPath('//evil.com')).toBeNull()
+    expect(internalPath('/\\evil.com')).toBeNull()
+    expect(internalPath('')).toBeNull()
+    expect(internalPath(['https://evil.com'])).toBeNull()
+  })
+
+  it('refuses the control characters a browser strips out of a URL', () => {
+    // Each of these resolves to https://evil.com/ once the browser drops the
+    // control character and is left with "///evil.com".
+    expect(internalPath('/\n//evil.com')).toBeNull()
+    expect(internalPath('/\r//evil.com')).toBeNull()
+    expect(internalPath('/\t//evil.com')).toBeNull()
+  })
+})
+
+describe('agendaTabForDate', () => {
+  const days = ['2026-11-05', '2026-11-06']
+
+  it('opens the day being lived', () => {
+    expect(agendaTabForDate(days, '2026-11-06')).toBe(1)
+  })
+
+  it('stays on the first day when that date is not in the schedule', () => {
+    expect(agendaTabForDate(days, '2026-10-07')).toBe(0)
+    expect(agendaTabForDate(days, '2026-11-07')).toBe(0)
+  })
+
+  it('reads a key that also carries a time', () => {
+    expect(
+      agendaTabForDate(
+        ['2026-11-05 00:00:00', '2026-11-06 00:00:00'],
+        '2026-11-06'
+      )
+    ).toBe(1)
   })
 })
