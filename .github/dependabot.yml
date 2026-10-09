@@ -9,12 +9,19 @@
 # security sweep arrives as something a person can read in a sitting.
 # `open-pull-requests-limit` deliberately does **not** help: it applies to
 # version updates only, and GitHub exempts security updates from it.
+#
+# `schedule.interval` is per **ecosystem**, not per group — there is no
+# per-group schedule. A `routine` group described as monthly under
+# `interval: weekly` is a comment disagreeing with the config, which is what
+# the first version of this file did. Security updates are not governed by
+# `schedule` at all: they are opened when an alert appears, so a monthly
+# interval slows routine bumps and nothing else.
 version: 2
 updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       # Everything with a published fix, in one pull request. Most of these
       # are transitive build tooling that moves with a single lockfile update.
@@ -22,9 +29,33 @@ updates:
         applies-to: security-updates
         patterns:
           - '*'
-      # Routine bumps, also together, and monthly rather than weekly: nobody
-      # reads the fourth patch-bump pull request of the week.
+      # Routine bumps, also together: nobody reads the fourth patch-bump
+      # pull request of the week.
       routine:
+        applies-to: version-updates
+        patterns:
+          - '*'
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+
+  # The workflows pin action versions and nothing was watching them: this
+  # repository's CI sat on actions that run under Node 16 for two years.
+  #
+  # Both kinds, because `applies-to` defaults to `version-updates` when it is
+  # left off — so without the first group an advisory against two actions
+  # opens two pull requests. One group cannot cover both: `applies-to` takes
+  # a single value.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - '*'
+      actions:
         applies-to: version-updates
         patterns:
           - '*'
