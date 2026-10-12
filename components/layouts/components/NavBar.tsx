@@ -34,12 +34,16 @@ export const NavBar = () => {
     }
   }, [setNavVisible])
 
+  // The full link row, ticket button and theme toggle need 1440px side by side;
+  // below that they overflowed off-screen, so the header uses the menu until
+  // then. Not a theme screen on purpose: `container` sizes itself from the
+  // screens list, and a 1440 screen would widen every page container.
   return (
     <nav
       ref={ref}
-      className="flex items-center justify-between flex-wrap lg:flex-nowrap nav-bg min-h-[var(--nav-h)] px-3 py-2 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600"
+      className="flex items-center justify-between flex-wrap min-[1440px]:flex-nowrap nav-bg min-h-[var(--nav-h)] px-3 py-2 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600"
     >
-      <div className="flex items-center flex-shrink-0 text-white mr-4 xl:pl-24">
+      <div className="flex items-center flex-shrink-0 text-white mr-4">
         <Link href="/">
           {!isDarkTheme ? (
             <img
@@ -56,9 +60,9 @@ export const NavBar = () => {
           )}
         </Link>
       </div>
-      <div className="flex items-center lg:order-last">
+      <div className="flex items-center min-[1440px]:order-last">
         <ToggleTheme />
-        <div className="block lg:hidden">
+        <div className="ml-2 md:ml-3 block min-[1440px]:hidden">
           <button
             type="button"
             id="nav-toggle"
@@ -81,17 +85,17 @@ export const NavBar = () => {
       </div>
       <div
         id="nav-content"
-        className={`w-full flex-grow lg:flex lg:items-center lg:w-auto pt-4 pb-4 lg:pt-0 lg:pb-0 lg:pr-24 md:px-5 ${
+        className={`w-full flex-grow min-[1440px]:flex min-[1440px]:items-center min-[1440px]:w-auto pt-4 pb-4 min-[1440px]:pt-0 min-[1440px]:pb-0 md:px-5 ${
           navVisible ? '' : 'hidden'
         }`}
       >
         <div
-          className={`w-full lg:w-auto flex-grow lg:flex ${
+          className={`w-full min-[1440px]:w-auto flex-grow min-[1440px]:flex ${
             navVisible ? 'bg-white dark:bg-dark' : ''
           } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
-          <ul className="list-reset lg:flex justify-end text-base flex-1 items-center pt-2 lg:pt-0 space-y-2 md:space-y-0">
-            <li className="mr-3 black text-xl">
+          <ul className="list-reset min-[1440px]:flex justify-end text-base flex-1 items-center pt-2 min-[1440px]:pt-0 space-y-2 md:space-y-0 min-[1440px]:[&>li>a]:px-3">
+            <li className="black text-xl">
               <Link
                 href="/"
                 className={router.pathname === '/' ? 'active-link' : 'link'}
@@ -99,8 +103,28 @@ export const NavBar = () => {
                 Home
               </Link>
             </li>
+            <li className="text-xl">
+              <Link
+                href="/about"
+                className={
+                  router.pathname === '/about' ? 'active-link' : 'link'
+                }
+              >
+                About
+              </Link>
+            </li>
+            <li className="text-xl whitespace-nowrap">
+              <Link
+                href="/beyond-stacks"
+                className={
+                  router.pathname === '/beyond-stacks' ? 'active-link' : 'link'
+                }
+              >
+                Beyond Stacks
+              </Link>
+            </li>
             {showSessions && (
-              <li className="mr-3 text-xl">
+              <li className="text-xl">
                 <Link
                   href="/sessions"
                   className={
@@ -112,7 +136,7 @@ export const NavBar = () => {
               </li>
             )}
             {showSpeakers && (
-              <li className="mr-3 text-xl">
+              <li className="text-xl">
                 <Link
                   href="/speakers"
                   className={
@@ -123,17 +147,7 @@ export const NavBar = () => {
                 </Link>
               </li>
             )}
-            <li className="mr-3 text-xl">
-              <Link
-                href="/about"
-                className={
-                  router.pathname === '/about' ? 'active-link' : 'link'
-                }
-              >
-                About
-              </Link>
-            </li>
-            <li className="mr-3 text-xl">
+            <li className="text-xl">
               <Link
                 href="/sponsors"
                 className={
@@ -143,12 +157,12 @@ export const NavBar = () => {
                 Sponsors
               </Link>
             </li>
-            <li className="mr-3 text-xl">
+            <li className="text-xl">
               <PastEventsDropdown />
             </li>
           </ul>
         </div>
-        <div className="w-full md:w-auto flex md:justify-end mt-4 md:mt-0 px-4 md:px-0 md:ml-8">
+        <div className="w-full md:w-auto flex md:justify-end mt-4 md:mt-0 px-4 md:px-0 md:ml-4">
           {/* <Link href="/sponsors"> */}
           <Link
             className="btn-primary uppercase whitespace-nowrap"

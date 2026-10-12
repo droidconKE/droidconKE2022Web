@@ -5,7 +5,7 @@ export const ToggleTheme = () => {
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext)
 
   return (
-    <div className="inline-block p-2 md:p-3">
+    <div className="inline-block py-2 pl-2 md:py-3 md:pl-3">
       <button
         type="button"
         aria-label="Toggle theme"
@@ -23,7 +23,6 @@ export const ToggleTheme = () => {
           <div className="theme-toggle__line w-10 h-5 bg-black dark:bg-secondary rounded-full shadow-inner" />
           <div className="theme-toggle__dot absolute top-0.5 left-0.5 w-4 h-4 bg-white dark:bg-black rounded-full shadow" />
         </div>
-        <div className="ml-3 text-gray-700 font-sm" />
       </button>
       <style>
         {`
