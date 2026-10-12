@@ -11,9 +11,12 @@
         <loc>https://droidcon.co.ke/beyond-stacks</loc>
     </url>
     <url>
+        <loc>https://droidcon.co.ke/sessions</loc>
+    </url>
+    <url>
         <loc>https://droidcon.co.ke/speakers</loc>
     </url>
     <url>
-        <loc>https://droidcon.co.ke/schedule</loc>
+        <loc>https://droidcon.co.ke/sponsors</loc>
     </url>
 </urlset>
