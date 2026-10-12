@@ -16,7 +16,7 @@ const facts = [
 export const Overview = () => (
   <section
     aria-labelledby="overview-title"
-    className="s-container my-12 md:my-24"
+    className="s-container my-12 sm:my-10"
   >
     <div className="grid gap-6 lg:grid-cols-5 lg:gap-12">
       <div className="lg:col-span-2">

@@ -43,7 +43,7 @@ const strands = [
 export const CommunityStrands = () => (
   <section
     aria-labelledby="community-strands-title"
-    className="s-container my-12 md:my-24"
+    className="s-container my-12 sm:my-10"
   >
     <SectionHeader
       id="community-strands-title"

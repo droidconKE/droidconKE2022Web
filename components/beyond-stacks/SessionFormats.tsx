@@ -38,7 +38,7 @@ const formats = [
 export const SessionFormats = () => (
   <section
     aria-labelledby="session-formats-title"
-    className="s-container my-12 md:my-24"
+    className="s-container my-12 sm:my-10"
   >
     <div className="rounded-4xl bg-primary p-8 md:px-12 md:py-16">
       {/* Side by side only from lg: at md the two-line title is wider than

@@ -28,12 +28,15 @@ type SectionHeaderProps = Omit<SectionTitleProps, 'children'> & {
   ctaVariant: TicketLinkVariant
 }
 
+// Spaced to sit evenly between the section above and its own content: from
+// sm, s-container pads 20px each side of the 40px section margin, so the gap
+// above is 80px and so is this margin below.
 export const SectionHeader = ({
   title,
   ctaVariant,
   ...titleProps
 }: SectionHeaderProps) => (
-  <div className="flex flex-wrap items-center justify-between gap-4 mb-8 md:mb-10">
+  <div className="flex flex-wrap items-center justify-between gap-4 mb-12 sm:mb-20">
     <SectionTitle {...titleProps}>{title}</SectionTitle>
     <TicketLink
       variant={ctaVariant}

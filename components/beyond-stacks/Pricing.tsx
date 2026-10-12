@@ -22,7 +22,7 @@ const passes = [
 export const Pricing = () => (
   <section
     aria-labelledby="pricing-title"
-    className="s-container my-12 md:my-24"
+    className="s-container my-12 sm:my-10"
   >
     <SectionHeader
       id="pricing-title"

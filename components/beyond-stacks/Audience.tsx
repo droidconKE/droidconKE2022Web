@@ -25,7 +25,7 @@ const audiences = [
 export const Audience = () => (
   <section
     aria-labelledby="audience-title"
-    className="s-container my-12 md:my-24"
+    className="s-container my-12 sm:my-10"
   >
     <SectionHeader
       id="audience-title"

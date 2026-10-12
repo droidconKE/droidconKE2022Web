@@ -31,7 +31,7 @@ const faqs = [
 ]
 
 export const Faq = () => (
-  <section aria-labelledby="faq-title" className="s-container my-12 md:my-24">
+  <section aria-labelledby="faq-title" className="s-container my-12 sm:my-10">
     <div className="border-b border-gray-300 dark:border-white/60 pb-6 mb-6">
       <SectionTitle id="faq-title">FAQ</SectionTitle>
     </div>
