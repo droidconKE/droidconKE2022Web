@@ -41,7 +41,7 @@ export const EventFeedback = () => {
     if (!isCurrentEvent) return undefined
     let cancelled = false
     axios
-      .get(`/events/${eventSlug}`)
+      .get(`/events/${eventSlug}`, { timeout: 5000 })
       .then((response) => {
         if (cancelled) return
         setEvent(response.data?.data ?? null)

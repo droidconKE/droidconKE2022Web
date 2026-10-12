@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import moment from 'moment'
 import { Session, FilterInterface, Room, Schedule } from '../types/types'
-import { objIsEmpty, isClient } from '../utils/helpers'
+import { agendaTabForDate, objIsEmpty, isClient } from '../utils/helpers'
+import { eatCalendarDate } from '../utils/calendar'
 import { readStarred, STARRED_EVENT } from './useStarredSessions'
 
 const ACTIVE_VIEW = 'droidcon_view'
@@ -112,15 +112,12 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule }) => {
     return () => window.removeEventListener(STARRED_EVENT, sync)
   }, [showMySessions, computeMySchedules])
 
-  const selectTabByday = useCallback(() => {
-    if (moment().format('DD') === '05') setActiveTab(0)
-    if (moment().format('DD') === '06') setActiveTab(1)
-    if (moment().format('DD') === '07') setActiveTab(2)
-  }, [])
-
+  // Open on the conference day being lived in Nairobi. Any other date, including
+  // the 7th of a month when this event has no third day, stays on the first pill.
   useEffect(() => {
-    selectTabByday()
-  }, [selectTabByday])
+    const index = agendaTabForDate(Object.keys(allSchedules), eatCalendarDate())
+    if (index !== 0) setActiveTab(index)
+  }, [allSchedules])
 
   return {
     showFilterSession,
