@@ -1,7 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 const Document = () => {
-  const title = `DroidconKe - Africa's Largest Mobile Developer Conference`
   return (
     <Html lang="en">
       <Head>
@@ -97,58 +96,20 @@ const Document = () => {
         />
         <meta name="theme-color" content="#0055FF" />
 
-        {/* SEO Headers */}
-        <meta
-          name="description"
-          content="Droidcon is a global conference focused on the engineering of Android applications, part of next.app devCon. It provides a forum for developers to network, share techniques, announce apps and products, and learn and teach."
-        />
+        {/* SEO. The description, Open Graph and Twitter-card tags live in
+            the layout's next/head with keys, so a page can replace them;
+            only the site-wide constants stay here. */}
         <meta
           name="keywords"
           content="Android, Event,  Conference, Meetup, droidCon, Kenya, KE, droidConKE, droidconke, Android254, Kotlin, Flutter, iOS, droidcon, droidcon africa, africa, android, 254 tech"
         />
         <meta name="author" content="droidconKe" />
-
-        {/* <!-- twitter card starts from here, if you don't need remove this section --> */}
-        {/* <meta name="twitter:card" content="summary"/> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@droidconke" />
         <meta name="twitter:creator" content="@droidconke" />
-        <meta name="twitter:url" content="https://droidcon.co.ke" />
-        <meta name="twitter:title" content={title} />
-        {/* <!-- maximum 140 char --> */}
-        <meta
-          name="twitter:description"
-          content="Droidcon is a global conference focused on the engineering of Android applications, part of next.app devCon. It provides a forum for developers to network, share techniques, announce apps and products, and learn and teach."
-        />
-        {/* <!-- maximum 140 char --> */}
-        <meta
-          name="twitter:image"
-          content="https://droidcon.co.ke/images/new-design/revised/dcke-cover.png"
-        />
-        <meta
-          name="twitter:image:alt"
-          content="droidconKE 2026 — Nov 5-6, Nairobi"
-        />
-        {/* <!-- when you post this page url in twitter , this image will be shown -->
-	<!-- twitter card ends from here --> */}
-
-        {/* <!-- facebook open graph starts from here, if you don't need then delete open graph related  --> */}
-        <meta property="og:title" content={title} />
-        <meta property="og:url" content="https://droidcon.co.ke/" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="droidconKe" />
-        {/* <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  --> */}
         <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content="https://droidcon.co.ke/images/new-design/revised/dcke-cover.png"
-        />
-        <meta
-          property="og:description"
-          content="Droidcon is a global conference focused on the engineering of Android applications, part of next.app devCon. It provides a forum for developers to network, share techniques, announce apps and products, and learn and teach."
-        />
-        {/* <!-- when you post this page url in facebook , this image will be shown -->
-	<!-- facebook open graph ends from here --></meta> */}
       </Head>
       <body>
         <Main />

@@ -60,7 +60,7 @@ export const Footer = () => {
             {/* Info Columns */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left mb-16">
               <div className="col-span-1">
-                <h3 className="text-secondary dark:text-secondary-dark font-medium text-lg mb-4">
+                <h3 className="text-primary dark:text-secondary-dark font-medium text-lg mb-4">
                   Venue
                 </h3>
                 {/* TODO: Implement dynamic fetching of venue information */}
@@ -83,7 +83,7 @@ export const Footer = () => {
               {showExtraInfo && (
                 <>
                   <div className="col-span-1">
-                    <h3 className="text-secondary dark:text-secondary-dark font-medium text-lg mb-4">
+                    <h3 className="text-primary dark:text-secondary-dark font-medium text-lg mb-4">
                       Transport
                     </h3>
                     <p className="text-black dark:text-white text-sm">
@@ -94,7 +94,7 @@ export const Footer = () => {
                   </div>
 
                   <div className="col-span-1">
-                    <h3 className="text-secondary dark:text-secondary-dark font-medium text-lg mb-4">
+                    <h3 className="text-primary dark:text-secondary-dark font-medium text-lg mb-4">
                       Parking
                     </h3>
                     <p className="text-black dark:text-white text-sm">
@@ -105,7 +105,7 @@ export const Footer = () => {
               )}
 
               <div className="col-span-1">
-                <h3 className="text-secondary dark:text-secondary-dark font-medium text-lg mb-4">
+                <h3 className="text-primary dark:text-secondary-dark font-medium text-lg mb-4">
                   Code of Conduct
                 </h3>
                 <Link
