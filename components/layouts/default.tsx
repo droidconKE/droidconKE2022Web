@@ -34,17 +34,9 @@ export default function Layout({ children }: { children: ReactNode }) {
         />
         <meta key="og:url" property="og:url" content={SITE_URL} />
         <meta key="og:image" property="og:image" content={IMAGE} />
-        <meta key="twitter:title" name="twitter:title" content={TITLE} />
         <meta
-          key="twitter:description"
-          name="twitter:description"
-          content={DESCRIPTION}
-        />
-        <meta key="twitter:url" name="twitter:url" content={SITE_URL} />
-        <meta key="twitter:image" name="twitter:image" content={IMAGE} />
-        <meta
-          key="twitter:image:alt"
-          name="twitter:image:alt"
+          key="og:image:alt"
+          property="og:image:alt"
           content="droidconKE 2026 — Nov 5-6, Nairobi"
         />
       </Head>
