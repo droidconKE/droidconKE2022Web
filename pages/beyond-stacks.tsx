@@ -12,10 +12,10 @@ import { Faq } from '../components/beyond-stacks/Faq'
 const BeyondStacks: NextPage = () => (
   <>
     <Head>
-      <title>Beyond Stacks Track</title>
+      <title>Beyond Stacks</title>
       <meta
         name="description"
-        content="A shared 3rd track across both conference days for the entire engineering ecosystem."
+        content="Engineering goes beyond mobile. Build beyond your usual stack, explore new technologies, and connect with engineers solving problems across the wider ecosystem."
       />
     </Head>
     <Marquee />

@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Will session recordings be available?',
     answer:
-      'Panel debates and talks will be recorded, but live workshops and open discussions are strictly in-room experiences.',
+      'Panel conversations and talks will be recorded, but live workshops and open discussions are strictly in-room experiences.',
   },
 ]
 
@@ -35,7 +35,6 @@ export const Faq = () => (
     <div className="border-b border-gray-300 dark:border-white/60 pb-6 mb-6">
       <SectionTitle id="faq-title">FAQ</SectionTitle>
     </div>
-    {/* White cards in both themes; the border separates them from a white page. */}
     <dl className="space-y-3">
       {faqs.map(({ question, answer }) => (
         <div

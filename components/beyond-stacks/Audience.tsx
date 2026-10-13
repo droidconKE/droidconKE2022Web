@@ -3,24 +3,41 @@ import { SectionHeader } from './SectionHeader'
 const audiences = [
   {
     title: 'Platform & Cross-Platform Developers',
-    description: 'Engineers seeking deep architectural sessions.',
+    description:
+      'Engineers who love to build beyond their stack. The all-round builders.',
+  },
+  {
+    title: 'Agentic Engineering',
+    description:
+      'For engineers building with AI agents, exploring new workflows, and figuring out what AI-assisted development actually looks like in practice.',
   },
   {
     title: 'Backend, Cloud & Data Engineers',
     description:
       'Practitioners looking to align systems, APIs, and infrastructure with modern client apps.',
   },
+]
+
+const personas = [
   {
-    title: 'AI & Agentic Tooling Leads',
+    name: 'The Curious',
     description:
-      'Engineers integrating production AI agents, MCPs, and automated workflows into existing stacks.',
+      'You’re always wondering how things work, what’s changing, and what’s happening outside your usual stack. You come to learn something new, ask questions, and leave with something you didn’t know before.',
   },
   {
-    title: 'Seniors & Engineers',
+    name: 'The Mavericks',
     description:
-      'Experienced technical leads focused on debate, architecture trade-offs, and real-world war stories.',
+      'You don’t always follow the usual path. You experiment, try different tools, challenge how things are normally done, and enjoy figuring things out for yourself.',
+  },
+  {
+    name: 'The Connoisseur',
+    description:
+      'You know your craft, you care about how things are built, and you’re always looking for better ways to solve problems. You appreciate good engineering and enjoy a conversation with people who know their stuff.',
   },
 ]
+
+const card =
+  'rounded-3xl border border-accent bg-gradient-to-b from-white from-55% to-accent px-6 py-8 lg:pb-12'
 
 export const Audience = () => (
   <section
@@ -33,21 +50,25 @@ export const Audience = () => (
       colorClassName="text-black dark:text-white"
       ctaVariant="accent"
     />
-    <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+    <ul className="grid gap-5 lg:grid-cols-3">
       {audiences.map(({ title, description }) => (
-        // The card is white in both themes, so the text colours are pinned
-        // against the global light-on-dark rule, and the border only shows
-        // where the card would otherwise melt into a white page. In the row
-        // of four, titles reserve three lines so every description starts
-        // level and runs down into the green, as drawn.
-        <li
-          key={title}
-          className="sm:min-h-[18rem] xl:min-h-[25rem] rounded-3xl border border-accent bg-gradient-to-b from-white from-55% to-accent px-6 pt-8 pb-12"
-        >
-          <h3 className="xl:min-h-[3lh] text-primary dark:text-primary text-xl md:text-2xl leading-tight">
+        <li key={title} className={`lg:min-h-[25rem] ${card}`}>
+          <h3 className="lg:min-h-[3lh] xl:min-h-[2lh] text-primary dark:text-primary text-xl md:text-2xl leading-tight">
             {title}
           </h3>
-          <p className="mt-4 sm:mt-8 xl:max-w-[12.5rem] text-black dark:text-black text-base md:text-lg leading-snug">
+          <p className="mt-4 lg:mt-8 text-black dark:text-black text-base md:text-lg leading-snug">
+            {description}
+          </p>
+        </li>
+      ))}
+    </ul>
+    <ul className="mt-5 grid gap-5 lg:grid-cols-3">
+      {personas.map(({ name, description }) => (
+        <li key={name} className={card}>
+          <h3 className="text-primary dark:text-primary text-xl md:text-2xl leading-tight">
+            {name}
+          </h3>
+          <p className="mt-3 text-black dark:text-black text-base md:text-lg leading-snug">
             {description}
           </p>
         </li>
