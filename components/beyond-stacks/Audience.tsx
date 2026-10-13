@@ -36,6 +36,9 @@ const personas = [
   },
 ]
 
+// The row of three reserves three title lines at lg and two from xl.
+// text-2xl's line height is 2rem here, so that is 6rem and 4rem. lh units
+// would do this in fewer characters, but Safari only supports them from 18.1.
 const card =
   'rounded-3xl border border-accent bg-gradient-to-b from-white from-55% to-accent px-6 py-8 lg:pb-12'
 
@@ -53,7 +56,7 @@ export const Audience = () => (
     <ul className="grid gap-5 lg:grid-cols-3">
       {audiences.map(({ title, description }) => (
         <li key={title} className={`lg:min-h-[25rem] ${card}`}>
-          <h3 className="lg:min-h-[3lh] xl:min-h-[2lh] text-primary dark:text-primary text-xl md:text-2xl leading-tight">
+          <h3 className="lg:min-h-[6rem] xl:min-h-[4rem] text-primary dark:text-primary text-xl md:text-2xl leading-tight">
             {title}
           </h3>
           <p className="mt-4 lg:mt-8 text-black dark:text-black text-base md:text-lg leading-snug">

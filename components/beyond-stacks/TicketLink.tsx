@@ -31,6 +31,7 @@ export const TicketLink = ({
     className={`${variantClass[variant]} normal-case whitespace-nowrap ${className}`}
   >
     {children}
+    <span className="sr-only"> (opens in a new tab)</span>
     <svg
       aria-hidden="true"
       className="w-4 h-4 ml-2 shrink-0"

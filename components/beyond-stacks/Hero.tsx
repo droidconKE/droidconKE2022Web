@@ -6,7 +6,9 @@ export const Hero = () => (
     className="relative isolate overflow-hidden bg-primary rounded-b-4xl"
   >
     <img
-      src="/images/gallery/TAMZ2286.jpg"
+      src="/images/new-design/revised/beyond-stacks-hero.jpg"
+      srcSet="/images/new-design/revised/beyond-stacks-hero-800.jpg 800w, /images/new-design/revised/beyond-stacks-hero.jpg 1600w"
+      sizes="(min-width: 768px) 66vw, 100vw"
       alt=""
       fetchPriority="high"
       className="absolute left-0 right-0 top-0 -z-20 h-64 w-full object-cover object-[50%_30%] md:left-auto md:bottom-0 md:h-full md:w-2/3"

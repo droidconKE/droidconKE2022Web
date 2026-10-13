@@ -47,12 +47,12 @@ const Session: NextPage<SessionPageProp> = ({
   return (
     <>
       <Head>
-        <meta name="twitter:image" content={image} />
-        <meta property="og:image" content={image} />
+        <meta key="twitter:image" name="twitter:image" content={image} />
+        <meta key="og:image" property="og:image" content={image} />
         {fullUrl && (
           <>
-            <meta property="og:url" content={fullUrl} />
-            <meta name="twitter:url" content={fullUrl} />
+            <meta key="og:url" property="og:url" content={fullUrl} />
+            <meta key="twitter:url" name="twitter:url" content={fullUrl} />
           </>
         )}
       </Head>

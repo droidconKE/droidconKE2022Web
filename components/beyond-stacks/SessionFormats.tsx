@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { SectionTitle } from './SectionHeader'
 
 const formats = [
@@ -56,13 +57,19 @@ export const SessionFormats = () => (
             key={title}
             className="flex items-start gap-4 rounded-3xl bg-white/10 p-5 md:gap-7 md:pl-9 md:pr-8 md:pt-6 md:pb-8"
           >
-            <img
-              src={icon.src}
-              alt=""
-              width={icon.width}
-              height={icon.height}
-              className="h-[74px] w-16 shrink-0 object-scale-down [zoom:0.5] md:[zoom:1]"
-            />
+            {/* Every icon at half its own width below md, so the set keeps its
+                proportions, in a box the size of the largest so the titles
+                line up. A width rather than zoom, which Firefox lacks below 126. */}
+            <span className="flex h-[37px] w-8 shrink-0 items-center justify-center md:h-[74px] md:w-16">
+              <img
+                src={icon.src}
+                alt=""
+                width={icon.width}
+                height={icon.height}
+                style={{ '--icon-w': `${icon.width}px` } as CSSProperties}
+                className="w-[calc(var(--icon-w)/2)] md:w-[var(--icon-w)]"
+              />
+            </span>
             <div className="md:max-w-[21rem]">
               <h3 className="text-accent text-2xl">{title}</h3>
               <p className="mt-1 md:mt-3.5 text-white dark:text-white text-sm md:text-base leading-snug md:leading-relaxed">
