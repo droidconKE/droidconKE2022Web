@@ -7,6 +7,32 @@ import { PastEventsDropdown } from './PastEventsDropdown'
 import { TICKETS_LINK } from '../../../constant/constants'
 import useComponentVisible from '../../../hooks/useComponentVisible'
 
+// Where the full link row, ticket button and theme toggle fit on one line:
+// about 1,250px for the five links shown before the event, and about 1,420px
+// once Sessions and Speakers join (with the links' padding trimmed until
+// 2xl). Below that the header keeps the menu. Tailwind needs whole class
+// names, hence a full set per breakpoint. 1440 is an arbitrary variant, not a
+// theme screen: `container` sizes itself from the screens list.
+const DESKTOP = {
+  short: {
+    nav: 'xl:flex-nowrap',
+    right: 'xl:order-last',
+    burger: 'xl:hidden',
+    content: 'xl:flex xl:items-center xl:w-auto xl:pt-0 xl:pb-0',
+    inner: 'xl:w-auto xl:flex',
+    list: 'xl:flex xl:pt-0 xl:[&>li>a]:px-3 xl:[&>li]:whitespace-nowrap',
+  },
+  full: {
+    nav: 'min-[1440px]:flex-nowrap',
+    right: 'min-[1440px]:order-last',
+    burger: 'min-[1440px]:hidden',
+    content:
+      'min-[1440px]:flex min-[1440px]:items-center min-[1440px]:w-auto min-[1440px]:pt-0 min-[1440px]:pb-0',
+    inner: 'min-[1440px]:w-auto min-[1440px]:flex',
+    list: 'min-[1440px]:flex min-[1440px]:pt-0 min-[1440px]:[&>li>a]:px-2 2xl:[&>li>a]:px-3 min-[1440px]:[&>li]:whitespace-nowrap',
+  },
+}
+
 export const NavBar = () => {
   const { isDarkTheme, isEventReady } = useContext(ThemeContext)
 
@@ -34,14 +60,12 @@ export const NavBar = () => {
     }
   }, [setNavVisible])
 
-  // The full link row, ticket button and theme toggle need 1440px side by side;
-  // below that they overflowed off-screen, so the header uses the menu until
-  // then. Not a theme screen on purpose: `container` sizes itself from the
-  // screens list, and a 1440 screen would widen every page container.
+  const desktop = isEventReady ? DESKTOP.full : DESKTOP.short
+
   return (
     <nav
       ref={ref}
-      className="flex items-center justify-between flex-wrap min-[1440px]:flex-nowrap nav-bg min-h-[var(--nav-h)] px-3 py-2 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600"
+      className={`flex items-center justify-between flex-wrap ${desktop.nav} nav-bg min-h-[var(--nav-h)] px-3 py-2 md:px-5 fixed w-full z-10 top-0 border-b border-gray-200 dark:border-gray-600`}
     >
       <div className="flex items-center flex-shrink-0 text-white mr-4">
         <Link href="/">
@@ -60,9 +84,9 @@ export const NavBar = () => {
           )}
         </Link>
       </div>
-      <div className="flex items-center min-[1440px]:order-last">
+      <div className={`flex items-center ${desktop.right}`}>
         <ToggleTheme />
-        <div className="ml-2 md:ml-3 block min-[1440px]:hidden">
+        <div className={`ml-2 md:ml-3 block ${desktop.burger}`}>
           <button
             type="button"
             id="nav-toggle"
@@ -85,16 +109,18 @@ export const NavBar = () => {
       </div>
       <div
         id="nav-content"
-        className={`w-full flex-grow min-[1440px]:flex min-[1440px]:items-center min-[1440px]:w-auto pt-4 pb-4 min-[1440px]:pt-0 min-[1440px]:pb-0 md:px-5 ${
+        className={`w-full flex-grow pt-4 pb-4 md:px-5 ${desktop.content} ${
           navVisible ? '' : 'hidden'
         }`}
       >
         <div
-          className={`w-full min-[1440px]:w-auto flex-grow min-[1440px]:flex ${
+          className={`w-full flex-grow ${desktop.inner} ${
             navVisible ? 'bg-white dark:bg-dark' : ''
           } ${isEventReady ? 'md:w-8/12' : 'md:w-7/12'}`}
         >
-          <ul className="list-reset min-[1440px]:flex justify-end text-base flex-1 items-center pt-2 min-[1440px]:pt-0 space-y-2 md:space-y-0 min-[1440px]:[&>li>a]:px-3">
+          <ul
+            className={`list-reset justify-end text-base flex-1 items-center pt-2 space-y-2 md:space-y-0 ${desktop.list}`}
+          >
             <li className="black text-xl">
               <Link
                 href="/"

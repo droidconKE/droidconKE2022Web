@@ -12,8 +12,14 @@ const About = () => {
     <section className="s-container ">
       <div className="flex flex-col md:flex-row w-full rounded-3xl overflow-hidden shadow-xl">
         {/* Left Column (Blue) */}
-        <div className="w-full md:w-[55%] bg-primary p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-          <h2 className="text-accent text-5xl md:text-7xl font-display leading-none mb-8">
+        <div className="w-full md:w-[55%] bg-primary p-8 md:p-10 lg:p-12 flex flex-col justify-center [container-type:inline-size]">
+          {/* "DroidconKe" is one unbreakable word, 5.97px wide per pixel of
+              font size. Below md the card leaves width - 96px for it: 36px
+              fits from 311, 48px from 390. From md the column is a size
+              container and the heading is its text box (100cqw) over 6,
+              capped at the design's 72px: never clipped, where 72px was from
+              768 to about 1270. */}
+          <h2 className="text-accent text-4xl min-[390px]:text-5xl md:text-[clamp(1.875rem,calc(100cqw/6),4.5rem)] font-display leading-none mb-8">
             About
             <br />
             DroidconKe
@@ -34,14 +40,27 @@ const About = () => {
           {statsBoxes.map((box, index) => (
             <div
               key={box.value}
-              className={`p-6 md:p-8 lg:p-10 flex flex-col justify-center ${
+              className={`p-6 flex flex-col justify-center [container-type:inline-size] ${
                 index < 2 ? 'border-b border-primary' : ''
               }`}
             >
-              <div className="text-primary text-3xl md:text-5xl lg:text-6xl font-display mb-2">
+              {/* "3,000+" is 3.6px wide per pixel of font size, and a cell's
+                  text box is 82px at md and 197px at xl, so the fixed sizes
+                  ran past the card even on desktop. Each cell is a size
+                  container and its figure takes the size the widest one fits
+                  at, capped at the design's step for that breakpoint. The
+                  padding stays 24px throughout: at 40px the figures sat well
+                  under the design size, and at md under the 20px floor. */}
+              <div className="text-primary text-[clamp(1.25rem,calc(100cqw/3.6),1.875rem)] md:text-[clamp(1.25rem,calc(100cqw/3.6),3rem)] lg:text-[clamp(1.25rem,calc(100cqw/3.6),3.75rem)] font-display mb-2">
                 {box.value}
               </div>
-              <div className="text-primary text-[10px] md:text-xs uppercase">
+              {/* Two lines kept for every label from md, so the figures in a
+                  row share a baseline whichever labels wrap. */}
+              {/* Two lines reserved at every size (15px lines on phones, 16px from
+                  md), so a label that wraps beside one that does not cannot
+                  push the figures in a row out of level; at 360 exactly one
+                  label per row wraps. */}
+              <div className="text-primary text-[10px] md:text-xs min-h-[1.875rem] md:min-h-[2rem] uppercase">
                 {box.label}
               </div>
             </div>

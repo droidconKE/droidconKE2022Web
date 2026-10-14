@@ -36,8 +36,8 @@ export const Gallery = () => {
           <div className="w-6 md:w-8 h-px bg-white mr-3" />
           Past droidcon events
         </div>
-        {/* Sized to always fit on one line up to extra large screens */}
-        <h2 className="text-accent text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px] leading-tight font-display whitespace-nowrap">
+        {/* One line from sm up; a phone narrower than the line lets it wrap. */}
+        <h2 className="text-accent text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px] leading-tight font-display sm:whitespace-nowrap">
           Past droidcon events
         </h2>
       </div>

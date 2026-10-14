@@ -90,8 +90,11 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                       { value: '6000+', label: 'Social Media Reach' },
                       { value: '2', label: 'Day Event' },
                     ].map((stat) => (
-                      <div key={stat.label}>
-                        <p className="font-display leading-none text-4xl md:text-5xl text-primary dark:text-primary">
+                      <div
+                        key={stat.label}
+                        className="[container-type:inline-size]"
+                      >
+                        <p className="font-display leading-none text-[clamp(1.25rem,calc(100cqw/3.81),3rem)] text-primary dark:text-primary">
                           {stat.value}
                         </p>
                         <p className="mt-1.5 text-[11px] md:text-xs font-semibold text-primary dark:text-primary">

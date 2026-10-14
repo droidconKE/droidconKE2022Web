@@ -67,7 +67,7 @@ export const SessionGridCard = ({
                           ? '/images/all-2025.png'
                           : '/images/all.png')
                   const cardClass =
-                    'group relative w-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 flex flex-col'
+                    'group relative w-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 flex flex-col flex-1'
                   const inner = (
                     <>
                       {/* halftone dots at the top corners */}
@@ -155,7 +155,7 @@ export const SessionGridCard = ({
                       {schedule.is_serviceSession ? (
                         <div className={cardClass}>{inner}</div>
                       ) : (
-                        <Link href={href} className={`${cardClass} block`}>
+                        <Link href={href} className={cardClass}>
                           {inner}
                         </Link>
                       )}

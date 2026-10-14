@@ -32,7 +32,7 @@ export const ConfHighlights = () => {
   return (
     <section className="s-container my-12 md:my-24">
       {/* Header */}
-      <div className="flex items-center justify-between gap-4 mb-8 md:mb-10">
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-8 md:mb-10">
         <h2 className="text-primary dark:text-primary-dark text-4xl md:text-6xl font-display">
           Conf. Highlights
         </h2>
