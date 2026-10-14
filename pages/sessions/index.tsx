@@ -75,29 +75,33 @@ const Sessions: NextPage<SessionProps> = ({
               key={key}
               type="button"
               onClick={() => setActiveTab(i)}
-              className={`shrink-0 rounded-full px-6 py-3 text-left transition-colors ${
+              className={`shrink-0 rounded-full px-6 py-3 flex items-center gap-2 transition-colors ${
                 activeTab === i
                   ? 'bg-primary text-white'
                   : 'bg-blue-50 dark:bg-darker-dark text-black dark:text-white-dark hover:bg-blue-100 dark:hover:bg-white/5'
               }`}
             >
-              <span className="font-bold block leading-tight">
-                {timeDay(key)}
+              {/* Date, day and count read as one line — stacked, the date sat
+                  on a line of its own and the pill was twice as tall as the
+                  row of them needed to be. */}
+              <span className="font-bold leading-none">{timeDay(key)}</span>
+              {/* The dimming belongs to the "Day N" text alone. On the whole
+                  row it also dimmed the count and the surface behind it,
+                  which is what left the number at 2.1:1. */}
+              <span className="text-px-13 font-normal leading-none opacity-70">
+                Day {i + 1}
               </span>
               {/* Session count for this day — the same length the card grids
                   read, so pills, grids and My-Sessions filtering always agree. */}
-              <span className="text-px-13 font-normal flex items-center gap-2">
-                <span className="opacity-70">Day {i + 1}</span>
-                <span
-                  aria-label={sessionCountLabel(schedules[key]?.length ?? 0)}
-                  className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
-                    activeTab === i
-                      ? 'bg-white/20 text-white'
-                      : 'bg-primary/10 text-primary dark:bg-white/10 dark:text-white-dark'
-                  }`}
-                >
-                  {schedules[key]?.length ?? 0}
-                </span>
+              <span
+                aria-label={sessionCountLabel(schedules[key]?.length ?? 0)}
+                className={`rounded-full px-2 py-px text-xs font-semibold tabular-nums ${
+                  activeTab === i
+                    ? 'bg-white/20 text-white'
+                    : 'bg-primary/10 text-primary dark:bg-white/10 dark:text-white-dark'
+                }`}
+              >
+                {schedules[key]?.length ?? 0}
               </span>
             </button>
           ))}
