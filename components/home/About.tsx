@@ -56,7 +56,11 @@ const About = () => {
               </div>
               {/* Two lines kept for every label from md, so the figures in a
                   row share a baseline whichever labels wrap. */}
-              <div className="text-primary text-[10px] md:text-xs md:min-h-[2rem] uppercase">
+              {/* Two lines reserved at every size (15px lines on phones, 16px from
+                  md), so a label that wraps beside one that does not cannot
+                  push the figures in a row out of level; at 360 exactly one
+                  label per row wraps. */}
+              <div className="text-primary text-[10px] md:text-xs min-h-[1.875rem] md:min-h-[2rem] uppercase">
                 {box.label}
               </div>
             </div>
