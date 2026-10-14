@@ -22,7 +22,12 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       {/* Keyed so a page's own next/head replaces any of them. Tags in
           _document cannot be replaced, and next/head never dedupes
-          property, so the homepage card would otherwise win a share. */}
+          property, so the homepage card would otherwise win a share.
+
+          Open Graph only: X reads og:title, og:description, og:url and
+          og:image when the twitter: twin is absent, so a page that wants
+          its own card overrides four tags instead of nine. The card type
+          and the account stay in _document, where nothing overrides them. */}
       <Head>
         <title>{TITLE}</title>
         <meta key="description" name="description" content={DESCRIPTION} />

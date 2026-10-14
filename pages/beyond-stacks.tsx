@@ -9,10 +9,18 @@ import { SessionFormats } from '../components/beyond-stacks/SessionFormats'
 import { CommunityStrands } from '../components/beyond-stacks/CommunityStrands'
 import { Faq } from '../components/beyond-stacks/Faq'
 
+// The name and the page's own line about what it is, which is what a tab,
+// a search result and a shared card all show before anything else. The
+// description picks up from there rather than repeating the line.
 const TITLE = 'Beyond Stacks: Engineering goes beyond mobile'
 const DESCRIPTION =
   'Build beyond your usual stack, explore new technologies, and connect with engineers solving problems across the wider ecosystem.'
 const URL = 'https://droidcon.co.ke/beyond-stacks'
+
+// Only what differs from the layout. Its keys carry everything else —
+// among them og:image, deliberately: every page shares with the branded
+// cover, which has the logo, the dates and the venue on it. A photograph
+// has none of those, and a 3:2 one is cropped by the 1.91:1 card.
 
 const BeyondStacks: NextPage = () => (
   <>
