@@ -41,11 +41,11 @@ export const Value = () => (
       </div>
     </div>
     <div className="w-full flex flex-wrap md:w-8/12 mt-8 mb-6 md:mb-0 justify-center md:mt-0 px-2 md:px-0">
-      <div className="w-full grid grid-cols-3 gap-x-2 gap-y-4 md:gap-x-2 md:gap-y-6">
+      <div className="w-full grid grid-cols-2 min-[360px]:grid-cols-3 gap-x-2 gap-y-4 md:gap-x-2 md:gap-y-6">
         {values.map((value) => (
           <div
             key={value.label}
-            className={`flex items-center justify-center rounded-2xl px-6 md:px-8 py-4 md:py-5 text-center ${value.bg}`}
+            className={`flex items-center justify-center rounded-2xl px-4 min-[360px]:px-6 md:px-8 py-4 md:py-5 text-center ${value.bg}`}
           >
             <p
               className={`text-sm md:text-2xl font-semibold leading-tight md:leading-tight ${value.text}`}

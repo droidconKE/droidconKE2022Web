@@ -13,7 +13,7 @@ const About = () => {
       <div className="flex flex-col md:flex-row w-full rounded-3xl overflow-hidden shadow-xl">
         {/* Left Column (Blue) */}
         <div className="w-full md:w-[55%] bg-primary p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-          <h2 className="text-accent text-5xl md:text-7xl font-display leading-none mb-8">
+          <h2 className="text-accent text-4xl min-[390px]:text-5xl md:text-7xl font-display leading-none mb-8">
             About
             <br />
             DroidconKe
