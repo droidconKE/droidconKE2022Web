@@ -13,11 +13,35 @@ const formatPill =
 const recordingPill =
   'bg-primary dark:bg-primary text-white dark:text-white text-xs font-semibold px-3 py-1 rounded-full'
 
+// The artwork a session falls back to when it has no banner of its own, one
+// entry per edition. Next year is a file in public/images and a line here —
+// the chain of `year ===` checks this replaces had already drifted apart:
+// service sessions tested 25 where every other session tested 26, so in the
+// same year the two kinds of session fell back to different posters.
+const FALLBACK_ARTWORK: Record<number, string> = {
+  24: '/images/all-new.png',
+  25: '/images/all-2025.png',
+  26: '/images/empty-state-2026.jpg',
+}
+const EARLIEST_ARTWORK = '/images/all.png'
+
+// TODO: remove after 2024 — the one session with artwork of its own.
+const PANEL_TITLE = 'Building And Scaling Tech'
+const PANEL_ARTWORK = '/images/panel.png'
+
+const artworkFor = (session: Session, year: number) =>
+  // The API's absent value is "", which ?? lets through — only a falsy check
+  // reaches the default artwork.
+  session.session_image ||
+  (session.is_serviceSession && session.title.includes(PANEL_TITLE)
+    ? PANEL_ARTWORK
+    : (FALLBACK_ARTWORK[year] ?? EARLIEST_ARTWORK))
+
 export const SessionGridCard = ({
   schedules,
   activeTab,
   from,
-  year = 25,
+  year = 26,
   showStar = false,
   eventVenue,
   eventSlug,
@@ -48,24 +72,7 @@ export const SessionGridCard = ({
               <div className="lg:grid gap-5 grid-cols-3" key={key}>
                 {schedules[key]?.map((schedule: Session) => {
                   const href = sessionHref(schedule.slug, from, eventSlug)
-                  const imgSrc =
-                    // The API's absent value is "", which ?? lets through — only a
-                    // falsy check reaches the default artwork.
-                    schedule.session_image ||
-                    (schedule.is_serviceSession
-                      ? // TODO: remove after 2024
-                        schedule.title.includes('Building And Scaling Tech')
-                        ? '/images/panel.png'
-                        : year === 24
-                          ? '/images/all-new.png'
-                          : year === 25
-                            ? '/images/all-2025.png'
-                            : '/images/all.png'
-                      : year === 24
-                        ? '/images/all-new.png'
-                        : year === 26
-                          ? '/images/all-2025.png'
-                          : '/images/all.png')
+                  const imgSrc = artworkFor(schedule, year)
                   const cardClass =
                     'group relative w-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 flex flex-col flex-1'
                   const inner = (
@@ -74,7 +81,7 @@ export const SessionGridCard = ({
                       <span className="session-dots session-dots-l pointer-events-none absolute top-0 left-0 w-24 h-24 z-10" />
                       <span className="session-dots session-dots-r pointer-events-none absolute top-0 right-0 w-24 h-24 z-10" />
                       <img
-                        className="w-full h-44 object-cover"
+                        className="w-full aspect-video object-cover"
                         src={imgSrc}
                         alt={schedule.title}
                       />
