@@ -13,35 +13,46 @@ const formatPill =
 const recordingPill =
   'bg-primary dark:bg-primary text-white dark:text-white text-xs font-semibold px-3 py-1 rounded-full'
 
-// The artwork a session falls back to when it has no banner of its own, one
-// entry per edition. Next year is a file in public/images and a line here —
-// the chain of `year ===` checks this replaces had already drifted apart:
+// One entry per edition: the poster a session falls back to when it has none
+// of its own, and the shape that edition's artwork is drawn in. Up to 2025 the
+// artwork was a wide banner carrying its title and its speaker across the full
+// width, so the card shows a strip of it; 2026's is square, and a strip of a
+// square cuts the speaker's name off the bottom. Next edition is a file in
+// public/images, a line here, and CURRENT_EDITION below.
+//
+// The chain of `year ===` checks this replaces had already drifted apart:
 // service sessions tested 25 where every other session tested 26, so in the
 // same year the two kinds of session fell back to different posters.
-const FALLBACK_ARTWORK: Record<number, string> = {
-  24: '/images/all-new.png',
-  25: '/images/all-2025.png',
-  26: '/images/empty-state-2026.jpg',
+const EDITIONS: Record<number, { artwork: string; banner: string }> = {
+  24: { artwork: '/images/all-new.png', banner: 'h-44' },
+  25: { artwork: '/images/all-2025.png', banner: 'h-44' },
+  26: { artwork: '/images/empty-state-2026.jpg', banner: 'aspect-video' },
 }
-const EARLIEST_ARTWORK = '/images/all.png'
+// 2022 and 2023, whose posters are 1717x693 and wider still. A 16:9 box crops
+// their sides, and that is where the title and the speaker's name end.
+const EARLIEST_EDITION = { artwork: '/images/all.png', banner: 'h-44' }
+
+const CURRENT_EDITION = 26
+
+const editionOf = (year: number) => EDITIONS[year] ?? EARLIEST_EDITION
 
 // TODO: remove after 2024 — the one session with artwork of its own.
 const PANEL_TITLE = 'Building And Scaling Tech'
 const PANEL_ARTWORK = '/images/panel.png'
 
-const artworkFor = (session: Session, year: number) =>
+const artworkFor = (session: Session, edition: { artwork: string }) =>
   // The API's absent value is "", which ?? lets through — only a falsy check
   // reaches the default artwork.
   session.session_image ||
   (session.is_serviceSession && session.title.includes(PANEL_TITLE)
     ? PANEL_ARTWORK
-    : (FALLBACK_ARTWORK[year] ?? EARLIEST_ARTWORK))
+    : edition.artwork)
 
 export const SessionGridCard = ({
   schedules,
   activeTab,
   from,
-  year = 26,
+  year = CURRENT_EDITION,
   showStar = false,
   eventVenue,
   eventSlug,
@@ -62,6 +73,8 @@ export const SessionGridCard = ({
   // eslint-disable-next-line react/require-default-props
   feedbackOpen?: boolean
 }) => {
+  const edition = editionOf(year)
+
   return (
     <>
       <div>
@@ -72,7 +85,7 @@ export const SessionGridCard = ({
               <div className="lg:grid gap-5 grid-cols-3" key={key}>
                 {schedules[key]?.map((schedule: Session) => {
                   const href = sessionHref(schedule.slug, from, eventSlug)
-                  const imgSrc = artworkFor(schedule, year)
+                  const imgSrc = artworkFor(schedule, edition)
                   const cardClass =
                     'group relative w-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200 flex flex-col flex-1'
                   const inner = (
@@ -81,7 +94,7 @@ export const SessionGridCard = ({
                       <span className="session-dots session-dots-l pointer-events-none absolute top-0 left-0 w-24 h-24 z-10" />
                       <span className="session-dots session-dots-r pointer-events-none absolute top-0 right-0 w-24 h-24 z-10" />
                       <img
-                        className="w-full aspect-video object-cover"
+                        className={`w-full ${edition.banner} object-cover`}
                         src={imgSrc}
                         alt={schedule.title}
                       />
