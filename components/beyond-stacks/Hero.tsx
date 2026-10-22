@@ -40,7 +40,7 @@ export const Hero = () => (
       </p>
       <div className="mt-8 md:mt-14 flex">
         <TicketLink className="text-sm px-6 py-3 md:py-4">
-          Get Unconference Ticket
+          Get Beyond Stacks Ticket
         </TicketLink>
       </div>
     </div>
