@@ -42,7 +42,7 @@ export const SectionHeader = ({
       variant={ctaVariant}
       className="text-xs md:text-sm px-6 py-2.5 md:py-4"
     >
-      Get Unconference Ticket
+      Get Beyond Stacks Ticket
     </TicketLink>
   </div>
 )

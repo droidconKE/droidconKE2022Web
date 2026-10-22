@@ -1,3 +1,4 @@
+import { BEYOND_STACKS_TICKETS_LEFT } from '../../constant/constants'
 import { SectionHeader } from './SectionHeader'
 import { TicketLink } from './TicketLink'
 
@@ -5,17 +6,19 @@ const passes = [
   {
     name: 'Beyond Stacks Side Event Pass Only',
     price: 'KES 7,500',
-    description: 'Full 2-day access to The Unconference Track only',
-    cta: 'Get Unconference Pass only',
+    description: 'Full 2-day access to Beyond Stacks only',
+    cta: 'Get Beyond Stacks Pass only',
     bestValue: false,
+    ticketsLeft: BEYOND_STACKS_TICKETS_LEFT,
   },
   {
     name: 'Full Access Pass',
     price: 'KES 10,000',
     description:
-      'Full 2-day access to Unconference + Droidcon Kenya + Fluttercon Kenya',
+      'Full 2-day access to Beyond Stacks + Droidcon Kenya + Fluttercon Kenya',
     cta: 'Get Full Pass',
     bestValue: true,
+    ticketsLeft: null,
   },
 ]
 
@@ -39,8 +42,8 @@ export const Pricing = () => (
               <span className="absolute right-0 top-1/2 h-10 w-10 translate-x-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-dark" />
             </div>
           )}
-          <div className="grid gap-4 px-6 py-8 md:grid-cols-12 md:gap-8 md:p-10">
-            <div className="md:col-span-4">
+          <div className="grid gap-4 px-6 py-8 md:p-10 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-4">
               <h3 className="text-white text-2xl leading-tight">{pass.name}</h3>
               {pass.bestValue && (
                 <p className="mt-3 inline-flex items-center gap-2.5 rounded-full bg-[#FF57E9] pl-4 pr-6 py-1.5 text-sm text-black dark:text-black">
@@ -48,11 +51,29 @@ export const Pricing = () => (
                   Best Value
                 </p>
               )}
+              {/* The seat count, in the Best Value badge's shape but white, so
+                  it reads as a fact rather than a second recommendation; the
+                  brand blue is 5.6:1 on white. */}
+              {pass.ticketsLeft !== null && (
+                <p className="mt-3 inline-flex items-center gap-2.5 rounded-full bg-white pl-4 pr-6 py-1.5 text-sm text-primary dark:text-primary">
+                  <i aria-hidden="true" className="fa fa-ticket" />
+                  {/* One text run: as flex items, the gap spaced the words
+                      apart and "tickets available" wrapped on its own. On
+                      one line from lg, where the column is 7px short of it. */}
+                  <span className="lg:whitespace-nowrap">
+                    Only{' '}
+                    <span className="font-semibold tabular-nums">
+                      {pass.ticketsLeft}
+                    </span>{' '}
+                    tickets available
+                  </span>
+                </p>
+              )}
             </div>
-            <p className="md:col-span-3 text-white dark:text-white text-2xl">
+            <p className="lg:col-span-3 text-white dark:text-white text-2xl">
               {pass.price}
             </p>
-            <div className="md:col-span-5">
+            <div className="lg:col-span-5">
               <p className="text-white dark:text-white text-base md:text-lg leading-snug">
                 {pass.description}
               </p>

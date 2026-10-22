@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'Is the schedule fixed or on-the-day?',
     answer:
-      'Unconference sessions are pre-curated by community leads to maintain high technical signal, unlike open-mic unconferences.',
+      'Beyond Stacks sessions are pre-curated by community leads to maintain high technical signal, unlike an open-mic format.',
   },
   {
     question: 'Will session recordings be available?',

@@ -17,8 +17,8 @@ type TicketLinkProps = {
   className?: string
 }
 
-// Every call to action on the page sells a ticket. The unconference pass has no
-// checkout of its own yet, so all of them share the conference ticket link.
+// Every call to action on the page sells a ticket. The Beyond Stacks pass has
+// no checkout of its own yet, so all of them share the conference ticket link.
 export const TicketLink = ({
   children,
   variant = 'accent',

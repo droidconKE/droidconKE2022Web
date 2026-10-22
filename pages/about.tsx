@@ -68,7 +68,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 <br />
                 <br />
                 In 2026, we build on it with a dedicated Droidcon Kenya track, a
-                shared unconference floor, and content curated for developers
+                shared Beyond Stacks floor, and content curated for developers
                 who ship.
               </p>
             </div>
@@ -148,7 +148,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
               A dedicated Droidcon Kenya track
             </li>
             <li className="text-white dark:text-white text-sm md:text-base">
-              An unconference track, shared across both conferences
+              Beyond Stacks, shared across both conferences
             </li>
             <li className="text-white dark:text-white text-sm md:text-base">
               Panel discussions with engineering leaders
@@ -178,7 +178,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 <span>1. Beyond the Sessions</span>
               </h4>
               <p className="mt-3 text-white dark:text-white text-sm md:text-base leading-relaxed">
-                The unconference track, shared with Fluttercon Kenya, opens the
+                Beyond Stacks, shared with Fluttercon Kenya, opens the
                 floor to attendee-driven discussions and lightning talks, with
                 agentic engineering as the anchor theme. Panels bring
                 engineering leaders together on the trends shaping the Android
