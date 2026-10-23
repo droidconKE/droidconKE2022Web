@@ -4,7 +4,7 @@ import { agendaTabForDate, objIsEmpty, isClient } from '../utils/helpers'
 import { eatCalendarDate } from '../utils/calendar'
 import { readStarred, STARRED_EVENT } from './useStarredSessions'
 
-const ACTIVE_VIEW = 'droidcon_view'
+export const ACTIVE_VIEW = 'droidcon_view'
 const MY_SESSIONS = 'droidcon_my_sessions'
 
 export const useSession = ({ allSchedules }: { allSchedules: Schedule }) => {
