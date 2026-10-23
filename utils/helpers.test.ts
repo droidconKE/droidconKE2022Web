@@ -4,10 +4,12 @@ import {
   feedbackWindowState,
   getTwitterUsername,
   internalPath,
+  isCurrentEventSlug,
   agendaTabForDate,
   sessionShareUrl,
 } from './helpers'
 import type { Event } from '../types/types'
+import { BEYOND_STACKS_EVENT_SLUG } from '../constant/constants'
 
 const event = (fields: Partial<Event>) => fields as Event
 
@@ -196,5 +198,19 @@ describe('agendaTabForDate', () => {
         '2026-11-06'
       )
     ).toBe(1)
+  })
+})
+
+describe('isCurrentEventSlug', () => {
+  it('counts the conference and Beyond Stacks as being run now', () => {
+    expect(isCurrentEventSlug()).toBe(true)
+    expect(isCurrentEventSlug(BEYOND_STACKS_EVENT_SLUG)).toBe(true)
+    expect(isCurrentEventSlug(BEYOND_STACKS_EVENT_SLUG.toUpperCase())).toBe(
+      true
+    )
+  })
+
+  it('does not count a past event', () => {
+    expect(isCurrentEventSlug('droidconke-2025-898')).toBe(false)
   })
 })
