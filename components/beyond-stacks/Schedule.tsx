@@ -54,8 +54,9 @@ export const Schedule = ({
 
   return (
     <section
+      id="sessions"
       aria-labelledby="schedule-title"
-      className="s-container my-12 sm:my-10"
+      className="s-container my-12 sm:my-10 scroll-mt-[var(--nav-h)]"
     >
       <div className="flex flex-wrap items-end justify-between gap-4 mb-8 md:mb-12">
         <SectionTitle id="schedule-title">Sessions</SectionTitle>
