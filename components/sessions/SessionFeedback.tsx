@@ -66,11 +66,40 @@ export const SessionFeedback = ({
 
   useEffect(() => {
     setMounted(true)
+    // Pin the page. overflow:hidden alone still lets the document scroll,
+    // which is how the form was sliding the page behind the modal.
+    const { scrollY } = window
+    const previous = {
+      bodyOverflow: document.body.style.overflow,
+      htmlOverflow: document.documentElement.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      right: document.body.style.right,
+      width: document.body.style.width,
+    }
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
+    document.body.style.width = '100%'
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeDialog()
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = previous.bodyOverflow
+      document.documentElement.style.overflow = previous.htmlOverflow
+      document.body.style.position = previous.position
+      document.body.style.top = previous.top
+      document.body.style.left = previous.left
+      document.body.style.right = previous.right
+      document.body.style.width = previous.width
+      window.scrollTo(0, scrollY)
+      window.removeEventListener('keydown', onKey)
+    }
   }, [closeDialog])
 
   useEffect(() => {
@@ -238,263 +267,269 @@ export const SessionFeedback = ({
     : 'Your words (optional)'
 
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <button
-        type="button"
-        aria-label="Close"
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={() => closeDialog()}
-      />
-      <div className="relative z-10 w-full max-w-3xl rounded-4xl overflow-hidden bg-white dark:bg-darker-dark shadow-2xl flex flex-col md:flex-row">
+    <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain">
+      <div className="flex min-h-full justify-center p-4">
         <button
           type="button"
-          aria-label="Close feedback"
-          className="absolute top-4 right-4 z-20 text-black/60 dark:text-white/60 hover:opacity-100"
+          aria-label="Close"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm"
           onClick={() => closeDialog()}
-        >
-          <i className="fa fa-times text-xl" />
-        </button>
+        />
+        {/* my-auto centers a short form. A tall one keeps a reachable top, so
+          the overlay scrolls the dialog instead of the page behind it. */}
+        <div className="relative z-10 my-auto w-full max-w-3xl rounded-4xl overflow-hidden bg-white dark:bg-darker-dark shadow-2xl flex flex-col md:flex-row">
+          <button
+            type="button"
+            aria-label="Close feedback"
+            className="absolute top-4 right-4 z-20 text-black/60 dark:text-white/60 hover:opacity-100"
+            onClick={() => closeDialog()}
+          >
+            <i className="fa fa-times text-xl" />
+          </button>
 
-        {/* Branded panel */}
-        <div className="relative hidden md:flex md:w-2/5 bg-accent p-8 flex-col justify-end overflow-hidden">
-          <span className="pointer-events-none absolute inset-0 mix-blend-overlay [background-image:radial-gradient(rgba(255,255,255,0.4)_1.4px,transparent_1.6px)] [background-size:10px_10px]" />
-          <div className="relative z-10">
-            <p className="text-primary dark:text-primary font-bold uppercase tracking-wide text-sm mb-2">
+          {/* Branded panel */}
+          <div className="relative hidden md:flex md:w-2/5 bg-accent p-8 flex-col justify-end overflow-hidden">
+            <span className="pointer-events-none absolute inset-0 mix-blend-overlay [background-image:radial-gradient(rgba(255,255,255,0.4)_1.4px,transparent_1.6px)] [background-size:10px_10px]" />
+            <div className="relative z-10">
+              <p className="text-primary dark:text-primary font-bold uppercase tracking-wide text-sm mb-2">
+                ( Feedback )
+              </p>
+              <h2 className="font-display text-black dark:text-black text-4xl leading-none">
+                {editing ? 'Edit your answer' : `${kind} Feedback`}
+              </h2>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div className="w-full md:w-3/5 p-6 md:p-8">
+            <p className="md:hidden text-primary dark:text-primary font-bold uppercase tracking-wide text-sm mb-1">
               ( Feedback )
             </p>
-            <h2 className="font-display text-black dark:text-black text-4xl leading-none">
+            <h3 className="md:hidden font-display text-black dark:text-white-dark text-3xl mb-2">
               {editing ? 'Edit your answer' : `${kind} Feedback`}
-            </h2>
-          </div>
-        </div>
+            </h3>
 
-        {/* Form */}
-        <div className="w-full md:w-3/5 p-6 md:p-8">
-          <p className="md:hidden text-primary dark:text-primary font-bold uppercase tracking-wide text-sm mb-1">
-            ( Feedback )
-          </p>
-          <h3 className="md:hidden font-display text-black dark:text-white-dark text-3xl mb-2">
-            {editing ? 'Edit your answer' : `${kind} Feedback`}
-          </h3>
-
-          {checking ? (
-            <p className="text-sm text-light dark:text-light-dark py-8 text-center">
-              <i className="fa fa-circle-o-notch fa-spin mr-2" />
-              Checking for your earlier answer…
-            </p>
-          ) : (
-            <>
-              <p className="text-sm text-black dark:text-white-dark mb-4">
-                Kindly leave your honest feedback to help us make it even
-                better. Cheers :)
+            {checking ? (
+              <p className="text-sm text-light dark:text-light-dark py-8 text-center">
+                <i className="fa fa-circle-o-notch fa-spin mr-2" />
+                Checking for your earlier answer…
               </p>
-              {editing && mine && (
-                <p className="text-xs italic text-primary dark:text-accent-dark mb-4">
-                  You can change or remove this for another{' '}
-                  {mine.editable_for_minutes} minutes.
+            ) : (
+              <>
+                <p className="text-sm text-black dark:text-white-dark mb-4">
+                  Kindly leave your honest feedback to help us make it even
+                  better. Cheers :)
                 </p>
-              )}
-              {answered && (
-                <p className="text-xs italic text-light dark:text-light-dark mb-4">
-                  You already answered from this browser — sending again
-                  replaces it.
-                </p>
-              )}
-
-              <div className="w-full">
-                <p className="text-sm font-medium text-black dark:text-white-dark mb-2">
-                  Rating <span className="text-red-500">*</span>
-                </p>
-                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                {/*  @ts-ignore */}
-                <Rating
-                  initialRating={rating || undefined}
-                  emptySymbol="fa fa-star-o fa-2x"
-                  fullSymbol="fa fa-star fa-2x"
-                  className="space-x-4 flex text-secondary"
-                  onChange={(v) => {
-                    setRating(v)
-                    setErrors((prev) =>
-                      prev ? { ...prev, rating: undefined } : prev
-                    )
-                  }}
-                />
-                {!!errors?.rating?.length && (
-                  <p className="text-red-500 text-xs italic mt-1">
-                    {errors?.rating[0]}.
+                {editing && mine && (
+                  <p className="text-xs italic text-primary dark:text-accent-dark mb-4">
+                    You can change or remove this for another{' '}
+                    {mine.editable_for_minutes} minutes.
                   </p>
                 )}
-              </div>
+                {answered && (
+                  <p className="text-xs italic text-light dark:text-light-dark mb-4">
+                    You already answered from this browser — sending again
+                    replaces it.
+                  </p>
+                )}
 
-              {/* The organizer's own questions, under the stars, above the words. */}
-              {questions.length > 0 && (
-                <div className="mt-5 space-y-5">
-                  {questions.map((question) => {
-                    const key = `answers.${question.id}`
-                    const value = answers[question.id]
-                    const questionError = errors?.[key]?.[0]
-                    return (
-                      <div key={question.id}>
-                        <p className="text-sm font-medium text-black dark:text-white-dark mb-2">
-                          {question.label}{' '}
-                          {question.required && (
-                            <span className="text-red-500">*</span>
-                          )}
-                        </p>
-                        {(question.type === 'choice' ||
-                          question.type === 'scale') && (
-                          <div className="flex flex-wrap gap-2">
-                            {(question.type === 'scale'
-                              ? ['1', '2', '3', '4', '5']
-                              : (question.options ?? [])
-                            ).map((option) => (
-                              <button
-                                key={String(option)}
-                                type="button"
-                                aria-pressed={String(value) === String(option)}
-                                className={
-                                  String(value) === String(option)
-                                    ? chipOn
-                                    : chipOff
-                                }
-                                onClick={() =>
-                                  setAnswers((prev) => {
-                                    const next = { ...prev }
-                                    if (
-                                      String(prev[question.id]) ===
-                                      String(option)
-                                    ) {
-                                      delete next[question.id]
-                                    } else {
-                                      next[question.id] =
-                                        question.type === 'scale'
-                                          ? Number(option)
-                                          : option
-                                    }
-                                    return next
-                                  })
-                                }
-                              >
-                                {String(option)}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                        {question.type === 'text' && (
-                          <textarea
-                            id={`feedback-question-${question.id}`}
-                            rows={2}
-                            aria-label={question.label}
-                            className={`appearance-none block w-full rounded-2xl bg-white dark:bg-black-dark text-black dark:text-white-dark p-3 text-sm outline-none focus:ring-2 focus:ring-accent transition ${
-                              questionError
-                                ? 'border border-red-500'
-                                : 'border border-blue-100 dark:border-white/10'
-                            }`}
-                            value={String(answers[question.id] ?? '')}
-                            onChange={(e) =>
-                              setAnswers((prev) => ({
-                                ...prev,
-                                [question.id]: e.target.value,
-                              }))
-                            }
-                          />
-                        )}
-                        {questionError && (
-                          <p className="text-red-500 text-xs italic mt-1">
-                            {questionError}.
-                          </p>
-                        )}
-                      </div>
-                    )
-                  })}
+                <div className="w-full">
+                  <p className="text-sm font-medium text-black dark:text-white-dark mb-2">
+                    Rating <span className="text-red-500">*</span>
+                  </p>
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/*  @ts-ignore */}
+                  <Rating
+                    initialRating={rating || undefined}
+                    emptySymbol="fa fa-star-o fa-2x"
+                    fullSymbol="fa fa-star fa-2x"
+                    className="space-x-4 flex text-secondary"
+                    onChange={(v) => {
+                      setRating(v)
+                      setErrors((prev) =>
+                        prev ? { ...prev, rating: undefined } : prev
+                      )
+                    }}
+                  />
+                  {!!errors?.rating?.length && (
+                    <p className="text-red-500 text-xs italic mt-1">
+                      {errors?.rating[0]}.
+                    </p>
+                  )}
                 </div>
-              )}
 
-              <div className="mt-5">
-                <label
-                  htmlFor="feed-message"
-                  className="block text-sm font-medium text-black dark:text-white-dark mb-2"
-                >
-                  {wordsLabel}
-                </label>
-                <textarea
-                  id="feed-message"
-                  rows={4}
-                  placeholder="Your feedback…"
-                  className={`appearance-none block w-full rounded-2xl bg-white dark:bg-black-dark text-black dark:text-white-dark p-3 text-sm outline-none focus:ring-2 focus:ring-accent transition ${
-                    errors?.feedback
-                      ? 'border border-red-500'
-                      : 'border border-blue-100 dark:border-white/10'
-                  }`}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-                {!!errors?.feedback?.length && (
-                  <p className="text-red-500 text-xs italic mt-1">
-                    {errors?.feedback[0]}.
-                  </p>
+                {/* The organizer's own questions, under the stars, above the words. */}
+                {questions.length > 0 && (
+                  <div className="mt-5 space-y-5">
+                    {questions.map((question) => {
+                      const key = `answers.${question.id}`
+                      const value = answers[question.id]
+                      const questionError = errors?.[key]?.[0]
+                      return (
+                        <div key={question.id}>
+                          <p className="text-sm font-medium text-black dark:text-white-dark mb-2">
+                            {question.label}{' '}
+                            {question.required && (
+                              <span className="text-red-500">*</span>
+                            )}
+                          </p>
+                          {(question.type === 'choice' ||
+                            question.type === 'scale') && (
+                            <div className="flex flex-wrap gap-2">
+                              {(question.type === 'scale'
+                                ? ['1', '2', '3', '4', '5']
+                                : (question.options ?? [])
+                              ).map((option) => (
+                                <button
+                                  key={String(option)}
+                                  type="button"
+                                  aria-pressed={
+                                    String(value) === String(option)
+                                  }
+                                  className={
+                                    String(value) === String(option)
+                                      ? chipOn
+                                      : chipOff
+                                  }
+                                  onClick={() =>
+                                    setAnswers((prev) => {
+                                      const next = { ...prev }
+                                      if (
+                                        String(prev[question.id]) ===
+                                        String(option)
+                                      ) {
+                                        delete next[question.id]
+                                      } else {
+                                        next[question.id] =
+                                          question.type === 'scale'
+                                            ? Number(option)
+                                            : option
+                                      }
+                                      return next
+                                    })
+                                  }
+                                >
+                                  {String(option)}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                          {question.type === 'text' && (
+                            <textarea
+                              id={`feedback-question-${question.id}`}
+                              rows={2}
+                              aria-label={question.label}
+                              className={`appearance-none block w-full rounded-2xl bg-white dark:bg-black-dark text-black dark:text-white-dark p-3 text-sm outline-none focus:ring-2 focus:ring-accent transition ${
+                                questionError
+                                  ? 'border border-red-500'
+                                  : 'border border-blue-100 dark:border-white/10'
+                              }`}
+                              value={String(answers[question.id] ?? '')}
+                              onChange={(e) =>
+                                setAnswers((prev) => ({
+                                  ...prev,
+                                  [question.id]: e.target.value,
+                                }))
+                              }
+                            />
+                          )}
+                          {questionError && (
+                            <p className="text-red-500 text-xs italic mt-1">
+                              {questionError}.
+                            </p>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
                 )}
-              </div>
 
-              <div className="mt-4">
-                <label
-                  htmlFor="feed-name"
-                  className="block text-sm font-medium text-black dark:text-white-dark mb-1"
-                >
-                  Your name{' '}
-                  <span className="text-xs font-normal text-light dark:text-light-dark">
-                    (optional — leave blank to stay anonymous)
-                  </span>
-                </label>
-                <input
-                  id="feed-name"
-                  type="text"
-                  maxLength={120}
-                  placeholder="Anonymous"
-                  className={`appearance-none block w-full rounded-2xl bg-white dark:bg-black-dark text-black dark:text-white-dark p-3 text-sm outline-none focus:ring-2 focus:ring-accent transition ${
-                    errors?.name
-                      ? 'border border-red-500'
-                      : 'border border-blue-100 dark:border-white/10'
-                  }`}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                {!!errors?.name?.length && (
-                  <p className="text-red-500 text-xs italic mt-1">
-                    {errors?.name[0]}.
+                <div className="mt-5">
+                  <label
+                    htmlFor="feed-message"
+                    className="block text-sm font-medium text-black dark:text-white-dark mb-2"
+                  >
+                    {wordsLabel}
+                  </label>
+                  <textarea
+                    id="feed-message"
+                    rows={4}
+                    placeholder="Your feedback…"
+                    className={`appearance-none block w-full rounded-2xl bg-white dark:bg-black-dark text-black dark:text-white-dark p-3 text-sm outline-none focus:ring-2 focus:ring-accent transition ${
+                      errors?.feedback
+                        ? 'border border-red-500'
+                        : 'border border-blue-100 dark:border-white/10'
+                    }`}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                  {!!errors?.feedback?.length && (
+                    <p className="text-red-500 text-xs italic mt-1">
+                      {errors?.feedback[0]}.
+                    </p>
+                  )}
+                </div>
+
+                <div className="mt-4">
+                  <label
+                    htmlFor="feed-name"
+                    className="block text-sm font-medium text-black dark:text-white-dark mb-1"
+                  >
+                    Your name{' '}
+                    <span className="text-xs font-normal text-light dark:text-light-dark">
+                      (optional — leave blank to stay anonymous)
+                    </span>
+                  </label>
+                  <input
+                    id="feed-name"
+                    type="text"
+                    maxLength={120}
+                    placeholder="Anonymous"
+                    className={`appearance-none block w-full rounded-2xl bg-white dark:bg-black-dark text-black dark:text-white-dark p-3 text-sm outline-none focus:ring-2 focus:ring-accent transition ${
+                      errors?.name
+                        ? 'border border-red-500'
+                        : 'border border-blue-100 dark:border-white/10'
+                    }`}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  {!!errors?.name?.length && (
+                    <p className="text-red-500 text-xs italic mt-1">
+                      {errors?.name[0]}.
+                    </p>
+                  )}
+                  <p className="text-xs text-light dark:text-light-dark mt-2">
+                    Anonymous unless you add your name.
                   </p>
-                )}
-                <p className="text-xs text-light dark:text-light-dark mt-2">
-                  Anonymous unless you add your name.
-                </p>
-              </div>
+                </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  className="btn-primary w-full md:w-auto"
-                  disabled={loading || removing}
-                  onClick={() => sendFeedback()}
-                >
-                  {loading ? 'Sending…' : `Send ${kind} Feedback`}
-                </button>
-                {editing && (
+                <div className="mt-6 flex flex-wrap items-center gap-3">
                   <button
                     type="button"
-                    className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors disabled:opacity-50"
+                    className="btn-primary w-full md:w-auto"
                     disabled={loading || removing}
-                    onClick={() => removeFeedback()}
+                    onClick={() => sendFeedback()}
                   >
-                    {removing
-                      ? 'Removing…'
-                      : confirmRemove
-                        ? 'Really remove?'
-                        : 'Remove'}
+                    {loading ? 'Sending…' : `Send ${kind} Feedback`}
                   </button>
-                )}
-              </div>
-            </>
-          )}
+                  {editing && (
+                    <button
+                      type="button"
+                      className="text-sm font-medium text-red-500 hover:text-red-600 transition-colors disabled:opacity-50"
+                      disabled={loading || removing}
+                      onClick={() => removeFeedback()}
+                    >
+                      {removing
+                        ? 'Removing…'
+                        : confirmRemove
+                          ? 'Really remove?'
+                          : 'Remove'}
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>,
