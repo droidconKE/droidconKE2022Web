@@ -168,32 +168,36 @@ export const SessionGridCard = ({
                     </>
                   )
                   return (
-                    <div
-                      className="flex flex-col relative mb-6 hover:-translate-y-1 transition-transform duration-200"
-                      key={schedule.id}
-                    >
-                      {schedule.is_serviceSession ? (
-                        <div className={cardClass}>{inner}</div>
-                      ) : (
-                        <Link href={href} className={cardClass}>
-                          {inner}
-                        </Link>
-                      )}
-                      {/* Sibling of the Link — interactive content can't nest inside an <a> */}
-                      {showStar && !schedule.is_serviceSession && (
-                        <div className="absolute bottom-5 right-5 z-20 flex items-center gap-3">
-                          <AddToCalendar
-                            session={schedule}
-                            venue={eventVenue}
-                            compact
-                          />
-                          <StarIcon session={schedule} />
-                        </div>
-                      )}
+                    <div key={schedule.id} className="mb-6 flex flex-col">
+                      {/* The card grows to the row height inside this wrapper.
+                          The rate button sits under it, so a stretched row
+                          cannot push the button into the next card. Hover and
+                          the floating actions anchor here, not to the button. */}
+                      <div className="flex-1 flex relative hover:-translate-y-1 transition-transform duration-200">
+                        {schedule.is_serviceSession ? (
+                          <div className={cardClass}>{inner}</div>
+                        ) : (
+                          <Link href={href} className={cardClass}>
+                            {inner}
+                          </Link>
+                        )}
+                        {/* Sibling of the Link — interactive content can't nest inside an <a> */}
+                        {showStar && !schedule.is_serviceSession && (
+                          <div className="absolute bottom-5 right-5 z-20 flex items-center gap-3">
+                            <AddToCalendar
+                              session={schedule}
+                              venue={eventVenue}
+                              compact
+                            />
+                            <StarIcon session={schedule} />
+                          </div>
+                        )}
+                      </div>
                       <FeedbackNudge
                         session={schedule}
                         feedbackOpen={feedbackOpen}
                         eventSlug={eventSlug}
+                        className="mt-2 flex justify-end"
                       />
                     </div>
                   )
