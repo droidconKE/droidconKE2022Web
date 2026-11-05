@@ -1,6 +1,7 @@
 import { BEYOND_STACKS_TICKETS_LEFT } from '../../constant/constants'
 import { SectionHeader } from './SectionHeader'
-import { TicketLink } from './TicketLink'
+// Tickets are not on sale — restore with the pass buttons below.
+// import { TicketLink } from './TicketLink'
 
 const passes = [
   {
@@ -77,9 +78,9 @@ export const Pricing = () => (
               <p className="text-white dark:text-white text-base md:text-lg leading-snug">
                 {pass.description}
               </p>
-              <TicketLink className="mt-4 text-xs md:text-sm px-5 py-2.5">
+              {/* <TicketLink className="mt-4 text-xs md:text-sm px-5 py-2.5">
                 {pass.cta}
-              </TicketLink>
+              </TicketLink> */}
             </div>
           </div>
         </li>

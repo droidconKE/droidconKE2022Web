@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { SWAG_LINK } from '../../constant/constants'
 import { TicketLink, type TicketLinkVariant } from './TicketLink'
 
 type SectionTitleProps = {
@@ -39,10 +40,11 @@ export const SectionHeader = ({
   <div className="flex flex-wrap items-center justify-between gap-4 mb-12 sm:mb-20">
     <SectionTitle {...titleProps}>{title}</SectionTitle>
     <TicketLink
+      href={SWAG_LINK}
       variant={ctaVariant}
       className="text-xs md:text-sm px-6 py-2.5 md:py-4"
     >
-      Get Beyond Stacks Ticket
+      GET YOUR SWAG
     </TicketLink>
   </div>
 )

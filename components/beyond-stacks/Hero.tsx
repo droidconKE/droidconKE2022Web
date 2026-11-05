@@ -1,3 +1,4 @@
+import { SWAG_LINK } from '../../constant/constants'
 import { TicketLink } from './TicketLink'
 
 export const Hero = () => (
@@ -39,8 +40,8 @@ export const Hero = () => (
         for the entire engineering ecosystem.
       </p>
       <div className="mt-8 md:mt-14 flex">
-        <TicketLink className="text-sm px-6 py-3 md:py-4">
-          Get Beyond Stacks Ticket
+        <TicketLink href={SWAG_LINK} className="text-sm px-6 py-3 md:py-4">
+          GET YOUR SWAG
         </TicketLink>
       </div>
     </div>

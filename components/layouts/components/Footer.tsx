@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { TICKETS_LINK } from '../../../constant/constants'
+import { SWAG_LINK } from '../../../constant/constants'
 
 export const Footer = () => {
   const showExtraInfo = true
@@ -9,16 +9,16 @@ export const Footer = () => {
       <div>
         <div className="w-full">
           <div className="l-container pt-16 pb-8">
-            {/* Ticket CTA */}
+            {/* Swag CTA */}
             <div className="flex justify-center mb-10 md:mb-12">
               <div>
                 <a
-                  href={TICKETS_LINK}
+                  href={SWAG_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary"
                 >
-                  GET YOUR TICKET
+                  GET YOUR SWAG
                   <svg
                     className="w-5 h-5 ml-2"
                     fill="none"

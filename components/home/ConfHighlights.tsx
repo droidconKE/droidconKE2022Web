@@ -1,5 +1,5 @@
 import React from 'react'
-import { TICKETS_LINK } from '../../constant/constants'
+import { SWAG_LINK } from '../../constant/constants'
 
 const highlights = [
   {
@@ -37,12 +37,12 @@ export const ConfHighlights = () => {
           Conf. Highlights
         </h2>
         <a
-          href={TICKETS_LINK}
+          href={SWAG_LINK}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary whitespace-nowrap text-xs md:text-sm px-6 py-2.5"
         >
-          GET YOUR TICKET
+          GET YOUR SWAG
           <svg
             className="w-4 h-4 ml-2"
             fill="none"
