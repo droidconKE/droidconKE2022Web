@@ -4,7 +4,7 @@ import { useContext, useEffect } from 'react'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { ToggleTheme } from './ToggleTheme'
 import { PastEventsDropdown } from './PastEventsDropdown'
-import { TICKETS_LINK } from '../../../constant/constants'
+import { SWAG_LINK } from '../../../constant/constants'
 import useComponentVisible from '../../../hooks/useComponentVisible'
 
 // Where the full link row, ticket button and theme toggle fit on one line:
@@ -190,22 +190,22 @@ export const NavBar = () => {
         </div>
         <div className="w-full md:w-auto flex md:justify-end mt-4 md:mt-0 px-4 md:px-0 md:ml-4">
           {/* <Link href="/sponsors"> */}
-          <Link
+          {/* <Link
             className="btn-primary uppercase whitespace-nowrap"
             href={TICKETS_LINK}
             target="_blank"
             rel="noreferrer"
           >
             get your ticket
-          </Link>
-          {/* <Link
-            className="btn-secondary"
+          </Link> */}
+          <Link
+            className="btn-secondary uppercase"
             href={SWAG_LINK}
             target="_blank"
             rel="noreferrer"
           >
             get your swag
-          </Link> */}
+          </Link>
           {/* </Link> */}
         </div>
       </div>

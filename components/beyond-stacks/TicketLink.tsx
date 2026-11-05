@@ -15,17 +15,20 @@ type TicketLinkProps = {
   // Size overrides; utilities win over the btn-* component classes.
   // eslint-disable-next-line react/require-default-props
   className?: string
+  // Pass rows keep the conference ticket link. The other buttons sell swag
+  // while tickets are not on sale.
+  // eslint-disable-next-line react/require-default-props
+  href?: string
 }
 
-// Every call to action on the page sells a ticket. The Beyond Stacks pass has
-// no checkout of its own yet, so all of them share the conference ticket link.
 export const TicketLink = ({
   children,
   variant = 'accent',
   className = '',
+  href = TICKETS_LINK,
 }: TicketLinkProps) => (
   <a
-    href={TICKETS_LINK}
+    href={href}
     target="_blank"
     rel="noopener noreferrer"
     className={`${variantClass[variant]} normal-case whitespace-nowrap ${className}`}
