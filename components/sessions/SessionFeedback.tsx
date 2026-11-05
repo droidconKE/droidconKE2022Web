@@ -147,8 +147,16 @@ export const SessionFeedback = ({
   }, [eventSlug, sessionSlug])
 
   const sendFeedback = async () => {
-    if (rating === 0) {
-      setErrors({ rating: ['Please select a star rating'] })
+    // The written feedback is required by the API. Check it here so an empty
+    // box fails before the request, next to the star rating.
+    const trimmedFeedback = message.trim()
+    if (rating === 0 || !trimmedFeedback) {
+      setErrors({
+        ...(rating === 0 ? { rating: ['Please select a star rating'] } : {}),
+        ...(!trimmedFeedback
+          ? { feedback: ['Please leave your feedback'] }
+          : {}),
+      })
       return
     }
     setLoading(true)
@@ -162,7 +170,7 @@ export const SessionFeedback = ({
     })
     const trimmedName = name.trim().slice(0, 120)
     const body: Record<string, unknown> = {
-      feedback: message,
+      feedback: trimmedFeedback,
       rating,
       answers: sentAnswers,
     }
@@ -262,9 +270,7 @@ export const SessionFeedback = ({
 
   const editing = Boolean(mine?.editable)
   const answered = Boolean(mine && !mine.editable)
-  const wordsLabel = sessionSlug
-    ? 'A word for the speaker (optional)'
-    : 'Your words (optional)'
+  const wordsLabel = sessionSlug ? 'A word for the speaker' : 'Your words'
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain">
@@ -449,7 +455,7 @@ export const SessionFeedback = ({
                     htmlFor="feed-message"
                     className="block text-sm font-medium text-black dark:text-white-dark mb-2"
                   >
-                    {wordsLabel}
+                    {wordsLabel} <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     id="feed-message"
@@ -461,7 +467,12 @@ export const SessionFeedback = ({
                         : 'border border-blue-100 dark:border-white/10'
                     }`}
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={(e) => {
+                      setMessage(e.target.value)
+                      setErrors((prev) =>
+                        prev ? { ...prev, feedback: undefined } : prev
+                      )
+                    }}
                   />
                   {!!errors?.feedback?.length && (
                     <p className="text-red-500 text-xs italic mt-1">
