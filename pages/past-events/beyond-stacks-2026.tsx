@@ -28,7 +28,7 @@ const BeyondStacks2026: NextPage<BeyondStacks2026Props> = ({
       <title>{TITLE}</title>
       <meta key="og:title" property="og:title" content={TITLE} />
     </Head>
-    <Hero />
+    <Hero past />
     {schedule && Object.values(schedule).some((day) => day.length) && (
       <Schedule
         schedules={schedule}
@@ -37,6 +37,7 @@ const BeyondStacks2026: NextPage<BeyondStacks2026Props> = ({
         feedbackOpen={feedbackWindowState(event) === 'open'}
         from={FROM}
         year={26}
+        showStar={false}
       />
     )}
   </>

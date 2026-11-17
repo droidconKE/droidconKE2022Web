@@ -1,6 +1,13 @@
 import { TicketLink } from './TicketLink'
 
-export const Hero = () => (
+type HeroProps = {
+  // eslint-disable-next-line react/require-default-props
+  past?: boolean
+}
+
+// `past` is the 2026 page under Past Events: the track has run, so it says so
+// and offers no ticket. The live /beyond-stacks page sells.
+export const Hero = ({ past = false }: HeroProps) => (
   <section
     aria-labelledby="beyond-stacks-title"
     className="relative isolate overflow-hidden bg-primary rounded-b-4xl"
@@ -34,15 +41,17 @@ export const Hero = () => (
         Beyond Stacks
       </h1>
       <p className="mt-4 text-white dark:text-white text-lg md:text-2xl leading-snug">
-        A shared 3rd track across both conference days{' '}
-        <br className="hidden lg:inline" />
+        {past ? 'A shared 3rd track ran' : 'A shared 3rd track'} across both
+        conference days <br className="hidden lg:inline" />
         for the entire engineering ecosystem.
       </p>
-      <div className="mt-8 md:mt-14 flex">
-        <TicketLink className="text-sm px-6 py-3 md:py-4">
-          GET YOUR TICKET
-        </TicketLink>
-      </div>
+      {!past && (
+        <div className="mt-8 md:mt-14 flex">
+          <TicketLink className="text-sm px-6 py-3 md:py-4">
+            GET YOUR TICKET
+          </TicketLink>
+        </div>
+      )}
     </div>
   </section>
 )

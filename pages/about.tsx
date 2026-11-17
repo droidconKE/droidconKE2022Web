@@ -135,7 +135,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
             Android and Flutter development in one place.
           </p>
           <p className="font-display text-accent dark:text-accent text-xl md:text-2xl mt-6 md:mt-8">
-            In 2026, Expect:
+            In 2027, Expect:
           </p>
           <ul className="mt-4 md:mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 list-disc pl-5 marker:text-accent">
             <li className="text-white dark:text-white text-sm md:text-base">
