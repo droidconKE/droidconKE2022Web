@@ -42,7 +42,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <meta
           key="og:image:alt"
           property="og:image:alt"
-          content="droidconKE 2026 — Nov 5-6, Nairobi"
+          content="droidconKE 2027 — Nov 5-6, Nairobi"
         />
       </Head>
       <ThemeProvider>

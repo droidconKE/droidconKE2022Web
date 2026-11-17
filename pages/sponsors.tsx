@@ -78,7 +78,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
                 <div className="flex flex-wrap items-center gap-y-8">
                   <div className="w-full md:w-4/12 md:pr-8">
                     <h3 className="font-display text-2xl md:text-4xl leading-tight md:leading-tight text-primary dark:text-primary max-w-[7ch]">
-                      dcKe26 at a glance
+                      dcKe27 at a glance
                     </h3>
                   </div>
                   <div className="w-full md:w-8/12 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-14">
@@ -119,10 +119,10 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           <div className="relative z-10 text-left">
             <div className="flex items-center text-primary dark:text-primary text-sm md:text-base font-medium mb-3">
               <div className="w-6 h-px bg-primary mr-3" />
-              sponsor dcke26
+              sponsor dcke27
             </div>
             <h2 className="font-display capitalize text-3xl md:text-5xl text-primary dark:text-primary">
-              Sponsor droidconke26
+              Sponsor droidconke27
             </h2>
             <div
               className="h-2 w-full max-w-xs md:max-w-md bg-primary mt-4"
@@ -137,7 +137,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
               To earn a spot here/Meet our partners By sponsoring
             </h6>
             <h3 className="font-display capitalize text-2xl md:text-3xl text-primary dark:text-primary mt-10 md:mt-12">
-              <span>To Sponsor</span> droidconke 2026, contact us at:
+              <span>To Sponsor</span> droidconke 2027, contact us at:
             </h3>
             <Link
               href="mailto:sponsor@droidcon.co.ke?Subject=Sponsor droidconKe"
@@ -148,7 +148,7 @@ export default function SponsorsPage({ sponsors }: { sponsors: Sponsor[] }) {
           </div>
         </div>
       </section>
-      <SponsorsList sponsors={sponsors} showSponsors year={26} />
+      <SponsorsList sponsors={sponsors} showSponsors={false} year={27} />
     </div>
   )
 }

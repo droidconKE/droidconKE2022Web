@@ -9,7 +9,7 @@ const eventCards = [
     id: 'exhibitions',
     image: '/images/svg/exhibitions.svg',
   },
-  // Speakers is hidden for 2026 (CFP closed) — restore next year:
+  // Speakers is hidden until the 2027 CFP opens — restore then:
   // { name: 'Speakers', id: 'speakers', image: '/images/svg/speakers.svg' },
 ]
 
@@ -21,7 +21,7 @@ export const EventTypes = () => {
           the white card below, not tight against it. */}
       <div className="w-full rounded-[32px] p-8 md:p-12 pb-16 md:pb-24 shadow-xl bg-gradient-to-b from-primary to-accent">
         <h2 className="text-white text-4xl md:text-6xl font-display mb-12 md:mb-20">
-          2026 Conf. Essentials
+          2027 Conf. Essentials
         </h2>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">

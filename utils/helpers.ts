@@ -1,7 +1,6 @@
 import moment from 'moment'
 import { Event } from '../types/types'
 import { parseEat } from './calendar'
-import { BEYOND_STACKS_EVENT_SLUG } from '../constant/constants'
 
 export const isServer = typeof window === 'undefined'
 
@@ -88,13 +87,11 @@ export const resolveEventSlug = (param?: string | string[]) =>
     ? param.toLowerCase()
     : (process.env.NEXT_PUBLIC_EVENT_SLUG ?? '').toLowerCase()
 
-// Whether a URL is pointing at an event being run now: the conference, or
-// Beyond Stacks beside it. Both sides come out of the same resolver, so the
-// comparison cannot be made two different ways.
-export const isCurrentEventSlug = (param?: string | string[]) => {
-  const slug = resolveEventSlug(param)
-  return slug === resolveEventSlug() || slug === BEYOND_STACKS_EVENT_SLUG
-}
+// Whether a URL is pointing at the event being run now. Both sides come out
+// of the same resolver, so the comparison cannot be made two different ways.
+// Beyond Stacks 2026 ran beside the conference; it is a past event now.
+export const isCurrentEventSlug = (param?: string | string[]) =>
+  resolveEventSlug(param) === resolveEventSlug()
 
 // The URL a session share card points at. A proxy can send "https,http";
 // the first value is the visitor's. The path is the page, never a

@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 // Type-only — erased at compile time, so the runtime stays lazily imported.
 import type { Application } from '@splinetool/runtime'
-import { SWAG_LINK } from '../../constant/constants'
-// CFP is closed for 2026 — restore alongside the SUBMIT A TALK button next year.
+import { TICKETS_LINK } from '../../constant/constants'
+// CFP is not open yet for 2027 — restore alongside the SUBMIT A TALK button next year.
 // import { CFS_LINK } from '../../constant/constants'
 
 /**
@@ -185,12 +185,12 @@ export const Banner = () => {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-12 w-full justify-center">
             <a
-              href={SWAG_LINK}
+              href={TICKETS_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary whitespace-nowrap"
             >
-              GET YOUR SWAG
+              GET YOUR TICKET
               <svg
                 className="w-5 h-5 ml-2"
                 fill="none"
@@ -205,7 +205,7 @@ export const Banner = () => {
                 />
               </svg>
             </a>
-            {/* CFP closed for 2026 — restore next year.
+            {/* CFP not open yet for 2027 — restore once it is.
             <a
               href={CFS_LINK}
               target="_blank"
@@ -230,7 +230,7 @@ export const Banner = () => {
               DATE
             </p>
             <p className="font-bold text-sm md:text-base text-black dark:text-white uppercase">
-              05-06 NOV 2026
+              05-06 NOV 2027
             </p>
           </div>
           <div className="py-6 px-4 md:px-6 border-b md:border-b-0 md:border-r border-gray-300 dark:border-gray-700">
@@ -246,7 +246,7 @@ export const Banner = () => {
               EDITION
             </p>
             <p className="font-bold text-sm md:text-base text-black dark:text-white uppercase">
-              7TH &middot; ANNUAL
+              8TH &middot; ANNUAL
             </p>
           </div>
           <div className="py-6 px-4 md:px-6">

@@ -1,8 +1,8 @@
 import React from 'react'
 
 const statsBoxes = [
-  { value: '7TH', label: 'DROIDCON EDITION' },
-  { value: '3RD', label: 'FLUTTERCON EDITION' },
+  { value: '8TH', label: 'DROIDCON EDITION' },
+  { value: '4TH', label: 'FLUTTERCON EDITION' },
   { value: '230+', label: 'Sessions Delivered' },
   { value: '3,000+', label: 'Attendees Since 2018' },
 ]
@@ -25,8 +25,8 @@ const About = () => {
             DroidconKe
           </h2>
           <p className="text-white dark:text-white text-lg md:text-xl leading-relaxed mb-6">
-            Droidcon Kenya returns for its 7th edition on November 5th and 6th,
-            2026, at PrideInn Azure Hotel in Nairobi, as the largest Droidcon
+            Droidcon Kenya returns for its 8th edition on November 5th and 6th,
+            2027, at PrideInn Azure Hotel in Nairobi, as the largest Droidcon
             chapter in Sub-Saharan Africa.
           </p>
           <p className="text-white dark:text-white text-lg md:text-xl leading-relaxed">

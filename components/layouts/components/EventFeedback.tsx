@@ -10,6 +10,18 @@ import {
 } from '../../../utils/helpers'
 import { SessionFeedback } from '../../sessions/SessionFeedback'
 
+// Each past-events route and the event it is about. Next inlines
+// NEXT_PUBLIC_* only when written out in full, so these stay literal.
+const PAST_EVENT_SLUGS: Record<string, string | undefined> = {
+  '/past-events/2022': process.env.NEXT_PUBLIC_EVENT_SLUG_2022,
+  '/past-events/2023': process.env.NEXT_PUBLIC_EVENT_SLUG_2023,
+  '/past-events/2024': process.env.NEXT_PUBLIC_EVENT_SLUG_2024,
+  '/past-events/2025': process.env.NEXT_PUBLIC_EVENT_SLUG_2025,
+  '/past-events/2026': process.env.NEXT_PUBLIC_EVENT_SLUG_2026,
+  '/past-events/beyond-stacks-2026':
+    process.env.NEXT_PUBLIC_BEYOND_STACKS_EVENT_SLUG_2026,
+}
+
 export const EventFeedback = () => {
   const router = useRouter()
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
@@ -20,15 +32,7 @@ export const EventFeedback = () => {
   // and the live event everywhere else. One resolution, shared by the window
   // fetch below and the modal it opens — never the live slug hard-coded.
   const eventSlug = resolveEventSlug(
-    router.pathname === '/past-events/2022'
-      ? process.env.NEXT_PUBLIC_EVENT_SLUG_2022
-      : router.pathname === '/past-events/2023'
-        ? process.env.NEXT_PUBLIC_EVENT_SLUG_2023
-        : router.pathname === '/past-events/2024'
-          ? process.env.NEXT_PUBLIC_EVENT_SLUG_2024
-          : router.pathname === '/past-events/2025'
-            ? process.env.NEXT_PUBLIC_EVENT_SLUG_2025
-            : router.query.event
+    PAST_EVENT_SLUGS[router.pathname] ?? router.query.event
   )
   const isCurrentEvent = isCurrentEventSlug(eventSlug)
 
