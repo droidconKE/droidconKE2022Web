@@ -45,8 +45,8 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 and products, and learn and teach.
                 <br />
                 <br />
-                Droidcon Kenya returns for its 7th edition on November 5th and
-                6th, 2026, at PrideInn Azure Hotel in Nairobi, as the largest
+                Droidcon Kenya returns for its 8th edition on November 5th and
+                6th, 2027, at PrideInn Azure Hotel in Nairobi, as the largest
                 Droidcon chapter in Sub-Saharan Africa.
                 <br />
                 <br />
@@ -129,7 +129,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
             Tickets
           </h3>
           <p className="mt-4 text-white dark:text-white text-sm md:text-base leading-relaxed max-w-3xl">
-            One ticket, two conferences. A ticket to Droidcon Kenya 2026
+            One ticket, two conferences. A ticket to Droidcon Kenya 2027
             automatically registers you for the co-located Fluttercon Kenya. The
             format has worked since 2024 and gives attendees the full picture of
             Android and Flutter development in one place.

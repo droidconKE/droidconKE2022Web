@@ -15,8 +15,7 @@ type TicketLinkProps = {
   // Size overrides; utilities win over the btn-* component classes.
   // eslint-disable-next-line react/require-default-props
   className?: string
-  // Pass rows keep the conference ticket link. The other buttons sell swag
-  // while tickets are not on sale.
+  // Defaults to the conference ticket link.
   // eslint-disable-next-line react/require-default-props
   href?: string
 }

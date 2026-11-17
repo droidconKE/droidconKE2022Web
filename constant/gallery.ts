@@ -1,4 +1,72 @@
 export const gallery = [
+  // 2026. Shapes are interleaved (wide, tall, square) so the top rows
+  // of the masonry do not line up as one strip of same-sized photos.
+  {
+    imageTitle: 'A speaker on the droidcon stage',
+    imageName: 'dcke-2026-1',
+    imageWidth: 2000,
+    imageHeight: 1545,
+  },
+  {
+    imageTitle: 'A speaker walking the stage',
+    imageName: 'dcke-2026-5',
+    imageWidth: 1333,
+    imageHeight: 2000,
+  },
+  {
+    imageTitle: 'Sponsor banners by the stage',
+    imageName: 'dcke-2026-11',
+    imageWidth: 2000,
+    imageHeight: 2000,
+  },
+  {
+    imageTitle: 'A full room during a talk',
+    imageName: 'dcke-2026-2',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'A Beyond Stacks talk',
+    imageName: 'dcke-2026-4',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'A talk on the Figma MCP server',
+    imageName: 'dcke-2026-10',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'A young speaker reading on stage',
+    imageName: 'dcke-2026-6',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'An attendee in the audience',
+    imageName: 'dcke-2026-3',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'The closing group photo',
+    imageName: 'dcke-2026-9',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'An attendee smiling in the audience',
+    imageName: 'dcke-2026-7',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
+  {
+    imageTitle: 'Breakfast at the Typesense stand',
+    imageName: 'dcke-2026-8',
+    imageWidth: 2000,
+    imageHeight: 1333,
+  },
   {
     imageTitle: 'Memories One',
     imageName: '096',

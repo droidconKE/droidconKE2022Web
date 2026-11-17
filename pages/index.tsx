@@ -24,7 +24,7 @@ const Home: NextPage<HomeProps> = ({ sponsors, organizers }) => {
       <About />
       <EventTypes />
       <ConfHighlights />
-      <SponsorsList sponsors={sponsors} year={26} showSponsors />
+      <SponsorsList sponsors={sponsors} year={27} showSponsors={false} />
       <Gallery />
       <Organizers organizers={organizers} compact={false} />
       <BackToTop />

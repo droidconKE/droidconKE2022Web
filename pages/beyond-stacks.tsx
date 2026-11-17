@@ -10,7 +10,6 @@ import { SessionFormats } from '../components/beyond-stacks/SessionFormats'
 import { Schedule } from '../components/beyond-stacks/Schedule'
 import { CommunityStrands } from '../components/beyond-stacks/CommunityStrands'
 import { Faq } from '../components/beyond-stacks/Faq'
-import { BEYOND_STACKS_EVENT_SLUG } from '../constant/constants'
 import type { Event, Schedule as ScheduleType } from '../types/types'
 import axios from '../utils/axios'
 import { eventVenue, feedbackWindowState } from '../utils/helpers'
@@ -27,6 +26,11 @@ const URL = 'https://droidcon.co.ke/beyond-stacks'
 // among them og:image, deliberately: every page shares with the branded
 // cover, which has the logo, the dates and the venue on it. A photograph
 // has none of those, and a 3:2 one is cropped by the 1.91:1 card.
+
+// The 2026 edition, the only one so far. The page is hidden from the menu
+// and gets rebuilt for the next one; its sessions are under past events.
+const BEYOND_STACKS_EVENT_SLUG =
+  process.env.NEXT_PUBLIC_BEYOND_STACKS_EVENT_SLUG_2026 ?? ''
 
 type BeyondStacksProps = {
   schedule: ScheduleType | null

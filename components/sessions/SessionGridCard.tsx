@@ -27,12 +27,14 @@ const EDITIONS: Record<number, { artwork: string; banner: string }> = {
   24: { artwork: '/images/all-new.png', banner: 'h-44' },
   25: { artwork: '/images/all-2025.png', banner: 'h-44' },
   26: { artwork: '/images/empty-state-2026.jpg', banner: 'aspect-video' },
+  // 2026's poster until the 2027 one is designed.
+  27: { artwork: '/images/empty-state-2026.jpg', banner: 'aspect-video' },
 }
 // 2022 and 2023, whose posters are 1717x693 and wider still. A 16:9 box crops
 // their sides, and that is where the title and the speaker's name end.
 const EARLIEST_EDITION = { artwork: '/images/all.png', banner: 'h-44' }
 
-const CURRENT_EDITION = 26
+const CURRENT_EDITION = 27
 
 const editionOf = (year: number) => EDITIONS[year] ?? EARLIEST_EDITION
 
