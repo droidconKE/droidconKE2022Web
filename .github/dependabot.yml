@@ -35,6 +35,13 @@ updates:
         applies-to: version-updates
         patterns:
           - '*'
+    # Majors are a migration, not a bump: Next 16, Tailwind 4 and TypeScript 7
+    # arrived inside one `routine` pull request that could not even install.
+    # They are done by hand, one per pull request. `ignore` applies to version
+    # updates only, so a security fix that needs a major still comes through.
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
     open-pull-requests-limit: 1
     labels:
       - dependencies
