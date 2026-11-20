@@ -158,8 +158,26 @@ export const SessionFeedback = ({
     const sentAnswers: FeedbackAnswers = {}
     questions.forEach((q) => {
       const value = answers[q.id]
-      if (value !== undefined && value !== '') sentAnswers[q.id] = value
+      const blank =
+        value === undefined ||
+        value === '' ||
+        (Array.isArray(value) && value.length === 0)
+      if (!blank) sentAnswers[q.id] = value
     })
+    // Required on a several-from-a-list question means at least one ticked,
+    // as the server checks it; said here so nobody waits for a 422.
+    const unticked = questions.filter(
+      (q) => q.type === 'multi' && q.required && !sentAnswers[q.id]
+    )
+    if (unticked.length > 0) {
+      setLoading(false)
+      setErrors(
+        Object.fromEntries(
+          unticked.map((q) => [`answers.${q.id}`, ['Choose at least one']])
+        )
+      )
+      return
+    }
     const trimmedName = name.trim().slice(0, 120)
     const body: Record<string, unknown> = {
       feedback: message,
@@ -413,6 +431,55 @@ export const SessionFeedback = ({
                                 </button>
                               ))}
                             </div>
+                          )}
+                          {question.type === 'multi' && (
+                            // Several from a list: the same chips, any number
+                            // on at once — never a <select multiple>, which is
+                            // close to unusable on a phone. Capped and
+                            // scrolling, so a long list cannot push Submit
+                            // off the screen.
+                            <div
+                              role="group"
+                              aria-label={question.label}
+                              className="flex flex-wrap gap-2 max-h-48 overflow-y-auto"
+                            >
+                              {(question.options ?? []).map((option) => {
+                                const ticked =
+                                  Array.isArray(value) && value.includes(option)
+                                return (
+                                  <button
+                                    key={option}
+                                    type="button"
+                                    aria-pressed={ticked}
+                                    className={ticked ? chipOn : chipOff}
+                                    onClick={() =>
+                                      setAnswers((prev) => {
+                                        const was = prev[question.id]
+                                        const now = new Set(
+                                          Array.isArray(was) ? was : []
+                                        )
+                                        if (now.has(option)) now.delete(option)
+                                        else now.add(option)
+                                        // Kept in the options' own order.
+                                        return {
+                                          ...prev,
+                                          [question.id]: (
+                                            question.options ?? []
+                                          ).filter((o) => now.has(o)),
+                                        }
+                                      })
+                                    }
+                                  >
+                                    {option}
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          )}
+                          {question.type === 'multi' && (
+                            <p className="text-xs text-black/50 dark:text-white-dark/50 mt-1">
+                              Choose any that apply
+                            </p>
                           )}
                           {question.type === 'text' && (
                             <textarea
