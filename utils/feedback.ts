@@ -1,3 +1,5 @@
+import { FeedbackAnswers, FeedbackQuestion } from '../types/types'
+
 // A per-browser id, made up once and kept in localStorage. It is what lets
 // the API tell "this browser again" apart from "someone else" — it is hashed
 // with the link server-side, never stored raw, and is not tied to an account.
@@ -59,3 +61,29 @@ export const feedbackDeviceId = (): string => {
 export const feedbackHeaders = (): Record<string, string> => ({
   'X-Feedback-Device': feedbackDeviceId(),
 })
+
+// The answers worth sending: a question left blank (unanswered, emptied, or
+// with nothing ticked) is left out rather than sent empty.
+export const answersToSend = (
+  questions: FeedbackQuestion[],
+  answers: FeedbackAnswers
+): FeedbackAnswers => {
+  const sent: FeedbackAnswers = {}
+  questions.forEach((q) => {
+    const value = answers[q.id]
+    const blank =
+      value === undefined ||
+      value === '' ||
+      (Array.isArray(value) && value.length === 0)
+    if (!blank) sent[q.id] = value
+  })
+  return sent
+}
+
+// Required on a several-from-a-list question means at least one ticked, as
+// the server checks it.
+export const untickedRequired = (
+  questions: FeedbackQuestion[],
+  sent: FeedbackAnswers
+): FeedbackQuestion[] =>
+  questions.filter((q) => q.type === 'multi' && q.required && !sent[q.id])

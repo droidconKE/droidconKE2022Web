@@ -10,7 +10,11 @@ import {
   MyFeedback,
 } from '../../types/types'
 import axios from '../../utils/axios'
-import { feedbackHeaders } from '../../utils/feedback'
+import {
+  answersToSend,
+  feedbackHeaders,
+  untickedRequired,
+} from '../../utils/feedback'
 import { resolveEventSlug } from '../../utils/helpers'
 
 const REQUEST_TIMEOUT = 5000
@@ -31,6 +35,10 @@ const chipBase =
   'rounded-full px-4 py-2 text-sm font-medium border transition-colors'
 const chipOff = `${chipBase} border-blue-100 dark:border-white/10 bg-white dark:bg-black-dark text-black dark:text-white-dark hover:border-accent`
 const chipOn = `${chipBase} border-primary bg-primary text-white`
+// The global `p` rule in styles/globals.css sets a dark-mode colour as
+// `.dark p`, which outranks a bare `text-red-500`; the dark: variant
+// outranks it back, so errors stay red in dark mode.
+const errorText = 'text-red-500 dark:text-red-500 text-xs italic mt-1'
 
 export const SessionFeedback = ({
   closeDialog,
@@ -154,12 +162,19 @@ export const SessionFeedback = ({
     setLoading(true)
     setErrors(null)
     // A question left blank is simply not sent; a required one left blank
-    // comes back 422 and is flagged under the question itself.
-    const sentAnswers: FeedbackAnswers = {}
-    questions.forEach((q) => {
-      const value = answers[q.id]
-      if (value !== undefined && value !== '') sentAnswers[q.id] = value
-    })
+    // comes back 422 and is flagged under the question itself. A required
+    // several-from-a-list one is caught here, so nobody waits for the 422.
+    const sentAnswers = answersToSend(questions, answers)
+    const unticked = untickedRequired(questions, sentAnswers)
+    if (unticked.length > 0) {
+      setLoading(false)
+      setErrors(
+        Object.fromEntries(
+          unticked.map((q) => [`answers.${q.id}`, ['Choose at least one']])
+        )
+      )
+      return
+    }
     const trimmedName = name.trim().slice(0, 120)
     const body: Record<string, unknown> = {
       feedback: message,
@@ -352,9 +367,7 @@ export const SessionFeedback = ({
                     }}
                   />
                   {!!errors?.rating?.length && (
-                    <p className="text-red-500 text-xs italic mt-1">
-                      {errors?.rating[0]}.
-                    </p>
+                    <p className={errorText}>{errors?.rating[0]}.</p>
                   )}
                 </div>
 
@@ -373,6 +386,14 @@ export const SessionFeedback = ({
                               <span className="text-red-500">*</span>
                             )}
                           </p>
+                          {question.type === 'multi' && (
+                            <p
+                              id={`feedback-question-${question.id}-hint`}
+                              className="text-xs text-light dark:text-white-dark/50 -mt-1 mb-2"
+                            >
+                              Choose any that apply
+                            </p>
+                          )}
                           {(question.type === 'choice' ||
                             question.type === 'scale') && (
                             <div className="flex flex-wrap gap-2">
@@ -414,6 +435,56 @@ export const SessionFeedback = ({
                               ))}
                             </div>
                           )}
+                          {question.type === 'multi' && (
+                            // Several from a list: the same chips, any number
+                            // on at once — never a <select multiple>, which is
+                            // close to unusable on a phone. No height cap:
+                            // the dialog scrolls itself, so Submit stays
+                            // reachable however long the list.
+                            <div
+                              role="group"
+                              aria-label={question.label}
+                              aria-describedby={`feedback-question-${question.id}-hint`}
+                              className="flex flex-wrap gap-2"
+                            >
+                              {(question.options ?? []).map((option) => {
+                                const ticked =
+                                  Array.isArray(value) && value.includes(option)
+                                return (
+                                  <button
+                                    key={option}
+                                    type="button"
+                                    aria-pressed={ticked}
+                                    className={ticked ? chipOn : chipOff}
+                                    onClick={() => {
+                                      setErrors((prev) =>
+                                        prev
+                                          ? { ...prev, [key]: undefined }
+                                          : prev
+                                      )
+                                      setAnswers((prev) => {
+                                        const was = prev[question.id]
+                                        const now = new Set(
+                                          Array.isArray(was) ? was : []
+                                        )
+                                        if (now.has(option)) now.delete(option)
+                                        else now.add(option)
+                                        // Kept in the options' own order.
+                                        return {
+                                          ...prev,
+                                          [question.id]: (
+                                            question.options ?? []
+                                          ).filter((o) => now.has(o)),
+                                        }
+                                      })
+                                    }}
+                                  >
+                                    {option}
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          )}
                           {question.type === 'text' && (
                             <textarea
                               id={`feedback-question-${question.id}`}
@@ -434,9 +505,7 @@ export const SessionFeedback = ({
                             />
                           )}
                           {questionError && (
-                            <p className="text-red-500 text-xs italic mt-1">
-                              {questionError}.
-                            </p>
+                            <p className={errorText}>{questionError}.</p>
                           )}
                         </div>
                       )
@@ -464,9 +533,7 @@ export const SessionFeedback = ({
                     onChange={(e) => setMessage(e.target.value)}
                   />
                   {!!errors?.feedback?.length && (
-                    <p className="text-red-500 text-xs italic mt-1">
-                      {errors?.feedback[0]}.
-                    </p>
+                    <p className={errorText}>{errors?.feedback[0]}.</p>
                   )}
                 </div>
 
@@ -494,9 +561,7 @@ export const SessionFeedback = ({
                     onChange={(e) => setName(e.target.value)}
                   />
                   {!!errors?.name?.length && (
-                    <p className="text-red-500 text-xs italic mt-1">
-                      {errors?.name[0]}.
-                    </p>
+                    <p className={errorText}>{errors?.name[0]}.</p>
                   )}
                   <p className="text-xs text-light dark:text-light-dark mt-2">
                     Anonymous unless you add your name.

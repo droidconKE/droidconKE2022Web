@@ -106,13 +106,15 @@ export interface FeedbackError {
 export interface FeedbackQuestion {
   id: string
   label: string
-  type: 'choice' | 'scale' | 'text'
+  // `multi`: several of `options`, answered as an array (#235).
+  type: 'choice' | 'multi' | 'scale' | 'text'
   options: string[] | null
   required: boolean
   applies_to: 'event' | 'session' | 'both'
 }
 
-export type FeedbackAnswerValue = string | number
+// A `multi` answer is the chosen options; nothing chosen is [].
+export type FeedbackAnswerValue = string | number | string[]
 
 export type FeedbackAnswers = Record<string, FeedbackAnswerValue>
 
