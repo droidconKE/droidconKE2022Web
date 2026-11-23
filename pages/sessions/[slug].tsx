@@ -38,7 +38,7 @@ const Session: NextPage<SessionPageProp> = ({
   // "" is the API's absent value here — ?? would ship an empty og:image.
   const image =
     session.session_image ||
-    'https://droidcon.co.ke/images/new-design/revised/dcke-cover.png'
+    'https://droidcon.co.ke/images/new-design/revised/dcke-cover-2027.jpg'
 
   // The organizer's feedback window as a tri-state: before the event nothing
   // renders, during it the actions show, after it a disabled chip says so.
