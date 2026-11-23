@@ -48,6 +48,14 @@ const Session: NextPage<SessionPageProp> = ({
     <>
       <Head>
         <meta key="og:image" property="og:image" content={image} />
+        {/* Without this a poster is shared under the layout's cover alt text. */}
+        {session.session_image && (
+          <meta
+            key="og:image:alt"
+            property="og:image:alt"
+            content={session.title}
+          />
+        )}
         {fullUrl && <meta key="og:url" property="og:url" content={fullUrl} />}
       </Head>
       <div className="s-container mt-4 md:mt-6 mb-10 md:mb-16 space-y-5 md:space-y-6">
