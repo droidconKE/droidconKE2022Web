@@ -209,10 +209,10 @@ Cost, measured: **546 KB gz** runtime chunk + 27 KB scene, lazily imported (~3.4
 
 Both are generated from single square/cover sources — regenerate rather than hand-editing individual sizes. The flutterconKE repo takes the same treatment with its `flutter-square` / `flutter-cover` equivalents.
 
-| Source                                                                             | Feeds                                                                                                                                                                    |
-| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [dcke-square.png](../../public/images/new-design/revised/dcke-square.png) (2524²)  | `public/images/icons/` — android ×6, apple ×9 + 2 bare, favicon ×3, ms-icon ×4, multi-size `favicon.ico`, plus `public/images/icon.png` (also the sponsor-logo fallback) |
-| [dcke-cover.png](../../public/images/new-design/revised/dcke-cover.png) (2400×800) | `og:image` + `twitter:image` in `pages/_document.js`, and the session-detail fallback                                                                                    |
+| Source                                                                                       | Feeds                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [dcke-square.png](../../public/images/new-design/revised/dcke-square.png) (2524²)            | `public/images/icons/` — android ×6, apple ×9 + 2 bare, favicon ×3, ms-icon ×4, multi-size `favicon.ico`, plus `public/images/icon.png` (also the sponsor-logo fallback) |
+| [dcke-cover-2027.jpg](../../public/images/new-design/revised/dcke-cover-2027.jpg) (2400×800) | `og:image` + `twitter:image` in `components/layouts/default.tsx`, and the session-detail fallback                                                                        |
 
 The cover was exported at 4501px wide; it is **resized to 2400** because Twitter rejects `summary_large_image` above 4096px. Its 3:1 ratio is wider than OG's 1.91:1, so Facebook/Twitter centre-crop the top and bottom — keep key content vertically centred.
 
