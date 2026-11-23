@@ -7,7 +7,7 @@
     "dev": "yarn fetch:font && next dev",
     "build": "yarn fetch:font && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "heroku-postbuild": "npm run build",
     "prepare": "husky",
     "test": "vitest run"

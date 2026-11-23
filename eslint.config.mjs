@@ -14,14 +14,17 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
-const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
+const GLOBALS_BROWSER_FIX = {
+  ...globals.browser,
   AudioWorkletGlobalScope: globals.browser['AudioWorkletGlobalScope '],
-})
+}
 
 delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope ']
 
 export default defineConfig([
-  globalIgnores(['dist', '**/.next', 'next-env.d.ts']),
+  // public/ holds next-pwa's generated service worker (sw.js, workbox-*,
+  // fallback-*), gitignored and never hand-written.
+  globalIgnores(['dist', '**/.next', 'next-env.d.ts', 'public/']),
   {
     extends: compat.extends(
       'next/core-web-vitals',
@@ -139,6 +142,17 @@ export default defineConfig([
     files: ['**/*.test.ts', 'vitest.config.mts'],
     rules: {
       'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    },
+  },
+  {
+    // This file, linted since `eslint .` replaced `next lint`. It imports
+    // globals, @eslint/js and @eslint/eslintrc, which come installed with
+    // ESLint rather than from package.json, and __dirname is how an ES
+    // module finds its own folder.
+    files: ['eslint.config.mjs'],
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+      'no-underscore-dangle': 'off',
     },
   },
 ])
