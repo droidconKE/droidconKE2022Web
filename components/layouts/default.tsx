@@ -11,7 +11,8 @@ const SITE_URL = 'https://droidcon.co.ke/'
 const TITLE = "DroidconKe - Africa's Largest Mobile Developer Conference"
 const DESCRIPTION =
   'Droidcon is a global conference focused on the engineering of Android applications, part of next.app devCon. It provides a forum for developers to network, share techniques, announce apps and products, and learn and teach.'
-const IMAGE = 'https://droidcon.co.ke/images/new-design/revised/dcke-cover.png'
+const IMAGE =
+  'https://droidcon.co.ke/images/new-design/revised/dcke-cover-2027.jpg'
 
 export default function Layout({ children }: { children: ReactNode }) {
   const gTagCode = process.env.NEXT_PUBLIC_GOOGLE_TAG

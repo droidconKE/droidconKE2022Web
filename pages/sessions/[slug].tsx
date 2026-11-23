@@ -38,7 +38,7 @@ const Session: NextPage<SessionPageProp> = ({
   // "" is the API's absent value here — ?? would ship an empty og:image.
   const image =
     session.session_image ||
-    'https://droidcon.co.ke/images/new-design/revised/dcke-cover.png'
+    'https://droidcon.co.ke/images/new-design/revised/dcke-cover-2027.jpg'
 
   // The organizer's feedback window as a tri-state: before the event nothing
   // renders, during it the actions show, after it a disabled chip says so.
@@ -48,6 +48,14 @@ const Session: NextPage<SessionPageProp> = ({
     <>
       <Head>
         <meta key="og:image" property="og:image" content={image} />
+        {/* Without this a poster is shared under the layout's cover alt text. */}
+        {session.session_image && (
+          <meta
+            key="og:image:alt"
+            property="og:image:alt"
+            content={session.title}
+          />
+        )}
         {fullUrl && <meta key="og:url" property="og:url" content={fullUrl} />}
       </Head>
       <div className="s-container mt-4 md:mt-6 mb-10 md:mb-16 space-y-5 md:space-y-6">
