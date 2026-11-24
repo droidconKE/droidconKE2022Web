@@ -14,14 +14,10 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
-const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
-  AudioWorkletGlobalScope: globals.browser['AudioWorkletGlobalScope '],
-})
-
-delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope ']
-
 export default defineConfig([
-  globalIgnores(['dist', '**/.next', 'next-env.d.ts']),
+  // public/ holds next-pwa's generated service worker (sw.js, workbox-*,
+  // fallback-*), gitignored and never hand-written.
+  globalIgnores(['dist', '**/.next', 'next-env.d.ts', 'public/']),
   {
     extends: compat.extends(
       'next/core-web-vitals',
@@ -40,7 +36,7 @@ export default defineConfig([
 
     languageOptions: {
       globals: {
-        ...GLOBALS_BROWSER_FIX,
+        ...globals.browser,
         ...globals.node,
       },
 
@@ -134,11 +130,19 @@ export default defineConfig([
     },
   },
   {
-    // Tests and the runner config import vitest, which is a devDependency;
-    // airbnb's allow-list only knows *.test.js, not .ts.
-    files: ['**/*.test.ts', 'vitest.config.mts'],
+    // Tests, the runner config and this file import devDependencies (vitest,
+    // ESLint's own packages); airbnb's allow-list only knows *.test.js.
+    files: ['**/*.test.ts', 'vitest.config.mts', 'eslint.config.mjs'],
     rules: {
       'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    },
+  },
+  {
+    // Linted since `eslint .` replaced `next lint`. __dirname is how an ES
+    // module finds its own folder.
+    files: ['eslint.config.mjs'],
+    rules: {
+      'no-underscore-dangle': 'off',
     },
   },
 ])

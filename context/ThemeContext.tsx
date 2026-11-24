@@ -1,4 +1,11 @@
-import React, { createContext, ReactNode, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { isClient } from '../utils/helpers'
 
 type ThemeContextType = {
@@ -33,25 +40,19 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [])
 
-  const addDarkTheme = () => {
-    localStorage.setItem(THEME_NAME, 'dark')
-    document.documentElement.classList.add('dark')
-    setIsDarkTheme(true)
-  }
+  const toggleTheme = useCallback(() => {
+    const dark = !isDarkTheme
+    localStorage.setItem(THEME_NAME, dark ? 'dark' : 'light')
+    document.documentElement.classList.toggle('dark', dark)
+    setIsDarkTheme(dark)
+  }, [isDarkTheme])
 
-  const removeDarkTheme = () => {
-    localStorage.setItem(THEME_NAME, 'light')
-    document.documentElement.classList.remove('dark')
-    setIsDarkTheme(false)
-  }
-
-  const toggleTheme = () => {
-    return isDarkTheme ? removeDarkTheme() : addDarkTheme()
-  }
-
-  return (
-    <ThemeContext.Provider value={{ isDarkTheme, toggleTheme, isEventReady }}>
-      {children}
-    </ThemeContext.Provider>
+  // One value per theme change, not a new object on every render, so the
+  // components reading the theme only re-render when it actually changes.
+  const value = useMemo(
+    () => ({ isDarkTheme, toggleTheme, isEventReady }),
+    [isDarkTheme, toggleTheme, isEventReady]
   )
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
