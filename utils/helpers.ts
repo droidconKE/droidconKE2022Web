@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { Event } from '../types/types'
-import { parseEat } from './calendar'
+import { EAT_UTC_OFFSET_HOURS, parseEat } from './calendar'
 
 export const isServer = typeof window === 'undefined'
 
@@ -18,13 +18,21 @@ export const groupBy3 = (arr: string[]) =>
 export const humanReadable = (value: string) =>
   moment(value).format('MMM Do YY')
 
-export const timeAm = (value: string) => moment(value).format('a')
+// Session times are Nairobi times, whatever zone this runs in: the server
+// renders in UTC and a visitor can be anywhere.
+const formatEat = (value: string, format: string) =>
+  moment(parseEat(value))
+    .utcOffset(EAT_UTC_OFFSET_HOURS * 60)
+    .format(format)
 
+export const timeAm = (value: string) => formatEat(value, 'a')
+
+// A schedule key is a bare date, which moment reads as that date in any zone.
 export const timeDay = (value: string) => moment(value).format('DD')
 
-export const time = (value: string) => moment(value).format('h:mm')
+export const time = (value: string) => formatEat(value, 'h:mm')
 
-export const hour = (value: string) => moment(value).format('h:mm a')
+export const hour = (value: string) => formatEat(value, 'h:mm a')
 
 export const truncateString = (str: string, num = 100) => {
   if (!str) return ''

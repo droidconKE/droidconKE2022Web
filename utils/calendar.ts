@@ -3,7 +3,7 @@ import { Session } from '../types/types'
 // Session times come from the API as naive "YYYY-MM-DD HH:mm:ss" strings in
 // EAT (UTC+3). Parsing them with Date/moment would interpret them in the
 // visitor's local timezone, so the offset is applied explicitly instead.
-const EAT_UTC_OFFSET_HOURS = 3
+export const EAT_UTC_OFFSET_HOURS = 3
 
 // The calendar date in Nairobi. Shifting the instant by the offset and then
 // reading the UTC date is that date: a visitor whose local clock still says
