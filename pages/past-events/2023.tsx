@@ -132,6 +132,7 @@ const Home2023: NextPage<SessionProps> = ({
           <SpeakersList
             sessions={sessions}
             speakers={speakers}
+            from="/past-events/2023"
             eventSlug={process.env.NEXT_PUBLIC_EVENT_SLUG_2023}
           />
         </div>
