@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Event } from '../../../types/types'
 import axios from '../../../utils/axios'
@@ -52,6 +52,23 @@ export const EventFeedback = () => {
   // Scheduling and reviewing only apply to the event being run now: on past
   // events the per-session nudge is the entry point, and this button can
   // never post into another event's bucket.
+  // Back-to-top shares this corner. While the chip is on screen its height is
+  // published here and back-to-top rises by it, so the two never overlap.
+  const chipRef = useRef<HTMLDivElement>(null)
+  const chipShown =
+    isCurrentEvent && feedbackWindowState(event) !== 'not-open-yet'
+  useEffect(() => {
+    if (!chipShown) return undefined
+    const root = document.documentElement
+    root.style.setProperty(
+      '--feedback-chip-h',
+      `${chipRef.current?.offsetHeight ?? 0}px`
+    )
+    return () => {
+      root.style.removeProperty('--feedback-chip-h')
+    }
+  }, [chipShown])
+
   if (!isCurrentEvent) return null
 
   // Before the window opens, render nothing — a permanent grey chip pinned to
@@ -62,7 +79,7 @@ export const EventFeedback = () => {
   if (windowState === 'not-open-yet') return null
 
   return (
-    <div className="fixed bottom-0 right-0 z-40">
+    <div ref={chipRef} className="fixed bottom-0 right-0 z-40">
       {windowState === 'open' ? (
         <button
           type="button"
