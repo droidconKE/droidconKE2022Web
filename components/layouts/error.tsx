@@ -3,11 +3,20 @@ import React, { ReactNode } from 'react'
 import { ThemeProvider } from '../../context/ThemeContext'
 import { NavBar } from './components/NavBar'
 
-export default function Layout({ children }: { children: ReactNode }) {
+const SITE = 'DroidconKe'
+
+// Named for what went wrong, so the tab, the history and a bookmark say so.
+export default function Layout({
+  children,
+  title,
+}: {
+  children: ReactNode
+  title: string
+}) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>{`${SITE}: ${title}`}</title>
       </Head>
       <ThemeProvider>
         <div className="w-full bg-white dark:bg-dark h-screen">
