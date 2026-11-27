@@ -59,11 +59,15 @@ export const filterOptions = (values: string[], order: string[] = []) => {
   const found = values.filter(
     (value, i) => value && values.indexOf(value) === i
   )
-  const rank = (value: string) => {
-    const listed = order.indexOf(value)
-    return listed < 0 ? order.length + found.indexOf(value) : listed
-  }
-  return found.sort((a, b) => rank(a) - rank(b))
+  // Each value is ranked before the sort, so the comparator reads only ranks
+  // and nothing the sort is moving.
+  return found
+    .map((value, i) => {
+      const listed = order.indexOf(value)
+      return { value, rank: listed < 0 ? order.length + i : listed }
+    })
+    .sort((a, b) => a.rank - b.rank)
+    .map(({ value }) => value)
 }
 
 // Where an event is held, for a calendar entry. Some events repeat the name as

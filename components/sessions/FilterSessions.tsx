@@ -23,7 +23,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
   // own lists only order them. Its call for speakers labels drift from the
   // sessions' (2026 offers Regular; its talks are Session), and an event can
   // have none at all, or fail to load.
-  const [sessions3, sessions4, sessions5] = useMemo(() => {
+  const [levels, rooms, formats] = useMemo(() => {
     const sessions = Object.values(schedules).reduce<Session[]>(
       (all, day) => all.concat(day),
       []
@@ -112,7 +112,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
                 Level
               </span>
-              {groupBy3(sessions3).map((sessions: string[]) => (
+              {groupBy3(levels).map((sessions: string[]) => (
                 <div className="flex pb-1 flex-wrap" key={sessions[0]}>
                   <button
                     name="level"
@@ -159,7 +159,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
                 Rooms
               </span>
-              {groupBy3(sessions4).map((sessions: string[]) => (
+              {groupBy3(rooms).map((sessions: string[]) => (
                 <div
                   key={sessions[0]}
                   className={`flex pb-1 flex-wrap ${
@@ -214,7 +214,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
                 Session Types
               </span>
-              {groupBy3(sessions5).map((sessions: string[]) => (
+              {groupBy3(formats).map((sessions: string[]) => (
                 <div
                   key={sessions[0]}
                   className={`flex pb-1 flex-wrap ${
