@@ -1,25 +1,52 @@
-import { useState, MouseEvent, useEffect } from 'react'
+import { useState, MouseEvent, useEffect, useMemo } from 'react'
 import type { NextPage } from 'next'
-import { groupBy3, objIsEmpty } from '../../utils/helpers'
-import { Event, FilterInterface } from '../../types/types'
+import { filterOptions, groupBy3, objIsEmpty } from '../../utils/helpers'
+import { Event, FilterInterface, Schedule, Session } from '../../types/types'
 
 interface FilterSessionProps {
   setShowFilterSession: (_showFilterSession: boolean) => void
   filterSession: (_filter: FilterInterface) => void
-  event: Event
+  event: Event | null
+  schedules: Schedule
 }
 
 export const FilterSessions: NextPage<FilterSessionProps> = ({
   setShowFilterSession,
   filterSession,
   event,
+  schedules,
 }) => {
   const [filter, setFilter] = useState<FilterInterface>({})
   const [isOpen, setIsOpen] = useState(false)
 
-  const [sessions3] = useState(event.cfs.cfs_settings.session_levels)
-  const [sessions4] = useState(event.rooms.map((r) => r.title))
-  const [sessions5] = useState(event.cfs.cfs_settings.session_formats)
+  // Levels, rooms and types are read off the sessions themselves; the event's
+  // own lists only order them. Its call for speakers labels drift from the
+  // sessions' (2026 offers Regular; its talks are Session), and an event can
+  // have none at all, or fail to load.
+  const [sessions3, sessions4, sessions5] = useMemo(() => {
+    const sessions = Object.values(schedules).reduce<Session[]>(
+      (all, day) => all.concat(day),
+      []
+    )
+    const settings = event?.cfs?.cfs_settings
+    return [
+      filterOptions(
+        sessions.map((s) => s.session_level),
+        settings?.session_levels
+      ),
+      filterOptions(
+        sessions.reduce<string[]>(
+          (all, s) => all.concat(s.rooms.map((r) => r.title)),
+          []
+        ),
+        event?.rooms?.map((r) => r.title)
+      ),
+      filterOptions(
+        sessions.map((s) => s.session_format),
+        settings?.session_formats
+      ),
+    ]
+  }, [schedules, event])
 
   const selectedClass = 'bg-accent text-black'
 

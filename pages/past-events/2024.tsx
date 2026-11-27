@@ -143,6 +143,7 @@ const Home2024: NextPage<SessionProps> = ({
           setShowFilterSession={setShowFilterSession}
           filterSession={filterSession}
           event={event}
+          schedules={allSchedules}
         />
       )}
     </>

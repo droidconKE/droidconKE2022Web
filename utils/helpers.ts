@@ -52,6 +52,20 @@ export const objIsEmpty = (obj: any) => {
   return true
 }
 
+// What a session filter offers: the values the sessions have, each once, in
+// the order the organizer listed them where they did and in programme order
+// otherwise. An option no session has would match nothing, so none is made up.
+export const filterOptions = (values: string[], order: string[] = []) => {
+  const found = values.filter(
+    (value, i) => value && values.indexOf(value) === i
+  )
+  const rank = (value: string) => {
+    const listed = order.indexOf(value)
+    return listed < 0 ? order.length + found.indexOf(value) : listed
+  }
+  return found.sort((a, b) => rank(a) - rank(b))
+}
+
 // Where an event is held, for a calendar entry. Some events repeat the name as
 // the address, so identical parts are only said once.
 export const eventVenue = (event?: Event | null): string | undefined => {

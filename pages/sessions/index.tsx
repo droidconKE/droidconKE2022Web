@@ -135,6 +135,7 @@ const Sessions: NextPage<SessionProps> = ({
           setShowFilterSession={setShowFilterSession}
           filterSession={filterSession}
           event={event}
+          schedules={allSchedules}
         />
       )}
     </>

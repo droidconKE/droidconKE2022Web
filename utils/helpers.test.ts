@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   feedbackWindowLabel,
   feedbackWindowState,
+  filterOptions,
   getTwitterUsername,
   internalPath,
   isCurrentEventSlug,
@@ -308,6 +309,35 @@ describe('sessionEditions', () => {
       'droidconke-2026-731',
       'unconference-2026',
       'droidconke-2025-898',
+    ])
+  })
+})
+
+describe('filterOptions', () => {
+  it('offers what the sessions have, once each, and nothing for a break', () => {
+    // 2026: the call for speakers listed Regular and Codelab; no talk is either.
+    expect(
+      filterOptions(
+        ['Session', '', 'Workshop', 'Session'],
+        ['Regular', 'Codelab', 'Workshop']
+      )
+    ).toEqual(['Workshop', 'Session'])
+  })
+
+  it("keeps the organizer's order for the values they listed", () => {
+    expect(
+      filterOptions(
+        ['Advanced', 'Intermediate', 'Beginner'],
+        ['Beginner', 'Intermediate', 'Advanced']
+      )
+    ).toEqual(['Beginner', 'Intermediate', 'Advanced'])
+  })
+
+  it('keeps programme order when the event lists nothing', () => {
+    expect(filterOptions(['Oreo', 'Jellybean', 'Oreo', 'Lollipop'])).toEqual([
+      'Oreo',
+      'Jellybean',
+      'Lollipop',
     ])
   })
 })
