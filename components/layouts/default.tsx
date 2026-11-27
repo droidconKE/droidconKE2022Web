@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Script from 'next/script'
 import React, { ReactNode } from 'react'
 import { ThemeProvider } from '../../context/ThemeContext'
@@ -15,6 +16,12 @@ const IMAGE =
   'https://droidcon.co.ke/images/new-design/revised/dcke-cover-2027.jpg'
 
 export default function Layout({ children }: { children: ReactNode }) {
+  // The page's own address, not the site's: Facebook and LinkedIn take
+  // og:url as the page being shared, so the root made every page share as
+  // the homepage. Without the query; a session page sets its own, with
+  // its ?event=.
+  const { asPath } = useRouter()
+  const pageUrl = new URL(asPath.split(/[?#]/)[0], SITE_URL).href
   const gTagCode = process.env.NEXT_PUBLIC_GOOGLE_TAG
 
   const isEventReady = process.env.NEXT_PUBLIC_EVENT_READY === 'true' || false
@@ -38,7 +45,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           property="og:description"
           content={DESCRIPTION}
         />
-        <meta key="og:url" property="og:url" content={SITE_URL} />
+        <meta key="og:url" property="og:url" content={pageUrl} />
         <meta key="og:image" property="og:image" content={IMAGE} />
         <meta
           key="og:image:alt"
