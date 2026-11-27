@@ -13,6 +13,7 @@ import {
   internalPath,
   isCurrentEventSlug,
   resolveEventSlug,
+  sessionEditions,
   sessionShareUrl,
 } from '../../utils/helpers'
 
@@ -82,6 +83,22 @@ const Session: NextPage<SessionPageProp> = ({
     </>
   )
 }
+
+// The first edition, in sessionEditions order, that has this session. One
+// request at a time: most links without an event are from the last edition,
+// so the search stops within the first few rather than asking every edition.
+const findEdition = async (
+  slug: string,
+  [edition, ...rest] = sessionEditions()
+): Promise<string | null> => {
+  if (!edition) return null
+  const session = await axios
+    .get(`/events/${edition}/schedule/${slug}`)
+    .then((response) => response.data?.data ?? null)
+    .catch(() => null)
+  return session ? edition : findEdition(slug, rest)
+}
+
 export async function getServerSideProps({
   query,
   req,
@@ -95,9 +112,25 @@ export async function getServerSideProps({
 }) {
   const { slug, event: eventParam } = query
 
-  // Session slugs are unique per event, not globally, so a session opened from
-  // a past-event page carries the event it belongs to. Current-event links
-  // leave it off and fall back to the event being run now.
+  // A session is fetched under its event, so the URL says which one. A link
+  // without it (shared before links carried it, printed as a QR code, or
+  // built from the backend's template) goes on to the edition that has the
+  // session, so the address it ends up on keeps working after the next
+  // rollover. Temporary, because a bare link is read against whichever event
+  // is being run at the time.
+  if (!eventParam) {
+    const edition = await findEdition(slug)
+    if (!edition) return { notFound: true }
+    const url = new URL(resolvedUrl, 'http://localhost')
+    url.searchParams.set('event', edition)
+    return {
+      redirect: {
+        destination: `${url.pathname}${url.search}`,
+        permanent: false,
+      },
+    }
+  }
+
   const eventSlug = resolveEventSlug(eventParam)
 
   const fullUrl = sessionShareUrl({

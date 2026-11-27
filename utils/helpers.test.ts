@@ -11,6 +11,7 @@ import {
   time,
   timeAm,
   timeDay,
+  sessionHref,
 } from './helpers'
 import type { Event } from '../types/types'
 
@@ -245,3 +246,68 @@ describe.each(['UTC', 'Africa/Nairobi', 'America/Los_Angeles', 'Asia/Tokyo'])(
     })
   }
 )
+
+describe('sessionHref', () => {
+  beforeEach(() => {
+    vi.stubEnv('NEXT_PUBLIC_EVENT_SLUG', 'dcke27')
+  })
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
+  it('carries the event being run now when no other is given', () => {
+    expect(sessionHref('a-talk')).toBe('/sessions/a-talk?event=dcke27')
+  })
+
+  it('carries a past event and the page the visitor came from', () => {
+    expect(
+      sessionHref('a-talk', '/past-events/2026', 'droidconke-2026-731')
+    ).toBe(
+      '/sessions/a-talk?from=%2Fpast-events%2F2026&event=droidconke-2026-731'
+    )
+  })
+})
+
+// The past-event slugs are read when the module loads, as Next inlines them,
+// so each case loads it again under its own environment.
+const editionsWith = async (env: Record<string, string>) => {
+  Object.entries(env).forEach(([name, value]) => vi.stubEnv(name, value))
+  vi.resetModules()
+  return (await import('./helpers')).sessionEditions()
+}
+
+describe('sessionEditions', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
+  const past = {
+    NEXT_PUBLIC_EVENT_SLUG_2025: 'droidconke-2025-898',
+    NEXT_PUBLIC_EVENT_SLUG_2026: 'droidconke-2026-731',
+    NEXT_PUBLIC_BEYOND_STACKS_EVENT_SLUG_2026: 'unconference-2026',
+  }
+
+  it('looks in the event being run now, then the past ones, newest first', async () => {
+    expect(
+      await editionsWith({ ...past, NEXT_PUBLIC_EVENT_SLUG: 'dcke27' })
+    ).toEqual([
+      'dcke27',
+      'unconference-2026',
+      'droidconke-2026-731',
+      'droidconke-2025-898',
+    ])
+  })
+
+  it('looks in each event once, even one listed as past already', async () => {
+    expect(
+      await editionsWith({
+        ...past,
+        NEXT_PUBLIC_EVENT_SLUG: 'droidconke-2026-731',
+      })
+    ).toEqual([
+      'droidconke-2026-731',
+      'unconference-2026',
+      'droidconke-2025-898',
+    ])
+  })
+})

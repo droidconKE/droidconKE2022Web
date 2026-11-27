@@ -72,15 +72,20 @@ export const sessionHasEnded = (
   return !!end && end.getTime() <= Date.now()
 }
 
-const sessionUrl = (session: Session): string =>
-  session.slug ? `${window.location.origin}/sessions/${session.slug}` : ''
+// With the event it belongs to, so the link in somebody's calendar still opens
+// the session after the site moves on to the next edition.
+const sessionUrl = (session: Session, eventSlug: string): string => {
+  if (!session.slug) return ''
+  const query = eventSlug ? `?event=${encodeURIComponent(eventSlug)}` : ''
+  return `${window.location.origin}/sessions/${session.slug}${query}`
+}
 
-const buildDetails = (session: Session): string => {
+const buildDetails = (session: Session, eventSlug: string): string => {
   const speakers = session.speakers?.map((s) => s.name).join(', ')
   return [
     session.description,
     speakers ? `Speakers: ${speakers}` : '',
-    sessionUrl(session),
+    sessionUrl(session, eventSlug),
   ]
     .filter(Boolean)
     .join('\n\n')
@@ -93,6 +98,7 @@ const buildLocation = (session: Session, venue?: string): string =>
 
 export const googleCalendarUrl = (
   session: Session,
+  eventSlug: string,
   venue?: string
 ): string | null => {
   const times = sessionTimes(session)
@@ -102,7 +108,7 @@ export const googleCalendarUrl = (
     action: 'TEMPLATE',
     text: session.title,
     dates: `${utcStamp(times.start)}/${utcStamp(times.end)}`,
-    details: buildDetails(session),
+    details: buildDetails(session, eventSlug),
   })
   if (eventLocation) params.set('location', eventLocation)
   return `https://calendar.google.com/calendar/render?${params.toString()}`
@@ -141,10 +147,14 @@ const icsFold = (line: string): string => {
   return folded.map((part, i) => (i === 0 ? part : ` ${part}`)).join('\r\n')
 }
 
-export const downloadIcs = (session: Session, venue?: string): void => {
+export const downloadIcs = (
+  session: Session,
+  eventSlug: string,
+  venue?: string
+): void => {
   const times = sessionTimes(session)
   if (!times) return
-  const url = sessionUrl(session)
+  const url = sessionUrl(session, eventSlug)
   const eventLocation = buildLocation(session, venue)
   const lines = [
     'BEGIN:VCALENDAR',
@@ -156,7 +166,7 @@ export const downloadIcs = (session: Session, venue?: string): void => {
     `DTSTART:${utcStamp(times.start)}`,
     `DTEND:${utcStamp(times.end)}`,
     `SUMMARY:${icsEscape(session.title)}`,
-    `DESCRIPTION:${icsEscape(buildDetails(session))}`,
+    `DESCRIPTION:${icsEscape(buildDetails(session, eventSlug))}`,
     ...(eventLocation ? [`LOCATION:${icsEscape(eventLocation)}`] : []),
     ...(url ? [`URL:${url}`] : []),
     'END:VEVENT',

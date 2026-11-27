@@ -190,6 +190,7 @@ export const SessionGridCard = ({
                               session={schedule}
                               venue={eventVenue}
                               compact
+                              eventSlug={eventSlug}
                             />
                             <StarIcon session={schedule} />
                           </div>

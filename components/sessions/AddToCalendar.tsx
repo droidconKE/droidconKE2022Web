@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Session } from '../../types/types'
 import { downloadIcs, googleCalendarUrl } from '../../utils/calendar'
+import { resolveEventSlug } from '../../utils/helpers'
 
 // Compact options sit beside the trigger, as a sibling of the card <Link> —
 // session cards clip overflow-hidden, and a <button> cannot nest in an <a>.
@@ -10,19 +11,23 @@ export const AddToCalendar = ({
   session,
   venue,
   compact = false,
+  eventSlug,
 }: {
   session: Session
   // eslint-disable-next-line react/require-default-props
   venue?: string
   // eslint-disable-next-line react/require-default-props
   compact?: boolean
+  // eslint-disable-next-line react/require-default-props
+  eventSlug?: string
 }) => {
   const [showOptions, setShowOptions] = useState(false)
   const optionsId = useId()
   const rootRef = useRef<HTMLDivElement>(null)
+  const event = resolveEventSlug(eventSlug)
 
   const openGoogle = () => {
-    const url = googleCalendarUrl(session, venue)
+    const url = googleCalendarUrl(session, event, venue)
     if (url) window.open(url, '_blank', 'noopener')
   }
 
@@ -101,7 +106,7 @@ export const AddToCalendar = ({
             className={optionClass}
             aria-label="Download .ics file"
             title="Download .ics"
-            onClick={() => downloadIcs(session, venue)}
+            onClick={() => downloadIcs(session, event, venue)}
           >
             {compact ? <i className="fa fa-download" /> : '.ics'}
           </button>
