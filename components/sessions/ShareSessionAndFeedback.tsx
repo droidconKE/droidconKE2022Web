@@ -104,7 +104,11 @@ export const ShareSessionAndFeedback = ({
           renders; once it has closed a disabled chip says why. */}
       {isCurrentEvent && (
         <>
-          <AddToCalendar session={session} venue={venue} />
+          <AddToCalendar
+            session={session}
+            venue={venue}
+            eventSlug={eventSlug}
+          />
           {feedbackWindow === 'open' && !nudgeHasTakenOver && (
             <button
               type="button"

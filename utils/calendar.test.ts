@@ -1,5 +1,11 @@
-import { describe, expect, it } from 'vitest'
-import { parseEat, sessionHasEnded, eatCalendarDate } from './calendar'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import {
+  parseEat,
+  sessionHasEnded,
+  eatCalendarDate,
+  googleCalendarUrl,
+} from './calendar'
+import type { Session } from '../types/types'
 
 // These pin the timezone behaviour, which is the part nobody can check by
 // looking: the API sends naive "YYYY-MM-DD HH:mm:ss" strings in EAT (UTC+3),
@@ -67,6 +73,32 @@ describe('eatCalendarDate', () => {
     // One second earlier is still the 5th there.
     expect(eatCalendarDate(Date.parse('2026-11-05T20:59:59.000Z'))).toBe(
       '2026-11-05'
+    )
+  })
+})
+
+describe('googleCalendarUrl', () => {
+  beforeEach(() => {
+    vi.stubGlobal('window', { location: { origin: 'https://droidcon.co.ke' } })
+  })
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('links back to the session with the event it belongs to', () => {
+    const session = {
+      slug: 'a-talk',
+      title: 'A talk',
+      description: '',
+      speakers: [],
+      start_date_time: '2026-11-05T09:30:00+03:00',
+      end_date_time: '2026-11-05T10:00:00+03:00',
+    } as unknown as Session
+    const url = new URL(
+      String(googleCalendarUrl(session, 'droidconke-2026-731'))
+    )
+    expect(url.searchParams.get('details')).toBe(
+      'https://droidcon.co.ke/sessions/a-talk?event=droidconke-2026-731'
     )
   })
 })
