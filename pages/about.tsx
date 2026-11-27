@@ -53,7 +53,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 Droidcon Kenya is part of next.app devCon, the global home of
                 Droidcon, Fluttercon, and the wider mobile developer community.
                 <br /> <br />
-                Our 2026 theme is Beyond Stacks. The lines between mobile
+                Our 2026 theme was Beyond Stacks. The lines between mobile
                 ecosystems are thinner every year, and the questions developers
                 bring to us no longer sit inside a single stack. Beyond Stacks
                 is about the work that happens between platforms, tools, and
@@ -67,7 +67,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 co-located with the second Fluttercon Kenya.
                 <br />
                 <br />
-                In 2026, we build on it with a dedicated Droidcon Kenya track, a
+                In 2026, we built on it with a dedicated Droidcon Kenya track, a
                 shared Beyond Stacks floor, and content curated for developers
                 who ship.
               </p>
@@ -107,7 +107,7 @@ const About: NextPage<AboutProps> = ({ organizers }) => {
                 The 2025 edition marked a deliberate turn toward professional
                 developers, reaching 80.6% professional attendee composition and
                 replacing Community Day with a Workshop Day format. That shift
-                is what makes the 2026 program possible.
+                is what made the 2026 program possible.
               </p>
             </div>
             <div className="w-full md:w-[28%] flex justify-center shrink-0">
