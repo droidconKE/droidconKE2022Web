@@ -1,27 +1,53 @@
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useComponentVisible from '../../../hooks/useComponentVisible'
 
 export const PastEventsDropdown = () => {
-  const [showMenu, setShowMenu] = useState(false)
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(true)
+  // One open state, and the outside-click ref wraps the button as well as the
+  // menu, so a click on the button is never "outside" and always toggles. Two
+  // flags used to disagree after a click elsewhere, and the next click on the
+  // button did nothing.
+  const {
+    ref,
+    isComponentVisible: open,
+    setIsComponentVisible: setOpen,
+  } = useComponentVisible(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const router = useRouter()
 
+  // Any navigation closes it, from one of its links or the back button. Next
+  // signals the start as soon as a link is clicked, so the menu does not wait
+  // for the next page to load.
+  useEffect(() => {
+    const close = () => setOpen(false)
+    router.events.on('routeChangeStart', close)
+    return () => router.events.off('routeChangeStart', close)
+  }, [router.events, setOpen])
+
+  // Escape closes it and gives focus back to the button.
+  useEffect(() => {
+    if (!open) return undefined
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      setOpen(false)
+      buttonRef.current?.focus()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open, setOpen])
+
   return (
-    <div className="relative inline-block text-left">
+    <div ref={ref} className="relative inline-block text-left">
       <div>
         <button
+          ref={buttonRef}
           type="button"
           className="inline-flex w-full items-center justify-center gap-x-1.5 px-3"
           id="menu-button"
-          aria-expanded="true"
+          aria-expanded={open}
           aria-haspopup="true"
-          onClick={() => {
-            setShowMenu(!showMenu)
-            setIsComponentVisible(true)
-          }}
+          onClick={() => setOpen((prev) => !prev)}
         >
           <span
             className={
@@ -51,14 +77,13 @@ export const PastEventsDropdown = () => {
         </button>
       </div>
 
-      {showMenu && isComponentVisible && (
+      {open && (
         <div
           className="md:absolute md:right-0 z-10 mt-2 mb-2 ml-2 md:-mt-1 w-max min-w-[10rem] whitespace-nowrap origin-top-right rounded-md bg-lighter dark:bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-1"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
           tabIndex={-1}
-          ref={ref}
         >
           <div className="py-1 text-sm" role="none">
             <Link
