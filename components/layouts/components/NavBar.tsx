@@ -13,6 +13,12 @@ import useComponentVisible from '../../../hooks/useComponentVisible'
 // 2xl). Below that the header keeps the menu. Tailwind needs whole class
 // names, hence a full set per breakpoint. 1440 is an arbitrary variant, not a
 // theme screen: `container` sizes itself from the screens list.
+//
+// The open menu is fixed, so whatever runs past the bottom of the screen can
+// never be reached. On a phone it scrolls. Wider than a phone, it only scrolls
+// on a screen too short for it (a phone on its side is at most 430px tall, a
+// tablet at least 600), and there Past Events opens inside it instead of
+// floating off the bottom; everywhere else it looks as it did.
 const DESKTOP = {
   short: {
     nav: 'xl:flex-nowrap',
@@ -21,6 +27,8 @@ const DESKTOP = {
     content: 'xl:flex xl:items-center xl:w-auto xl:pt-0 xl:pb-0',
     inner: 'xl:w-auto xl:flex',
     list: 'xl:flex xl:pt-0 xl:[&>li>a]:px-3 xl:[&>li]:whitespace-nowrap',
+    cramped:
+      '[@media(max-width:1279px)_and_(max-height:500px)]:max-h-[calc(100dvh-var(--nav-h))] [@media(max-width:1279px)_and_(max-height:500px)]:overflow-y-auto [@media(max-width:1279px)_and_(max-height:500px)]:[&_[role=menu]]:static',
   },
   full: {
     nav: 'min-[1440px]:flex-nowrap',
@@ -30,6 +38,8 @@ const DESKTOP = {
       'min-[1440px]:flex min-[1440px]:items-center min-[1440px]:w-auto min-[1440px]:pt-0 min-[1440px]:pb-0',
     inner: 'min-[1440px]:w-auto min-[1440px]:flex',
     list: 'min-[1440px]:flex min-[1440px]:pt-0 min-[1440px]:[&>li>a]:px-2 2xl:[&>li>a]:px-3 min-[1440px]:[&>li]:whitespace-nowrap',
+    cramped:
+      '[@media(max-width:1439px)_and_(max-height:500px)]:max-h-[calc(100dvh-var(--nav-h))] [@media(max-width:1439px)_and_(max-height:500px)]:overflow-y-auto [@media(max-width:1439px)_and_(max-height:500px)]:[&_[role=menu]]:static',
   },
 }
 
@@ -109,7 +119,7 @@ export const NavBar = () => {
       </div>
       <div
         id="nav-content"
-        className={`w-full flex-grow pt-4 pb-4 md:px-5 ${desktop.content} ${
+        className={`w-full flex-grow pt-4 pb-4 md:px-5 max-md:max-h-[calc(100dvh-var(--nav-h))] max-md:overflow-y-auto ${desktop.cramped} ${desktop.content} ${
           navVisible ? '' : 'hidden'
         }`}
       >
