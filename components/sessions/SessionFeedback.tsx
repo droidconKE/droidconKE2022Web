@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import Rating from 'react-rating'
 import { toast } from 'react-toastify'
 import {
   Event,
@@ -63,6 +62,10 @@ export const SessionFeedback = ({
   const [message, setMessage] = useState('')
   const [name, setName] = useState('')
   const [rating, setRating] = useState(0)
+  // The star under the pointer, which the row previews until it leaves.
+  const [hovered, setHovered] = useState(0)
+  const ratingName = useId()
+  const dialogRef = useRef<HTMLDivElement>(null)
   const [answers, setAnswers] = useState<FeedbackAnswers>({})
   const [errors, setErrors] = useState<FeedbackError | null>(null)
   const [questions, setQuestions] = useState<FeedbackQuestion[]>([])
@@ -109,6 +112,16 @@ export const SessionFeedback = ({
       window.removeEventListener('keydown', onKey)
     }
   }, [closeDialog])
+
+  // Focus moves into the dialog when it opens, so the keyboard and a screen
+  // reader start at the form rather than behind it, and goes back to what
+  // opened it when it closes.
+  useEffect(() => {
+    if (!mounted) return undefined
+    const opener = document.activeElement as HTMLElement | null
+    dialogRef.current?.focus()
+    return () => opener?.focus({ preventScroll: true })
+  }, [mounted])
 
   useEffect(() => {
     let alive = true
@@ -292,7 +305,14 @@ export const SessionFeedback = ({
         />
         {/* my-auto centers a short form. A tall one keeps a reachable top, so
           the overlay scrolls the dialog instead of the page behind it. */}
-        <div className="relative z-10 my-auto w-full max-w-3xl rounded-4xl overflow-hidden bg-white dark:bg-darker-dark shadow-2xl flex flex-col md:flex-row">
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={editing ? 'Edit your answer' : `${kind} Feedback`}
+          tabIndex={-1}
+          className="relative z-10 my-auto w-full max-w-3xl rounded-4xl overflow-hidden bg-white dark:bg-darker-dark shadow-2xl flex flex-col md:flex-row focus:outline-none"
+        >
           <button
             type="button"
             aria-label="Close feedback"
@@ -348,28 +368,61 @@ export const SessionFeedback = ({
                   </p>
                 )}
 
-                <div className="w-full">
-                  <p className="text-sm font-medium text-black dark:text-white-dark mb-2">
-                    Rating <span className="text-red-500">*</span>
-                  </p>
-                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                  {/*  @ts-ignore */}
-                  <Rating
-                    initialRating={rating || undefined}
-                    emptySymbol="fa fa-star-o fa-2x"
-                    fullSymbol="fa fa-star fa-2x"
-                    className="space-x-4 flex text-secondary"
-                    onChange={(v) => {
-                      setRating(v)
-                      setErrors((prev) =>
-                        prev ? { ...prev, rating: undefined } : prev
-                      )
-                    }}
-                  />
+                {/* Five native radios drawn as stars: Tab reaches the group,
+                    the arrow keys move the rating, and a screen reader names
+                    the group and the rating picked. */}
+                <fieldset className="w-full">
+                  <legend className="text-sm font-medium text-black dark:text-white-dark mb-2">
+                    Rating
+                    <span aria-hidden="true" className="text-red-500">
+                      {' '}
+                      *
+                    </span>
+                  </legend>
+                  <div
+                    className="flex space-x-4 text-secondary"
+                    onMouseLeave={() => setHovered(0)}
+                  >
+                    {[1, 2, 3, 4, 5].map((stars) => (
+                      <label
+                        key={stars}
+                        htmlFor={`${ratingName}-${stars}`}
+                        className="cursor-pointer"
+                        onMouseEnter={() => setHovered(stars)}
+                      >
+                        <input
+                          id={`${ratingName}-${stars}`}
+                          type="radio"
+                          name={ratingName}
+                          value={stars}
+                          checked={rating === stars}
+                          required
+                          className="peer sr-only"
+                          onChange={() => {
+                            setRating(stars)
+                            setErrors((prev) =>
+                              prev ? { ...prev, rating: undefined } : prev
+                            )
+                          }}
+                        />
+                        <i
+                          aria-hidden="true"
+                          className={`fa ${
+                            stars <= (hovered || rating)
+                              ? 'fa-star'
+                              : 'fa-star-o'
+                          } fa-2x rounded-sm peer-focus-visible:ring-2 peer-focus-visible:ring-primary dark:peer-focus-visible:ring-accent`}
+                        />
+                        <span className="sr-only">
+                          {stars === 1 ? '1 star' : `${stars} stars`}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
                   {!!errors?.rating?.length && (
                     <p className={errorText}>{errors?.rating[0]}.</p>
                   )}
-                </div>
+                </fieldset>
 
                 {/* The organizer's own questions, under the stars, above the words. */}
                 {questions.length > 0 && (
