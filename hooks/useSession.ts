@@ -68,31 +68,42 @@ export const useSession = ({ allSchedules }: { allSchedules: Schedule }) => {
     setLoading(false)
   }, [showMySessions, computeMySchedules, originalSchedules])
 
-  const filterSession = (filter: FilterInterface) => {
-    if (objIsEmpty(filter)) {
-      handleSessionsToggle()
-      return
-    }
-    const newSchedule = {
-      ...(showMySessions ? computeMySchedules() : originalSchedules),
-    }
-    Object.keys(newSchedule).forEach((key) => {
-      newSchedule[key] = newSchedule[key].filter((e: Session) => {
-        return (
-          (filter?.level
-            ? e.session_level.includes(filter?.level)
-            : e.session_level) &&
-          (filter?.format
-            ? e.session_format.includes(filter?.format)
-            : e.session_format) &&
-          (filter?.room
-            ? e.rooms.some((x: Room) => x.title.includes(filter?.room))
-            : e.rooms)
-        )
+  // Stable, because the filter panel runs it from an effect: a new function on
+  // every render, with a new filtered schedule each time, rendered again and
+  // again for as long as the panel was open with a filter picked.
+  const filterSession = useCallback(
+    (filter: FilterInterface) => {
+      if (objIsEmpty(filter)) {
+        handleSessionsToggle()
+        return
+      }
+      const newSchedule = {
+        ...(showMySessions ? computeMySchedules() : originalSchedules),
+      }
+      Object.keys(newSchedule).forEach((key) => {
+        newSchedule[key] = newSchedule[key].filter((e: Session) => {
+          return (
+            (filter?.level
+              ? e.session_level.includes(filter?.level)
+              : e.session_level) &&
+            (filter?.format
+              ? e.session_format.includes(filter?.format)
+              : e.session_format) &&
+            (filter?.room
+              ? e.rooms.some((x: Room) => x.title.includes(filter?.room))
+              : e.rooms)
+          )
+        })
       })
-    })
-    setSchedules(newSchedule)
-  }
+      setSchedules(newSchedule)
+    },
+    [
+      showMySessions,
+      computeMySchedules,
+      originalSchedules,
+      handleSessionsToggle,
+    ]
+  )
 
   useEffect(() => {
     handleSessionsToggle()

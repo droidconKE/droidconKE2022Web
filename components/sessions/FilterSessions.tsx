@@ -1,25 +1,52 @@
-import { useState, MouseEvent, useEffect } from 'react'
+import { useState, MouseEvent, useEffect, useMemo } from 'react'
 import type { NextPage } from 'next'
-import { groupBy3, objIsEmpty } from '../../utils/helpers'
-import { Event, FilterInterface } from '../../types/types'
+import { filterOptions, groupBy3, objIsEmpty } from '../../utils/helpers'
+import { Event, FilterInterface, Schedule, Session } from '../../types/types'
 
 interface FilterSessionProps {
   setShowFilterSession: (_showFilterSession: boolean) => void
   filterSession: (_filter: FilterInterface) => void
-  event: Event
+  event: Event | null
+  schedules: Schedule
 }
 
 export const FilterSessions: NextPage<FilterSessionProps> = ({
   setShowFilterSession,
   filterSession,
   event,
+  schedules,
 }) => {
   const [filter, setFilter] = useState<FilterInterface>({})
   const [isOpen, setIsOpen] = useState(false)
 
-  const [sessions3] = useState(event.cfs.cfs_settings.session_levels)
-  const [sessions4] = useState(event.rooms.map((r) => r.title))
-  const [sessions5] = useState(event.cfs.cfs_settings.session_formats)
+  // Levels, rooms and types are read off the sessions themselves; the event's
+  // own lists only order them. Its call for speakers labels drift from the
+  // sessions' (2026 offers Regular; its talks are Session), and an event can
+  // have none at all, or fail to load.
+  const [levels, rooms, formats] = useMemo(() => {
+    const sessions = Object.values(schedules).reduce<Session[]>(
+      (all, day) => all.concat(day),
+      []
+    )
+    const settings = event?.cfs?.cfs_settings
+    return [
+      filterOptions(
+        sessions.map((s) => s.session_level),
+        settings?.session_levels
+      ),
+      filterOptions(
+        sessions.reduce<string[]>(
+          (all, s) => all.concat(s.rooms.map((r) => r.title)),
+          []
+        ),
+        event?.rooms?.map((r) => r.title)
+      ),
+      filterOptions(
+        sessions.map((s) => s.session_format),
+        settings?.session_formats
+      ),
+    ]
+  }, [schedules, event])
 
   const selectedClass = 'bg-accent text-black'
 
@@ -85,7 +112,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
                 Level
               </span>
-              {groupBy3(sessions3).map((sessions: string[]) => (
+              {groupBy3(levels).map((sessions: string[]) => (
                 <div className="flex pb-1 flex-wrap" key={sessions[0]}>
                   <button
                     name="level"
@@ -132,7 +159,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
                 Rooms
               </span>
-              {groupBy3(sessions4).map((sessions: string[]) => (
+              {groupBy3(rooms).map((sessions: string[]) => (
                 <div
                   key={sessions[0]}
                   className={`flex pb-1 flex-wrap ${
@@ -187,7 +214,7 @@ export const FilterSessions: NextPage<FilterSessionProps> = ({
               <span className="block mb-3 text-sm font-semibold uppercase tracking-wide text-white/60">
                 Session Types
               </span>
-              {groupBy3(sessions5).map((sessions: string[]) => (
+              {groupBy3(formats).map((sessions: string[]) => (
                 <div
                   key={sessions[0]}
                   className={`flex pb-1 flex-wrap ${
