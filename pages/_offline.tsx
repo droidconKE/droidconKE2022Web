@@ -10,6 +10,8 @@ const Error: NextPageWithLayout = () => (
   />
 )
 
-Error.getLayout = (page: ReactElement) => <ErrorLayout>{page}</ErrorLayout>
+Error.getLayout = (page: ReactElement) => (
+  <ErrorLayout title="You're offline">{page}</ErrorLayout>
+)
 
 export default Error

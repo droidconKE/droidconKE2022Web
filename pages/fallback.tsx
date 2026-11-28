@@ -10,7 +10,9 @@ const Fallback: NextPageWithLayout = () => (
   />
 )
 
-Fallback.getLayout = (page: ReactElement) => <ErrorLayout>{page}</ErrorLayout>
+Fallback.getLayout = (page: ReactElement) => (
+  <ErrorLayout title="You're offline">{page}</ErrorLayout>
+)
 
 Fallback.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404

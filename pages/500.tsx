@@ -13,7 +13,7 @@ const Error: NextPageWithLayout = function ErrorPage() {
 }
 
 Error.getLayout = function getLayout(page: ReactElement) {
-  return <ErrorLayout>{page}</ErrorLayout>
+  return <ErrorLayout title="Something went wrong">{page}</ErrorLayout>
 }
 
 export default Error
