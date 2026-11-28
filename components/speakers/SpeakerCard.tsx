@@ -5,11 +5,14 @@ import { sessionHref } from '../../utils/helpers'
 export const SpeakerCard = ({
   speaker,
   slug,
+  from = '/speakers',
   eventSlug,
 }: {
   speaker: Speaker
   // eslint-disable-next-line react/require-default-props
   slug?: string
+  // eslint-disable-next-line react/require-default-props
+  from?: string
   // eslint-disable-next-line react/require-default-props
   eventSlug?: string
 }) => {
@@ -44,7 +47,7 @@ export const SpeakerCard = ({
     <div key={speaker.name} className="h-full">
       {slug || socialHref ? (
         <Link
-          href={slug ? sessionHref(slug, '/speakers', eventSlug) : socialHref!}
+          href={slug ? sessionHref(slug, from, eventSlug) : socialHref!}
           className="group flex flex-col h-full rounded-4xl overflow-hidden bg-white dark:bg-darker-dark border border-primary dark:border-primary shadow-md hover:shadow-xl hover:border-accent transition-all duration-200"
           target={slug ? undefined : '_blank'}
           rel={slug ? undefined : 'noreferrer noopener'}
